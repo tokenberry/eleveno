@@ -72,7 +72,7 @@
           { "name": "Chardonnay — Chalk Hill — Russian River Valley (2023)", "price": "$13" }
         ]},
         { "name": "Sparkling", "items": [
-          { "name": "Prosecco Brut — Chloe — (NV)", "price": "$10" }
+          { "name": "Prosecco Brut — Chloé — (NV)", "price": "$10" }
         ]}
       ]
     },
@@ -80,8 +80,8 @@
       "name": "Whiskey",
       "groups": [
         { "name": "Bourbon", "items": [
-          { "name": "Makers Mark", "price": "$17" }, { "name": "Bulleit", "price": "$20" },
-          { "name": "Woodford Reserve", "price": "$20" }, { "name": "Jeffersons", "price": "$22" }
+          { "name": "Maker's Mark", "price": "$17" }, { "name": "Bulleit", "price": "$20" },
+          { "name": "Woodford Reserve", "price": "$20" }, { "name": "Jefferson's", "price": "$22" }
         ]},
         { "name": "Rye", "items": [ { "name": "Bulleit Rye", "price": "$30" } ]},
         { "name": "Scotch", "items": [
@@ -107,7 +107,7 @@
     {
       "name": "Rum",
       "items": [
-        { "name": "Bacardi Superior White", "price": "$10" }, { "name": "Flor de Cana", "price": "$11" },
+        { "name": "Bacardi Superior White", "price": "$10" }, { "name": "Flor de Caña", "price": "$11" },
         { "name": "Captain Morgan", "price": "$10" }
       ]
     },
@@ -122,7 +122,7 @@
       "name": "Gin",
       "items": [
         { "name": "Bombay Sapphire", "price": "$12" }, { "name": "Tanqueray", "price": "$12" },
-        { "name": "Hendricks", "price": "$19" }, { "name": "Plymouth", "price": "$11" }
+        { "name": "Hendrick's", "price": "$19" }, { "name": "Plymouth", "price": "$11" }
       ]
     },
     {
@@ -130,10 +130,10 @@
       "items": [
         { "name": "Borghetti Espresso Liqueur", "price": "$14" }, { "name": "Licor 43", "price": "$15" },
         { "name": "Luxardo Amaretto", "price": "$16" }, { "name": "Aperol", "price": "$15" },
-        { "name": "St Germain", "price": "$18" }, { "name": "Dom Benedictine", "price": "$16" },
-        { "name": "Fernet Branca", "price": "$17" }, { "name": "Cointreau", "price": "$17" },
+        { "name": "St-Germain", "price": "$18" }, { "name": "Dom Benedictine", "price": "$16" },
+        { "name": "Fernet-Branca", "price": "$17" }, { "name": "Cointreau", "price": "$17" },
         { "name": "Luxardo Maraschino Liqueur", "price": "$17" }, { "name": "Amaro Nonino", "price": "$19" },
-        { "name": "Kahlua", "price": "$14" }
+        { "name": "Kahlúa", "price": "$14" }
       ]
     },
     {
