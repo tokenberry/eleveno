@@ -42,11 +42,12 @@
             <li>Discount on ELEVENO Programs, Leagues and Rallie Ball Machine</li>
             <li>Monthly Member Raffle</li>
             <li>7 Day Advanced Booking <small>*No back-to-back sessions</small></li>
-            <li>3 Month Commitment (June&ndash;August)</li>
+            <li>3 Month Commitment ({{memberships.season.label}})</li>
           </ul>
           <p class="plan__swag">ELEVENO swag</p>
           <div class="plan__box" data-season-start="{{memberships.season.start}}" data-season-end="{{memberships.season.end}}"
-               data-total="{{memberships.plans.indoorOutdoor.totalAmount}}" data-currency="{{memberships.pricing.currency}}" data-prorate="{{memberships.pricing.prorateAttr}}">
+               data-total="{{memberships.plans.indoorOutdoor.totalAmount}}" data-currency="{{memberships.pricing.currency}}" data-prorate="{{memberships.pricing.prorateAttr}}"
+               data-min-days="{{memberships.pricing.minDays}}" data-next-label="{{memberships.nextSeason.label}}" data-next-opens="{{memberships.nextSeason.opensOn}}">
             <strong>Indoor &amp; Outdoor Membership</strong>
             <span data-season-line>{{memberships.plans.indoorOutdoor.total}} &middot; {{memberships.season.label}}</span>
           </div>
@@ -65,11 +66,12 @@
             <li>$5 Off Outdoor Court Rentals</li>
             <li>15% Off Food &amp; Beverage (non-alcoholic)</li>
             <li>7 Day Advanced Booking <small>*No back-to-back sessions</small></li>
-            <li>3 Month Commitment (June&ndash;August)</li>
+            <li>3 Month Commitment ({{memberships.season.label}})</li>
           </ul>
           <p class="plan__swag">ELEVENO swag</p>
           <div class="plan__box" data-season-start="{{memberships.season.start}}" data-season-end="{{memberships.season.end}}"
-               data-total="{{memberships.plans.outdoor.totalAmount}}" data-currency="{{memberships.pricing.currency}}" data-prorate="{{memberships.pricing.prorateAttr}}">
+               data-total="{{memberships.plans.outdoor.totalAmount}}" data-currency="{{memberships.pricing.currency}}" data-prorate="{{memberships.pricing.prorateAttr}}"
+               data-min-days="{{memberships.pricing.minDays}}" data-next-label="{{memberships.nextSeason.label}}" data-next-opens="{{memberships.nextSeason.opensOn}}">
             <strong>Outdoor Membership</strong>
             <span data-season-line>{{memberships.plans.outdoor.total}} &middot; {{memberships.season.label}}</span>
           </div>

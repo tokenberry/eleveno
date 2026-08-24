@@ -1,51 +1,80 @@
-/* Membership pricing and day counts, resolved in the visitor's own timezone.
+/* Membership pricing, day counts and the season-close rule, resolved in the
+   visitor's own timezone.
 
-   This runs in the browser rather than at build time because both the day
-   count and the prorated price depend on today's date — a value baked in at
-   build time is wrong the following morning.
+   This runs in the browser rather than at build time because all three depend
+   on today's date — a value baked in at build time is wrong the next morning.
 
    Progressive enhancement: the markup ships a correct static line, and this
-   only replaces it while the season is actually open. */
+   only rewrites it once it knows what today actually is. */
 (function () {
   'use strict';
   var boxes = document.querySelectorAll('[data-season-end]');
   if (!boxes.length) return;
 
   var DAY = 86400000;
+  var MONTHS = ['January','February','March','April','May','June',
+                'July','August','September','October','November','December'];
 
   function parseDate(s) {
-    var p = String(s).split('-');
+    var p = String(s || '').split('-');
     if (p.length !== 3) return null;
     var d = new Date(+p[0], +p[1] - 1, +p[2]);
     return isNaN(d.getTime()) ? null : d;
   }
 
   function money(amount, currency) {
-    return currency + (Math.round(amount * 100) / 100 === Math.round(amount)
-      ? String(Math.round(amount))
-      : amount.toFixed(2));
+    var whole = Math.round(amount);
+    return currency + (Math.abs(amount - whole) < 0.005 ? String(whole) : amount.toFixed(2));
+  }
+
+  function closeCard(box, nextLabel, opensOn) {
+    var line = box.querySelector('[data-season-line]');
+    var opens = parseDate(opensOn);
+    if (line) {
+      line.textContent = opens
+        ? 'Next season opens ' + MONTHS[opens.getMonth()] + ' ' + opens.getDate()
+        : 'This season is closed';
+    }
+    var title = box.querySelector('strong');
+    if (title && nextLabel) title.textContent = nextLabel.replace(/&ndash;/g, '–') + ' season';
+
+    var plan = box.closest('.plan');
+    var cta = plan && plan.querySelector('.plan__cta');
+    if (cta) {
+      cta.textContent = 'Season Closed';
+      cta.removeAttribute('href');           // no longer a link
+      cta.setAttribute('aria-disabled', 'true');
+      cta.className += ' plan__cta--closed';
+    }
   }
 
   var now = new Date();
   var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
-  Array.prototype.forEach.call(boxes, function (el) {
-    var line = el.querySelector('[data-season-line]');
+  Array.prototype.forEach.call(boxes, function (box) {
+    var line = box.querySelector('[data-season-line]');
     if (!line) return;
 
-    var start = parseDate(el.getAttribute('data-season-start'));
-    var end = parseDate(el.getAttribute('data-season-end'));
-    var total = parseFloat(el.getAttribute('data-total'));
-    var currency = el.getAttribute('data-currency') || '$';
-    var prorate = el.getAttribute('data-prorate') === 'true';
+    var start = parseDate(box.getAttribute('data-season-start'));
+    var end = parseDate(box.getAttribute('data-season-end'));
+    var total = parseFloat(box.getAttribute('data-total'));
+    var currency = box.getAttribute('data-currency') || '$';
+    var prorate = box.getAttribute('data-prorate') === 'true';
+    var minDays = parseInt(box.getAttribute('data-min-days'), 10);
+    var nextLabel = box.getAttribute('data-next-label');
+    var nextOpens = box.getAttribute('data-next-opens');
     if (!end || !isFinite(total)) return;
 
-    // before it opens, and after it closes, the static line is the honest one
+    // before the season opens, the static line already describes the full season
     if (start && today < start) return;
-    if (today > end) return;
 
-    var remaining = Math.round((end - today) / DAY) + 1;      // inclusive of today
-    if (remaining < 1) return;
+    var remaining = Math.round((end - today) / DAY) + 1;   // inclusive of today
+
+    // too little of the season left to sell a worthwhile membership
+    if (remaining < (isFinite(minDays) ? minDays : 1)) {
+      closeCard(box, nextLabel, nextOpens);
+      return;
+    }
 
     var price = total;
     if (prorate && start) {

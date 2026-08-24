@@ -287,6 +287,8 @@ img{max-width:100%}
 .plan__box strong{display:block;font-size:15px}
 .plan__box span{font-size:14px;color:var(--on-navy)}
 .plan__cta{display:inline-block;margin-top:22px;background:var(--gold);color:var(--navy);font-family:var(--display);font-size:16px;letter-spacing:1px;text-transform:uppercase;padding:14px 28px;border-radius:999px}
+.plan__cta--closed{background:transparent;border:2px solid #ffffff3d;color:var(--on-navy-mute);cursor:default}
+.plan__cta--closed:hover{opacity:1}
 
 .credits{overflow-x:auto}
 .credits table{width:100%;border-collapse:collapse;background:var(--navy);color:var(--cream);border-radius:18px;overflow:hidden;min-width:520px}
