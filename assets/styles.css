@@ -102,6 +102,8 @@ img{max-width:100%}
 .sched{border-top:3px solid var(--navy)}
 .sched__row{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px 4px;border-bottom:2px dashed #0e235055}
 .sched__row:last-child{border-bottom:3px solid var(--navy)}
+.sched__row--empty{justify-content:center;padding:34px 4px}
+.sched__row--empty .sched__what{flex:0 1 auto;text-align:center;font-family:var(--body);font-size:17px;font-weight:600;text-transform:none;color:var(--ink-mute)}
 .sched__row--feature{background:#fff9e8}
 .sched__when{font-family:var(--mono);font-size:15px;color:var(--blue);width:150px;flex:0 0 150px}
 .sched__what{font-family:var(--display);font-size:clamp(24px,3.2vw,34px);text-transform:uppercase;color:var(--navy);flex:1}

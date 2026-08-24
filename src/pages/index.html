@@ -48,28 +48,9 @@
         <h2 id="play-h">Now Playing</h2>
       </div>
       <div class="sched">
-        <div class="sched__row">
-          <span class="sched__when">TUE &middot; 7:00 PM</span>
-          <span class="sched__what">Tuesday Night Pints</span>
-          <a class="sched__cta" href="#book">SIGN UP</a>
-        </div>
-        <div class="sched__row">
-          <span class="sched__when">WED &middot; 6:00 PM</span>
-          <span class="sched__what">Weekday Round Robins</span>
-          <a class="sched__cta" href="#book">SIGN UP</a>
-        </div>
-        <div class="sched__row sched__row--feature">
-          <span class="sched__when">FRI &middot; 8:00 PM</span>
-          <span class="sched__what">Friday Night Lights <span>&#9733;</span></span>
-          <a class="sched__cta sched__cta--gold" href="#book">HEADLINER</a>
-        </div>
-        <div class="sched__row">
-          <span class="sched__when">SAT &middot; 2:00 PM</span>
-          <span class="sched__what">Saturday Day Party</span>
-          <a class="sched__cta" href="#book">SIGN UP</a>
-        </div>
+{{eventRows}}
       </div>
-      <p class="playing__more"><a href="#book">View full calendar &rarr;</a></p>
+      <p class="playing__more"><a href="{{viewAllUrl}}">View full calendar &rarr;</a></p>
     </div>
   </section>
 

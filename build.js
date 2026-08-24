@@ -19,6 +19,7 @@ const read = p => fs.readFileSync(p, 'utf8');
 const nav = JSON.parse(read(path.join(SRC, 'data', 'nav.json')));
 const site = JSON.parse(read(path.join(SRC, 'data', 'site.json')));
 const memberships = JSON.parse(read(path.join(SRC, 'data', 'memberships.json')));
+const calendar = JSON.parse(read(path.join(SRC, 'data', 'events.json')));
 
 /* Resolve a nav entry to an href that works from the page being rendered,
    whether it is opened over http or straight off disk. Same-page entries stay
@@ -117,6 +118,33 @@ Object.assign(memberships, escapeDeep(memberships));
   memberships.pricing.prorateAttr = memberships.pricing.prorate ? 'true' : 'false';
 })();
 
+Object.assign(calendar, escapeDeep(calendar));
+
+/* The "Now Playing" rows. Authored in src/data/events.json so events can be
+   added and removed without touching markup. */
+function renderEvents() {
+  const list = Array.isArray(calendar.events) ? calendar.events : [];
+  if (!list.length) {
+    return '        <div class="sched__row sched__row--empty">\n' +
+           '          <span class="sched__what">Nothing on the calendar right now — check back soon.</span>\n' +
+           '        </div>';
+  }
+  return list.map(e => {
+    const feature = e.featured ? ' sched__row--feature' : '';
+    const ctaClass = e.featured ? 'sched__cta sched__cta--gold' : 'sched__cta';
+    const star = e.featured ? ' <span>&#9733;</span>' : '';
+    const label = (e.ctaLabel || 'Sign Up').toUpperCase();
+    // an event with no link yet still renders, just without a button
+    const cta = e.url
+      ? `\n          <a class="${ctaClass}" href="${e.url}">${label}</a>`
+      : '';
+    return `        <div class="sched__row${feature}">\n` +
+           `          <span class="sched__when">${e.when}</span>\n` +
+           `          <span class="sched__what">${e.title}${star}</span>` +
+           `${cta}\n        </div>`;
+  }).join('\n');
+}
+
 const layout = read(path.join(SRC, 'layouts', 'base.html'));
 const pageFiles = fs.readdirSync(path.join(SRC, 'pages')).filter(f => f.endsWith('.html')).sort();
 if (!pageFiles.length) throw new Error('no pages found in src/pages');
@@ -127,6 +155,9 @@ for (const f of pageFiles) {
   const vars = {
     ...site,
     memberships,
+    calendar,
+    eventRows: renderEvents(),
+    viewAllUrl: calendar.viewAllUrl || '#book',
     ...meta,
     // sensible derivations so each page's meta block stays to the essentials
     canonical: meta.canonical || site.baseUrl + (meta.slug === 'index' ? '' : meta.slug + '.html'),

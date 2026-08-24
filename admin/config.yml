@@ -17,6 +17,35 @@ media_folder: assets
 public_folder: assets
 
 collections:
+  - name: calendar
+    label: Calendar
+    files:
+      - name: events
+        label: Now Playing events
+        file: src/data/events.json
+        description: >
+          The event list on the home page. Add an event, drag to reorder, or
+          delete one that has finished. Events appear in the order shown here.
+        fields:
+          - name: viewAllUrl
+            label: "\"View full calendar\" link"
+            widget: string
+            required: false
+            hint: Leave empty to link to the booking section further down the home page.
+          - name: events
+            label: Events
+            label_singular: Event
+            widget: list
+            required: false
+            summary: "{{fields.when}} — {{fields.title}}"
+            fields:
+              - { name: when, label: Day and time, widget: string, hint: "Shown on the left, for example: TUE · 7:00 PM" }
+              - { name: title, label: Event name, widget: string }
+              - { name: url, label: Sign-up link, widget: string, required: false, hint: "Paste the full link. Leave empty and the event shows with no button." }
+              - { name: ctaLabel, label: Button text, widget: string, default: Sign Up, required: false }
+              - { name: featured, label: Highlight this event, widget: boolean, default: false, required: false }
+          - { name: _comment, label: Note to editors, widget: hidden, required: false }
+
   - name: memberships
     label: Memberships
     files:

@@ -1,0 +1,13 @@
+{
+  "_comment": "The 'Now Playing' calendar on the home page. Add, remove and reorder events here; they render in the order listed. Mark one as featured to highlight it.",
+  "viewAllUrl": "",
+  "events": [
+    {
+      "when": "TUE · 7:00 PM",
+      "title": "Tuesday Night Pints",
+      "url": "https://eleveno.podplay.app/community/series/019ed720-d03d-7666-9363-cecf52bd2be5",
+      "ctaLabel": "Sign Up",
+      "featured": false
+    }
+  ]
+}
