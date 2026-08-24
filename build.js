@@ -44,7 +44,10 @@ function renderPrimaryNav(slug) {
 function renderFooterNav(slug) {
   return nav.footer.map(col => {
     const links = col.links
-      .map(e => `<a href="${esc(href(e, slug))}">${e.label}</a>`)
+      .map(e => {
+        const current = e.page === slug && !e.hash ? ' aria-current="page"' : '';
+        return `<a href="${esc(href(e, slug))}"${current}>${e.label}</a>`;
+      })
       .join('');
     return `          <div class="footer__col"><h3>${col.heading}</h3>${links}</div>`;
   }).join('\n');
