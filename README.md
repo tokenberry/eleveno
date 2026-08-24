@@ -102,6 +102,30 @@ to roughly 970KB of imagery.
 
 Originals live in the design project, not in this repo.
 
+## Hosting and the admin editor
+
+The site deploys to Netlify. `netlify.toml` sets the build to `node build.js`
+and publishes the repo root; nothing is installed at build time.
+
+`/admin` runs Decap CMS, which edits `src/data/memberships.json` through a form
+— the season's three months, the pricing rules, and each plan's Get Membership
+link — and commits the change back to the branch. That commit triggers a
+Netlify rebuild, so the site updates without anyone touching code.
+
+Setting it up on Netlify, once:
+
+1. **Add new site → Import an existing project**, and pick this repo. The build
+   command and publish directory come from `netlify.toml`.
+2. In the new site, open **Site configuration → Access & identity → OAuth**,
+   **Install provider**, choose **GitHub**, and authorise it. This is what lets
+   `/admin` sign editors in; without it the editor loads but cannot log in.
+3. Visit `https://<site>.netlify.app/admin` and sign in with GitHub. Anyone who
+   can push to the repo can edit.
+
+`admin/config.yml` names the branch it writes to. It currently points at
+`claude/eleveno-home-design-2ej8rc`; change `branch:` to `main` once this work
+merges, or the CMS will keep editing the feature branch.
+
 ## Content notes
 
 Copy, pricing and schedule are transcribed verbatim from the design and should

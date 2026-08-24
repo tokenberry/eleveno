@@ -1,0 +1,25 @@
+# Netlify build + hosting for the ELEVENO site.
+# The build is `node build.js`; there is nothing to install.
+
+[build]
+  command = "node build.js"
+  publish = "."
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Decap CMS talks to GitHub through Netlify's OAuth proxy, which needs this.
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

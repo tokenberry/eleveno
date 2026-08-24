@@ -1,0 +1,81 @@
+# Decap CMS — the admin UI for the membership section.
+# Edits here are committed straight back to the repo, which triggers a rebuild.
+
+backend:
+  name: github
+  repo: tokenberry/eleveno
+  branch: claude/eleveno-home-design-2ej8rc
+  base_url: https://api.netlify.com   # Netlify's OAuth proxy handles the GitHub login
+
+publish_mode: simple
+site_url: https://www.eleveno.com
+display_url: https://www.eleveno.com
+locale: en
+
+# No image uploads are needed yet, but Decap requires these to be set.
+media_folder: assets
+public_folder: assets
+
+collections:
+  - name: memberships
+    label: Memberships
+    files:
+      - name: season
+        label: Membership season & links
+        file: src/data/memberships.json
+        description: >
+          Controls the whole memberships section. Set the three months the
+          season covers, and the page works out the days remaining and the
+          prorated price for whoever is looking at it.
+        fields:
+          - name: season
+            label: Current season
+            widget: object
+            fields:
+              - { name: start, label: First day of the season, widget: datetime, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD, picker_utc: true }
+              - { name: end, label: Last day of the season, widget: datetime, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD, picker_utc: true }
+              - { name: label, label: Season name shown on the page, widget: string, hint: "For example: June &ndash; August" }
+
+          - name: nextSeason
+            label: Next season
+            widget: object
+            hint: Shown once the current season closes.
+            fields:
+              - { name: label, label: Next season name, widget: string, required: false }
+              - { name: opensOn, label: First day of the next season, widget: datetime, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD, picker_utc: true, required: false }
+              - { name: _comment, label: Note to editors, widget: hidden, required: false }
+
+          - name: pricing
+            label: Pricing rules
+            widget: object
+            fields:
+              - { name: currency, label: Currency symbol, widget: string, default: "$" }
+              - { name: prorate, label: Charge only for the days that are left, widget: boolean, default: true }
+              - { name: minDays, label: Close the season when fewer days remain than, widget: number, value_type: int, min: 1, max: 90, default: 30 }
+              - { name: _comment, label: Note to editors, widget: hidden, required: false }
+
+          - name: plans
+            label: Plans
+            widget: object
+            fields:
+              - name: indoorOutdoor
+                label: Indoor & Outdoor
+                widget: object
+                fields:
+                  - { name: name, label: Plan name, widget: string }
+                  - { name: monthlyAmount, label: Price per month, widget: number, value_type: float, min: 0 }
+                  - { name: totalAmount, label: Full season price, widget: number, value_type: float, min: 0 }
+                  - { name: subscribeUrl, label: Get Membership link, widget: string }
+              - name: outdoor
+                label: Outdoor
+                widget: object
+                fields:
+                  - { name: name, label: Plan name, widget: string }
+                  - { name: monthlyAmount, label: Price per month, widget: number, value_type: float, min: 0 }
+                  - { name: totalAmount, label: Full season price, widget: number, value_type: float, min: 0 }
+                  - { name: subscribeUrl, label: Get Membership link, widget: string }
+
+          - name: _comment
+            label: Note to editors
+            widget: hidden
+            required: false
