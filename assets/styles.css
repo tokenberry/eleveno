@@ -397,6 +397,78 @@ img{max-width:100%}
   border-radius:999px;border:2px solid #ffffff5c;color:var(--cream)}
 .menu-switch a[aria-current]{background:var(--gold);border-color:var(--gold);color:var(--navy)}
 
+/* ---------- private events: packages ---------- */
+.pkgs{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.pkgcard{background:#fff;border:3px solid var(--navy);border-radius:20px;padding:32px 30px;
+  box-shadow:0 16px 40px rgba(14,35,80,.10)}
+.pkgcard h3{font-family:var(--display);font-size:30px;letter-spacing:1px;text-transform:uppercase;color:var(--navy)}
+.pkgcard__lead{font-size:15px;font-weight:600;color:var(--ink-soft);margin-top:8px}
+.pkgcard__list{list-style:none;margin-top:20px}
+.pkgcard__list li{display:flex;align-items:baseline;gap:8px;padding:11px 0;border-bottom:2px dashed #0e235033}
+.pkgcard__list li:last-child{border-bottom:0}
+.pkgcard__name{font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:.3px;color:var(--navy)}
+.pkgcard__name small{display:block;font-weight:600;font-size:12.5px;text-transform:none;letter-spacing:0;color:var(--ink-mute);margin-top:2px}
+.pkgcard__dots{flex:1 1 auto;min-width:14px;border-bottom:2px dotted #0e235055;transform:translateY(-4px)}
+.pkgcard__price{font-family:var(--display);font-size:19px;color:var(--blue);white-space:nowrap;flex:0 0 auto}
+.pkgcard__note{font-size:13.5px;line-height:1.6;font-weight:500;color:var(--ink-mute);margin-top:18px}
+
+.upgrades{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:28px}
+.upgrade{background:var(--navy);color:var(--cream);border-radius:18px;padding:26px 28px}
+.upgrade h3{font-family:var(--display);font-size:20px;letter-spacing:1px;text-transform:uppercase;color:var(--gold)}
+.upgrade p{font-size:14.5px;line-height:1.6;font-weight:500;color:var(--on-navy);margin-top:10px}
+
+/* ---------- private events: venue ---------- */
+.venue{background:#fff;padding:76px 0}
+.venue .shell{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.venue__img{border-radius:22px;overflow:hidden;aspect-ratio:4/3;background:var(--navy) url('event-venue.jpg') center/cover;
+  box-shadow:0 20px 44px rgba(14,35,80,.22)}
+.venue h2{font-family:var(--display);font-size:clamp(32px,4.4vw,52px);line-height:1;text-transform:uppercase;
+  letter-spacing:1px;color:var(--navy)}
+.venue h2 span{color:var(--gold)}
+.venue__body{font-size:16px;line-height:1.7;font-weight:500;color:var(--ink-soft);margin-top:18px}
+.venue__features{list-style:none;background:var(--cream);border-radius:16px;padding:22px 26px;margin-top:24px}
+.venue__features li{position:relative;padding-left:22px;font-weight:800;font-size:15px;color:var(--navy)}
+.venue__features li + li{margin-top:10px}
+.venue__features li::before{content:"";position:absolute;left:0;top:7px;width:8px;height:8px;border-radius:50%;background:var(--gold)}
+.venue__cta{margin-top:24px}
+
+/* ---------- private events: enhancements ---------- */
+.enhs{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.enh{background:var(--blue);color:#fff;border-radius:22px;padding:34px 32px;box-shadow:0 16px 38px rgba(14,35,80,.2)}
+.enh__script{font-family:var(--script);font-size:34px;line-height:1;color:var(--gold)}
+.enh h3{font-family:var(--heavy);font-size:30px;letter-spacing:.5px;margin-top:2px}
+.enh__list{list-style:none;margin-top:22px}
+.enh__list li{position:relative;padding-left:26px;font-weight:800;font-size:14.5px;text-transform:uppercase;letter-spacing:.4px}
+.enh__list li + li{margin-top:13px}
+.enh__list li::before{content:"\2713";position:absolute;left:0;top:0;color:#fff;font-weight:900}
+.enh__note{font-size:13px;font-style:italic;color:#ffffffcf;margin-top:20px}
+
+/* ---------- private events: inquiry form ---------- */
+.inquiry{background:var(--cream);padding:76px 0}
+.inquiry .shell{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:start}
+.inquiry h2{font-family:var(--display);font-size:clamp(32px,4.4vw,52px);text-transform:uppercase;letter-spacing:1px;color:var(--navy)}
+.inquiry h2 span{color:var(--gold)}
+.inquiry__lead{font-size:17px;line-height:1.6;font-weight:600;color:var(--ink-soft);margin-top:14px}
+.inquiry__img{margin-top:26px;border-radius:20px;overflow:hidden;aspect-ratio:4/3;
+  background:var(--navy) url('event-inquiry.jpg') center/cover}
+.form{background:#fff;border:3px solid var(--navy);border-radius:22px;padding:32px 30px;
+  box-shadow:0 18px 44px rgba(14,35,80,.12)}
+.form__grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field--wide{grid-column:1 / -1}
+.field label{font-weight:800;font-size:12px;letter-spacing:.8px;text-transform:uppercase;color:var(--navy)}
+.field label .req{color:var(--gold)}
+.field input,.field select,.field textarea{font-family:var(--body);font-size:15px;color:var(--ink);
+  background:var(--cream);border:2px solid transparent;border-radius:10px;padding:12px 14px;width:100%}
+.field textarea{min-height:110px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue);background:#fff}
+.form__submit{margin-top:22px}
+.form__submit button{width:100%;background:var(--gold);color:var(--navy);font-family:var(--display);font-size:18px;
+  letter-spacing:1px;text-transform:uppercase;padding:16px 30px;border:0;border-radius:999px;cursor:pointer}
+.form__submit button:hover{opacity:.9}
+.form__small{font-family:var(--mono);font-size:11px;line-height:1.7;color:var(--ink-mute);margin-top:14px;text-align:center}
+.hp{position:absolute;left:-9999px}
+
 /* ---------- responsive (additions; source design has none) ---------- */
 @media (max-width:1080px){
   .closer .shell{grid-template-columns:1fr 1fr;gap:32px}
@@ -409,10 +481,15 @@ img{max-width:100%}
   .memb__grid{grid-template-columns:1fr}
   .paths{grid-template-columns:1fr 1fr}
   .crosssell .shell{grid-template-columns:1fr}
+  .venue .shell{grid-template-columns:1fr}
+  .inquiry .shell{grid-template-columns:1fr}
 }
 @media (max-width:860px){
   :root{--pad:22px}
   .menu-grid{columns:1}
+  .pkgs{grid-template-columns:1fr}
+  .upgrades{grid-template-columns:1fr}
+  .enhs{grid-template-columns:1fr}
   .plans{grid-template-columns:1fr}
   .progb{grid-template-columns:1fr}
   .plan__list{grid-template-columns:1fr}
@@ -449,6 +526,7 @@ img{max-width:100%}
 @media (max-width:520px){
   .playing__mark{display:none}
   .menu-names{columns:1}
+  .form__grid{grid-template-columns:1fr}
   .menu-sec h2{font-size:26px}
   .credits table{min-width:420px}
   .credits th,.credits td{padding:14px 12px}

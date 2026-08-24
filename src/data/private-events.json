@@ -1,0 +1,64 @@
+{
+  "_comment": "Private events page: packages, venue facts, enhancements and the inquiry form's dropdown options.",
+  "intro": "Corporate outings, birthday blowouts, team building and everything in between — court time, food and drink handled in one place.",
+  "packages": [
+    {
+      "name": "Food Packages",
+      "lead": "ELEVENO offers four food packages:",
+      "items": [
+        { "name": "Baseline", "price": "$30/pp" },
+        { "name": "Mid-Court", "price": "$40/pp" },
+        { "name": "The ELEVENO", "price": "$50/pp" },
+        { "name": "Morning Serve", "price": "$25/pp" }
+      ],
+      "note": "All include Appetizers, Handhelds, Flatbreads and Dips, replenished for two hours."
+    },
+    {
+      "name": "Beverage Packages",
+      "lead": "Three packages are available:",
+      "items": [
+        { "name": "The Courtside", "price": "from $25 / 2hrs" },
+        { "name": "The Match Point", "price": "from $35 / 2hrs", "desc": "With House Spirits" },
+        { "name": "The Championship", "price": "from $45 / 2hrs", "desc": "With Premium Spirits" }
+      ],
+      "note": "Drink tickets or a consumption bar are also available."
+    }
+  ],
+  "upgrades": [
+    { "name": "Food Add-Ons", "body": "Signature Salad Bar, Charcuterie & Cheese Board, and New England Seafood Tower." },
+    { "name": "Drink Add-Ons", "body": "Custom Welcome Cocktails and Mocktails, and a Mobile Courtside Bar." }
+  ],
+  "venue": {
+    "heading": "More than just",
+    "headingAccent": "pickleball",
+    "body": "ELEVENO is the go-to destination for events that bring people together. From company outings, birthday parties, team-building sessions and social gatherings, our venue combines competition, dining and entertainment in one place. With premier courts, signature food and beverage, and flexible event spaces, every detail is designed to make your event seamless and unforgettable.",
+    "features": [
+      "9 indoor & 6 outdoor pickleball courts",
+      "Center Court Bar & Kitchen",
+      "Outdoor beer garden & lawn games",
+      "Entertainment areas",
+      "Flex meeting spaces"
+    ]
+  },
+  "enhancements": {
+    "lead": "Customize your event — inquire for pricing.",
+    "groups": [
+      {
+        "script": "Pickleball",
+        "name": "Enhancements",
+        "items": ["Pickleball coach or host", "Tournament support", "Lessons & clinics", "Branded paddles", "Custom trophy", "Custom medals"]
+      },
+      {
+        "script": "Venue",
+        "name": "Enhancements",
+        "items": ["Half Center Court Bar rental", "Semi-private venue rental", "Full venue rental"],
+        "note": "Bar rental options are subject to availability."
+      }
+    ]
+  },
+  "form": {
+    "_comment": "eventTypes mirror the categories already listed on the home page. referrals are a starting set — confirm before launch.",
+    "eventTypes": ["Corporate event", "Holiday party", "Birthday", "Networking", "Fundraiser", "Employee appreciation", "Sports team or club", "Other"],
+    "referrals": ["Google search", "Instagram", "Facebook", "A friend or colleague", "I've played here before", "Other"]
+  }
+}

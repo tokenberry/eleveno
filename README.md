@@ -53,6 +53,17 @@ than an empty rule. `/admin` edits this as a drag-to-reorder list.
 The calendar page (`calendar.html`) repeats the same list at the top, then
 offers three "start here" routes into the booking system by player level.
 
+## Private events
+
+`src/data/private-events.json` holds the food and beverage packages, the venue
+facts, the enhancement lists and the inquiry form's dropdown options.
+
+The inquiry form is a plain HTML form marked `data-netlify="true"`, so Netlify
+captures submissions and lists them under Forms — no server, no JavaScript. It
+carries a honeypot field for spam and redirects to `thanks.html` on success.
+Nothing is emailed automatically; set up a notification in Netlify under
+**Forms → Form notifications** to have submissions reach an inbox.
+
 ## The menus
 
 `src/data/menu-food.json` and `src/data/menu-drinks.json` hold the two menus,

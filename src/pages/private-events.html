@@ -1,0 +1,128 @@
+<!--meta {
+  "slug": "private-events",
+  "title": "Private Events — ELEVENO Pickleball",
+  "description": "Corporate outings, birthday parties and team building at ELEVENO in Foxborough, MA. Food and beverage packages, flexible event spaces, and an inquiry form."
+}
+-->
+<main>
+
+  <!-- ===================== PAGE HEADER ===================== -->
+  <section class="phero">
+    <img class="phero__mark" src="assets/mark-v.png" alt="" aria-hidden="true" width="800" height="307">
+    <div class="shell">
+      <p class="eyebrow eyebrow--gold">PRIVATE EVENTS &amp; BUYOUTS</p>
+      <h1>Private <span>Events</span></h1>
+      <p class="phero__lead">{{events.intro}}</p>
+    </div>
+  </section>
+
+  <!-- ===================== PACKAGES ===================== -->
+  <section class="band band--cream" aria-labelledby="pkgs-h">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow">PRICED PER PERSON</p>
+        <h2 id="pkgs-h">Packages</h2>
+      </div>
+      <div class="pkgs">
+{{eventPackages}}
+      </div>
+      <div class="upgrades">
+{{eventUpgrades}}
+      </div>
+      <p class="finecopy">All packages include court time. Prices are per person and exclude state sales tax and service fees.</p>
+    </div>
+  </section>
+
+  <!-- ===================== VENUE ===================== -->
+  <section class="venue" id="venue" aria-labelledby="venue-h">
+    <div class="shell">
+      <div class="venue__img" role="img" aria-label="A court at ELEVENO set with round banquet tables for a private event"></div>
+      <div>
+        <h2 id="venue-h">{{events.venue.heading}} <span>{{events.venue.headingAccent}}</span></h2>
+        <p class="venue__body">{{events.venue.body}}</p>
+        <ul class="venue__features">
+{{venueFeatures}}
+        </ul>
+        <p class="venue__cta"><a class="btn btn--navy" href="#inquire">Inquire today</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== INQUIRY FORM ===================== -->
+  <section class="inquiry" id="inquire" aria-labelledby="inq-h">
+    <div class="shell">
+      <div>
+        <h2 id="inq-h">Submit an <span>inquiry</span></h2>
+        <p class="inquiry__lead">We'd love to help bring your event to life. Fill in the form and our team will be in touch.</p>
+        <p class="crosssell__contact" style="color:var(--ink-mute)">OR REACH US AT <a href="mailto:{{email}}">{{email}}</a> &nbsp;&bull;&nbsp; <a href="tel:{{phoneHref}}">{{phone}}</a></p>
+        <div class="inquiry__img" role="img" aria-label="A corporate event under way at ELEVENO"></div>
+      </div>
+
+      <form class="form" name="event-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="thanks.html">
+        <input type="hidden" name="form-name" value="event-inquiry">
+        <p class="hp"><label>Leave this field empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <div class="form__grid">
+          <div class="field">
+            <label for="f-name">Full name <span class="req" aria-hidden="true">*</span></label>
+            <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Your name here" required>
+          </div>
+          <div class="field">
+            <label for="f-company">Company</label>
+            <input id="f-company" name="company" type="text" autocomplete="organization" placeholder="Company name">
+          </div>
+          <div class="field">
+            <label for="f-email">Email <span class="req" aria-hidden="true">*</span></label>
+            <input id="f-email" name="email" type="email" autocomplete="email" placeholder="your@email.com" required>
+          </div>
+          <div class="field">
+            <label for="f-phone">Phone <span class="req" aria-hidden="true">*</span></label>
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="(617) 000-0000" required>
+          </div>
+          <div class="field">
+            <label for="f-type">Event type <span class="req" aria-hidden="true">*</span></label>
+            <select id="f-type" name="event-type" required>
+              <option value="">Select type&hellip;</option>
+{{eventTypeOptions}}
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-size">Group size <span class="req" aria-hidden="true">*</span></label>
+            <input id="f-size" name="group-size" type="number" min="1" step="1" placeholder="10" required>
+          </div>
+          <div class="field">
+            <label for="f-heard">How did you hear about us?</label>
+            <select id="f-heard" name="referral">
+              <option value="">Select&hellip;</option>
+{{referralOptions}}
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-date">Preferred date</label>
+            <input id="f-date" name="preferred-date" type="date">
+          </div>
+          <div class="field field--wide">
+            <label for="f-notes">Anything else we should know?</label>
+            <textarea id="f-notes" name="notes" placeholder="Group size, timings, anything you have in mind&hellip;"></textarea>
+          </div>
+        </div>
+        <p class="form__submit"><button type="submit">Send inquiry</button></p>
+        <p class="form__small">FIELDS MARKED <span style="color:var(--gold)">*</span> ARE REQUIRED</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===================== ENHANCEMENTS ===================== -->
+  <section class="band band--white" aria-labelledby="enh-h">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow">TAKE IT UP A LEVEL</p>
+        <h2 id="enh-h">Enhancements</h2>
+      </div>
+      <p class="memb__lead">{{events.enhancements.lead}}</p>
+      <div class="enhs">
+{{eventEnhancements}}
+      </div>
+    </div>
+  </section>
+
+</main>

@@ -20,6 +20,7 @@ const nav = JSON.parse(read(path.join(SRC, 'data', 'nav.json')));
 const site = JSON.parse(read(path.join(SRC, 'data', 'site.json')));
 const memberships = JSON.parse(read(path.join(SRC, 'data', 'memberships.json')));
 const calendar = JSON.parse(read(path.join(SRC, 'data', 'events.json')));
+const events = JSON.parse(read(path.join(SRC, 'data', 'private-events.json')));
 const menus = {
   food: JSON.parse(read(path.join(SRC, 'data', 'menu-food.json'))),
   drinks: JSON.parse(read(path.join(SRC, 'data', 'menu-drinks.json'))),
@@ -150,6 +151,7 @@ function renderEvents() {
 }
 
 for (const k of Object.keys(menus)) menus[k] = escapeDeep(menus[k]);
+Object.assign(events, escapeDeep(events));
 
 const DIET = {
   veg:   ['V',  'Vegetarian'],
@@ -203,6 +205,36 @@ function renderLegend(codes) {
     + '<span class="legend__item"><span class="menu-raw" aria-hidden="true">&#10033;</span> Shellfish / raw</span>';
 }
 
+/* --- private events page fragments --- */
+function renderPackages() {
+  return events.packages.map(p => `        <article class="pkgcard">
+          <h3>${p.name}</h3>
+          <p class="pkgcard__lead">${p.lead}</p>
+          <ul class="pkgcard__list">
+${p.items.map(i => `            <li><span class="pkgcard__name">${i.name}${i.desc ? ` <small>${i.desc}</small>` : ''}</span><span class="pkgcard__dots" aria-hidden="true"></span><span class="pkgcard__price">${i.price}</span></li>`).join('\n')}
+          </ul>
+          <p class="pkgcard__note">${p.note}</p>
+        </article>`).join('\n');
+}
+function renderUpgrades() {
+  return events.upgrades.map(u => `        <div class="upgrade"><h3>${u.name}</h3><p>${u.body}</p></div>`).join('\n');
+}
+function renderVenueFeatures() {
+  return events.venue.features.map(f => `          <li>${f}</li>`).join('\n');
+}
+function renderEnhancements() {
+  return events.enhancements.groups.map(g => `        <article class="enh">
+          <p class="enh__script">${g.script}</p>
+          <h3>${g.name}</h3>
+          <ul class="enh__list">
+${g.items.map(i => `            <li>${i}</li>`).join('\n')}
+          </ul>${g.note ? `\n          <p class="enh__note">*${g.note}</p>` : ''}
+        </article>`).join('\n');
+}
+function renderOptions(list) {
+  return list.map(o => `            <option value="${o}">${o}</option>`).join('\n');
+}
+
 const layout = read(path.join(SRC, 'layouts', 'base.html'));
 const pageFiles = fs.readdirSync(path.join(SRC, 'pages')).filter(f => f.endsWith('.html')).sort();
 if (!pageFiles.length) throw new Error('no pages found in src/pages');
@@ -215,6 +247,13 @@ for (const f of pageFiles) {
     memberships,
     calendar,
     menus,
+    events,
+    eventPackages: renderPackages(),
+    eventUpgrades: renderUpgrades(),
+    venueFeatures: renderVenueFeatures(),
+    eventEnhancements: renderEnhancements(),
+    eventTypeOptions: renderOptions(events.form.eventTypes),
+    referralOptions: renderOptions(events.form.referrals),
     foodMenu: renderMenu(menus.food),
     drinksMenu: renderMenu(menus.drinks),
     foodLegend: renderLegend(['veg','vegan','gf','ht']),
