@@ -53,6 +53,19 @@ than an empty rule. `/admin` edits this as a drag-to-reorder list.
 The calendar page (`calendar.html`) repeats the same list at the top, then
 offers three "start here" routes into the booking system by player level.
 
+## The menus
+
+`src/data/menu-food.json` and `src/data/menu-drinks.json` hold the two menus,
+transcribed from the PDFs. A section carries either priced `items`, `groups` of
+priced items (Bourbon, Rye, Scotch), or a plain list of `names` (draft beer,
+sodas). Items may carry `diet` codes — `veg`, `vegan`, `gf`, `ht` — and `raw`
+for the shellfish/raw disclaimer; the build renders the badges and the legend
+from the same table, so the two cannot disagree.
+
+Sections are never split across the column break: a reader must not meet dishes
+at the top of a column with no heading above them. That leaves the column
+bottoms uneven, which is how printed menus set anyway.
+
 ## The membership season
 
 `src/data/memberships.json` holds everything that changes between seasons —

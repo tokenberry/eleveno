@@ -20,6 +20,10 @@ const nav = JSON.parse(read(path.join(SRC, 'data', 'nav.json')));
 const site = JSON.parse(read(path.join(SRC, 'data', 'site.json')));
 const memberships = JSON.parse(read(path.join(SRC, 'data', 'memberships.json')));
 const calendar = JSON.parse(read(path.join(SRC, 'data', 'events.json')));
+const menus = {
+  food: JSON.parse(read(path.join(SRC, 'data', 'menu-food.json'))),
+  drinks: JSON.parse(read(path.join(SRC, 'data', 'menu-drinks.json'))),
+};
 
 /* Resolve a nav entry to an href that works from the page being rendered,
    whether it is opened over http or straight off disk. Same-page entries stay
@@ -145,6 +149,60 @@ function renderEvents() {
   }).join('\n');
 }
 
+for (const k of Object.keys(menus)) menus[k] = escapeDeep(menus[k]);
+
+const DIET = {
+  veg:   ['V',  'Vegetarian'],
+  vegan: ['VE', 'Vegan'],
+  gf:    ['GF', 'Gluten free'],
+  ht:    ['\u2713', 'Healthy Truth — plant based'],
+};
+
+/* A menu is a list of sections; a section holds priced items, sub-groups of
+   priced items, or a plain list of names (draft beer, sodas). */
+function renderMenu(menu) {
+  const badges = d => (d || []).map(code => {
+    const b = DIET[code];
+    if (!b) throw new Error(`unknown diet code: ${code}`);
+    return ` <span class="diet diet--${code}" title="${b[1]}" aria-label="${b[1]}">${b[0]}</span>`;
+  }).join('');
+
+  const item = i => {
+    const raw = i.raw ? ' <span class="menu-raw" title="Shellfish / raw — see disclaimer" aria-label="Shellfish or raw, see disclaimer">&#10033;</span>' : '';
+    const price = i.price ? `<span class="menu-item__price">${i.price}</span>` : '';
+    const dots = i.price ? '<span class="menu-item__dots" aria-hidden="true"></span>' : '';
+    const desc = i.desc ? `\n            <p class="menu-item__desc">${i.desc}</p>` : '';
+    const note = i.note ? `\n            <p class="menu-item__note">${i.note}</p>` : '';
+    return `          <li class="menu-item">
+            <p class="menu-item__top"><span class="menu-item__name">${i.name}${badges(i.diet)}${raw}</span>${dots}${price}</p>${desc}${note}
+          </li>`;
+  };
+
+  const body = sec => {
+    const out = [];
+    if (sec.lead) out.push(`        <p class="menu-sec__lead">${sec.lead}</p>`);
+    if (sec.items) out.push(`        <ul class="menu-list">\n${sec.items.map(item).join('\n')}\n        </ul>`);
+    for (const g of sec.groups || []) {
+      out.push(`        <p class="menu-group">${g.name}</p>`);
+      out.push(`        <ul class="menu-list">\n${g.items.map(item).join('\n')}\n        </ul>`);
+    }
+    if (sec.names) out.push(`        <ul class="menu-names">\n${sec.names.map(n => `          <li>${n}</li>`).join('\n')}\n        </ul>`);
+    if (sec.footnote) out.push(`        <p class="menu-sec__foot">${sec.footnote}</p>`);
+    return out.join('\n');
+  };
+
+  return menu.sections.map(sec =>
+`      <section class="menu-sec">
+        <h2>${sec.name}</h2>
+${body(sec)}
+      </section>`).join('\n\n');
+}
+
+function renderLegend(codes) {
+  return codes.map(c => `<span class="legend__item"><span class="diet diet--${c}" aria-hidden="true">${DIET[c][0]}</span> ${DIET[c][1]}</span>`).join('')
+    + '<span class="legend__item"><span class="menu-raw" aria-hidden="true">&#10033;</span> Shellfish / raw</span>';
+}
+
 const layout = read(path.join(SRC, 'layouts', 'base.html'));
 const pageFiles = fs.readdirSync(path.join(SRC, 'pages')).filter(f => f.endsWith('.html')).sort();
 if (!pageFiles.length) throw new Error('no pages found in src/pages');
@@ -156,6 +214,12 @@ for (const f of pageFiles) {
     ...site,
     memberships,
     calendar,
+    menus,
+    foodMenu: renderMenu(menus.food),
+    drinksMenu: renderMenu(menus.drinks),
+    foodLegend: renderLegend(['veg','vegan','gf','ht']),
+    foodNotes: menus.food.notes.map(n => `        <p>${n}</p>`).join('\n'),
+    drinksNotes: menus.drinks.notes.map(n => `        <p>${n}</p>`).join('\n'),
     eventRows: renderEvents(),
     viewAllUrl: calendar.viewAllUrl || '#book',
     ...meta,

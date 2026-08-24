@@ -1,0 +1,67 @@
+{
+  "_comment": "Food menu, transcribed from the ELEVENO menu PDF. diet codes: veg = vegetarian, vegan, gf = gluten free, ht = healthy truth / plant based. raw = carries the shellfish/raw disclaimer.",
+  "title": "Food Menu",
+  "intro": "Chef-driven plates, loaded baskets and everything in between — served courtside or at the bar.",
+  "sponsor": "Walpole Outdoors — Center Court Bar",
+  "sections": [
+    {
+      "name": "Shareables",
+      "items": [
+        { "name": "Steak Asada", "price": "$23", "desc": "Herb Marinated Flat Iron, Horseradish Sauce", "diet": ["gf"], "raw": true },
+        { "name": "Moroccan Lamb Skewer", "price": "$18", "desc": "Dukkah Spice & Onion Soublakia", "diet": ["gf"], "raw": true },
+        { "name": "Shrimp Cocktail", "price": "$18", "desc": "Jumbo Shrimp, Gin Cocktail Sauce, Horseradish", "diet": ["gf"], "raw": true },
+        { "name": "French Fries", "price": "$6", "desc": "BBQ | Parmesan Truffle | Rosemary", "diet": ["gf"] },
+        { "name": "Hummus & Grilled Naan", "price": "$12" },
+        { "name": "Guacamole & Corn Tortilla", "price": "$15" },
+        { "name": "Caramelized Onion Dip & Chips", "price": "$13" },
+        { "name": "Spinach & Artichoke Dip & Corn Tortilla", "price": "$13" }
+      ]
+    },
+    {
+      "name": "Flatbreads",
+      "items": [
+        { "name": "Traditional Margherita", "price": "$17", "desc": "Oven Cured Tomato, Mozzarella, Torn Basil", "diet": ["veg"] },
+        { "name": "Crispy Pepperoni & Hot Honey", "price": "$18", "desc": "Cupped Pepperoni, Whole Milk Mozzarella, Simmered San Marzano Sauce" },
+        { "name": "Mediterranean Chicken", "price": "$18", "desc": "Basil Pesto Marony, Grilled Chicken, Roasted Peppers, Feta Cheese" },
+        { "name": "Vegetable & Pesto", "price": "$16", "desc": "Grilled Seasonal Vegetables, Basil Pesto, Baked Goat Cheese", "diet": ["veg"] }
+      ]
+    },
+    {
+      "name": "Salads",
+      "items": [
+        { "name": "Mediterranean Superfood Salad", "price": "$16", "desc": "Kale, Quinoa, Chickpeas, Tomato, Cucumber, Mixed Olives, Feta Cheese, Lemon Tahini Vinaigrette", "diet": ["veg"] },
+        { "name": "Tender Green Salad & Root Vegetables", "price": "$14", "desc": "Mixed Mesclun Greens, Shaved Root", "diet": ["veg", "ht"] },
+        { "name": "Get Freekah Protein Bowl", "price": "$17", "desc": "Toasted Freekah, Spinach, Avocado, Sweet Potato, Edamame, Pickled Red Onion, Shredded Carrot, Toasted Seeds, Ginger-Miso Vinaigrette", "diet": ["veg", "ht"] }
+      ],
+      "footnote": "ADD PROTEINS: Chicken Breast | Grilled Shrimp* | Grilled Steak*"
+    },
+    {
+      "name": "Handhelds",
+      "items": [
+        { "name": "Smashburger", "price": "$18", "desc": "House Burger Sauce, Lettuce, Tomato, Pickle", "raw": true },
+        { "name": "Fried Chicken Sandwich", "price": "$17", "desc": "Nashville Hot Sauce, Pickles, Creamy Coleslaw" },
+        { "name": "Cubano Sliders", "price": "$20", "desc": "Pulled Pork Shoulder, Dijonaise, Pickle, Gruyere Cheese" },
+        { "name": "Birria Tacos", "price": "$18", "desc": "Braised Beef, Oaxaca Cheese, Consommé" }
+      ]
+    },
+    {
+      "name": "Wing Bar",
+      "lead": "Buffalo, BBQ, Salt & Pepper, Hot Honey, Plain",
+      "items": [
+        { "name": "Flats Only", "price": "$9", "diet": ["gf"] },
+        { "name": "Wing Trio", "price": "$22", "desc": "Choose 3" }
+      ]
+    },
+    {
+      "name": "Sweets",
+      "items": [
+        { "name": "Banana Cream Bread Pudding", "price": "$9", "desc": "Toasted Walnuts | Rum Anglaise" },
+        { "name": "Chocolate Stout Cake", "price": "$9", "desc": "Espresso Glaze | Cocoa Nib Crumble" }
+      ]
+    }
+  ],
+  "notes": [
+    "Consuming raw or under-cooked meats, poultry, seafood, shellfish or eggs may increase your risk of food-borne illness.",
+    "Before placing your order, please inform your server if a person in your party has a food allergy."
+  ]
+}

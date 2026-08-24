@@ -1,0 +1,147 @@
+{
+  "_comment": "Drinks menu, transcribed from the ELEVENO Court Cocktail PDF. Sections may hold items (with prices) or groups of items, or a plain list of names.",
+  "title": "Drinks Menu",
+  "intro": "Court Cocktail — signatures built around the game, plus the classics, beer, wine and a full back bar.",
+  "sections": [
+    {
+      "name": "Signature Cocktails",
+      "items": [
+        { "name": "The X-40", "price": "$20", "desc": "Tequila | Limoncello | Lemongrass | Passionfruit", "note": "A vibrant yellow cocktail that mimics the yellow hue of the X40 ball. It is smooth, balanced, and \"impossible to miss\"." },
+        { "name": "The X-26", "price": "$16", "desc": "Zero Proof \"Tequila\" | Lemon Juice | Lemon Grass | Passionfruit" }
+      ]
+    },
+    {
+      "name": "Specialty Cocktails",
+      "items": [
+        { "name": "Serve & Volley", "price": "$19", "desc": "Gin | Basil | Melon | Lime" },
+        { "name": "Golden Set", "price": "$19", "desc": "Rum | Pineapple | Curry | Coconut" },
+        { "name": "Topspin Tonic", "price": "$18", "desc": "Ketel One Vodka | Strawberry | Pink Peppercorn | Elderflower" },
+        { "name": "Baseline Heat", "price": "$19", "desc": "Tequila | Chili | Mango | Tajin" },
+        { "name": "Painted Court", "price": "$18", "desc": "Bourbon | Honey | Black Tea | Lemon" }
+      ]
+    },
+    {
+      "name": "Classic Cocktails",
+      "items": [
+        { "name": "Long Island Iced Tea", "price": "$17" },
+        { "name": "Moscow Mule", "price": "$16" },
+        { "name": "Old Fashioned", "price": "$15" },
+        { "name": "Mojito", "price": "$13" },
+        { "name": "Cosmopolitan", "price": "$15" },
+        { "name": "Aperol Spritz", "price": "$15" },
+        { "name": "Whiskey Sour", "price": "$13" }
+      ]
+    },
+    {
+      "name": "Mocktails",
+      "items": [
+        { "name": "Orange Advantage", "price": "$14", "desc": "Mandarin | Lime | Vanilla | Soda" },
+        { "name": "The Court Garden", "price": "$14", "desc": "Cucumber | Thyme | Elderflower | Tonic" },
+        { "name": "The Rally Refresher", "price": "$14", "desc": "Berry | Hibiscus | Mint | Lemon" },
+        { "name": "Zero Proof Smash", "price": "$14", "desc": "Pineapple | Ginger | Yuzu | Foam" }
+      ]
+    },
+    {
+      "name": "Draft Beer",
+      "names": ["Hero 95 (Double)", "Sam Seasonal", "Harpoon IPA", "Deschutes Fresh Squeezed IPA", "Sip of Sunshine"]
+    },
+    {
+      "name": "Bottles & Canned Beer",
+      "names": ["Modelo", "Bud Light", "Michelob Ultra", "Heniekin", "High Noon", "Surfside", "Fabrizia Italian Lemonade", "Fabrizia Blueberry Lemonade", "Fabrizia Raspberry Vodka Soda", "Fabrizia Cranberry Breeze"]
+    },
+    {
+      "name": "N/A Beer",
+      "names": ["Michelob Ultra Zero"]
+    },
+    {
+      "name": "Juices & Sodas",
+      "lead": "All $4",
+      "names": ["Pepsi", "Diet Pepsi", "Sierra Mist", "Ginger Ale", "Celsius Energy Drinks", "Mainelove Waters", "Cranberry Juice", "Grapefruit Juice", "Orange Juice", "Pineapple Juice", "Tomato Juice"]
+    },
+    {
+      "name": "Wine",
+      "groups": [
+        { "name": "Red", "items": [
+          { "name": "Pinot Noir — Maison Noir — Other People's — Willamette Valley (2021)", "price": "$13" },
+          { "name": "Chianti Classico L'Aura — Querceto di Castellina (2023)", "price": "$9" },
+          { "name": "Cabernet Sauvignon — Ferrari-Carano — Sonoma County (2021)", "price": "$11" }
+        ]},
+        { "name": "White", "items": [
+          { "name": "Pinot Grigio — Anterra — Delle Venezie (2024)", "price": "$9" },
+          { "name": "Sauvignon Blanc — Jacques Dumont — Val de Loire (2022)", "price": "$11" },
+          { "name": "Chardonnay — Chalk Hill — Russian River Valley (2023)", "price": "$13" }
+        ]},
+        { "name": "Sparkling", "items": [
+          { "name": "Prosecco Brut — Chloe — (NV)", "price": "$10" }
+        ]}
+      ]
+    },
+    {
+      "name": "Whiskey",
+      "groups": [
+        { "name": "Bourbon", "items": [
+          { "name": "Makers Mark", "price": "$17" }, { "name": "Bulleit", "price": "$20" },
+          { "name": "Woodford Reserve", "price": "$20" }, { "name": "Jeffersons", "price": "$22" }
+        ]},
+        { "name": "Rye", "items": [ { "name": "Bulleit Rye", "price": "$30" } ]},
+        { "name": "Scotch", "items": [
+          { "name": "Johnnie Walker Black", "price": "$17" }, { "name": "Balvenie 12 Year Speyside", "price": "$31" },
+          { "name": "Glendiffich 15 Year Speyside", "price": "$62" }, { "name": "Tullamore D.E.W.", "price": "$21" }
+        ]},
+        { "name": "Other", "items": [
+          { "name": "Crown Royal", "price": "$14" }, { "name": "Jameson Blended", "price": "$16" }
+        ]}
+      ]
+    },
+    {
+      "name": "Tequila / Mezcal",
+      "groups": [
+        { "name": "Blanco", "items": [
+          { "name": "1800", "price": "$15" }, { "name": "Casamigos", "price": "$20" }, { "name": "Don Julio", "price": "$21" }
+        ]},
+        { "name": "Reposado", "items": [
+          { "name": "1800", "price": "$16" }, { "name": "Casamigos", "price": "$22" }, { "name": "Don Julio", "price": "$23" }
+        ]}
+      ]
+    },
+    {
+      "name": "Rum",
+      "items": [
+        { "name": "Bacardi Superior White", "price": "$10" }, { "name": "Flor de Cana", "price": "$11" },
+        { "name": "Captain Morgan", "price": "$10" }
+      ]
+    },
+    {
+      "name": "Vodka",
+      "items": [
+        { "name": "Ketel One", "price": "$12" }, { "name": "Tito's", "price": "$12" },
+        { "name": "New Amsterdam", "price": "$9" }, { "name": "Belvedere", "price": "$11" }
+      ]
+    },
+    {
+      "name": "Gin",
+      "items": [
+        { "name": "Bombay Sapphire", "price": "$12" }, { "name": "Tanqueray", "price": "$12" },
+        { "name": "Hendricks", "price": "$19" }, { "name": "Plymouth", "price": "$11" }
+      ]
+    },
+    {
+      "name": "Liqueurs",
+      "items": [
+        { "name": "Borghetti Espresso Liqueur", "price": "$14" }, { "name": "Licor 43", "price": "$15" },
+        { "name": "Luxardo Amaretto", "price": "$16" }, { "name": "Aperol", "price": "$15" },
+        { "name": "St Germain", "price": "$18" }, { "name": "Dom Benedictine", "price": "$16" },
+        { "name": "Fernet Branca", "price": "$17" }, { "name": "Cointreau", "price": "$17" },
+        { "name": "Luxardo Maraschino Liqueur", "price": "$17" }, { "name": "Amaro Nonino", "price": "$19" },
+        { "name": "Kahlua", "price": "$14" }
+      ]
+    },
+    {
+      "name": "Brandy",
+      "items": [
+        { "name": "Hennessey VS", "price": "$12" }, { "name": "Courvoisier VSOP", "price": "$19" }
+      ]
+    }
+  ],
+  "notes": ["Please drink responsibly. Prices exclude state sales tax and service fees."]
+}

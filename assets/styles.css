@@ -348,6 +348,55 @@ img{max-width:100%}
 .crosssell p{font-size:16px;line-height:1.6;font-weight:600;color:var(--on-navy);margin-top:12px;max-width:560px}
 .crosssell__contact{font-family:var(--mono);font-size:12px;color:var(--on-navy-mute);margin-top:16px}
 
+/* ---------- menus ---------- */
+.menu-grid{columns:2;column-gap:52px}
+.menu-sec{break-inside:avoid;margin-bottom:38px}
+/* a section is never split across the column break — a reader must not meet
+   dishes at the top of a column with no heading above them. The cost is an
+   uneven column bottom, which is how printed menus set anyway. */
+.menu-sec h2{break-after:avoid}
+.menu-group{break-after:avoid}
+.menu-item{break-inside:avoid}
+.menu-sec h2{font-family:var(--display);font-size:30px;letter-spacing:2px;text-transform:uppercase;color:var(--navy);
+  padding-bottom:8px;border-bottom:3px solid var(--navy)}
+.menu-sec__lead{font-family:var(--heavy);font-size:14px;letter-spacing:.5px;text-transform:uppercase;color:var(--blue);margin-top:12px}
+.menu-sec__foot{font-family:var(--mono);font-size:12px;line-height:1.7;color:var(--blue);margin-top:14px}
+.menu-group{font-family:var(--display);font-size:15px;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy);
+  background:var(--gold);border-radius:999px;padding:4px 14px;display:inline-block;margin-top:18px}
+.menu-list{list-style:none;margin-top:14px}
+.menu-item + .menu-item{margin-top:14px}
+.menu-item__top{display:flex;align-items:baseline;gap:8px}
+.menu-item__name{font-weight:800;font-size:15px;letter-spacing:.3px;text-transform:uppercase;color:var(--navy)}
+.menu-item__dots{flex:1 1 auto;min-width:18px;border-bottom:2px dotted #0e235055;transform:translateY(-4px)}
+.menu-item__price{font-family:var(--display);font-size:19px;color:var(--blue);font-variant-numeric:tabular-nums;flex:0 0 auto}
+.menu-item__desc{font-size:14px;line-height:1.5;font-weight:500;color:var(--ink-soft);margin-top:2px;max-width:52ch}
+.menu-item__note{font-size:12.5px;line-height:1.5;font-style:italic;color:var(--ink-mute);margin-top:4px;max-width:52ch}
+.menu-names{list-style:none;margin-top:14px;columns:2;column-gap:26px}
+.menu-names li{font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:.3px;color:var(--navy);
+  break-inside:avoid;margin-bottom:8px}
+
+.diet{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 5px;
+  border-radius:999px;font-family:var(--body);font-size:10px;font-weight:800;letter-spacing:.5px;
+  vertical-align:middle;position:relative;top:-1px}
+.diet--veg{background:#5F9B3A;color:#fff}
+.diet--vegan{background:var(--cream);color:#2F5B1E;border:1px solid #5F9B3A}
+.diet--gf{background:#C08552;color:#fff}
+.diet--ht{background:#fff;color:#5F9B3A;border:1.5px solid #5F9B3A}
+.menu-raw{color:var(--gold);font-weight:900}
+
+.legend{display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:center;margin-top:8px}
+.legend__item{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;
+  letter-spacing:1px;text-transform:uppercase;color:var(--ink-mute)}
+.menu-notes{max-width:760px;margin:22px auto 0;text-align:center}
+.menu-notes p{font-size:13px;line-height:1.7;color:var(--ink-mute)}
+.menu-notes p + p{margin-top:8px}
+.menu-sponsor{font-family:var(--display);font-size:16px;letter-spacing:1px;text-transform:uppercase;
+  color:var(--blue);text-align:center;margin-top:26px}
+.menu-switch{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.menu-switch a{font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.5px;padding:12px 24px;
+  border-radius:999px;border:2px solid #ffffff5c;color:var(--cream)}
+.menu-switch a[aria-current]{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+
 /* ---------- responsive (additions; source design has none) ---------- */
 @media (max-width:1080px){
   .closer .shell{grid-template-columns:1fr 1fr;gap:32px}
@@ -363,6 +412,7 @@ img{max-width:100%}
 }
 @media (max-width:860px){
   :root{--pad:22px}
+  .menu-grid{columns:1}
   .plans{grid-template-columns:1fr}
   .progb{grid-template-columns:1fr}
   .plan__list{grid-template-columns:1fr}
@@ -398,6 +448,8 @@ img{max-width:100%}
 }
 @media (max-width:520px){
   .playing__mark{display:none}
+  .menu-names{columns:1}
+  .menu-sec h2{font-size:26px}
   .credits table{min-width:420px}
   .credits th,.credits td{padding:14px 12px}
   .credits thead th{font-size:16px}

@@ -1,0 +1,35 @@
+<!--meta {
+  "slug": "menu-food",
+  "title": "Food Menu — ELEVENO Pickleball",
+  "description": "{{menus.food.intro}}"
+}
+-->
+<main>
+
+  <section class="phero">
+    <img class="phero__mark" src="assets/mark-v.png" alt="" aria-hidden="true" width="800" height="307">
+    <div class="shell">
+      <p class="eyebrow eyebrow--gold">EAT &amp; DRINK AT ELEVENO</p>
+      <h1>{{menus.food.title}}</h1>
+      <p class="phero__lead">{{menus.food.intro}}</p>
+      <nav class="menu-switch" aria-label="Menus">
+        <a href="menu-food.html" aria-current="page">Food</a>
+        <a href="menu-drinks.html">Drinks</a>
+      </nav>
+    </div>
+  </section>
+
+  <section class="band band--cream" aria-label="Food Menu">
+    <div class="shell">
+      <div class="menu-grid">
+{{foodMenu}}
+      </div>
+      <div class="legend">{{foodLegend}}</div>
+      <div class="menu-notes">
+{{foodNotes}}
+      </div>
+      <p class="menu-sponsor">{{menus.food.sponsor}}</p>
+    </div>
+  </section>
+
+</main>
