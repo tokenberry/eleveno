@@ -1,5 +1,6 @@
 <!--meta {
   "slug": "membership-bundles",
+  "script": "season",
   "title": "Memberships &amp; Bundles — ELEVENO Pickleball",
   "description": "ELEVENO Summer 2026 memberships, virtual credit bundles and program bundles. Outdoor from $50/month, prepaid open play from $90, and beginner and tournament program bundles.",
   "ogTitle": "ELEVENO Memberships &amp; Bundles — Summer 2026",
@@ -22,16 +23,16 @@
   <section class="band band--cream" aria-labelledby="plans-h">
     <div class="shell">
       <div class="section-head">
-        <p class="eyebrow">JUNE &ndash; AUGUST &bull; 3 MONTH COMMITMENT</p>
+        <p class="eyebrow">{{memberships.season.label}} &bull; 3 MONTH COMMITMENT</p>
         <h2 id="plans-h">Summer Memberships</h2>
       </div>
 
       <div class="plans">
         <article class="plan plan--feature">
-          <p class="plan__season">JUNE&ndash;AUGUST</p>
+          <p class="plan__season">{{memberships.season.label}}</p>
           <h3>Indoor &amp; Outdoor Membership</h3>
-          <p class="plan__price">$98.33<span style="font-size:22px">/month</span></p>
-          <p class="plan__total">Total &mdash; $295 (one-time)</p>
+          <p class="plan__price">{{memberships.plans.indoorOutdoor.monthly}}<span style="font-size:22px">/month</span></p>
+          <p class="plan__total">Total &mdash; {{memberships.plans.indoorOutdoor.total}} (one-time)</p>
           <ul class="plan__list">
             <li>Free Outdoor Open Play*</li>
             <li>$5 All Day Indoor Open Play*</li>
@@ -44,18 +45,18 @@
             <li>3 Month Commitment (June&ndash;August)</li>
           </ul>
           <p class="plan__swag">ELEVENO swag</p>
-          <div class="plan__box">
+          <div class="plan__box" data-season-start="{{memberships.season.start}}" data-season-end="{{memberships.season.end}}" data-price="{{memberships.plans.indoorOutdoor.total}}">
             <strong>Indoor &amp; Outdoor Membership</strong>
-            <span>$295 for 91 days starting today</span>
+            <span data-season-line>{{memberships.plans.indoorOutdoor.total}} &middot; {{memberships.season.label}}</span>
           </div>
-          <a class="plan__cta" href="#">Get Membership</a>
+          <a class="plan__cta" href="{{memberships.plans.indoorOutdoor.subscribeUrl}}">Get Membership</a>
         </article>
 
         <article class="plan">
-          <p class="plan__season">JUNE&ndash;AUGUST</p>
+          <p class="plan__season">{{memberships.season.label}}</p>
           <h3>Outdoor Membership</h3>
-          <p class="plan__price">$50<span style="font-size:22px">/month</span></p>
-          <p class="plan__total">Total &mdash; $150 (one-time)</p>
+          <p class="plan__price">{{memberships.plans.outdoor.monthly}}<span style="font-size:22px">/month</span></p>
+          <p class="plan__total">Total &mdash; {{memberships.plans.outdoor.total}} (one-time)</p>
           <ul class="plan__list">
             <li>Free Outdoor Open Play*</li>
             <li>$5 Morning Indoor Open Play*</li>
@@ -66,11 +67,11 @@
             <li>3 Month Commitment (June&ndash;August)</li>
           </ul>
           <p class="plan__swag">ELEVENO swag</p>
-          <div class="plan__box">
+          <div class="plan__box" data-season-start="{{memberships.season.start}}" data-season-end="{{memberships.season.end}}" data-price="{{memberships.plans.outdoor.total}}">
             <strong>Outdoor Membership</strong>
-            <span>$150 for 110 days starting today</span>
+            <span data-season-line>{{memberships.plans.outdoor.total}} &middot; {{memberships.season.label}}</span>
           </div>
-          <a class="plan__cta" href="#">Get Membership</a>
+          <a class="plan__cta" href="{{memberships.plans.outdoor.subscribeUrl}}">Get Membership</a>
         </article>
       </div>
     </div>

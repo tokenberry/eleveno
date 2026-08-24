@@ -18,6 +18,7 @@ const read = p => fs.readFileSync(p, 'utf8');
 
 const nav = JSON.parse(read(path.join(SRC, 'data', 'nav.json')));
 const site = JSON.parse(read(path.join(SRC, 'data', 'site.json')));
+const memberships = JSON.parse(read(path.join(SRC, 'data', 'memberships.json')));
 
 /* Resolve a nav entry to an href that works from the page being rendered,
    whether it is opened over http or straight off disk. Same-page entries stay
@@ -62,8 +63,9 @@ function expand(tpl, vars, depth = 0) {
     return expand(read(p), vars, depth + 1);
   });
   return withPartials.replace(/\{\{\s*([\w.]+)\s*\}\}/g, (m, key) => {
-    if (!(key in vars)) throw new Error(`unknown template variable: {{${key}}}`);
-    return vars[key];
+    const val = key.split('.').reduce((o, k) => (o == null ? undefined : o[k]), vars);
+    if (val === undefined) throw new Error(`unknown template variable: {{${key}}}`);
+    return val;
   });
 }
 
@@ -92,12 +94,15 @@ for (const f of pageFiles) {
   const { meta, body } = parsePage(path.join(SRC, 'pages', f));
   const vars = {
     ...site,
+    memberships,
     ...meta,
     // sensible derivations so each page's meta block stays to the essentials
     canonical: meta.canonical || site.baseUrl + (meta.slug === 'index' ? '' : meta.slug + '.html'),
     ogTitle: meta.ogTitle || meta.title,
     ogDescription: meta.ogDescription || meta.description,
     homeHref: meta.slug === 'index' ? '#top' : 'index.html',
+    // a page opts into a script by name; every other page ships none
+    scriptTag: meta.script ? `<script src="assets/${meta.script}.js" defer></script>` : '',
     primaryNav: renderPrimaryNav(meta.slug),
     footerNav: renderFooterNav(meta.slug),
     content: '',

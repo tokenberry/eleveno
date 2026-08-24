@@ -42,7 +42,23 @@ is being rendered, so a link to the home page's `#play` anchor stays a bare
 fragment on the home page and becomes `index.html#play` everywhere else. Add a
 page to that file once and every page's header and footer pick it up.
 
-There is no runtime JavaScript — the build runs at authoring time only.
+## The membership season
+
+`src/data/memberships.json` holds everything that changes between seasons —
+the season's start and end dates, its label, and each plan's monthly price,
+total, and subscription link. Editing that one file and rebuilding updates the
+eyebrow, both plan cards, the day counts and both Get Membership buttons.
+
+The day count ("$295 for 8 days starting today") is the one piece of runtime
+JavaScript on the site, in `assets/season.js`, loaded only by the membership
+page. It has to run in the browser: a number baked in at build time would be
+wrong the next day. The markup ships a correct static line ("$295 · June –
+August") and the script only replaces it while the season is actually open, so
+the page still reads correctly with JavaScript disabled, before the season
+opens, and after it closes.
+
+Pages opt into a script with `"script": "name"` in their meta block, which
+loads `assets/name.js`. Every other page ships none.
 
 ## How this maps to the design
 

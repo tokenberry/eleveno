@@ -1,0 +1,22 @@
+{
+  "_comment": "Everything about the membership section that changes between seasons. This is the file an admin UI would eventually write to; today it is edited by hand and picked up on the next build.",
+  "season": {
+    "start": "2026-06-01",
+    "end": "2026-08-31",
+    "label": "June &ndash; August"
+  },
+  "plans": {
+    "indoorOutdoor": {
+      "name": "Indoor &amp; Outdoor Membership",
+      "monthly": "$98.33",
+      "total": "$295",
+      "subscribeUrl": "#"
+    },
+    "outdoor": {
+      "name": "Outdoor Membership",
+      "monthly": "$50",
+      "total": "$150",
+      "subscribeUrl": "#"
+    }
+  }
+}
