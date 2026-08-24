@@ -1,6 +1,6 @@
 {
   "_comment": "The 'Now Playing' calendar on the home page. Add, remove and reorder events here; they render in the order listed. Mark one as featured to highlight it.",
-  "viewAllUrl": "",
+  "viewAllUrl": "calendar.html",
   "events": [
     {
       "when": "TUE · 7:00 PM",

@@ -1,0 +1,76 @@
+<!--meta {
+  "slug": "calendar",
+  "title": "Calendar — ELEVENO Pickleball",
+  "description": "What's on at ELEVENO in Foxborough, MA. This week's events, plus where to start whether you have never picked up a paddle or you play tournaments."
+}
+-->
+<main>
+
+  <!-- ===================== PAGE HEADER ===================== -->
+  <section class="phero">
+    <img class="phero__mark" src="assets/mark-v.png" alt="" aria-hidden="true" width="800" height="307">
+    <div class="shell">
+      <p class="eyebrow eyebrow--gold">WHAT'S ON AT ELEVENO</p>
+      <h1>The <span>Calendar</span></h1>
+      <p class="phero__lead">Leagues, socials and open play, seven days a week. Find what's on this week, then pick the path that matches how you play.</p>
+    </div>
+  </section>
+
+  <!-- ===================== THIS WEEK ===================== -->
+  <section class="playing" id="week" aria-labelledby="week-h">
+    <img class="playing__mark" src="assets/mark-v.png" alt="" aria-hidden="true" width="800" height="307" loading="lazy">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow">&#9733; THIS WEEK AT ELEVENO &#9733;</p>
+        <h2 id="week-h">Now Playing</h2>
+      </div>
+      <div class="sched">
+{{eventRows}}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== START HERE ===================== -->
+  <section class="band band--cream" aria-labelledby="start-h">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow">NEW HERE, OR CHASING A MEDAL?</p>
+        <h2 id="start-h">Start Here</h2>
+      </div>
+      <p class="memb__lead">Three ways in, depending on how you play. Each one opens the matching events over on our booking system.</p>
+
+      <div class="paths">
+        <article class="path path--beginners">
+          <p class="path__who">Beginners</p>
+          <p class="path__h">Start Here</p>
+          <a class="path__cta" href="https://eleveno.podplay.app/community/events?level=Beginner">Learn more</a>
+        </article>
+
+        <article class="path path--social">
+          <p class="path__who">Social players</p>
+          <p class="path__h">Start Here</p>
+          <a class="path__cta" href="https://eleveno.podplay.app/community/events?type=Social">Learn more</a>
+        </article>
+
+        <article class="path path--competitive">
+          <p class="path__who">Competitive players</p>
+          <p class="path__h">Start Here</p>
+          <a class="path__cta" href="https://eleveno.podplay.app/community/events?type=Competitive">Learn more</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CROSS-SELL ===================== -->
+  <section class="crosssell" aria-labelledby="cross-h">
+    <div class="shell">
+      <div>
+        <h2 id="cross-h">Playing here <span>every week?</span></h2>
+        <p>A summer membership or a prepaid open-play bundle brings the cost of every visit down &mdash; and members book seven days ahead.</p>
+        <p class="crosssell__contact">QUESTIONS? <a href="mailto:{{email}}">{{email}}</a> &nbsp;&bull;&nbsp; <a href="tel:{{phoneHref}}">{{phone}}</a></p>
+      </div>
+      <p><a class="btn btn--gold" href="membership-bundles.html">Memberships &amp; bundles</a></p>
+    </div>
+  </section>
+
+</main>

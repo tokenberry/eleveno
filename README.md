@@ -50,6 +50,9 @@ highlight it; they render in the order listed. An event with no link renders
 without a button, and an empty list renders a "nothing on right now" row rather
 than an empty rule. `/admin` edits this as a drag-to-reorder list.
 
+The calendar page (`calendar.html`) repeats the same list at the top, then
+offers three "start here" routes into the booking system by player level.
+
 ## The membership season
 
 `src/data/memberships.json` holds everything that changes between seasons —

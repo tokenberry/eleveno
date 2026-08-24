@@ -25,6 +25,8 @@
   --display:'Anton',Impact,'Arial Narrow Bold',sans-serif;
   --mono:'Space Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
   --body:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --heavy:'Archivo Black','Archivo',Impact,sans-serif;
+  --script:'Yellowtail','Brush Script MT',cursive;
 }
 
 /* ---------- base ---------- */
@@ -321,6 +323,31 @@ img{max-width:100%}
 .finecopy{max-width:760px;margin:34px auto 0;text-align:center;font-family:var(--mono);font-size:12px;line-height:1.8;color:var(--ink-mute)}
 .band--cream .finecopy{color:var(--ink-mute)}
 
+/* ---------- calendar: start-here pathway cards ---------- */
+.paths{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.path{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;min-height:420px;padding:40px 30px;border-radius:22px;overflow:hidden;color:#fff;
+  background-color:var(--navy);background-size:cover;background-position:center;
+  box-shadow:0 18px 40px rgba(14,35,80,.25)}
+.path::before{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(14,35,80,.66) 0%,rgba(14,35,80,.86) 100%)}
+.path > *{position:relative}
+.path__who{font-family:var(--script);font-size:clamp(30px,3.4vw,42px);line-height:1.15;color:var(--gold)}
+.path__h{font-family:var(--heavy);font-size:clamp(28px,3.2vw,40px);letter-spacing:.5px;text-transform:uppercase;margin-top:2px}
+.path__cta{margin-top:26px;background:#fff;color:var(--navy);font-weight:800;font-size:13px;
+  letter-spacing:1px;text-transform:uppercase;padding:14px 30px;border-radius:999px}
+.path--beginners{background-image:url('start-beginners.jpg')}
+.path--social{background-image:url('start-social.jpg')}
+.path--competitive{background-image:url('start-competitive.jpg')}
+
+/* ---------- calendar: closing cross-sell ---------- */
+.crosssell{background:var(--navy-deep);color:var(--cream);padding:64px 0}
+.crosssell .shell{display:grid;grid-template-columns:1.4fr auto;gap:32px;align-items:center}
+.crosssell h2{font-family:var(--display);font-size:clamp(30px,3.6vw,44px);text-transform:uppercase;letter-spacing:1px}
+.crosssell h2 span{color:var(--gold)}
+.crosssell p{font-size:16px;line-height:1.6;font-weight:600;color:var(--on-navy);margin-top:12px;max-width:560px}
+.crosssell__contact{font-family:var(--mono);font-size:12px;color:var(--on-navy-mute);margin-top:16px}
+
 /* ---------- responsive (additions; source design has none) ---------- */
 @media (max-width:1080px){
   .closer .shell{grid-template-columns:1fr 1fr;gap:32px}
@@ -331,12 +358,16 @@ img{max-width:100%}
 }
 @media (max-width:1080px){
   .memb__grid{grid-template-columns:1fr}
+  .paths{grid-template-columns:1fr 1fr}
+  .crosssell .shell{grid-template-columns:1fr}
 }
 @media (max-width:860px){
   :root{--pad:22px}
   .plans{grid-template-columns:1fr}
   .progb{grid-template-columns:1fr}
   .plan__list{grid-template-columns:1fr}
+  .paths{grid-template-columns:1fr}
+  .path{min-height:320px}
   .phero__mark{width:170px;top:-16px;right:-40px;opacity:.08}
   .nav__inner{flex-wrap:wrap;justify-content:center}
   .nav__links{justify-content:center;gap:18px 20px;width:100%}
