@@ -293,6 +293,8 @@ img{max-width:100%}
 .credits__note{font-family:var(--mono);font-size:12px;letter-spacing:2px;color:var(--blue);text-align:center;margin-bottom:14px}
 .credits th,.credits td{padding:18px 20px;text-align:center;border-bottom:1px solid #ffffff26}
 .credits thead th{font-family:var(--display);font-size:20px;letter-spacing:1px;text-transform:uppercase;border-bottom:2px solid #ffffff40}
+/* the bundle column reads as text, so its heading sits over the names, not centred in the column */
+.credits th:first-child{text-align:left;width:42%}
 .credits thead th:last-child{color:var(--gold)}
 .credits tbody tr:last-child th,.credits tbody tr:last-child td{border-bottom:0}
 .credits tbody th{text-align:left;font-weight:700;font-size:15px;line-height:1.4}
