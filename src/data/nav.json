@@ -2,14 +2,14 @@
   "_comment": "Single source of truth for navigation. `page` is a slug (no .html); `hash` is an optional in-page anchor. The build resolves each href relative to the page being rendered, so same-page links stay bare fragments. Use `href` only for external or not-yet-built destinations.",
   "primary": [
     {
-      "label": "Pickleball",
-      "page": "index",
-      "hash": "membership"
-    },
-    {
       "label": "Calendar",
       "page": "index",
       "hash": "play"
+    },
+    {
+      "label": "Pickleball",
+      "page": "index",
+      "hash": "membership"
     },
     {
       "label": "Eat &amp; Drink",
