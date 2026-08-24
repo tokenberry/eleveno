@@ -417,6 +417,13 @@ img{max-width:100%}
 .upgrade h3{font-family:var(--display);font-size:20px;letter-spacing:1px;text-transform:uppercase;color:var(--gold)}
 .upgrade p{font-size:14.5px;line-height:1.6;font-weight:500;color:var(--on-navy);margin-top:10px}
 
+.pkgshots{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}
+.pkgshots div{aspect-ratio:3/2;border-radius:16px;background-color:var(--navy);background-size:cover;
+  background-position:center;box-shadow:0 12px 30px rgba(14,35,80,.14)}
+.pkgshots div:nth-child(1){background-image:url('pkg-1.jpg')}
+.pkgshots div:nth-child(2){background-image:url('pkg-2.jpg')}
+.pkgshots div:nth-child(3){background-image:url('pkg-3.jpg')}
+
 /* ---------- private events: venue ---------- */
 .venue{background:#fff;padding:76px 0}
 .venue .shell{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
@@ -449,7 +456,7 @@ img{max-width:100%}
 .inquiry h2{font-family:var(--display);font-size:clamp(32px,4.4vw,52px);text-transform:uppercase;letter-spacing:1px;color:var(--navy)}
 .inquiry h2 span{color:var(--gold)}
 .inquiry__lead{font-size:17px;line-height:1.6;font-weight:600;color:var(--ink-soft);margin-top:14px}
-.inquiry__img{margin-top:26px;border-radius:20px;overflow:hidden;aspect-ratio:4/3;
+.inquiry__img{margin-top:26px;border-radius:20px;overflow:hidden;aspect-ratio:16/10;
   background:var(--navy) url('event-inquiry.jpg') center/cover}
 .form{background:#fff;border:3px solid var(--navy);border-radius:22px;padding:32px 30px;
   box-shadow:0 18px 44px rgba(14,35,80,.12)}
@@ -488,6 +495,7 @@ img{max-width:100%}
   :root{--pad:22px}
   .menu-grid{columns:1}
   .pkgs{grid-template-columns:1fr}
+  .pkgshots{grid-template-columns:1fr 1fr}
   .upgrades{grid-template-columns:1fr}
   .enhs{grid-template-columns:1fr}
   .plans{grid-template-columns:1fr}
@@ -527,6 +535,7 @@ img{max-width:100%}
   .playing__mark{display:none}
   .menu-names{columns:1}
   .form__grid{grid-template-columns:1fr}
+  .pkgshots{grid-template-columns:1fr}
   .menu-sec h2{font-size:26px}
   .credits table{min-width:420px}
   .credits th,.credits td{padding:14px 12px}
