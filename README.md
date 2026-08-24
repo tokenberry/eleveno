@@ -65,8 +65,14 @@ facts, the enhancement lists and the inquiry form's dropdown options.
 The inquiry form is a plain HTML form marked `data-netlify="true"`, so Netlify
 captures submissions and lists them under Forms — no server, no JavaScript. It
 carries a honeypot field for spam and redirects to `thanks.html` on success.
-Nothing is emailed automatically; set up a notification in Netlify under
-**Forms → Form notifications** to have submissions reach an inbox.
+
+Two things this depends on, both configured in Netlify rather than in code:
+
+- **Form detection must be on** (Project configuration → Forms). Netlify parses
+  forms at deploy time, so switching it on only takes effect from the next
+  deploy onward — a redeploy is needed before the form is registered at all.
+- **Notifications must be added** (Forms → Form notifications). Submissions land
+  in the dashboard silently otherwise.
 
 ## The menus
 
