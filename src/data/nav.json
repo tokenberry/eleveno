@@ -53,6 +53,10 @@
           "label": "Lessons",
           "page": "index",
           "hash": "play"
+        },
+        {
+          "label": "Memberships",
+          "page": "membership-bundles"
         }
       ]
     },
@@ -77,23 +81,6 @@
         {
           "label": "Gift Cards",
           "href": "https://order.toasttab.com/egiftcards/eleveno-indoors-340-patriot-place"
-        }
-      ]
-    },
-    {
-      "heading": "More",
-      "links": [
-        {
-          "label": "Memberships",
-          "page": "membership-bundles"
-        },
-        {
-          "label": "About",
-          "href": "https://eleveno.com/about"
-        },
-        {
-          "label": "Partners",
-          "href": "https://eleveno.com/partners"
         }
       ]
     }
