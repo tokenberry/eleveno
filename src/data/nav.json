@@ -1,0 +1,102 @@
+{
+  "_comment": "Single source of truth for navigation. `page` is a slug (no .html); `hash` is an optional in-page anchor. The build resolves each href relative to the page being rendered, so same-page links stay bare fragments. Use `href` only for external or not-yet-built destinations.",
+  "primary": [
+    {
+      "label": "Pickleball",
+      "page": "index",
+      "hash": "play"
+    },
+    {
+      "label": "Eat &amp; Drink",
+      "page": "index",
+      "hash": "eat"
+    },
+    {
+      "label": "Private Events",
+      "page": "index",
+      "hash": "events"
+    },
+    {
+      "label": "Beer Garden",
+      "page": "index",
+      "hash": "garden"
+    }
+  ],
+  "cta": {
+    "label": "Book a Court",
+    "page": "index",
+    "hash": "book"
+  },
+  "footer": [
+    {
+      "heading": "Play",
+      "links": [
+        {
+          "label": "Book a Court",
+          "page": "index",
+          "hash": "book"
+        },
+        {
+          "label": "Leagues",
+          "page": "index",
+          "hash": "play"
+        },
+        {
+          "label": "Open Play",
+          "page": "index",
+          "hash": "play"
+        },
+        {
+          "label": "Lessons",
+          "page": "index",
+          "hash": "play"
+        }
+      ]
+    },
+    {
+      "heading": "Hang",
+      "links": [
+        {
+          "label": "Eat &amp; Drink",
+          "page": "index",
+          "hash": "eat"
+        },
+        {
+          "label": "Beer Garden",
+          "page": "index",
+          "hash": "garden"
+        },
+        {
+          "label": "Private Events",
+          "page": "index",
+          "hash": "events"
+        },
+        {
+          "label": "Gift Cards",
+          "href": "#"
+        }
+      ]
+    },
+    {
+      "heading": "More",
+      "links": [
+        {
+          "label": "Memberships",
+          "href": "#"
+        },
+        {
+          "label": "About",
+          "href": "#"
+        },
+        {
+          "label": "Partners",
+          "href": "#"
+        },
+        {
+          "label": "Careers",
+          "href": "#"
+        }
+      ]
+    }
+  ]
+}

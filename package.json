@@ -1,0 +1,8 @@
+{
+  "name": "eleveno-site",
+  "private": true,
+  "description": "ELEVENO Pickleball website — static, no dependencies",
+  "scripts": {
+    "build": "node build.js"
+  }
+}

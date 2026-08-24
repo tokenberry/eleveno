@@ -3,15 +3,46 @@
 Static implementation of the **Eleveno Home** design from Claude Design.
 
 ```
-index.html                  the page
+src/pages/*.html            page content — one file per page
+src/partials/*.html         header and footer, defined once
+src/layouts/base.html       the HTML shell every page is poured into
+src/data/nav.json           navigation, defined once
+src/data/site.json          address, phone, email and other shared values
+build.js                    the build (no dependencies)
+
+index.html                  GENERATED — do not edit by hand
 assets/styles.css           all styling (extracted from the design's inline styles)
 assets/*.jpg, *.png         web-optimized imagery
 design/Eleveno Home.dc.html original design source (canvas format)
 design/support.js           Claude Design canvas runtime, for opening the source
 ```
 
-Open `index.html` directly in a browser, or serve the repo root with any static
-file server. There is no build step and no runtime JavaScript.
+## Building
+
+```sh
+npm run build     # or: node build.js
+```
+
+Requires Node; installs nothing. Rendered HTML is written to the repo root and
+committed, so the site can be opened straight off disk and served by GitHub
+Pages with no configuration. Files in the root carry a "generated" banner —
+edit the matching file under `src/` and rebuild.
+
+The templating is deliberately small: `{{> name}}` includes
+`src/partials/name.html`, and `{{var}}` substitutes a value from the page's
+meta block or `src/data/site.json`. Each page begins with a
+`<!--meta {...}-->` block carrying at least `slug`, `title` and `description`.
+Meta values land in HTML verbatim, so write `&amp;` rather than a bare `&`.
+The build fails loudly on a missing partial, unknown variable or absent
+required meta field, rather than emitting a broken page.
+
+**Navigation lives in `src/data/nav.json`.** A nav entry names a `page` slug
+and an optional `hash`; the build resolves the href relative to whichever page
+is being rendered, so a link to the home page's `#play` anchor stays a bare
+fragment on the home page and becomes `index.html#play` everywhere else. Add a
+page to that file once and every page's header and footer pick it up.
+
+There is no runtime JavaScript — the build runs at authoring time only.
 
 ## How this maps to the design
 
