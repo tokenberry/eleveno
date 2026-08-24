@@ -49,6 +49,10 @@ the season's start and end dates, its label, and each plan's monthly price,
 total, and subscription link. Editing that one file and rebuilding updates the
 eyebrow, both plan cards, the day counts and both Get Membership buttons.
 
+Prices are prorated: someone joining mid-season pays for the days that are
+left, rounded to whole dollars. `pricing.prorate` turns that off, in which case
+the full season price shows regardless of the join date.
+
 The day count ("$295 for 8 days starting today") is the one piece of runtime
 JavaScript on the site, in `assets/season.js`, loaded only by the membership
 page. It has to run in the browser: a number baked in at build time would be

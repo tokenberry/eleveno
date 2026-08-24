@@ -1,21 +1,26 @@
 {
-  "_comment": "Everything about the membership section that changes between seasons. This is the file an admin UI would eventually write to; today it is edited by hand and picked up on the next build.",
+  "_comment": "Everything about the membership section that changes between seasons. This is the file the admin UI writes to.",
   "season": {
     "start": "2026-06-01",
     "end": "2026-08-31",
     "label": "June &ndash; August"
   },
+  "pricing": {
+    "_comment": "prorate: someone joining mid-season pays for the days that are left, not the whole season. Rounded to whole currency units.",
+    "currency": "$",
+    "prorate": true
+  },
   "plans": {
     "indoorOutdoor": {
       "name": "Indoor &amp; Outdoor Membership",
-      "monthly": "$98.33",
-      "total": "$295",
+      "monthlyAmount": 98.33,
+      "totalAmount": 295,
       "subscribeUrl": "#"
     },
     "outdoor": {
       "name": "Outdoor Membership",
-      "monthly": "$50",
-      "total": "$150",
+      "monthlyAmount": 50,
+      "totalAmount": 150,
       "subscribeUrl": "#"
     }
   }

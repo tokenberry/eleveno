@@ -85,6 +85,22 @@ function parsePage(file) {
   return { meta, body: raw.slice(m[0].length) };
 }
 
+/* Money formats with decimals only when it actually has them: $295, $98.33. */
+function money(amount, currency) {
+  const n = Number(amount);
+  if (!isFinite(n)) throw new Error(`not a number: ${amount}`);
+  return currency + (Number.isInteger(n) ? String(n) : n.toFixed(2));
+}
+/* Expose display strings alongside the raw numbers the page's script needs. */
+(function decorate() {
+  const cur = memberships.pricing.currency;
+  for (const plan of Object.values(memberships.plans)) {
+    plan.monthly = money(plan.monthlyAmount, cur);
+    plan.total = money(plan.totalAmount, cur);
+  }
+  memberships.pricing.prorateAttr = memberships.pricing.prorate ? 'true' : 'false';
+})();
+
 const layout = read(path.join(SRC, 'layouts', 'base.html'));
 const pageFiles = fs.readdirSync(path.join(SRC, 'pages')).filter(f => f.endsWith('.html')).sort();
 if (!pageFiles.length) throw new Error('no pages found in src/pages');
