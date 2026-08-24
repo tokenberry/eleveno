@@ -36,7 +36,7 @@
         : 'This season is closed';
     }
     var title = box.querySelector('strong');
-    if (title && nextLabel) title.textContent = nextLabel.replace(/&ndash;/g, '–') + ' season';
+    if (title && nextLabel) title.textContent = nextLabel + ' season';
 
     var plan = box.closest('.plan');
     var cta = plan && plan.querySelector('.plan__cta');

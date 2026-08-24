@@ -34,14 +34,14 @@ collections:
             fields:
               - { name: start, label: First day of the season, widget: datetime, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD, picker_utc: true }
               - { name: end, label: Last day of the season, widget: datetime, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD, picker_utc: true }
-              - { name: label, label: Season name shown on the page, widget: string, hint: "For example: June &ndash; August" }
+              - { name: label, label: Season name shown on the page, widget: string, hint: "Type it as it should appear, for example: June – August" }
 
           - name: nextSeason
             label: Next season
             widget: object
             hint: Shown once the current season closes.
             fields:
-              - { name: label, label: Next season name, widget: string, required: false }
+              - { name: label, label: Next season name, widget: string, required: false, hint: "Type it as it should appear, for example: September – November" }
               - { name: opensOn, label: First day of the next season, widget: datetime, date_format: YYYY-MM-DD, time_format: false, format: YYYY-MM-DD, picker_utc: true, required: false }
               - { name: _comment, label: Note to editors, widget: hidden, required: false }
 
@@ -65,7 +65,7 @@ collections:
                   - { name: name, label: Plan name, widget: string }
                   - { name: monthlyAmount, label: Price per month, widget: number, value_type: float, min: 0 }
                   - { name: totalAmount, label: Full season price, widget: number, value_type: float, min: 0 }
-                  - { name: subscribeUrl, label: Get Membership link, widget: string }
+                  - { name: subscribeUrl, label: Get Membership link, widget: string, hint: "Paste the full link exactly as it appears in the browser" }
               - name: outdoor
                 label: Outdoor
                 widget: object
@@ -73,7 +73,7 @@ collections:
                   - { name: name, label: Plan name, widget: string }
                   - { name: monthlyAmount, label: Price per month, widget: number, value_type: float, min: 0 }
                   - { name: totalAmount, label: Full season price, widget: number, value_type: float, min: 0 }
-                  - { name: subscribeUrl, label: Get Membership link, widget: string }
+                  - { name: subscribeUrl, label: Get Membership link, widget: string, hint: "Paste the full link exactly as it appears in the browser" }
 
           - name: _comment
             label: Note to editors

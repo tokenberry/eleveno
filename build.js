@@ -85,6 +85,20 @@ function parsePage(file) {
   return { meta, body: raw.slice(m[0].length) };
 }
 
+/* Config is authored as plain text in the CMS, so escape it on the way into
+   HTML. Editors type "June – August", not "June &ndash; August". Escaping the
+   ampersand is also what makes query-string URLs valid inside an href. */
+function escapeDeep(value) {
+  if (typeof value === 'string') return esc(value);
+  if (Array.isArray(value)) return value.map(escapeDeep);
+  if (value && typeof value === 'object') {
+    const out = {};
+    for (const [k, v] of Object.entries(value)) out[k] = escapeDeep(v);
+    return out;
+  }
+  return value;
+}
+
 /* Money formats with decimals only when it actually has them: $295, $98.33. */
 function money(amount, currency) {
   const n = Number(amount);
@@ -92,6 +106,8 @@ function money(amount, currency) {
   return currency + (Number.isInteger(n) ? String(n) : n.toFixed(2));
 }
 /* Expose display strings alongside the raw numbers the page's script needs. */
+Object.assign(memberships, escapeDeep(memberships));
+
 (function decorate() {
   const cur = memberships.pricing.currency;
   for (const plan of Object.values(memberships.plans)) {

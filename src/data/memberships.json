@@ -3,11 +3,11 @@
   "season": {
     "start": "2026-06-01",
     "end": "2026-08-31",
-    "label": "June &ndash; August"
+    "label": "June – August"
   },
   "nextSeason": {
     "_comment": "Shown once the current season closes. Leave label empty to fall back to a plain 'season closed' message.",
-    "label": "September &ndash; November",
+    "label": "September – November",
     "opensOn": "2026-09-01"
   },
   "pricing": {
@@ -18,16 +18,16 @@
   },
   "plans": {
     "indoorOutdoor": {
-      "name": "Indoor &amp; Outdoor Membership",
+      "name": "Indoor & Outdoor Membership",
       "monthlyAmount": 98.33,
       "totalAmount": 295,
-      "subscribeUrl": "https://eleveno.podplay.app/memberships/eleveno-summer-membership?confirmation=&amp;chargeType=NON_RECURRING&amp;oneTimeSelectedOptionSlug="
+      "subscribeUrl": "https://eleveno.podplay.app/memberships/eleveno-summer-membership?confirmation=&chargeType=NON_RECURRING&oneTimeSelectedOptionSlug="
     },
     "outdoor": {
       "name": "Outdoor Membership",
       "monthlyAmount": 50,
       "totalAmount": 150,
-      "subscribeUrl": "https://eleveno.podplay.app/memberships/eleveno-outdoor-membership?confirmation=&amp;chargeType=NON_RECURRING&amp;oneTimeSelectedOptionSlug="
+      "subscribeUrl": "https://eleveno.podplay.app/memberships/eleveno-outdoor-membership?confirmation=&chargeType=NON_RECURRING&oneTimeSelectedOptionSlug="
     }
   }
 }
