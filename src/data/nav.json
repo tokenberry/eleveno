@@ -29,8 +29,7 @@
   ],
   "cta": {
     "label": "Book a Court",
-    "page": "index",
-    "hash": "book"
+    "href": "@booking"
   },
   "footer": [
     {
@@ -38,8 +37,7 @@
       "links": [
         {
           "label": "Book a Court",
-          "page": "index",
-          "hash": "book"
+          "href": "@booking"
         },
         {
           "label": "Leagues",

@@ -7,5 +7,6 @@
   "addressLine1": "340 Patriot Place",
   "addressLine2": "Foxborough, MA 02035",
   "year": "2026",
-  "baseUrl": "https://www.eleveno.com/"
+  "baseUrl": "https://www.eleveno.com/",
+  "bookingUrl": "https://eleveno.podplay.app/community/events"
 }

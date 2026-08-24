@@ -36,6 +36,10 @@ Meta values land in HTML verbatim, so write `&amp;` rather than a bare `&`.
 The build fails loudly on a missing partial, unknown variable or absent
 required meta field, rather than emitting a broken page.
 
+`site.json` also holds `bookingUrl`. A nav entry with `"href": "@booking"`
+resolves to it, and pages reach it as `{{bookingUrl}}`, so the booking
+destination is defined once and every Book a Court button follows.
+
 **Navigation lives in `src/data/nav.json`.** A nav entry names a `page` slug
 and an optional `hash`; the build resolves the href relative to whichever page
 is being rendered, so a link to the home page's `#play` anchor stays a bare

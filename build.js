@@ -30,6 +30,8 @@ const menus = {
    whether it is opened over http or straight off disk. Same-page entries stay
    bare fragments so the browser scrolls instead of reloading. */
 function href(entry, slug) {
+  // "@booking" resolves to site.bookingUrl so the destination lives in one place
+  if (entry.href === '@booking') return site.bookingUrl;
   if (entry.href) return entry.href;                       // literal / placeholder
   const hash = entry.hash ? '#' + entry.hash : '';
   if (entry.page === slug) return hash || '#top';
