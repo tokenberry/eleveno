@@ -47,7 +47,7 @@
     },
     {
       "name": "Bottles & Canned Beer",
-      "names": ["Modelo", "Bud Light", "Michelob Ultra", "Heniekin", "High Noon", "Surfside", "Fabrizia Italian Lemonade", "Fabrizia Blueberry Lemonade", "Fabrizia Raspberry Vodka Soda", "Fabrizia Cranberry Breeze"]
+      "names": ["Modelo", "Bud Light", "Michelob Ultra", "Heineken", "High Noon", "Surfside", "Fabrizia Italian Lemonade", "Fabrizia Blueberry Lemonade", "Fabrizia Raspberry Vodka Soda", "Fabrizia Cranberry Breeze"]
     },
     {
       "name": "N/A Beer",
@@ -86,7 +86,7 @@
         { "name": "Rye", "items": [ { "name": "Bulleit Rye", "price": "$30" } ]},
         { "name": "Scotch", "items": [
           { "name": "Johnnie Walker Black", "price": "$17" }, { "name": "Balvenie 12 Year Speyside", "price": "$31" },
-          { "name": "Glendiffich 15 Year Speyside", "price": "$62" }, { "name": "Tullamore D.E.W.", "price": "$21" }
+          { "name": "Glenfiddich 15 Year Speyside", "price": "$62" }, { "name": "Tullamore D.E.W.", "price": "$21" }
         ]},
         { "name": "Other", "items": [
           { "name": "Crown Royal", "price": "$14" }, { "name": "Jameson Blended", "price": "$16" }
@@ -139,7 +139,7 @@
     {
       "name": "Brandy",
       "items": [
-        { "name": "Hennessey VS", "price": "$12" }, { "name": "Courvoisier VSOP", "price": "$19" }
+        { "name": "Hennessy VS", "price": "$12" }, { "name": "Courvoisier VSOP", "price": "$19" }
       ]
     }
   ],
