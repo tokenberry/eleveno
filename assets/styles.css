@@ -526,7 +526,7 @@ img{max-width:100%;height:auto}
 
 /* ---------- private events: packages ---------- */
 .pkgs{display:grid;grid-template-columns:1fr 1fr;gap:26px}
-.pkgcard{background:#fff;border:3px solid var(--navy);border-radius:20px;padding:32px 30px;
+.pkgcard{min-width:0;background:#fff;border:3px solid var(--navy);border-radius:20px;padding:32px 30px;
   box-shadow:0 16px 40px rgba(14,35,80,.10)}
 .pkgcard h3{font-family:var(--display);font-size:30px;letter-spacing:1px;text-transform:uppercase;color:var(--navy)}
 .pkgcard__lead{font-size:15px;font-weight:600;color:var(--ink-soft);margin-top:8px}
@@ -568,7 +568,7 @@ img{max-width:100%;height:auto}
 
 /* ---------- private events: enhancements ---------- */
 .enhs{display:grid;grid-template-columns:1fr 1fr;gap:26px}
-.enh{background:var(--blue);color:#fff;border-radius:22px;padding:34px 32px;box-shadow:0 16px 38px rgba(14,35,80,.2)}
+.enh{min-width:0;background:var(--blue);color:#fff;border-radius:22px;padding:34px 32px;box-shadow:0 16px 38px rgba(14,35,80,.2)}
 .enh__script{font-family:var(--script);font-size:34px;line-height:1;color:var(--gold)}
 .enh h3{font-family:var(--heavy);font-size:30px;letter-spacing:.5px;margin-top:2px}
 .enh__list{list-style:none;margin-top:22px}
@@ -662,6 +662,7 @@ img{max-width:100%;height:auto}
   .crosssell__contact a,.events__contact a,.footer__addr a{display:inline-block;padding:13px 0}
   .footer__bar a{display:inline-block;padding:13px 0}
   .playing__more a,.reviews__more a{display:inline-block;padding:12px 18px}
+  .visit__fallback-link{display:inline-block;padding:12px 8px}
   .menu-switch a{padding:14px 26px}
   /* 11px captions are hard going on a phone */
   .mcard__label,.price__m,.plan__list small,.footer__bar,.legend__item,.menu-item__note{font-size:12px}
@@ -732,14 +733,21 @@ img{max-width:100%;height:auto}
   .credits tbody th{font-size:13px}
   .credits tbody th small{font-size:12px}
   .space__list{grid-template-columns:1fr}
-  .pricing__grid{grid-template-columns:1fr}
+  /* the price is nowrap and the name only breaks on spaces, so on the very
+     narrowest phones let the row wrap rather than push past the card edge */
+  .pkgcard{padding:24px 18px}
+  .enh{padding:26px 20px}
+  .pkgcard__list li{flex-wrap:wrap}
+  .pricing__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .price{padding:18px 16px}
+  .price__n{font-size:28px}
   .garden__tiles{grid-template-columns:1fr}
   .garden__gallery{grid-template-columns:1fr}
   .garden__gallery div:nth-child(1){grid-column:auto}
   .garden__tile--wide{grid-column:auto}
   .phero__actions{flex-direction:column;align-items:stretch}
   .phero__actions .btn{text-align:center}
-  .footer__cols{flex-direction:column;gap:24px}
+  .footer__cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 16px}
 }
 
 @media (prefers-reduced-motion:reduce){
