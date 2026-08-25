@@ -138,6 +138,15 @@ Object.assign(reviews, escapeDeep(reviews));
 /* Google reviews. The text is quoted verbatim from the reviewer, so it is only
    ever escaped, never reflowed or trimmed. A star row is decorative once the
    rating is in the label, so the glyphs are hidden from assistive tech. */
+/* Reviewers write in paragraphs; collapsing them into one block would be a
+   silent edit of how they wrote it. Blank line starts a paragraph, a single
+   newline is a line break. */
+function paragraphs(text) {
+  return String(text).trim().split(/\n{2,}/)
+    .map(para => `<p>${para.split(/\n/).map(l => l.trim()).join('<br>')}</p>`)
+    .join('');
+}
+
 function renderReviews() {
   const list = Array.isArray(reviews.items) ? reviews.items : [];
   if (!list.length) throw new Error('reviews.json has no items');
@@ -148,15 +157,27 @@ function renderReviews() {
     const stars = '&#9733;'.repeat(n);
     const initial = r.name.trim().charAt(0).toUpperCase();
     const when = r.when ? `<span class="review__when">${r.when}</span>` : '';
-    return `        <li class="review">
-          <div class="review__head">
-            <span class="review__avatar" aria-hidden="true">${initial}</span>
-            <span class="review__who"><span class="review__name">${r.name}</span>${when}</span>
-          </div>
-          <p class="review__stars" role="img" aria-label="${n} out of 5 stars"><span aria-hidden="true">${stars}</span></p>
-          <blockquote class="review__text">${r.text}</blockquote>
-        </li>`;
+    return `          <li class="review">
+            <div class="review__head">
+              <span class="review__avatar" aria-hidden="true">${initial}</span>
+              <span class="review__who"><span class="review__name">${r.name}</span>${when}</span>
+            </div>
+            <p class="review__stars" role="img" aria-label="${n} out of 5 stars"><span aria-hidden="true">${stars}</span></p>
+            <div class="review__textwrap"><blockquote class="review__text">${paragraphs(r.text)}</blockquote></div>
+          </li>`;
   }).join('\n');
+}
+
+/* The strip scrolls one half of the track and loops, so a half has to be wider
+   than the widest screen or the tail leaves a visible gap — the same bug the
+   keyword marquee had. Four sets means a half is two sets wide. Only the first
+   set is real content; the copies are hidden from assistive tech. */
+const REVIEW_SETS = 4;
+function renderReviewTrack() {
+  const items = renderReviews();
+  return Array.from({ length: REVIEW_SETS }, (_, i) =>
+    `        <ul class="reviews__set"${i ? ' aria-hidden="true"' : ''}>\n${items}\n        </ul>`
+  ).join('\n');
 }
 
 /* The "Now Playing" rows. Authored in src/data/events.json so events can be
@@ -308,7 +329,7 @@ for (const f of pageFiles) {
     eventRows: renderEvents(),
     marqueeTrack: renderMarquee(),
     reviews,
-    reviewCards: renderReviews(),
+    reviewTrack: renderReviewTrack(),
     viewAllUrl: calendar.viewAllUrl || '#book',
     ...meta,
     // sensible derivations so each page's meta block stays to the essentials

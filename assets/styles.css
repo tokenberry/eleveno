@@ -108,10 +108,17 @@ img{max-width:100%;height:auto}
   line-height:1.55;color:var(--ink-mute)}
 /* A rail rather than a grid: it holds any number of reviews without reflowing
    the section, and the part-visible next card is what says "there are more". */
-.reviews__rail{list-style:none;display:flex;gap:20px;margin-top:38px;
-  overflow-x:auto;scroll-snap-type:x mandatory;
-  padding:4px 4px 18px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
-.review{flex:0 0 clamp(268px,80vw,360px);scroll-snap-align:start;
+/* The strip runs edge to edge, outside .shell, so cards enter and leave the
+   screen rather than a boxed column. */
+.reviews__viewport{overflow:hidden;margin-top:38px;padding:4px 0 10px}
+.reviews__track{display:flex;width:max-content;animation:elv-reviews 250s linear infinite}
+.reviews__track:focus-within,.reviews__track.is-paused{animation-play-state:paused}
+/* hover-pause only where there is a real pointer: on a touch screen a tap can
+   leave a sticky :hover that would fight the tap-to-pause toggle */
+@media (hover:hover){.reviews__track:hover{animation-play-state:paused}}
+.reviews__set{list-style:none;display:flex;gap:20px;padding-right:20px}
+@keyframes elv-reviews{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.review{flex:0 0 clamp(268px,80vw,360px);height:370px;
   background:#fff;border:2px solid var(--navy);border-radius:18px;padding:24px 22px;
   display:flex;flex-direction:column;gap:12px}
 .review__head{display:flex;align-items:center;gap:12px}
@@ -123,6 +130,23 @@ img{max-width:100%;height:auto}
 .review__when{font-family:var(--mono);font-size:12px;color:var(--ink-mute)}
 .review__stars{color:var(--gold);font-size:17px;letter-spacing:3px;line-height:1}
 .review__text{font-size:15px;line-height:1.6;color:var(--ink-soft)}
+.review__text p+p{margin-top:10px}
+/* One 700-character review would otherwise set the height of every card in the
+   strip. Cards are a fixed height and the quote fills whatever room is left;
+   the full text stays in the DOM for screen readers, and the section links to
+   the Google listing for the rest. The fade appears only on cards that really
+   are clipped — is-clipped is set by reviews.js — because a fade pinned to the
+   bottom of every card washes out the last line of quotes that fit fine. */
+.review__textwrap{position:relative;flex:1 1 auto;min-height:0;overflow:hidden}
+.review__textwrap.is-clipped::after{content:'';position:absolute;left:0;right:0;bottom:0;height:44px;
+  background:linear-gradient(to bottom,#ffffff00,#fff)}
+/* Hover pauses the strip on a mouse; on a touch screen there is nothing to
+   discover the tap-to-pause without saying so. */
+.reviews__hint{display:none}
+@media (hover:none){
+  .reviews__hint{display:block;text-align:center;font-family:var(--mono);
+    font-size:12px;letter-spacing:1px;color:var(--ink-mute);margin-top:2px}
+}
 .reviews__more{text-align:center;margin-top:8px}
 .reviews__more a{font-family:var(--display);font-size:17px;letter-spacing:1px;
   color:var(--blue);text-transform:uppercase}
@@ -671,6 +695,12 @@ img{max-width:100%;height:auto}
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .marquee__track,.flyer,.closer__plan,.closer__caret,.closer__chips .tag{animation:none}
+  .marquee__track,.reviews__track,.flyer,.closer__plan,.closer__caret,.closer__chips .tag{animation:none}
+  /* a frozen strip would strand every card past the first screenful */
+  .reviews__viewport{overflow-x:auto}
+  .reviews__track{width:auto}
+  .reviews__set:not(:first-child){display:none}
+  .reviews__set{padding-left:var(--pad)}
+  .reviews__hint{display:none}
   .closer__chips .tag{opacity:1;transform:none}
 }

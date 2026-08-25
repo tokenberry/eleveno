@@ -1,5 +1,5 @@
 {
-  "_comment": "Google reviews shown on the home page. Text must stay VERBATIM as the reviewer wrote it — editing someone's words and still attributing them to them is misrepresentation, and Google's terms require reviews be shown unaltered. `when` is whatever Google displayed; it is relative text, so it goes stale and needs refreshing when you add reviews.",
+  "_comment": "Google reviews shown on the home page. Text must stay VERBATIM as the reviewer wrote it — editing someone's words and still attributing them to them is misrepresentation, and Google's terms require reviews be shown unaltered. Where Google itself truncated a review behind its \"More\" link, the text here is cut at a SENTENCE BOUNDARY and ends with an ellipsis; never invent the rest. Currently excerpted, pending the full text: Let's Go Celtics, Marcie Rappa, Creative Phinn Consulting. `when` is whatever Google displayed; it is relative text, so it goes stale and needs refreshing.",
   "heading": "Meet our happy clients",
   "eyebrow": "Rated 5.0 on Google",
   "lead": "Real reviews from real players. See why our community keeps coming back.",
@@ -20,9 +20,51 @@
     },
     {
       "name": "Gina Uttaro",
+      "when": "8 months ago",
+      "stars": 5,
+      "text": "This place is awesome! Not only is it such a fun, great looking facility with great staff and plenty of court space, but the food and drinks offered at the center court bar are top-notch. Truly, the chef is unreal - get the Steak Asada and Hot Chicken Sandwich. We came here for a pickleball tournament and will 100% be back!"
+    },
+    {
+      "name": "Let's Go Celtics",
+      "when": "2 months ago",
+      "stars": 5,
+      "text": "This place is awesome, all around. The pickleball courts and rackets and balls are all very high quality, and the pricing is very good for such an upscale experience. Their food is also amazing…"
+    },
+    {
+      "name": "Marcie Rappa",
       "when": "3 months ago",
       "stars": 5,
-      "text": "This place is awesome! Not only is it such a fun, great looking facility with great staff and plenty of court space, but the food and drinks offered at the center court bar are top-notch. Truly, the chef is unreal — get the Steak Asada and Hot Chicken Sandwich. We came here for a pickleball tournament and will 100% be back!"
+      "text": "Last night, we teamed up with ElevenO Pickleball for our monthly Heart 💚 of Massachusetts Networking & Referral Group by hosting a super fun Networking Mixer in their amazing lounge and bar area…"
+    },
+    {
+      "name": "Creative Phinn Consulting",
+      "when": "3 months ago",
+      "stars": 5,
+      "text": "A perfect match – literally! ELEVENO combines two of my favorite things: pickleball and great food. The courts are top-notch, well-maintained, and have a fantastic atmosphere whether you're a beginner or a seasoned player…"
+    },
+    {
+      "name": "Kara Corliss",
+      "when": "3 months ago",
+      "stars": 5,
+      "text": "Loved my experience at ElevenO in Foxboro. The spritz was amazing, the atmosphere was fun and welcoming, and the staff was incredibly friendly and attentive. We got to play and watch pickleball, which made the whole experience even more fun. Everything was so clean and well kept. Will definitely be coming back!"
+    },
+    {
+      "name": "Rich",
+      "when": "3 months ago",
+      "stars": 5,
+      "text": "ElevenO at Patriot Place is hands down one of the best pickleball facilities I've been to. The location near Gillette is perfect and makes it such a fun spot to hang out before or after games, shopping, or grabbing food. The staff is always super friendly and accommodating, which really makes the whole experience even better.\n\nI've spent hours here probably too many socializing, eating, drinking, and dinking. I've played at a lot of other pickleball spots, but ElevenO has the best layout by far. The courts, spacing, seating, and overall vibe make it really easy to settle in and stay all day. Highly recommend checking it out if you're into pickleball or just looking for a great atmosphere."
+    },
+    {
+      "name": "reina punj",
+      "when": "2 months ago",
+      "stars": 5,
+      "text": "What an amazing experience! We had so much fun at the outdoor pickleball party. Visiting from overseas, we felt incredibly welcome from the moment we arrived.\nA special thank you to Liesl Ann for inviting us and introducing us to this hidden gem. The beautiful outdoor setting, friendly competition, and wonderful people, and the perfect weather made it a truly memorable day. We're so grateful to have been part of it! Will def be visiting again soon."
+    },
+    {
+      "name": "PhantomShopper",
+      "when": "3 months ago",
+      "stars": 5,
+      "text": "Awesome spot for pickleball. The courts are great, the food was surprisingly good...I had the barbecue fries and the Mediterranean chicken flatbread which was amazing and the portions were enough for 2 people!! and having a bar on-site makes it even better after a few games. Fun atmosphere, friendly people, and a perfect place to hang out with friends. Get off your phone and pickle it up!"
     }
   ]
 }

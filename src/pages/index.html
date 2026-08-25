@@ -3,7 +3,8 @@
   "title": "ELEVENO Pickleball \u2014 Courts, Community &amp; Cocktails in Foxborough, MA",
   "description": "15 pickleball courts, a full kitchen, four bars and a beer garden in Foxborough, MA \u2014 one minute from Gillette Stadium. Book a court, plan a private event, or just come hang.",
   "ogTitle": "ELEVENO Pickleball \u2014 Pickleball's Best Block Party",
-  "ogDescription": "15 courts. A full kitchen. Four bars and a beer garden. Foxborough, MA."
+  "ogDescription": "15 courts. A full kitchen. Four bars and a beer garden. Foxborough, MA.",
+  "script": "reviews"
 }
 -->
 <main>
@@ -267,9 +268,14 @@
         <h2 id="reviews-h">{{reviews.heading}}</h2>
       </div>
       <p class="reviews__lead">{{reviews.lead}}</p>
-      <ul class="reviews__rail">
-{{reviewCards}}
-      </ul>
+    </div>
+    <div class="reviews__viewport">
+      <div class="reviews__track">
+{{reviewTrack}}
+      </div>
+    </div>
+    <div class="shell">
+      <p class="reviews__hint" aria-hidden="true">Tap to pause</p>
       <p class="reviews__more"><a href="{{reviews.profileUrl}}">{{reviews.profileLabel}} &rarr;</a></p>
     </div>
   </section>
