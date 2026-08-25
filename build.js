@@ -287,6 +287,11 @@ for (const f of pageFiles) {
     canonical: meta.canonical || site.baseUrl + (meta.slug === 'index' ? '' : meta.slug + '.html'),
     ogTitle: meta.ogTitle || meta.title,
     ogDescription: meta.ogDescription || meta.description,
+    // Open Graph needs an absolute URL — a relative one yields no preview image
+    ogImage: meta.ogImage || site.baseUrl + 'assets/hero-net.jpg',
+    // pages that exist only as a destination (form confirmations) stay out of
+    // search results but still pass link equity through
+    robots: meta.noindex ? 'noindex, follow' : 'index, follow',
     homeHref: meta.slug === 'index' ? '#top' : 'index.html',
     // a page opts into a script by name; every other page ships none
     scriptTag: ['nav'].concat(meta.script ? [meta.script] : [])
@@ -300,8 +305,32 @@ for (const f of pageFiles) {
   const html = expand(layout, vars);
   const out = path.join(ROOT, meta.slug + '.html');
   fs.writeFileSync(out, html);
-  written.push({ file: meta.slug + '.html', bytes: html.length });
+  written.push({ file: meta.slug + '.html', bytes: html.length, canonical: vars.canonical, noindex: !!meta.noindex });
 }
+
+/* robots.txt and sitemap.xml are generated rather than hand-kept so they can
+   never fall out of step with the page list. */
+const indexable = written.filter(w => !w.noindex)
+  .sort((a, b) => (a.file === 'index.html' ? -1 : b.file === 'index.html' ? 1 : a.file.localeCompare(b.file)));
+if (!indexable.length) throw new Error('every page is noindex — refusing to write an empty sitemap');
+
+const sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n' +
+  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+  indexable.map(w => `  <url><loc>${esc(w.canonical)}</loc></url>`).join('\n') +
+  '\n</urlset>\n';
+fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), sitemap);
+
+// /admin is the CMS, not content; keep it out of the index
+const robotsTxt = [
+  'User-agent: *',
+  'Allow: /',
+  'Disallow: /admin/',
+  '',
+  'Sitemap: ' + site.baseUrl + 'sitemap.xml',
+  '',
+].join('\n');
+fs.writeFileSync(path.join(ROOT, 'robots.txt'), robotsTxt);
+console.log(`sitemap.xml: ${indexable.length} url(s); ${written.length - indexable.length} noindex page(s) excluded`);
 
 console.log('built ' + written.length + ' page(s):');
 for (const w of written) console.log('  ' + w.file.padEnd(20) + (w.bytes / 1024).toFixed(1) + ' KB');
