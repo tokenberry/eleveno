@@ -344,7 +344,15 @@ if (!pageFiles.length) throw new Error('no pages found in src/pages');
 
 const written = [];
 for (const f of pageFiles) {
-  const { meta, body } = parsePage(path.join(SRC, 'pages', f));
+  const { meta: rawMeta, body } = parsePage(path.join(SRC, 'pages', f));
+  /* A meta value may reference config, e.g. "{{menus.food.intro}}" as the
+     description. The layout is filled in a single pass, so such a reference
+     would otherwise survive into the output verbatim — two menu pages shipped
+     a literal "{{menus.food.intro}}" to Google that way. Resolve meta against
+     the data first; an unknown key still fails the build. */
+  const metaSources = { ...site, memberships, calendar, menus, events, reviews, visit, ask };
+  const meta = Object.fromEntries(Object.entries(rawMeta).map(
+    ([k, v]) => [k, typeof v === 'string' ? expand(v, metaSources) : v]));
   const vars = {
     ...site,
     memberships,
