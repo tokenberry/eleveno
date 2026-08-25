@@ -311,6 +311,44 @@ img{max-width:100%;height:auto}
 .flyer__photo{margin-top:16px;height:150px;border-radius:10px;overflow:hidden;border:2px solid #ffffff26;background-image:url('courts-flag.jpg');background-size:cover;background-position:center;background-color:var(--navy-deep)}
 .flyer__addr{margin-top:16px;background:var(--gold);color:var(--navy);border-radius:8px;padding:9px;font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:1px}
 
+/* ---------- find us: contact, hours, map ---------- */
+.visit{background:var(--navy-deep);color:var(--cream);padding:84px 0;position:relative}
+.visit__grid{display:grid;grid-template-columns:1fr 1.15fr;gap:56px;align-items:stretch}
+.visit h2{font-family:var(--display);font-size:clamp(38px,4.6vw,58px);line-height:.94;
+  text-transform:uppercase;letter-spacing:1px;margin-top:8px}
+.visit h2 span{color:var(--gold)}
+.visit__lead{margin-top:16px;font-size:17px;line-height:1.55;color:var(--on-navy-mute);max-width:44ch}
+
+.visit__rows{list-style:none;margin-top:28px;display:flex;flex-direction:column;gap:12px}
+.vrow{display:flex;align-items:center;gap:16px;padding:16px 20px;border-radius:14px;
+  background:#ffffff0a;border:1px solid var(--rule)}
+.vrow__icon{flex:0 0 auto;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;
+  background:#f5b70e1f;color:var(--gold)}
+.vrow__icon svg{width:20px;height:20px}
+.vrow__body{display:flex;flex-direction:column;gap:2px;min-width:0}
+.vrow__label{font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--on-navy-faint)}
+.vrow__value{font-weight:700;font-size:16px;color:var(--cream);word-break:break-word}
+
+.hours{margin-top:12px;padding:22px 20px;border-radius:14px;background:#ffffff0a;border:1px solid var(--rule)}
+.hours__h{font-family:var(--mono);font-size:12px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold);font-weight:700}
+.hours__list{list-style:none;margin-top:14px;display:flex;flex-direction:column}
+.hours__list li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  padding:9px 0;border-top:1px solid #ffffff12}
+.hours__list li:first-child{border-top:0}
+.hours__d{color:var(--on-navy-mute);font-size:15px}
+.hours__t{font-weight:700;font-size:15px;color:var(--cream);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+.visit__map{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--rule);
+  background:#132C6B;min-height:460px}
+/* the iframe carries no intrinsic size, so it has to be stretched to the box */
+.visit__map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+.visit__badge{position:absolute;left:16px;bottom:16px;background:var(--gold);color:var(--navy);
+  padding:10px 18px;border-radius:10px;display:flex;flex-direction:column;gap:1px;
+  box-shadow:0 6px 20px #0a1a3a5c}
+.visit__badge-t{font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700}
+.visit__badge-s{font-weight:800;font-size:15px}
+
 /* ---------- footer ---------- */
 .footer{background:var(--navy-deep);color:var(--cream);padding:56px 0 40px}
 .footer__top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:36px}
@@ -641,6 +679,9 @@ img{max-width:100%;height:auto}
   .garden__gallery{grid-template-columns:1fr 1fr}
   .garden__gallery div:nth-child(1){grid-column:1 / -1}
   .closer .shell{grid-template-columns:1fr}
+  .visit{padding:56px 0}
+  .visit__grid{grid-template-columns:1fr;gap:32px}
+  .visit__map{aspect-ratio:1/1;min-height:0}
   .flyer{max-width:340px;margin:0 auto}
   .footer__cols{gap:32px}
 }

@@ -21,6 +21,7 @@ const site = JSON.parse(read(path.join(SRC, 'data', 'site.json')));
 const memberships = JSON.parse(read(path.join(SRC, 'data', 'memberships.json')));
 const calendar = JSON.parse(read(path.join(SRC, 'data', 'events.json')));
 const reviews = JSON.parse(read(path.join(SRC, 'data', 'reviews.json')));
+const visit = JSON.parse(read(path.join(SRC, 'data', 'visit.json')));
 const events = JSON.parse(read(path.join(SRC, 'data', 'private-events.json')));
 const menus = {
   food: JSON.parse(read(path.join(SRC, 'data', 'menu-food.json'))),
@@ -134,6 +135,16 @@ Object.assign(memberships, escapeDeep(memberships));
 
 Object.assign(calendar, escapeDeep(calendar));
 Object.assign(reviews, escapeDeep(reviews));
+Object.assign(visit, escapeDeep(visit));
+
+function renderHours() {
+  const list = Array.isArray(visit.hours) ? visit.hours : [];
+  if (!list.length) throw new Error('visit.json has no hours');
+  return list.map(h => {
+    if (!h.days || !h.time) throw new Error('every hours row needs days and time');
+    return `            <li><span class="hours__d">${h.days}</span><span class="hours__t">${h.time}</span></li>`;
+  }).join('\n');
+}
 
 /* Google reviews. The text is quoted verbatim from the reviewer, so it is only
    ever escaped, never reflowed or trimmed. A star row is decorative once the
@@ -330,6 +341,8 @@ for (const f of pageFiles) {
     marqueeTrack: renderMarquee(),
     reviews,
     reviewTrack: renderReviewTrack(),
+    visit,
+    hoursRows: renderHours(),
     viewAllUrl: calendar.viewAllUrl || '#book',
     ...meta,
     // sensible derivations so each page's meta block stays to the essentials

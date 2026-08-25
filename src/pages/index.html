@@ -325,4 +325,53 @@
     </div>
   </section>
 
+  <!-- ===================== FIND US ===================== -->
+  <section class="visit" id="visit" aria-labelledby="visit-h">
+    <div class="shell visit__grid">
+
+      <div class="visit__col">
+        <p class="eyebrow eyebrow--gold">{{visit.eyebrow}}</p>
+        <h2 id="visit-h">{{visit.heading}}<br><span>{{visit.headingAccent}}</span></h2>
+        <p class="visit__lead">{{visit.lead}}</p>
+
+        <ul class="visit__rows">
+          <li><a class="vrow" href="mailto:{{email}}">
+            <span class="vrow__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+            </span>
+            <span class="vrow__body"><span class="vrow__label">Email</span><span class="vrow__value">{{email}}</span></span>
+          </a></li>
+          <li><a class="vrow" href="tel:{{phoneHref}}">
+            <span class="vrow__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h3l2 5-2.5 1.5a12 12 0 0 0 5 5L15 12l5 2v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4 5.2 2 2 0 0 1 6 3Z"/></svg>
+            </span>
+            <span class="vrow__body"><span class="vrow__label">Phone</span><span class="vrow__value">{{phone}}</span></span>
+          </a></li>
+          <li><a class="vrow" href="{{visit.mapLinkUrl}}">
+            <span class="vrow__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            </span>
+            <span class="vrow__body"><span class="vrow__label">Address</span><span class="vrow__value">{{addressLine1}}, {{addressLine2}}</span></span>
+          </a></li>
+        </ul>
+
+        <div class="hours">
+          <h3 class="hours__h">{{visit.hoursHeading}}</h3>
+          <ul class="hours__list">
+{{hoursRows}}
+          </ul>
+        </div>
+      </div>
+
+      <div class="visit__map">
+        <iframe src="{{visit.mapEmbedUrl}}" title="Map showing ELEVENO Pickleball at {{addressLine1}}, {{addressLine2}}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        <a class="visit__badge" href="{{visit.mapLinkUrl}}">
+          <span class="visit__badge-t">{{visit.mapBadgeTitle}}</span>
+          <span class="visit__badge-s">{{visit.mapBadgeSub}}</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
 </main>

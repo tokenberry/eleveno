@@ -1,0 +1,19 @@
+{
+  "_comment": "The find-us section: contact rows, opening hours and the map. Email, phone and address come from site.json so they are defined once. HOURS ARE UNVERIFIED — transcribed from a design screenshot and they contradict the '7AM-10PM DAILY' text on the Our Spaces and Play Your Way sections. Confirm against real operating hours before launch.",
+  "eyebrow": "FIND US",
+  "heading": "Come play",
+  "headingAccent": "with us.",
+  "lead": "Located inside Patriot Place, just steps from Gillette Stadium.",
+  "hoursHeading": "Hours of operation",
+  "hours": [
+    { "days": "Mon – Thu", "time": "8am – 10pm" },
+    { "days": "Friday", "time": "8am – 11pm" },
+    { "days": "Saturday", "time": "7am – 11pm" },
+    { "days": "Sunday", "time": "7am – 9pm" }
+  ],
+  "mapEmbedUrl": "https://www.google.com/maps?q=340%20Patriot%20Place%2C%20Foxborough%2C%20MA%2002035&output=embed",
+  "mapLinkUrl": "https://www.google.com/maps/dir/?api=1&destination=340+Patriot+Place%2C+Foxborough%2C+MA+02035",
+  "mapBadgeTitle": "Patriot Place",
+  "mapBadgeSub": "Foxborough, MA",
+  "mapLinkLabel": "Get directions"
+}

@@ -46,6 +46,42 @@ collections:
               - { name: featured, label: Highlight this event, widget: boolean, default: false, required: false }
           - { name: _comment, label: Note to editors, widget: hidden, required: false }
 
+  - name: visit
+    label: Find us
+    files:
+      - name: visit
+        label: Hours, map & contact
+        file: src/data/visit.json
+        description: >
+          The Find Us section at the bottom of the home page. Email, phone and
+          address are not here — they come from the site settings so they stay
+          the same everywhere.
+        fields:
+          - { name: eyebrow, label: Small line above the heading, widget: string }
+          - { name: heading, label: Heading, widget: string, hint: "First line, shown in cream" }
+          - { name: headingAccent, label: Heading second line, widget: string, hint: "Shown in gold underneath" }
+          - { name: lead, label: Intro line, widget: text }
+          - { name: hoursHeading, label: Hours box title, widget: string }
+          - name: hours
+            label: Opening hours
+            label_singular: Row
+            widget: list
+            summary: "{{fields.days}} — {{fields.time}}"
+            fields:
+              - { name: days, label: Day or range, widget: string, hint: "For example: Mon – Thu" }
+              - { name: time, label: Hours, widget: string, hint: "For example: 8am – 10pm" }
+          - name: mapEmbedUrl
+            label: Map embed URL
+            widget: string
+            hint: >
+              From Google Maps: Share → Embed a map → Copy HTML, then paste only
+              the address from inside src="...".
+          - { name: mapLinkUrl, label: Directions link, widget: string, hint: "Where the address row and the gold badge go when tapped." }
+          - { name: mapBadgeTitle, label: Badge top line, widget: string }
+          - { name: mapBadgeSub, label: Badge bottom line, widget: string }
+          - { name: mapLinkLabel, label: Directions link text, widget: string, required: false }
+          - { name: _comment, label: Note to editors, widget: hidden, required: false }
+
   - name: reviews
     label: Google reviews
     files:
