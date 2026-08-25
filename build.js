@@ -355,7 +355,7 @@ for (const f of pageFiles) {
     hoursRows: renderHours(),
     ask,
     askBadge: renderAskBadge(),
-    viewAllUrl: calendar.viewAllUrl || '#book',
+    viewAllUrl: calendar.viewAllUrl || site.bookingUrl,
     ...meta,
     // sensible derivations so each page's meta block stays to the essentials
     canonical: meta.canonical || site.baseUrl + (meta.slug === 'index' ? '' : meta.slug + '.html'),
