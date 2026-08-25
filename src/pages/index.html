@@ -4,7 +4,7 @@
   "description": "15 pickleball courts, a full kitchen, four bars and a beer garden in Foxborough, MA \u2014 one minute from Gillette Stadium. Book a court, plan a private event, or just come hang.",
   "ogTitle": "ELEVENO Pickleball \u2014 Pickleball's Best Block Party",
   "ogDescription": "15 courts. A full kitchen. Four bars and a beer garden. Foxborough, MA.",
-  "script": "reviews"
+  "script": "home"
 }
 -->
 <main>
@@ -411,8 +411,19 @@
         </div>
       </div>
 
-      <div class="visit__map">
-        <iframe src="{{visit.mapEmbedUrl}}" title="Map showing ELEVENO Pickleball at {{addressLine1}}, {{addressLine2}}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      <div class="visit__map" data-map-src="{{visit.mapEmbedUrl}}"
+           data-map-title="Map showing ELEVENO Pickleball at {{addressLine1}}, {{addressLine2}}">
+        <!-- Click-to-load. A blocked Google embed is indistinguishable from a
+             loaded one in JavaScript, so nothing here depends on detecting it:
+             this panel is what everyone sees first, and the iframe is created
+             only on request. Without JavaScript the link opens Google Maps. -->
+        <div class="visit__fallback">
+          <span class="visit__fallback-pin" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          </span>
+          <p class="visit__fallback-addr">{{addressLine1}}<br>{{addressLine2}}</p>
+          <a class="visit__fallback-link visit__mapopen" href="{{visit.mapLinkUrl}}">{{visit.mapOpenLabel}} &rarr;</a>
+        </div>
         <a class="visit__badge" href="{{visit.mapLinkUrl}}">
           <span class="visit__badge-t">{{visit.mapBadgeTitle}}</span>
           <span class="visit__badge-s">{{visit.mapBadgeSub}}</span>

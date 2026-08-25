@@ -1,5 +1,5 @@
 {
-  "_comment": "The find-us section: contact rows, opening hours and the map. Email, phone and address come from site.json so they are defined once. These hours are the single source of truth for opening times — the rest of the site says only \"OPEN 7 DAYS\" rather than restating them, so there is nothing to keep in sync. The Beer Garden's food & beverage hours are separate and live in the Our Spaces section.",
+  "_comment": "The find-us section: contact rows, opening hours and the map. Email, phone and address come from site.json so they are defined once. These hours are the single source of truth for opening times — the rest of the site says only \"OPEN 7 DAYS\" rather than restating them, so there is nothing to keep in sync. The Beer Garden's food & beverage hours are separate and live in the Our Spaces section. The map is click-to-load: a blocked embed cannot be detected from JavaScript, so the panel people see first is one we control, and the Google iframe is only created once someone asks for it.",
   "eyebrow": "FIND US",
   "heading": "Come play",
   "headingAccent": "with us.",
@@ -27,5 +27,6 @@
   "mapLinkUrl": "https://www.google.com/maps/dir/?api=1&destination=340+Patriot+Place%2C+Foxborough%2C+MA+02035",
   "mapBadgeTitle": "Patriot Place",
   "mapBadgeSub": "Foxborough, MA",
-  "mapLinkLabel": "Get directions"
+  "mapLinkLabel": "Get directions",
+  "mapOpenLabel": "View map"
 }
