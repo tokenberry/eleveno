@@ -67,11 +67,16 @@ img{max-width:100%;height:auto}
 
 /* ---------- nav ---------- */
 .nav{position:sticky;top:0;z-index:50;background:var(--navy);border-bottom:1px solid var(--rule)}
-.nav__inner{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:16px;padding-bottom:16px}
+.nav__inner{display:flex;align-items:center;justify-content:space-between;gap:30px;padding-top:16px;padding-bottom:16px}
 .nav__logo{display:flex;align-items:center;flex:0 0 auto}
 .nav__logo img{height:40px;width:auto;display:block}
-.nav__links{display:flex;gap:30px;align-items:center;font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:1px;color:var(--on-navy);flex-wrap:wrap;justify-content:flex-end}
-.nav__cta{background:var(--gold);color:var(--navy);padding:12px 22px;border-radius:999px}
+.nav__links{display:flex;gap:30px;align-items:center;font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:1px;color:var(--on-navy);flex-wrap:wrap;justify-content:flex-end;margin-left:auto}
+.nav__end{display:flex;align-items:center;gap:30px}
+.nav__cta{background:var(--gold);color:var(--navy);padding:12px 22px;border-radius:999px;white-space:nowrap}
+/* The menu button is mobile-only. The checkbox stays in the DOM at every width
+   so the :checked sibling selectors below have something to hang off. */
+.nav__toggle{position:absolute;width:1px;height:1px;opacity:0;margin:0;pointer-events:none}
+.nav__burger{display:none}
 
 /* ---------- hero ---------- */
 .hero{position:relative;min-height:660px;display:flex;align-items:center;
@@ -247,8 +252,8 @@ img{max-width:100%;height:auto}
 .closer__plan{background:var(--gold);color:var(--navy);font-family:var(--display);font-size:18px;letter-spacing:1px;text-transform:uppercase;padding:16px 30px;border-radius:999px;animation:elv-pulse 2.4s ease-out infinite}
 .closer__call{border:2px solid var(--cream);color:var(--cream);font-family:var(--display);font-size:16px;letter-spacing:1px;text-transform:uppercase;padding:15px 26px;border-radius:999px}
 .closer__links{margin-top:22px;font-weight:700;font-size:15px;color:var(--on-navy)}
-.closer__links a.u{border-bottom:2px solid var(--gold);padding-bottom:1px}
-.closer__sep{color:#6f81a3;margin:0 10px}
+.closer__links a.u{text-decoration:underline;text-decoration-color:var(--gold);text-decoration-thickness:2px;text-underline-offset:3px}
+.sep--wide{color:#6f81a3;margin:0 10px}
 .flyer{animation:elv-float 6s ease-in-out infinite;transform:rotate(3deg)}
 .flyer__frame{background:var(--navy-deep);border:3px solid var(--gold);border-radius:22px;padding:18px;box-shadow:0 30px 60px rgba(0,0,0,.4)}
 .flyer__card{background:var(--blue);border-radius:14px;padding:26px 20px 20px;text-align:center}
@@ -288,6 +293,9 @@ img{max-width:100%;height:auto}
 .phero .shell{position:relative;text-align:center}
 .phero h1{font-family:var(--display);font-size:clamp(44px,7vw,76px);line-height:.9;text-transform:uppercase;letter-spacing:1px;margin-top:8px}
 .phero h1 span{color:var(--gold)}
+/* A margin-left between two inline buttons leaves the second one indented and
+   flush against the first once they wrap; a flex row gaps both ways. */
+.phero__actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:28px}
 .phero__lead{max-width:640px;margin:20px auto 0;font-size:18px;line-height:1.6;font-weight:600;color:var(--on-navy)}
 
 .band{padding:76px 0}
@@ -496,7 +504,8 @@ img{max-width:100%;height:auto}
   letter-spacing:1px;text-transform:uppercase;padding:16px 30px;border:0;border-radius:999px;cursor:pointer}
 .form__submit button:hover{opacity:.9}
 .form__small{font-family:var(--mono);font-size:11px;line-height:1.7;color:var(--ink-mute);margin-top:14px;text-align:center}
-.hp{position:absolute;left:-9999px}
+.hp{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.hp input{width:1px}
 
 /* ---------- responsive (additions; source design has none) ---------- */
 @media (max-width:1080px){
@@ -526,12 +535,51 @@ img{max-width:100%;height:auto}
   .paths{grid-template-columns:1fr}
   .path{min-height:320px}
   .phero__mark{width:150px;top:-14px;right:-36px;opacity:.20}
-  .nav__inner{flex-wrap:wrap;justify-content:center}
-  .nav__links{justify-content:center;gap:18px 20px;width:100%}
-  .hero{min-height:0}
+  /* Five links plus a CTA cannot fit one phone-width row. A scroller hid the
+     last two behind an invisible edge, so they collapse behind a menu button
+     instead and the sticky bar stays one row tall. */
+  .nav__inner{flex-wrap:wrap;justify-content:space-between;gap:0;
+    padding-top:10px;padding-bottom:10px}
+  .nav__end{order:2;gap:6px}
+  .nav__cta{padding:13px 16px;font-size:12px}
+  .nav__burger{display:flex;order:2;align-items:center;justify-content:center;
+    width:44px;height:44px;margin-right:-10px;cursor:pointer}
+  .nav__burger span,.nav__burger span::before,.nav__burger span::after{
+    display:block;width:22px;height:2px;background:var(--on-navy);border-radius:2px;
+    transition:transform .2s ease,opacity .2s ease,top .2s ease}
+  .nav__burger span{position:relative}
+  .nav__burger span::before,.nav__burger span::after{content:'';position:absolute;left:0}
+  .nav__burger span::before{top:-7px}
+  .nav__burger span::after{top:7px}
+  .nav__toggle:checked ~ .nav__end .nav__burger span{background:transparent}
+  .nav__toggle:checked ~ .nav__end .nav__burger span::before{top:0;transform:rotate(45deg)}
+  .nav__toggle:checked ~ .nav__end .nav__burger span::after{top:0;transform:rotate(-45deg)}
+  .nav__toggle:focus-visible ~ .nav__end .nav__burger{outline:2px solid var(--gold);outline-offset:-4px;border-radius:8px}
+  /* Collapsed state uses max-height rather than display:none so opening animates
+     and the links stay in the accessibility tree order. */
+  .nav__links{order:3;width:100%;margin-left:0;display:block;
+    max-height:0;overflow:hidden;visibility:hidden;transition:max-height .25s ease}
+  .nav__toggle:checked ~ .nav__links{max-height:70vh;overflow-y:auto;visibility:visible}
+  .nav__links a{display:block;padding:15px 0;border-top:1px solid var(--rule);line-height:1.2}
+  .nav__links a[aria-current="page"]{color:var(--gold)}
+  .sched__cta{padding:14px 20px}
+  .footer__col a{padding:13px 0}
+  .closer__links a,.crosssell__contact a,.events__contact a,.footer__addr a{display:inline-block;padding:13px 0}
+  .footer__bar a{display:inline-block;padding:13px 0}
+  .playing__more a{display:inline-block;padding:12px 18px}
+  .menu-switch a{padding:14px 26px}
+  /* 11px captions are hard going on a phone */
+  .mcard__label,.price__m,.plan__list small,.footer__bar,.legend__item,.menu-item__note,.flyer__addr{font-size:12px}
+  /* .hero is a flex row; making the stats static turned them into a second
+     flex item beside the copy, which pushed them off-screen. Stack instead. */
+  .hero{min-height:0;flex-direction:column;align-items:stretch}
   .hero__inner{padding-top:48px;padding-bottom:48px}
-  .hero__stats{position:static}
-  .hero__stats .shell{justify-content:flex-start;gap:12px 28px}
+  .hero__stats{position:static;width:100%}
+  /* Four stats across a phone leave one stranded alone on a second row; 2x2
+     fills both rows evenly. */
+  .hero__stats .shell{display:grid;grid-template-columns:1fr 1fr;gap:16px 20px}
+  /* 4px tracking pushed "OPEN 7 DAYS" onto a second line for one orphaned word */
+  .hero__eyebrow{font-size:12px;letter-spacing:2px;margin-bottom:14px}
   .sched__row{flex-wrap:wrap;gap:12px}
   .sched__when{width:auto;flex:0 0 auto}
   .sched__what{flex:1 1 100%;order:3}
@@ -551,21 +599,38 @@ img{max-width:100%;height:auto}
   /* decorative V watermarks collide with headings at narrow widths */
   .playing__mark{width:110px;top:-4px;right:-30px;opacity:.12}
   .events__mark{width:130px;bottom:-24px;left:-40px;opacity:.24}
+  /* iOS Safari zooms the viewport when a focused control is under 16px, and the
+     user has to pinch back out after every field. */
+  .field input,.field select,.field textarea{font-size:16px}
+  /* the base min-width leaves a few px of hidden scroll in the 521-860 band */
+  .credits table{min-width:0}
+  .credits th,.credits td{padding:14px 10px}
+  .credits td{font-size:26px}
   /* stack contact links instead of stranding the bullet separators */
-  .closer__links a{display:block;width:fit-content;margin-bottom:6px}
-  .closer__sep{display:none}
+  .closer__links a{margin-bottom:6px}
+  .closer__links a,.crosssell__contact a,.events__contact a{display:block;width:fit-content}
+  .crosssell__contact,.events__contact{line-height:1.2}
+  .sep{display:none}
 }
 @media (max-width:520px){
-  .playing__mark{display:none}
+  /* Below ~500px the centred contact line reaches far enough left that this
+     watermark's ball head lands on the email address. Sliding it out leaves a
+     sliver that reads as an artifact, so drop it like .playing__mark. */
+  .playing__mark,.events__mark{display:none}
   .menu-names{columns:1}
   .form__grid{grid-template-columns:1fr}
   .pkgshots{grid-template-columns:1fr}
   .menu-sec h2{font-size:26px}
-  .credits table{min-width:420px}
-  .credits th,.credits td{padding:14px 12px}
-  .credits thead th{font-size:16px}
-  .credits td{font-size:24px}
-  .credits tbody th{font-size:14px}
+  /* min-width parked the third column — the discounted price, and the whole
+     point of the table — off-screen behind a scroll nobody sees. Tighten the
+     cells instead so all three columns fit a phone. */
+  .credits table{min-width:0}
+  .credits th,.credits td{padding:12px 6px}
+  .credits th:first-child{width:46%}
+  .credits thead th{font-size:14px;letter-spacing:.5px}
+  .credits td{font-size:20px}
+  .credits tbody th{font-size:13px}
+  .credits tbody th small{font-size:12px}
   .space__list{grid-template-columns:1fr}
   .pricing__grid{grid-template-columns:1fr}
   .garden__tiles{grid-template-columns:1fr}
@@ -574,6 +639,8 @@ img{max-width:100%;height:auto}
   .garden__tile--wide{grid-column:auto}
   .closer__actions{flex-direction:column;align-items:stretch}
   .closer__plan,.closer__call{text-align:center}
+  .phero__actions{flex-direction:column;align-items:stretch}
+  .phero__actions .btn{text-align:center}
   .footer__cols{flex-direction:column;gap:24px}
 }
 

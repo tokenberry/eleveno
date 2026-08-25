@@ -41,13 +41,19 @@ function href(entry, slug) {
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 function renderPrimaryNav(slug) {
-  const items = nav.primary.map(e => {
-    const current = e.page === slug && !e.hash ? ' aria-current="page"' : '';
-    return `        <a href="${esc(href(e, slug))}"${current}>${e.label}</a>`;
-  });
+  return nav.primary
+    .map(e => {
+      const current = e.page === slug && !e.hash ? ' aria-current="page"' : '';
+      return `        <a href="${esc(href(e, slug))}"${current}>${e.label}</a>`;
+    })
+    .join('\n');
+}
+
+// The CTA renders outside the link list so the mobile bar can keep it visible
+// while the rest of the nav collapses behind the menu button.
+function renderNavCta(slug) {
   const c = nav.cta;
-  items.push(`        <a class="nav__cta" href="${esc(href(c, slug))}">${c.label}</a>`);
-  return items.join('\n');
+  return `<a class="nav__cta" href="${esc(href(c, slug))}">${c.label}</a>`;
 }
 
 function renderFooterNav(slug) {
@@ -285,6 +291,7 @@ for (const f of pageFiles) {
     // a page opts into a script by name; every other page ships none
     scriptTag: meta.script ? `<script src="assets/${meta.script}.js" defer></script>` : '',
     primaryNav: renderPrimaryNav(meta.slug),
+    navCta: renderNavCta(meta.slug),
     footerNav: renderFooterNav(meta.slug),
     content: '',
   };

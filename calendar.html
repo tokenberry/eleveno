@@ -28,14 +28,20 @@
   <header class="nav">
     <div class="shell nav__inner">
       <a class="nav__logo" href="index.html" aria-label="ELEVENO Pickleball — home"><img src="assets/logo-white.png" alt="ELEVENO Pickleball" width="900" height="345"></a>
+      <!-- Checkbox toggle: the mobile menu opens with no JavaScript, so it works
+           on a first paint and on a failed script load alike. Hidden on desktop. -->
+      <input class="nav__toggle" id="nav-toggle" type="checkbox" aria-label="Show navigation menu">
       <nav class="nav__links" aria-label="Main">
         <a href="index.html#play">Calendar</a>
         <a href="index.html#membership">Pickleball</a>
         <a href="index.html#eat">Eat &amp; Drink</a>
         <a href="index.html#events">Private Events</a>
         <a href="index.html#garden">Beer Garden</a>
-        <a class="nav__cta" href="https://eleveno.podplay.app/community/events">Book a Court</a>
       </nav>
+      <div class="nav__end">
+        <a class="nav__cta" href="https://eleveno.podplay.app/community/events">Book a Court</a>
+        <label class="nav__burger" for="nav-toggle"><span aria-hidden="true"></span></label>
+      </div>
     </div>
   </header>
 
@@ -107,7 +113,7 @@
       <div>
         <h2 id="cross-h">Playing here <span>every week?</span></h2>
         <p>A summer membership or a prepaid open-play bundle brings the cost of every visit down &mdash; and members book seven days ahead.</p>
-        <p class="crosssell__contact">QUESTIONS? <a href="mailto:events@eleveno.com">events@eleveno.com</a> &nbsp;&bull;&nbsp; <a href="tel:+17742159137">774-215-9137</a></p>
+        <p class="crosssell__contact">QUESTIONS? <a href="mailto:events@eleveno.com">events@eleveno.com</a><span class="sep">&nbsp;&bull;&nbsp;</span><a href="tel:+17742159137">774-215-9137</a></p>
       </div>
       <p><a class="btn btn--gold" href="membership-bundles.html">Memberships &amp; bundles</a></p>
     </div>

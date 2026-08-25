@@ -2,8 +2,15 @@
   <header class="nav">
     <div class="shell nav__inner">
       <a class="nav__logo" href="{{homeHref}}" aria-label="ELEVENO Pickleball — home"><img src="assets/logo-white.png" alt="ELEVENO Pickleball" width="900" height="345"></a>
+      <!-- Checkbox toggle: the mobile menu opens with no JavaScript, so it works
+           on a first paint and on a failed script load alike. Hidden on desktop. -->
+      <input class="nav__toggle" id="nav-toggle" type="checkbox" aria-label="Show navigation menu">
       <nav class="nav__links" aria-label="Main">
 {{primaryNav}}
       </nav>
+      <div class="nav__end">
+        {{navCta}}
+        <label class="nav__burger" for="nav-toggle"><span aria-hidden="true"></span></label>
+      </div>
     </div>
   </header>

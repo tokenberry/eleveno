@@ -28,14 +28,20 @@
   <header class="nav">
     <div class="shell nav__inner">
       <a class="nav__logo" href="index.html" aria-label="ELEVENO Pickleball — home"><img src="assets/logo-white.png" alt="ELEVENO Pickleball" width="900" height="345"></a>
+      <!-- Checkbox toggle: the mobile menu opens with no JavaScript, so it works
+           on a first paint and on a failed script load alike. Hidden on desktop. -->
+      <input class="nav__toggle" id="nav-toggle" type="checkbox" aria-label="Show navigation menu">
       <nav class="nav__links" aria-label="Main">
         <a href="index.html#play">Calendar</a>
         <a href="index.html#membership">Pickleball</a>
         <a href="index.html#eat">Eat &amp; Drink</a>
         <a href="index.html#events">Private Events</a>
         <a href="index.html#garden">Beer Garden</a>
-        <a class="nav__cta" href="https://eleveno.podplay.app/community/events">Book a Court</a>
       </nav>
+      <div class="nav__end">
+        <a class="nav__cta" href="https://eleveno.podplay.app/community/events">Book a Court</a>
+        <label class="nav__burger" for="nav-toggle"><span aria-hidden="true"></span></label>
+      </div>
     </div>
   </header>
 
@@ -47,9 +53,9 @@
       <p class="eyebrow eyebrow--gold">INQUIRY RECEIVED</p>
       <h1>Thanks &mdash; <span>we're on it</span></h1>
       <p class="phero__lead">Your inquiry is with our events team and someone will be in touch shortly. If it's urgent, call us on 774-215-9137.</p>
-      <p style="margin-top:28px">
+      <p class="phero__actions">
         <a class="btn btn--gold" href="index.html">Back to the site</a>
-        <a class="btn btn--ghost" href="calendar.html" style="margin-left:10px">See what's on</a>
+        <a class="btn btn--ghost" href="calendar.html">See what's on</a>
       </p>
     </div>
   </section>
