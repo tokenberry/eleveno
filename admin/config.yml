@@ -46,6 +46,28 @@ collections:
               - { name: featured, label: Highlight this event, widget: boolean, default: false, required: false }
           - { name: _comment, label: Note to editors, widget: hidden, required: false }
 
+  - name: ask
+    label: Home page question form
+    files:
+      - name: ask
+        label: "\"Have questions?\" section"
+        file: src/data/ask.json
+        description: >
+          The short question form on the home page. Submissions go to Netlify
+          under the form name "general-question" — separate from the private
+          events form.
+        fields:
+          - { name: eyebrow, label: Small line above the heading, widget: string }
+          - { name: heading, label: Heading, widget: string }
+          - { name: subheading, label: Handwritten line under it, widget: string }
+          - { name: lead, label: Intro paragraph, widget: text }
+          - { name: badgeValue, label: Badge big text, widget: string, required: false, hint: "For example: 24h. This is a promise to visitors — clear both badge fields to hide it rather than claim a response time you cannot keep." }
+          - { name: badgeLabel, label: Badge small text, widget: string, required: false, hint: "For example: Response time" }
+          - { name: submitLabel, label: Button text, widget: string }
+          - { name: photo, label: Photo file name, widget: string, hint: "A file already in the assets folder, for example: community-champs.jpg" }
+          - { name: photoAlt, label: Photo description, widget: string, hint: "Describes the photo for screen readers and when images fail to load." }
+          - { name: _comment, label: Note to editors, widget: hidden, required: false }
+
   - name: visit
     label: Find us
     files:

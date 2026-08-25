@@ -1,0 +1,12 @@
+{
+  "_comment": "The short question form on the home page. A second Netlify form alongside event-inquiry on the private events page — the two must keep different `name` values or submissions land in the wrong bucket. `badgeValue`/`badgeLabel` is a promise to visitors: leave it empty to hide the badge rather than claim a response time you cannot keep.",
+  "eyebrow": "GET IN TOUCH",
+  "heading": "Have questions?",
+  "subheading": "We're happy to help!",
+  "lead": "Whether it's about memberships, private events, or just figuring out which court to book — reach out and we'll get back to you fast.",
+  "badgeValue": "24h",
+  "badgeLabel": "Response time",
+  "submitLabel": "Send message",
+  "photo": "community-champs.jpg",
+  "photoAlt": "Players celebrating together at ELEVENO"
+}

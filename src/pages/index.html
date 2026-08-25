@@ -325,6 +325,54 @@
     </div>
   </section>
 
+  <!-- ===================== ASK / SHORT INQUIRY ===================== -->
+  <section class="ask" id="ask" aria-labelledby="ask-h">
+    <div class="shell ask__grid">
+
+      <div class="ask__media">
+        <div class="ask__photo">
+          <img src="assets/{{ask.photo}}" alt="{{ask.photoAlt}}" width="1200" height="1400" loading="lazy">
+        </div>
+{{askBadge}}
+      </div>
+
+      <div class="ask__body">
+        <p class="eyebrow">{{ask.eyebrow}}</p>
+        <h2 id="ask-h">{{ask.heading}}</h2>
+        <p class="ask__sub">{{ask.subheading}}</p>
+        <p class="ask__lead">{{ask.lead}}</p>
+
+        <!-- A second Netlify form: the name must stay different from the
+             private-events one or submissions land in the wrong bucket. -->
+        <form class="form form--ask" name="general-question" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="thanks.html">
+          <input type="hidden" name="form-name" value="general-question">
+          <p class="hp"><label>Leave this field empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+
+          <div class="field">
+            <label for="q-name">Full name <span class="req" aria-hidden="true">*</span></label>
+            <input id="q-name" name="name" type="text" autocomplete="name" placeholder="Your name here" required>
+          </div>
+          <div class="field">
+            <label for="q-email">Email <span class="req" aria-hidden="true">*</span></label>
+            <input id="q-email" name="email" type="email" autocomplete="email" placeholder="your@email.com" required>
+          </div>
+          <div class="field">
+            <label for="q-phone">Phone</label>
+            <input id="q-phone" name="phone" type="tel" autocomplete="tel" placeholder="(617) 000-0000">
+          </div>
+          <div class="field">
+            <label for="q-message">Your message <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="q-message" name="message" rows="4" placeholder="What can we help with?" required></textarea>
+          </div>
+
+          <button class="btn btn--gold form__send" type="submit">{{ask.submitLabel}} &rarr;</button>
+          <p class="form__small">Fields marked <span aria-hidden="true">&#10033;</span> are required</p>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
   <!-- ===================== FIND US ===================== -->
   <section class="visit" id="visit" aria-labelledby="visit-h">
     <div class="shell visit__grid">

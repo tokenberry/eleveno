@@ -22,6 +22,7 @@ const memberships = JSON.parse(read(path.join(SRC, 'data', 'memberships.json')))
 const calendar = JSON.parse(read(path.join(SRC, 'data', 'events.json')));
 const reviews = JSON.parse(read(path.join(SRC, 'data', 'reviews.json')));
 const visit = JSON.parse(read(path.join(SRC, 'data', 'visit.json')));
+const ask = JSON.parse(read(path.join(SRC, 'data', 'ask.json')));
 const events = JSON.parse(read(path.join(SRC, 'data', 'private-events.json')));
 const menus = {
   food: JSON.parse(read(path.join(SRC, 'data', 'menu-food.json'))),
@@ -136,6 +137,15 @@ Object.assign(memberships, escapeDeep(memberships));
 Object.assign(calendar, escapeDeep(calendar));
 Object.assign(reviews, escapeDeep(reviews));
 Object.assign(visit, escapeDeep(visit));
+Object.assign(ask, escapeDeep(ask));
+
+/* The response-time badge is a promise, so it renders only when both halves are
+   filled in — an empty value hides it rather than showing a blank pill. */
+function renderAskBadge() {
+  if (!ask.badgeValue || !ask.badgeLabel) return '';
+  return `        <p class="ask__badge"><span class="ask__badge-v">${ask.badgeValue}</span>` +
+         `<span class="ask__badge-l">${ask.badgeLabel}</span></p>`;
+}
 
 function renderHours() {
   const list = Array.isArray(visit.hours) ? visit.hours : [];
@@ -343,6 +353,8 @@ for (const f of pageFiles) {
     reviewTrack: renderReviewTrack(),
     visit,
     hoursRows: renderHours(),
+    ask,
+    askBadge: renderAskBadge(),
     viewAllUrl: calendar.viewAllUrl || '#book',
     ...meta,
     // sensible derivations so each page's meta block stays to the essentials
