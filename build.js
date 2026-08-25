@@ -289,7 +289,8 @@ for (const f of pageFiles) {
     ogDescription: meta.ogDescription || meta.description,
     homeHref: meta.slug === 'index' ? '#top' : 'index.html',
     // a page opts into a script by name; every other page ships none
-    scriptTag: meta.script ? `<script src="assets/${meta.script}.js" defer></script>` : '',
+    scriptTag: ['nav'].concat(meta.script ? [meta.script] : [])
+      .map(name => `<script src="assets/${name}.js" defer></script>`).join('\n'),
     primaryNav: renderPrimaryNav(meta.slug),
     navCta: renderNavCta(meta.slug),
     footerNav: renderFooterNav(meta.slug),
