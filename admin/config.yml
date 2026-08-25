@@ -4,7 +4,7 @@
 backend:
   name: github
   repo: tokenberry/eleveno
-  branch: claude/eleveno-home-design-2ej8rc
+  branch: main
   base_url: https://api.netlify.com   # Netlify's OAuth proxy handles the GitHub login
 
 publish_mode: simple

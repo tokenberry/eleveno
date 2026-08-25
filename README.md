@@ -175,9 +175,10 @@ Setting it up on Netlify, once:
 3. Visit `https://<site>.netlify.app/admin` and sign in with GitHub. Anyone who
    can push to the repo can edit.
 
-`admin/config.yml` names the branch it writes to. It currently points at
-`claude/eleveno-home-design-2ej8rc`; change `branch:` to `main` once this work
-merges, or the CMS will keep editing the feature branch.
+`admin/config.yml` names the branch it writes to (`main`). It must match
+Netlify's **production branch**, or an editor's save commits to a branch
+Netlify is not watching: the CMS reports success and the site never updates.
+If you ever change one, change both.
 
 ## Content notes
 
