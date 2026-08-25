@@ -85,16 +85,20 @@ img{max-width:100%;height:auto}
 .hero__lead{font-size:20px;line-height:1.5;font-weight:600;margin:26px 0 32px;max-width:520px;color:var(--on-navy)}
 .hero__actions{display:flex;gap:14px;flex-wrap:wrap}
 .hero__stats{position:absolute;bottom:0;left:0;right:0;background:var(--navy-deep);border-top:1px solid #ffffff14}
-.hero__stats .shell{padding-top:18px;padding-bottom:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;color:var(--cream)}
-.stat__n{font-family:var(--display);font-size:30px}
+.hero__stats .shell{padding-top:18px;padding-bottom:18px;display:flex;flex-wrap:wrap;
+  justify-content:space-between;gap:14px 36px;color:var(--cream)}
+.hero__stats p{display:flex;align-items:baseline;gap:10px}
+.stat__n{font-family:var(--display);font-size:30px;line-height:1;flex:0 0 auto}
 .stat__n--gold{color:var(--gold)}
 .stat__n--blue{color:var(--blue-soft)}
 .stat__n--green{color:var(--green)}
-.stat__l{font-family:var(--mono);font-size:12px;letter-spacing:1px;margin-left:10px;color:var(--on-navy-mute)}
+.stat__l{font-family:var(--mono);font-size:12px;letter-spacing:1px;line-height:1.2;color:var(--on-navy-mute)}
 
 /* ---------- marquee ---------- */
 .marquee{background:var(--gold);overflow:hidden;padding:13px 0;border-bottom:3px solid var(--navy)}
-.marquee__track{display:inline-flex;white-space:nowrap;animation:elv-mq 20s linear infinite;font-family:var(--display);font-size:22px;letter-spacing:1px;color:var(--navy);text-transform:uppercase}
+.marquee__track{display:flex;width:max-content;white-space:nowrap;animation:elv-mq 38s linear infinite;
+  font-family:var(--display);font-size:22px;letter-spacing:1px;color:var(--navy);text-transform:uppercase}
+.marquee__half{display:flex;flex:0 0 auto}
 .marquee__track span{padding:0 22px}
 .marquee__dot{color:var(--blue)}
 
@@ -512,7 +516,7 @@ img{max-width:100%;height:auto}
   .hero{min-height:0}
   .hero__inner{padding-top:48px;padding-bottom:48px}
   .hero__stats{position:static}
-  .hero__stats .shell{grid-template-columns:1fr 1fr}
+  .hero__stats .shell{justify-content:flex-start;gap:12px 28px}
   .sched__row{flex-wrap:wrap;gap:12px}
   .sched__when{width:auto;flex:0 0 auto}
   .sched__what{flex:1 1 100%;order:3}

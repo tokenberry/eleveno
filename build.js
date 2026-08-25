@@ -237,6 +237,18 @@ function renderOptions(list) {
   return list.map(o => `            <option value="${o}">${o}</option>`).join('\n');
 }
 
+/* The marquee scrolls one half of the track and loops. That only reads as
+   continuous if a half is wider than the viewport, so the keyword list is
+   repeated until it comfortably exceeds any screen. */
+function renderMarquee() {
+  const words = site.marquee || [];
+  if (!words.length) return '';
+  const set = words.map(w =>
+    `<span>${w}</span><span class="marquee__dot">&#9679;</span>`).join('');
+  const half = set.repeat(2);          // one half, wide enough for ultrawide displays
+  return `      <div class="marquee__half">${half}</div>\n      <div class="marquee__half" aria-hidden="true">${half}</div>`;
+}
+
 const layout = read(path.join(SRC, 'layouts', 'base.html'));
 const pageFiles = fs.readdirSync(path.join(SRC, 'pages')).filter(f => f.endsWith('.html')).sort();
 if (!pageFiles.length) throw new Error('no pages found in src/pages');
@@ -262,6 +274,7 @@ for (const f of pageFiles) {
     foodNotes: menus.food.notes.map(n => `        <p>${n}</p>`).join('\n'),
     drinksNotes: menus.drinks.notes.map(n => `        <p>${n}</p>`).join('\n'),
     eventRows: renderEvents(),
+    marqueeTrack: renderMarquee(),
     viewAllUrl: calendar.viewAllUrl || '#book',
     ...meta,
     // sensible derivations so each page's meta block stays to the essentials

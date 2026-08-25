@@ -46,6 +46,14 @@ is being rendered, so a link to the home page's `#play` anchor stays a bare
 fragment on the home page and becomes `index.html#play` everywhere else. Add a
 page to that file once and every page's header and footer pick it up.
 
+## The marquee
+
+`site.json` holds the `marquee` keywords. The strip animates one half of a
+two-half track and loops, which only reads as continuous while a half is wider
+than the viewport — so the build repeats the keyword list until a half clears
+any realistic screen. Adding or removing keywords is safe; the repeat count
+does the work.
+
 ## The calendar
 
 `src/data/events.json` holds the "Now Playing" list on the home page. Each

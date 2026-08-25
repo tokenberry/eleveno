@@ -10,5 +10,19 @@
   "baseUrl": "https://www.eleveno.com/",
   "bookingUrl": "https://eleveno.podplay.app/community/events",
   "instagramUrl": "https://www.instagram.com/elevenopickleball/?hl=en",
-  "orderingUrl": "https://order.toasttab.com/online/eleveno-indoors-340-patriot-place"
+  "orderingUrl": "https://order.toasttab.com/online/eleveno-indoors-340-patriot-place",
+  "marquee": [
+    "Courts",
+    "Community",
+    "Cocktails",
+    "Game On",
+    "Open Play",
+    "Leagues",
+    "Lessons",
+    "Beer Garden",
+    "Private Events",
+    "Tournaments",
+    "Foxborough MA",
+    "Open 7 Days"
+  ]
 }
