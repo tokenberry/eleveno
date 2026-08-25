@@ -87,16 +87,19 @@ img{max-width:100%;height:auto}
 .hero__stats{position:absolute;bottom:0;left:0;right:0;background:var(--navy-deep);border-top:1px solid #ffffff14}
 .hero__stats .shell{padding-top:18px;padding-bottom:18px;display:flex;flex-wrap:wrap;
   justify-content:space-between;gap:14px 36px;color:var(--cream)}
-.hero__stats p{display:flex;align-items:baseline;gap:10px}
-.stat__n{font-family:var(--display);font-size:30px;line-height:1;flex:0 0 auto}
+/* Number over label. Set inline, a 30px display figure beside an 11px mono
+   label reads as mismatched however exactly they share a baseline — the eye
+   compares their centres, not their feet. Stacking removes the comparison. */
+.hero__stats p{display:flex;flex-direction:column;gap:3px}
+.stat__n{font-family:var(--display);font-size:34px;line-height:.9;letter-spacing:.5px}
 .stat__n--gold{color:var(--gold)}
 .stat__n--blue{color:var(--blue-soft)}
 .stat__n--green{color:var(--green)}
-.stat__l{font-family:var(--mono);font-size:12px;letter-spacing:1px;line-height:1.2;color:var(--on-navy-mute)}
+.stat__l{font-family:var(--mono);font-size:11px;letter-spacing:1.6px;line-height:1.2;color:var(--on-navy-mute)}
 
 /* ---------- marquee ---------- */
 .marquee{background:var(--gold);overflow:hidden;padding:13px 0;border-bottom:3px solid var(--navy)}
-.marquee__track{display:flex;width:max-content;white-space:nowrap;animation:elv-mq 38s linear infinite;
+.marquee__track{display:flex;width:max-content;white-space:nowrap;animation:elv-mq 110s linear infinite;
   font-family:var(--display);font-size:22px;letter-spacing:1px;color:var(--navy);text-transform:uppercase}
 .marquee__half{display:flex;flex:0 0 auto}
 .marquee__track span{padding:0 22px}
