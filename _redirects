@@ -1,0 +1,17 @@
+# Old Webflow URLs -> the new site. Crawled from the live eleveno.com on
+# 2026-08-25; that site is a closed set of 8 pages with nothing deeper.
+# 301 = permanent, which is what passes the old page's search ranking on.
+# Netlify matches these top-down, so order matters.
+
+/about              /                       301
+/partners           /                       301
+/pickleball         /#play                  301
+/eat-and-drink      /menu-food.html         301
+/private-events     /private-events.html    301
+
+# /privacy-policy and /terms-and-conditions are deliberately NOT listed yet.
+# Both hold real legal text on the old site (858 and 957 words) and the new
+# site has no equivalent, so there is nowhere honest to send them. Sending a
+# privacy policy to the home page is a soft 404 to Google and a dead end to
+# anyone who went looking for it. Decide before cutover: port both pages, or
+# accept that these two URLs stop working.

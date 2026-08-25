@@ -13,6 +13,15 @@
 </head>
 <body>
 <div id="nc-root"></div>
-<script src="https://unpkg.com/decap-cms@^3.3.3/dist/decap-cms.js"></script>
+<!-- Pinned to an exact version with an integrity hash on purpose. A floating
+     range let unpkg serve any 3.x build at page load, unverified, into the one
+     page that holds a GitHub token with write access to this repo. The browser
+     now refuses to run this file unless it hashes to exactly the bytes below.
+     Updating Decap means bumping BOTH the version and the hash:
+       curl -sL https://unpkg.com/decap-cms@<VER>/dist/decap-cms.js \
+         | openssl dgst -sha384 -binary | openssl base64 -A -->
+<script src="https://unpkg.com/decap-cms@3.15.1/dist/decap-cms.js"
+        integrity="sha384-in6eHztHveqQ7uMZ1fDaKlDmacQLFuLH2wWrFTiymyuS8zQ5bixwL8U3AeRi8h/L"
+        crossorigin="anonymous"></script>
 </body>
 </html>
