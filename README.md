@@ -183,7 +183,15 @@ If you ever change one, change both.
 ## Content notes
 
 Copy, pricing and schedule are transcribed verbatim from the design and should
-be confirmed against current operations before launch. Several links are
-placeholders (`href="#"`) where the design had no destination: Food Menu,
-Cocktails, Gift Cards, Memberships, About, Partners, Careers, and the social
-handle. The footer's social row is plain text in the design, not links.
+be confirmed against current operations before launch.
+
+Every link now has a real destination — no `href="#"` placeholders remain.
+Booking, the three Start Here pathways, memberships and the two bundles go to
+PodPlay; gift cards and online ordering go to Toast. The design's About,
+Partners and Careers entries were dropped rather than wired, so those pages do
+not exist here; anyone reaching `/about` or `/partners` from an old link or a
+search result will get a 404 unless a redirect is added.
+
+In the footer's social row only Instagram is a link. Facebook and LinkedIn stay
+plain text until those URLs exist — matching the design, which had no links
+there at all.
