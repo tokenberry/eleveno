@@ -1,0 +1,28 @@
+{
+  "_comment": "Google reviews shown on the home page. Text must stay VERBATIM as the reviewer wrote it — editing someone's words and still attributing them to them is misrepresentation, and Google's terms require reviews be shown unaltered. `when` is whatever Google displayed; it is relative text, so it goes stale and needs refreshing when you add reviews.",
+  "heading": "Meet our happy clients",
+  "eyebrow": "Rated 5.0 on Google",
+  "lead": "Real reviews from real players. See why our community keeps coming back.",
+  "profileUrl": "https://share.google/C7vjLoudlo62xqSPM",
+  "profileLabel": "Read all reviews on Google",
+  "items": [
+    {
+      "name": "Haley M",
+      "when": "3 months ago",
+      "stars": 5,
+      "text": "Very impressed with ELEVENO!! The facility and food are very high-end and the staff makes pickleball fun and approachable, even for complete beginners! Something fun for the whole family with ping pong tables, tasty drinks and fantastic vibes. Can't wait to host my nephew's birthday party here — they have an event package that's great for groups."
+    },
+    {
+      "name": "Nancy Fire",
+      "when": "2 months ago",
+      "stars": 5,
+      "text": "My husband and I sat at the bar and had drinks and dinner last night at ELEVENO. Food was excellent! If you're expecting chicken fingers and fries you'll be pleasantly surprised. The Get Freekah Bowl with grilled shrimp was delish — fresh veggies and hot crispy shrimp. And so fun to watch the players while we ate. I strongly recommend!"
+    },
+    {
+      "name": "Gina Uttaro",
+      "when": "3 months ago",
+      "stars": 5,
+      "text": "This place is awesome! Not only is it such a fun, great looking facility with great staff and plenty of court space, but the food and drinks offered at the center court bar are top-notch. Truly, the chef is unreal — get the Steak Asada and Hot Chicken Sandwich. We came here for a pickleball tournament and will 100% be back!"
+    }
+  ]
+}

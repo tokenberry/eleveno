@@ -46,6 +46,35 @@ collections:
               - { name: featured, label: Highlight this event, widget: boolean, default: false, required: false }
           - { name: _comment, label: Note to editors, widget: hidden, required: false }
 
+  - name: reviews
+    label: Google reviews
+    files:
+      - name: reviews
+        label: Reviews section
+        file: src/data/reviews.json
+        description: >
+          The reviews shown near the bottom of the home page. Copy each review
+          from your Google listing WORD FOR WORD — do not tidy up spelling or
+          shorten it. It is someone else's words with their name on it, and
+          Google's terms require reviews be shown unaltered.
+        fields:
+          - { name: eyebrow, label: Small line above the heading, widget: string, hint: "For example: Rated 5.0 on Google" }
+          - { name: heading, label: Heading, widget: string }
+          - { name: lead, label: Intro paragraph, widget: text }
+          - { name: profileUrl, label: Link to your Google listing, widget: string }
+          - { name: profileLabel, label: Text for that link, widget: string }
+          - name: items
+            label: Reviews
+            label_singular: Review
+            widget: list
+            summary: "{{fields.name}} — {{fields.stars}}★"
+            fields:
+              - { name: name, label: Reviewer name, widget: string, hint: "As Google shows it, for example: Haley M" }
+              - { name: when, label: When they posted, widget: string, required: false, hint: "As Google shows it, for example: 3 months ago. This goes out of date — refresh it when you update the reviews, or leave it empty to hide it." }
+              - { name: stars, label: Star rating, widget: number, value_type: int, min: 1, max: 5, default: 5 }
+              - { name: text, label: Review text, widget: text, hint: "Paste it exactly as written." }
+          - { name: _comment, label: Note to editors, widget: hidden, required: false }
+
   - name: memberships
     label: Memberships
     files:

@@ -259,6 +259,21 @@
     </div>
   </section>
 
+  <!-- ===================== REVIEWS ===================== -->
+  <section class="reviews" id="reviews" aria-labelledby="reviews-h">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow">&#9733; {{reviews.eyebrow}}</p>
+        <h2 id="reviews-h">{{reviews.heading}}</h2>
+      </div>
+      <p class="reviews__lead">{{reviews.lead}}</p>
+      <ul class="reviews__rail">
+{{reviewCards}}
+      </ul>
+      <p class="reviews__more"><a href="{{reviews.profileUrl}}">{{reviews.profileLabel}} &rarr;</a></p>
+    </div>
+  </section>
+
   <!-- ===================== CLOSER ===================== -->
   <section class="closer" id="book" aria-labelledby="closer-h">
     <div class="closer__dots" aria-hidden="true"></div>

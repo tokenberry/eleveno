@@ -102,6 +102,31 @@ img{max-width:100%;height:auto}
 .stat__n--green{color:var(--green)}
 .stat__l{font-family:var(--mono);font-size:11px;letter-spacing:1.6px;line-height:1.2;color:var(--on-navy-mute)}
 
+/* ---------- google reviews ---------- */
+.reviews{background:var(--cream);padding:80px 0}
+.reviews__lead{max-width:620px;margin:14px auto 0;text-align:center;font-size:17px;
+  line-height:1.55;color:var(--ink-mute)}
+/* A rail rather than a grid: it holds any number of reviews without reflowing
+   the section, and the part-visible next card is what says "there are more". */
+.reviews__rail{list-style:none;display:flex;gap:20px;margin-top:38px;
+  overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:4px 4px 18px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.review{flex:0 0 clamp(268px,80vw,360px);scroll-snap-align:start;
+  background:#fff;border:2px solid var(--navy);border-radius:18px;padding:24px 22px;
+  display:flex;flex-direction:column;gap:12px}
+.review__head{display:flex;align-items:center;gap:12px}
+.review__avatar{flex:0 0 auto;width:42px;height:42px;border-radius:50%;
+  display:grid;place-items:center;background:var(--gold);color:var(--navy);
+  font-family:var(--display);font-size:20px;line-height:1}
+.review__who{display:flex;flex-direction:column;gap:2px;min-width:0}
+.review__name{font-weight:800;font-size:15px;color:var(--navy)}
+.review__when{font-family:var(--mono);font-size:12px;color:var(--ink-mute)}
+.review__stars{color:var(--gold);font-size:17px;letter-spacing:3px;line-height:1}
+.review__text{font-size:15px;line-height:1.6;color:var(--ink-soft)}
+.reviews__more{text-align:center;margin-top:8px}
+.reviews__more a{font-family:var(--display);font-size:17px;letter-spacing:1px;
+  color:var(--blue);text-transform:uppercase}
+
 /* ---------- marquee ---------- */
 .marquee{background:var(--gold);overflow:hidden;padding:13px 0;border-bottom:3px solid var(--navy)}
 .marquee__track{display:flex;width:max-content;white-space:nowrap;animation:elv-mq 110s linear infinite;
@@ -566,7 +591,7 @@ img{max-width:100%;height:auto}
   .footer__col a{padding:13px 0}
   .closer__links a,.crosssell__contact a,.events__contact a,.footer__addr a{display:inline-block;padding:13px 0}
   .footer__bar a{display:inline-block;padding:13px 0}
-  .playing__more a{display:inline-block;padding:12px 18px}
+  .playing__more a,.reviews__more a{display:inline-block;padding:12px 18px}
   .menu-switch a{padding:14px 26px}
   /* 11px captions are hard going on a phone */
   .mcard__label,.price__m,.plan__list small,.footer__bar,.legend__item,.menu-item__note,.flyer__addr{font-size:12px}

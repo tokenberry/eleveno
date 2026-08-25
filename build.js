@@ -20,6 +20,7 @@ const nav = JSON.parse(read(path.join(SRC, 'data', 'nav.json')));
 const site = JSON.parse(read(path.join(SRC, 'data', 'site.json')));
 const memberships = JSON.parse(read(path.join(SRC, 'data', 'memberships.json')));
 const calendar = JSON.parse(read(path.join(SRC, 'data', 'events.json')));
+const reviews = JSON.parse(read(path.join(SRC, 'data', 'reviews.json')));
 const events = JSON.parse(read(path.join(SRC, 'data', 'private-events.json')));
 const menus = {
   food: JSON.parse(read(path.join(SRC, 'data', 'menu-food.json'))),
@@ -132,6 +133,31 @@ Object.assign(memberships, escapeDeep(memberships));
 })();
 
 Object.assign(calendar, escapeDeep(calendar));
+Object.assign(reviews, escapeDeep(reviews));
+
+/* Google reviews. The text is quoted verbatim from the reviewer, so it is only
+   ever escaped, never reflowed or trimmed. A star row is decorative once the
+   rating is in the label, so the glyphs are hidden from assistive tech. */
+function renderReviews() {
+  const list = Array.isArray(reviews.items) ? reviews.items : [];
+  if (!list.length) throw new Error('reviews.json has no items');
+  return list.map(r => {
+    const n = Number(r.stars);
+    if (!Number.isInteger(n) || n < 1 || n > 5) throw new Error(`review by ${r.name}: stars must be 1-5, got ${r.stars}`);
+    if (!r.text || !r.name) throw new Error('every review needs a name and text');
+    const stars = '&#9733;'.repeat(n);
+    const initial = r.name.trim().charAt(0).toUpperCase();
+    const when = r.when ? `<span class="review__when">${r.when}</span>` : '';
+    return `        <li class="review">
+          <div class="review__head">
+            <span class="review__avatar" aria-hidden="true">${initial}</span>
+            <span class="review__who"><span class="review__name">${r.name}</span>${when}</span>
+          </div>
+          <p class="review__stars" role="img" aria-label="${n} out of 5 stars"><span aria-hidden="true">${stars}</span></p>
+          <blockquote class="review__text">${r.text}</blockquote>
+        </li>`;
+  }).join('\n');
+}
 
 /* The "Now Playing" rows. Authored in src/data/events.json so events can be
    added and removed without touching markup. */
@@ -281,6 +307,8 @@ for (const f of pageFiles) {
     drinksNotes: menus.drinks.notes.map(n => `        <p>${n}</p>`).join('\n'),
     eventRows: renderEvents(),
     marqueeTrack: renderMarquee(),
+    reviews,
+    reviewCards: renderReviews(),
     viewAllUrl: calendar.viewAllUrl || '#book',
     ...meta,
     // sensible derivations so each page's meta block stays to the essentials
