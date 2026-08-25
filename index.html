@@ -790,19 +790,18 @@
         </div>
       </div>
 
-      <div class="visit__map" data-map-src="https://www.google.com/maps?q=340%20Patriot%20Place%2C%20Foxborough%2C%20MA%2002035&amp;output=embed"
-           data-map-title="Map showing ELEVENO Pickleball at 340 Patriot Place, Foxborough, MA 02035">
-        <!-- Click-to-load. A blocked Google embed is indistinguishable from a
-             loaded one in JavaScript, so nothing here depends on detecting it:
-             this panel is what everyone sees first, and the iframe is created
-             only on request. Without JavaScript the link opens Google Maps. -->
+      <div class="visit__map">
+        <!-- Sits behind the iframe. A loaded map covers it completely; a map
+             blocked by an ad blocker or a privacy extension renders empty, and
+             this shows through with the address and a working link. -->
         <div class="visit__fallback">
           <span class="visit__fallback-pin" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
           </span>
           <p class="visit__fallback-addr">340 Patriot Place<br>Foxborough, MA 02035</p>
-          <a class="visit__fallback-link visit__mapopen" href="https://www.google.com/maps/dir/?api=1&amp;destination=340+Patriot+Place%2C+Foxborough%2C+MA+02035">View map &rarr;</a>
+          <a class="visit__fallback-link" href="https://www.google.com/maps/dir/?api=1&amp;destination=340+Patriot+Place%2C+Foxborough%2C+MA+02035">Get directions &rarr;</a>
         </div>
+        <iframe src="https://www.google.com/maps?q=340%20Patriot%20Place%2C%20Foxborough%2C%20MA%2002035&amp;output=embed" title="Map showing ELEVENO Pickleball at 340 Patriot Place, Foxborough, MA 02035" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
         <a class="visit__badge" href="https://www.google.com/maps/dir/?api=1&amp;destination=340+Patriot+Place%2C+Foxborough%2C+MA+02035">
           <span class="visit__badge-t">Patriot Place</span>
           <span class="visit__badge-s">Foxborough, MA</span>

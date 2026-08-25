@@ -1,32 +1,6 @@
 /* Home page enhancements. All optional: with no JavaScript the strip still
-   scrolls and pauses on hover, reduced-motion users still get a static
-   swipeable rail, and the map falls back to an address panel. */
-
-/* Click-to-load map. A blocked Google embed fires load and throws on
-   contentWindow exactly like a working one, so there is no way to tell them
-   apart and no point trying: the address panel is what renders by default and
-   the iframe is only built when someone asks to see the map. The panel's link
-   points at Google Maps, so with no JavaScript it still gets people there. */
-(function () {
-  var map = document.querySelector('.visit__map');
-  if (!map) return;
-  var src = map.getAttribute('data-map-src');
-  var opener = map.querySelector('.visit__mapopen');
-  if (!src || !opener) return;
-
-  opener.addEventListener('click', function (e) {
-    e.preventDefault();
-    if (map.classList.contains('is-loaded')) return;
-    var frame = document.createElement('iframe');
-    frame.src = src;
-    frame.title = map.getAttribute('data-map-title') || 'Map';
-    frame.setAttribute('loading', 'lazy');
-    frame.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
-    frame.setAttribute('allowfullscreen', '');
-    map.appendChild(frame);
-    map.classList.add('is-loaded');
-  });
-})();
+   scrolls and pauses on hover, and reduced-motion users still get a static
+   swipeable rail. */
 
 (function () {
   var track = document.querySelector('.reviews__track');
