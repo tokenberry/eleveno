@@ -233,6 +233,7 @@ const DIET = {
   veg:   ['V',  'Vegetarian'],
   vegan: ['VE', 'Vegan'],
   gf:    ['GF', 'Gluten free'],
+  gfa:   ['GFA','Gluten free available'],
   ht:    ['\u2713', 'Healthy Truth — plant based'],
 };
 
@@ -247,11 +248,13 @@ function renderMenu(menu) {
 
   const item = i => {
     const raw = i.raw ? ' <span class="menu-raw" title="Shellfish / raw — see disclaimer" aria-label="Shellfish or raw, see disclaimer">&#10033;</span>' : '';
+    const cls = i.featured ? ' menu-item--featured' : '';
+    const flag = i.featured ? '\n            <p class="menu-item__flag">Signature</p>' : '';
     const price = i.price ? `<span class="menu-item__price">${i.price}</span>` : '';
     const dots = i.price ? '<span class="menu-item__dots" aria-hidden="true"></span>' : '';
     const desc = i.desc ? `\n            <p class="menu-item__desc">${i.desc}</p>` : '';
     const note = i.note ? `\n            <p class="menu-item__note">${i.note}</p>` : '';
-    return `          <li class="menu-item">
+    return `          <li class="menu-item${cls}">${flag}
             <p class="menu-item__top"><span class="menu-item__name">${i.name}${badges(i.diet)}${raw}</span>${dots}${price}</p>${desc}${note}
           </li>`;
   };
@@ -276,9 +279,21 @@ ${body(sec)}
       </section>`).join('\n\n');
 }
 
-function renderLegend(codes) {
-  return codes.map(c => `<span class="legend__item"><span class="diet diet--${c}" aria-hidden="true">${DIET[c][0]}</span> ${DIET[c][1]}</span>`).join('')
-    + '<span class="legend__item"><span class="menu-raw" aria-hidden="true">&#10033;</span> Shellfish / raw</span>';
+/* The legend lists only what the menu actually uses, in DIET declaration
+   order, so editing the menu never leaves a stale key behind. */
+function renderLegend(menu) {
+  const items = [];
+  for (const sec of menu.sections) {
+    items.push(...(sec.items || []), ...(sec.groups || []).flatMap(g => g.items || []));
+  }
+  const used = new Set(items.flatMap(i => i.diet || []));
+  for (const c of used) if (!DIET[c]) throw new Error(`unknown diet code: ${c}`);
+  const out = Object.keys(DIET).filter(c => used.has(c))
+    .map(c => `<span class="legend__item"><span class="diet diet--${c}" aria-hidden="true">${DIET[c][0]}</span> ${DIET[c][1]}</span>`);
+  if (items.some(i => i.raw)) {
+    out.push('<span class="legend__item"><span class="menu-raw" aria-hidden="true">&#10033;</span> Shellfish / raw</span>');
+  }
+  return out.join('');
 }
 
 /* --- private events page fragments --- */
@@ -344,7 +359,7 @@ for (const f of pageFiles) {
     referralOptions: renderOptions(events.form.referrals),
     foodMenu: renderMenu(menus.food),
     drinksMenu: renderMenu(menus.drinks),
-    foodLegend: renderLegend(['veg','vegan','gf','ht']),
+    foodLegend: renderLegend(menus.food),
     foodNotes: menus.food.notes.map(n => `        <p>${n}</p>`).join('\n'),
     drinksNotes: menus.drinks.notes.map(n => `        <p>${n}</p>`).join('\n'),
     eventRows: renderEvents(),

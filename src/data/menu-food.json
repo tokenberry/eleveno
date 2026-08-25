@@ -1,66 +1,105 @@
 {
-  "_comment": "Food menu, transcribed from the ELEVENO menu PDF. diet codes: veg = vegetarian, vegan, gf = gluten free, ht = healthy truth / plant based. raw = carries the shellfish/raw disclaimer.",
-  "title": "Food Menu",
+  "_comment": "The Paddle Down food menu, transcribed from the Paddle Down Menu PDF. Prices are plain numbers on the printed menu (no $), kept that way here so the page matches it. `featured` marks the signature platter. Diet codes: veg = V, gf = GF, gfa = GFA (gluten-free available).",
+  "title": "Paddle Down",
   "intro": "Chef-driven plates, loaded baskets and everything in between — served courtside or at the bar.",
   "sponsor": "Walpole Outdoors — Center Court Bar",
   "sections": [
     {
+      "name": "Snacks",
+      "items": [
+        { "name": "Warm stadium nuts", "price": "8", "desc": "rosemary, smoked sea salt, chili crunch", "diet": ["veg", "gf"] },
+        { "name": "Citrus-herb olives", "price": "8", "desc": "orange peel, garlic confit, thyme oil", "diet": ["veg", "gf"] },
+        { "name": "Crispy pickle chips", "price": "9", "desc": "dill dust, spicy ranch", "diet": ["veg"] },
+        { "name": "Giant pretzel", "price": "14", "desc": "warm, salted, beer cheese + mustard", "diet": ["veg"] }
+      ]
+    },
+    {
       "name": "Shareables",
       "items": [
-        { "name": "Steak Asada", "price": "$23", "desc": "Herb Marinated Flat Iron, Horseradish Sauce", "diet": ["gf"], "raw": true },
-        { "name": "Moroccan Lamb Skewer", "price": "$18", "desc": "Dukkah Spice & Onion Soublakia", "diet": ["gf"], "raw": true },
-        { "name": "Shrimp Cocktail", "price": "$18", "desc": "Jumbo Shrimp, Gin Cocktail Sauce, Horseradish", "diet": ["gf"], "raw": true },
-        { "name": "French Fries", "price": "$6", "desc": "BBQ | Parmesan Truffle | Rosemary", "diet": ["gf"] },
-        { "name": "Hummus & Grilled Naan", "price": "$12" },
-        { "name": "Guacamole & Corn Tortilla", "price": "$15" },
-        { "name": "Caramelized Onion Dip & Chips", "price": "$13" },
-        { "name": "Spinach & Artichoke Dip & Corn Tortilla", "price": "$13" }
+        { "name": "Mix Tower Platter", "price": "32", "desc": "wings, tenders, mozzarella, quesadilla bites, pickle chips, five house sauces — served on the paddle. Serves 4 to 6.", "featured": true },
+        { "name": "Paddle Down wings", "price": "18 / 26", "desc": "half or full dozen. buffalo · maple-BBQ · lemon-pepper · gochujang · garlic-parm" },
+        { "name": "The tower nachos", "price": "19", "desc": "queso, pico, jalapeño, crema, scallions. add chicken +6, short rib +9", "diet": ["veg"] },
+        { "name": "Crispy court tenders", "price": "16", "desc": "honey mustard, buffalo, BBQ" },
+        { "name": "Fire-roasted quesadilla", "price": "17", "desc": "Oaxaca cheese, charred peppers, chipotle crema. add chicken +6", "diet": ["veg"] },
+        { "name": "Mozzarella sticks", "price": "13", "desc": "crispy, marinara, parmesan", "diet": ["veg"] },
+        { "name": "The paddle board", "price": "28", "desc": "cured meats, cheeses, pickles, jam, toasted bread" },
+        { "name": "Buffalo chicken bake", "price": "17", "desc": "shredded chicken, cheddar, scallions, baked" }
       ]
     },
     {
       "name": "Flatbreads",
       "items": [
-        { "name": "Traditional Margherita", "price": "$17", "desc": "Oven Cured Tomato, Mozzarella, Torn Basil", "diet": ["veg"] },
-        { "name": "Crispy Pepperoni & Hot Honey", "price": "$18", "desc": "Cupped Pepperoni, Whole Milk Mozzarella, Simmered San Marzano Sauce" },
-        { "name": "Mediterranean Chicken", "price": "$18", "desc": "Basil Pesto Marony, Grilled Chicken, Roasted Peppers, Feta Cheese" },
-        { "name": "Vegetable & Pesto", "price": "$16", "desc": "Grilled Seasonal Vegetables, Basil Pesto, Baked Goat Cheese", "diet": ["veg"] }
+        { "name": "Margherita modern", "price": "17", "desc": "blistered tomatoes, basil oil, mozzarella", "diet": ["veg"] },
+        { "name": "BBQ chicken crunch", "price": "19", "desc": "BBQ sauce, chicken, red onion, scallions" },
+        { "name": "Meatlovers feast", "price": "21", "desc": "pepperoni, sausage, bacon" },
+        { "name": "Garden veggie", "price": "17", "desc": "roasted vegetables, balsamic glaze", "diet": ["veg"] }
       ]
     },
     {
-      "name": "Salads",
+      "name": "Shakes & Smoothies",
       "items": [
-        { "name": "Mediterranean Superfood Salad", "price": "$16", "desc": "Kale, Quinoa, Chickpeas, Tomato, Cucumber, Mixed Olives, Feta Cheese, Lemon Tahini Vinaigrette", "diet": ["veg"] },
-        { "name": "Tender Green Salad & Root Vegetables", "price": "$14", "desc": "Mixed Mesclun Greens, Shaved Root", "diet": ["veg", "ht"] },
-        { "name": "Get Freekah Protein Bowl", "price": "$17", "desc": "Toasted Freekah, Spinach, Avocado, Sweet Potato, Edamame, Pickled Red Onion, Shredded Carrot, Toasted Seeds, Ginger-Miso Vinaigrette", "diet": ["veg", "ht"] }
-      ],
-      "footnote": "ADD PROTEINS: Chicken Breast | Grilled Shrimp* | Grilled Steak*"
+        { "name": "Green machine", "price": "10", "desc": "spinach, banana, pineapple", "diet": ["veg"] },
+        { "name": "Health nut", "price": "10", "desc": "peanut butter, banana, oats", "diet": ["veg"] },
+        { "name": "Berry lover", "price": "10", "desc": "mixed berries, yogurt", "diet": ["veg"] },
+        { "name": "Beauty mask", "price": "10", "desc": "collagen, strawberry, mango", "diet": ["veg"] }
+      ]
+    },
+    {
+      "name": "Salads & Bowls",
+      "lead": "add chicken +6 · salmon +9 · shrimp +8 · ahi +10",
+      "items": [
+        { "name": "Caesar supreme", "price": "15", "desc": "shaved parmesan, garlic croutons", "diet": ["veg"] },
+        { "name": "Power cobb", "price": "19", "desc": "chicken, bacon, egg, avocado, blue cheese", "diet": ["gf"] },
+        { "name": "Chef's club salad", "price": "18", "desc": "turkey, ham, cheddar, egg", "diet": ["gf"] },
+        { "name": "Ahi poke bowl", "price": "22", "desc": "tuna or salmon, avocado, sesame, sushi rice", "diet": ["gfa"] },
+        { "name": "Taco crunch bowl", "price": "19", "desc": "beef or chicken, rice, beans, pico", "diet": ["gfa"] },
+        { "name": "Buddha glow bowl", "price": "17", "desc": "quinoa, roasted vegetables, tahini", "diet": ["veg", "gf"] },
+        { "name": "Salmon fuel bowl", "price": "24", "desc": "grilled salmon, greens, citrus vinaigrette", "diet": ["gfa"] }
+      ]
     },
     {
       "name": "Handhelds",
+      "lead": "served with house fries · sub sweet potato +2 · salad +3 · mac +4",
       "items": [
-        { "name": "Smashburger", "price": "$18", "desc": "House Burger Sauce, Lettuce, Tomato, Pickle", "raw": true },
-        { "name": "Fried Chicken Sandwich", "price": "$17", "desc": "Nashville Hot Sauce, Pickles, Creamy Coleslaw" },
-        { "name": "Cubano Sliders", "price": "$20", "desc": "Pulled Pork Shoulder, Dijonaise, Pickle, Gruyere Cheese" },
-        { "name": "Birria Tacos", "price": "$18", "desc": "Braised Beef, Oaxaca Cheese, Consommé" }
+        { "name": "Cali smash burger", "price": "19", "desc": "avocado, chipotle mayo, lettuce, tomato", "diet": ["gfa"] },
+        { "name": "Paddle Down club stack", "price": "18", "desc": "turkey, ham, bacon, cheddar, lemon-herb mayo" },
+        { "name": "Veggie power burger", "price": "17", "desc": "black bean patty, avocado, greens", "diet": ["veg", "gfa"] },
+        { "name": "Chicken bacon ranch wrap", "price": "17", "desc": "crispy or grilled chicken, bacon, ranch" },
+        { "name": "Buffalo crunch wrap", "price": "17", "desc": "crispy chicken, buffalo, lettuce, tomato, ranch" }
       ]
     },
     {
-      "name": "Wing Bar",
-      "lead": "Buffalo, BBQ, Salt & Pepper, Hot Honey, Plain",
+      "name": "Plates",
       "items": [
-        { "name": "Flats Only", "price": "$9", "diet": ["gf"] },
-        { "name": "Wing Trio", "price": "$22", "desc": "Choose 3" }
+        { "name": "Steak frites", "price": "34", "desc": "10oz sirloin, garlic herb butter, crispy fries", "diet": ["gfa"] },
+        { "name": "Crispy-skin salmon", "price": "29", "desc": "lemon-herb butter, wild rice, seasonal vegetables", "diet": ["gfa"] },
+        { "name": "Half roasted chicken", "price": "26", "desc": "thyme jus, roasted potatoes, vegetables", "diet": ["gfa"] },
+        { "name": "Pasta primavera verde", "price": "22", "desc": "seasonal vegetables, parmesan", "diet": ["veg"] },
+        { "name": "Build your own stir fry", "price": "22", "desc": "base + protein + veggies + sauce. add-ons available" }
       ]
     },
     {
-      "name": "Sweets",
+      "name": "Sides",
       "items": [
-        { "name": "Banana Cream Bread Pudding", "price": "$9", "desc": "Toasted Walnuts | Rum Anglaise" },
-        { "name": "Chocolate Stout Cake", "price": "$9", "desc": "Espresso Glaze | Cocoa Nib Crumble" }
+        { "name": "Sweet potato fries", "price": "8" },
+        { "name": "Roasted brussels", "price": "9" },
+        { "name": "Steamed broccoli", "price": "7" },
+        { "name": "Mac & cheese", "price": "9" },
+        { "name": "Asparagus", "price": "8" }
+      ]
+    },
+    {
+      "name": "Desserts",
+      "items": [
+        { "name": "Chocolate lava cake", "price": "11", "desc": "warm molten center, powdered sugar, vanilla ice cream", "diet": ["veg"] },
+        { "name": "Cookie brownie skillet", "price": "12", "desc": "half-baked cookie + brownie, ice cream, chocolate drizzle. for two", "diet": ["veg"] },
+        { "name": "Seasonal sorbet", "price": "9", "desc": "rotating flavors, fresh fruit garnish", "diet": ["veg", "gf"] }
       ]
     }
   ],
   "notes": [
+    "Court menu for guests 12 and under — ask your server.",
+    "Ask your server about the bar list: courtside cocktails, wine, draft beer and zero-proof.",
     "Consuming raw or under-cooked meats, poultry, seafood, shellfish or eggs may increase your risk of food-borne illness.",
     "Before placing your order, please inform your server if a person in your party has a food allergy."
   ]

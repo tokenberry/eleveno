@@ -486,6 +486,11 @@ img{max-width:100%;height:auto}
   background:var(--gold);border-radius:999px;padding:4px 14px;display:inline-block;margin-top:18px}
 .menu-list{list-style:none;margin-top:14px}
 .menu-item + .menu-item{margin-top:14px}
+/* One signature plate per menu gets a tinted card so it reads first. */
+.menu-item--featured{background:#fff;border:1.5px solid var(--gold);border-radius:10px;padding:12px 14px 13px;margin-top:18px}
+.menu-item--featured + .menu-item{margin-top:18px}
+.menu-item__flag{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  color:#8A6314;margin-bottom:6px}
 .menu-item__top{display:flex;align-items:baseline;gap:8px}
 .menu-item__name{font-weight:800;font-size:15px;letter-spacing:.3px;text-transform:uppercase;color:var(--navy)}
 .menu-item__dots{flex:1 1 auto;min-width:18px;border-bottom:2px dotted #0e235055;transform:translateY(-4px)}
@@ -502,6 +507,7 @@ img{max-width:100%;height:auto}
 .diet--veg{background:#5F9B3A;color:#fff}
 .diet--vegan{background:var(--cream);color:#2F5B1E;border:1px solid #5F9B3A}
 .diet--gf{background:#C08552;color:#fff}
+.diet--gfa{background:var(--cream);color:#8A5A28;border:1px solid #C08552}
 .diet--ht{background:#fff;color:#5F9B3A;border:1.5px solid #5F9B3A}
 .menu-raw{color:var(--gold);font-weight:900}
 
