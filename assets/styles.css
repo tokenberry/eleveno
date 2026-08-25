@@ -203,6 +203,18 @@ img{max-width:100%;height:auto}
 .garden__tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .garden__tile{background:var(--navy);border-radius:12px;padding:18px;font-family:var(--display);font-size:19px;text-transform:uppercase}
 .garden__tile--wide{background:var(--gold);color:var(--navy);grid-column:1 / -1}
+.garden__gallery{grid-column:1 / -1;display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:14px;margin-top:6px}
+.garden__gallery div{min-width:0;aspect-ratio:16/10;border-radius:16px;background-color:var(--navy-deep);
+  background-size:cover;background-position:center;box-shadow:0 14px 34px rgba(10,26,58,.4)}
+/* Where all three share a row, the lead sets the height and the siblings drop
+   their aspect so they stretch to match it. On narrower screens they wrap onto
+   their own rows and keep the aspect, which is what stops them collapsing. */
+@media (min-width:861px){
+  .garden__gallery div:not(:first-child){aspect-ratio:auto}
+}
+.garden__gallery div:nth-child(1){background-image:url('garden-party.jpg')}
+.garden__gallery div:nth-child(2){background-image:url('garden-beers.jpg');background-position:center 30%}
+.garden__gallery div:nth-child(3){background-image:url('garden-crowd.jpg')}
 
 /* ---------- community ---------- */
 .community{position:relative;min-height:480px;display:flex;align-items:flex-end;
@@ -526,6 +538,8 @@ img{max-width:100%;height:auto}
   .spaces__grid{grid-template-columns:1fr}
   .pricing__grid{grid-template-columns:1fr 1fr}
   .garden .shell{grid-template-columns:1fr}
+  .garden__gallery{grid-template-columns:1fr 1fr}
+  .garden__gallery div:nth-child(1){grid-column:1 / -1}
   .closer .shell{grid-template-columns:1fr}
   .flyer{max-width:340px;margin:0 auto}
   .footer__cols{gap:32px}
@@ -552,6 +566,8 @@ img{max-width:100%;height:auto}
   .space__list{grid-template-columns:1fr}
   .pricing__grid{grid-template-columns:1fr}
   .garden__tiles{grid-template-columns:1fr}
+  .garden__gallery{grid-template-columns:1fr}
+  .garden__gallery div:nth-child(1){grid-column:auto}
   .garden__tile--wide{grid-column:auto}
   .closer__actions{flex-direction:column;align-items:stretch}
   .closer__plan,.closer__call{text-align:center}
