@@ -1,0 +1,208 @@
+<!--meta {
+  "slug": "plan-your-event",
+  "title": "Plan Your Event — Build an Estimate | ELEVENO Pickleball",
+  "description": "Four short steps to a price for your private event at ELEVENO in Foxborough, MA. Pick your date, guests, food and bar package and get an estimate. No card needed.",
+  "script": "estimator"
+}
+-->
+<main class="est">
+
+  <div class="shell est__shell">
+
+    <form class="est__form" id="est-form" name="event-estimate" method="POST"
+          data-netlify="true" netlify-honeypot="bot-field" action="thanks.html">
+      <input type="hidden" name="form-name" value="event-estimate">
+      <p class="hp"><label>Leave this field empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+      <!-- filled by the script so the estimate reaches us with the answers -->
+      <input type="hidden" name="estimate-total" id="est-total-field" value="">
+      <input type="hidden" name="estimate-breakdown" id="est-breakdown-field" value="">
+
+      <!-- progress -->
+      <div class="est__progress" aria-hidden="true">
+        <ol class="est__dots">
+{{estStepDots}}
+        </ol>
+        <div class="est__bar"><span id="est-bar"></span></div>
+      </div>
+
+      <header class="est__head">
+        <p class="eyebrow eyebrow--gold">{{estimator.intro.eyebrow}}</p>
+        <h1>{{estimator.intro.heading}}</h1>
+        <p class="est__lead">{{estimator.intro.lead}}</p>
+      </header>
+
+      <!-- ============ STEP 1 ============ -->
+      <fieldset class="est__step" data-step="0">
+        <legend class="est__legend">Event basics</legend>
+
+        <div class="efield">
+          <h2 class="efield__h">What kind of event are you hosting?</h2>
+          <div class="ecards">
+{{estEventTypes}}
+          </div>
+        </div>
+
+        <div class="egrid">
+          <div class="efield">
+            <h2 class="efield__h">Date</h2>
+            <label class="efield__lab" for="e-date">Preferred date</label>
+            <input class="einput" id="e-date" name="preferred-date" type="date">
+            <label class="echk echk--inline">
+              <input type="checkbox" name="date-flexible" value="yes">
+              <span>I'm flexible on the date</span>
+            </label>
+          </div>
+
+          <div class="efield">
+            <h2 class="efield__h">Preferred time</h2>
+{{estTimes}}
+          </div>
+        </div>
+
+        <div class="egrid">
+          <div class="efield">
+            <h2 class="efield__h">Expected guests</h2>
+            <div class="ecount">
+              <button class="ecount__btn" type="button" data-guest="-1" aria-label="Fewer guests">&minus;</button>
+              <input class="ecount__n" id="e-guests" name="guests" type="number"
+                     value="{{estimator.guests.default}}" min="{{estimator.guests.min}}"
+                     max="{{estimator.guests.max}}" step="1" inputmode="numeric"
+                     aria-label="Number of guests">
+              <button class="ecount__btn" type="button" data-guest="1" aria-label="More guests">+</button>
+            </div>
+          </div>
+
+          <div class="efield">
+            <h2 class="efield__h">Duration</h2>
+            <div class="epills">
+{{estDurations}}
+            </div>
+          </div>
+        </div>
+
+        <div class="efield">
+          <h2 class="efield__h">Experience level of players</h2>
+          <div class="echips">
+{{estExperience}}
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- ============ STEP 2 ============ -->
+      <fieldset class="est__step" data-step="1">
+        <legend class="est__legend">Packages</legend>
+        <p class="est__stepnote">Choose the catering and bar that fit your event. Both are priced per guest.</p>
+
+        <div class="efield">
+          <h2 class="efield__h">Food packages</h2>
+          <div class="epkgs">
+{{estFood}}
+          </div>
+        </div>
+
+        <div class="efield">
+          <h2 class="efield__h">Bar packages</h2>
+          <div class="epkgs">
+{{estBeverage}}
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- ============ STEP 3 ============ -->
+      <fieldset class="est__step" data-step="2">
+        <legend class="est__legend">Add-ons</legend>
+        <p class="est__stepnote">{{estimator.addonsNote}}</p>
+
+        <div class="eaddgs">
+{{estAddons}}
+        </div>
+
+        <div class="enote">
+          <p class="enote__h">Need a custom menu?</p>
+          <p>{{estimator.customMenuNote}}</p>
+        </div>
+
+        <div class="efield">
+          <h2 class="efield__h">Anything else we should know?</h2>
+          <textarea class="einput" name="notes" rows="4"
+                    placeholder="Dietary requirements, branding, timings — anything at all"></textarea>
+        </div>
+      </fieldset>
+
+      <!-- ============ STEP 4 ============ -->
+      <fieldset class="est__step" data-step="3">
+        <legend class="est__legend">Review &amp; send</legend>
+
+        <div class="ereview">
+          <h2 class="efield__h">Your estimate</h2>
+          <dl class="ereview__list" id="est-review">
+            <div><dt>Guests</dt><dd data-rv="guests">&mdash;</dd></div>
+            <div><dt>Duration</dt><dd data-rv="duration">&mdash;</dd></div>
+            <div><dt>Food &amp; bar</dt><dd data-rv="packages">&mdash;</dd></div>
+            <div><dt>Subtotal</dt><dd data-rv="subtotal">&mdash;</dd></div>
+            <div><dt>{{estimator.serviceLabel}}</dt><dd data-rv="service">&mdash;</dd></div>
+          </dl>
+          <p class="ereview__total"><span>Estimated total</span> <strong data-rv="total">&mdash;</strong></p>
+          <p class="ereview__fine">{{estimator.estimateDisclaimer}}</p>
+        </div>
+
+        <div class="efield">
+          <h2 class="efield__h">Where should we send it?</h2>
+          <div class="egrid">
+            <div>
+              <label class="efield__lab" for="e-name">Full name <span class="req" aria-hidden="true">*</span></label>
+              <input class="einput" id="e-name" name="name" type="text" autocomplete="name" placeholder="Your name here" required>
+            </div>
+            <div>
+              <label class="efield__lab" for="e-email">Email <span class="req" aria-hidden="true">*</span></label>
+              <input class="einput" id="e-email" name="email" type="email" autocomplete="email" placeholder="your@email.com" required>
+            </div>
+            <div>
+              <label class="efield__lab" for="e-company">Company</label>
+              <input class="einput" id="e-company" name="company" type="text" autocomplete="organization" placeholder="Where you work">
+            </div>
+            <div>
+              <label class="efield__lab" for="e-phone">Phone <span class="req" aria-hidden="true">*</span></label>
+              <input class="einput" id="e-phone" name="phone" type="tel" autocomplete="tel" placeholder="(617) 000-0000" required>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn--gold est__submit" type="submit">Send my estimate &rarr;</button>
+        <p class="form__small">Fields marked <span aria-hidden="true">*</span> are required. No card needed &mdash; nothing is booked until we speak.</p>
+      </fieldset>
+
+      <!-- step controls; the script shows these, they are hidden with no JS -->
+      <div class="est__nav" id="est-nav" hidden>
+        <button class="btn btn--ghostnavy est__back" type="button" id="est-back">&larr; Back</button>
+        <button class="btn btn--navy est__next" type="button" id="est-next">Continue &rarr;</button>
+      </div>
+    </form>
+
+    <!-- ============ SUMMARY ============ -->
+    <aside class="esum" aria-label="Estimate summary">
+      <div class="esum__inner">
+        <div class="esum__top">
+          <h2>Estimate summary</h2>
+          <span class="esum__tag">Draft</span>
+        </div>
+        <dl class="esum__list">
+          <div><dt>Event type</dt><dd data-sv="type">&mdash;</dd></div>
+          <div><dt>Guests</dt><dd data-sv="guests">&mdash;</dd></div>
+          <div><dt>Duration</dt><dd data-sv="duration">&mdash;</dd></div>
+          <div><dt>Date</dt><dd data-sv="date">&mdash;</dd></div>
+        </dl>
+        <p class="esum__total"><span>Est. total</span> <strong data-sv="total">&mdash;</strong></p>
+        <div class="esum__next">
+          <p class="esum__next-h">What happens next?</p>
+          <ul class="esum__receive">
+{{estReceive}}
+          </ul>
+        </div>
+        <p class="esum__fine">No card needed to get an estimate.</p>
+        <p class="esum__help">Rather talk it through? <a href="tel:{{phoneHref}}">{{phone}}</a></p>
+      </div>
+    </aside>
+
+  </div>
+</main>

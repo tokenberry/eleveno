@@ -25,6 +25,7 @@ const visit = JSON.parse(read(path.join(SRC, 'data', 'visit.json')));
 const ask = JSON.parse(read(path.join(SRC, 'data', 'ask.json')));
 const events = JSON.parse(read(path.join(SRC, 'data', 'private-events.json')));
 const pickleball = JSON.parse(read(path.join(SRC, 'data', 'pickleball.json')));
+const estimator = JSON.parse(read(path.join(SRC, 'data', 'estimator.json')));
 const menus = {
   food: JSON.parse(read(path.join(SRC, 'data', 'menu-food.json'))),
   drinks: JSON.parse(read(path.join(SRC, 'data', 'menu-drinks.json'))),
@@ -120,6 +121,27 @@ function parsePage(file) {
 /* Config is authored as plain text in the CMS, so escape it on the way into
    HTML. Editors type "June – August", not "June &ndash; August". Escaping the
    ampersand is also what makes query-string URLs valid inside an href. */
+/* Anything escapeDeep touches is escaped on the way into HTML, so an entity
+   written in the JSON gets escaped a second time and ships as literal
+   "&amp;amp;". This has bitten three separate data files; fail the build
+   instead of finding it in a screenshot. */
+function assertNoEntities(name, value, path) {
+  path = path || name;
+  if (typeof value === 'string') {
+    const m = value.match(/&(?:[a-zA-Z][a-zA-Z0-9]+|#\d+|#x[0-9a-fA-F]+);/);
+    if (m) {
+      throw new Error(
+        `${name}: "${m[0]}" at ${path} is an HTML entity in a file that gets escaped.\n` +
+        `  Write the character itself (& — é) — the build escapes it for you.`);
+    }
+    return;
+  }
+  if (Array.isArray(value)) return value.forEach((v, i) => assertNoEntities(name, v, `${path}[${i}]`));
+  if (value && typeof value === 'object') {
+    for (const [k, v] of Object.entries(value)) assertNoEntities(name, v, `${path}.${k}`);
+  }
+}
+
 function escapeDeep(value) {
   if (typeof value === 'string') return esc(value);
   if (Array.isArray(value)) return value.map(escapeDeep);
@@ -138,6 +160,7 @@ function money(amount, currency) {
   return currency + (Number.isInteger(n) ? String(n) : n.toFixed(2));
 }
 /* Expose display strings alongside the raw numbers the page's script needs. */
+assertNoEntities('memberships', memberships);
 Object.assign(memberships, escapeDeep(memberships));
 
 (function decorate() {
@@ -149,11 +172,40 @@ Object.assign(memberships, escapeDeep(memberships));
   memberships.pricing.prorateAttr = memberships.pricing.prorate ? 'true' : 'false';
 })();
 
+assertNoEntities('events.json', calendar);
 Object.assign(calendar, escapeDeep(calendar));
+assertNoEntities('reviews', reviews);
 Object.assign(reviews, escapeDeep(reviews));
+assertNoEntities('visit', visit);
 Object.assign(visit, escapeDeep(visit));
+assertNoEntities('ask', ask);
 Object.assign(ask, escapeDeep(ask));
+assertNoEntities('pickleball', pickleball);
 Object.assign(pickleball, escapeDeep(pickleball));
+assertNoEntities('estimator', estimator);
+Object.assign(estimator, escapeDeep(estimator));
+
+/* The estimator quotes the same numbers the packages page publishes. Catch a
+   drift between the two files at build time rather than in front of a customer. */
+(function checkEstimatorPrices() {
+  const published = {};
+  for (const grp of events.packages) {
+    for (const i of grp.items) {
+      const m = String(i.price).match(/\$(\d+)/);
+      if (m) published[i.name.toLowerCase().replace(/^the /, '')] = Number(m[1]);
+    }
+  }
+  for (const kind of ['food', 'beverage']) {
+    for (const opt of estimator[kind]) {
+      if (opt.pp == null) continue;               // quoted on inquiry, nothing to check
+      const key = opt.label.toLowerCase().replace(/^the /, '');
+      if (!(key in published)) throw new Error(`estimator ${kind} "${opt.label}" is not in the published package list`);
+      if (published[key] !== opt.pp) {
+        throw new Error(`price drift: estimator has ${opt.label} at $${opt.pp}, the packages page says $${published[key]}`);
+      }
+    }
+  }
+})();
 
 /* The response-time badge is a promise, so it renders only when both halves are
    filled in — an empty value hides it rather than showing a blank pill. */
@@ -242,7 +294,8 @@ function renderEvents() {
   }).join('\n');
 }
 
-for (const k of Object.keys(menus)) menus[k] = escapeDeep(menus[k]);
+for (const k of Object.keys(menus)) { assertNoEntities(`menu-${k}`, menus[k]); menus[k] = escapeDeep(menus[k]); }
+assertNoEntities('private-events', events);
 Object.assign(events, escapeDeep(events));
 
 const DIET = {
@@ -345,6 +398,46 @@ function renderEtiquette() {
             <h3>${e.name}</h3>
             <p>${e.body}</p>
           </article>`).join('\n');
+}
+
+/* --- estimator fragments ---
+   Every control is rendered up front, all four steps at once. The script hides
+   the steps you are not on; with no script the whole form is simply visible and
+   still submits. Netlify parses the built HTML for fields, so they must all be
+   present at build time regardless. */
+function estCards(list, name, cls) {
+  return list.map((o, i) => `            <label class="${cls}">
+              <input type="radio" name="${name}" value="${o.value}"${i === 0 ? ' checked' : ''}>
+              <span>${o.label}</span>
+            </label>`).join('\n');
+}
+function estChecks(list, name) {
+  return list.map(o => `            <label class="echk">
+              <input type="checkbox" name="${name}" value="${o.value || o}">
+              <span>${o.label || o}</span>
+            </label>`).join('\n');
+}
+function estPkgCards(list, name) {
+  return list.map((o, i) => `            <label class="epkg${o.popular ? ' epkg--popular' : ''}">
+              <input type="radio" name="${name}" value="${o.value}" data-pp="${o.pp == null ? '' : o.pp}"${i === 0 ? ' checked' : ''}>
+              <span class="epkg__body">
+                <span class="epkg__name">${o.label}</span>
+                <span class="epkg__desc">${o.desc}</span>
+              </span>
+              <span class="epkg__price">${o.pp == null ? 'On inquiry' : '$' + o.pp + '<small>/pp</small>'}</span>
+            </label>`).join('\n');
+}
+function renderAddonGroups() {
+  return estimator.addonGroups.map(g => `          <div class="eaddg">
+            <p class="eaddg__h">${g.name}</p>
+${estChecks(g.items, 'addons')}
+          </div>`).join('\n');
+}
+function renderReceive() {
+  return estimator.receive.map(r => `            <li><strong>${r.name}</strong><span>${r.body}</span></li>`).join('\n');
+}
+function renderStepDots() {
+  return estimator.steps.map((s, i) => `          <li data-step="${i}"><span>${i + 1}</span>${s.label}</li>`).join('\n');
 }
 
 /* --- private events page fragments --- */
@@ -551,6 +644,16 @@ for (const f of pageFiles) {
     sampleMenu: renderSampleMenu(),
     spaceItems: renderSpace(),
     swagItems: renderSwag(),
+    estimator,
+    estStepDots: renderStepDots(),
+    estEventTypes: estCards(estimator.eventTypes, 'event-type', 'ecard'),
+    estTimes: estChecks(estimator.times, 'preferred-time'),
+    estDurations: estCards(estimator.durations, 'duration', 'epill'),
+    estExperience: estCards(estimator.experience, 'experience', 'echip'),
+    estFood: estPkgCards(estimator.food, 'food'),
+    estBeverage: estPkgCards(estimator.beverage, 'beverage'),
+    estAddons: renderAddonGroups(),
+    estReceive: renderReceive(),
     eventPackages: renderPackages(),
     eventUpgrades: renderUpgrades(),
     venueFeatures: renderVenueFeatures(),

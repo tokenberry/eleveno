@@ -39,6 +39,10 @@ a:hover{opacity:.85}
    stability, and without this the attribute height wins over the CSS width and
    the image is squashed. */
 img{max-width:100%;height:auto}
+/* The UA rule for [hidden] is display:none at author-origin-beating-strength
+   ONLY until an author sets display. .est__nav{display:flex} silently unhid
+   itself that way — the wizard's buttons showed up with JavaScript off. */
+[hidden]{display:none !important}
 :focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 
 .page{width:100%;background:var(--cream);overflow:hidden}
@@ -473,6 +477,177 @@ img{max-width:100%;height:auto}
 
 /* ---------- menus ---------- */
 .menu-grid{columns:2;column-gap:52px}
+/* ---------- the event estimator ---------- */
+.est{background:var(--navy-deep);color:var(--cream);padding:40px 0 80px;min-height:70vh}
+.est__shell{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:40px;align-items:start}
+
+.est__progress{margin-bottom:26px}
+.est__dots{list-style:none;display:flex;gap:6px 26px;flex-wrap:wrap;margin:0 0 12px;padding:0}
+.est__dots li{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;
+  letter-spacing:1.4px;text-transform:uppercase;color:var(--on-navy-faint)}
+.est__dots li span{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;
+  border-radius:50%;border:1px solid var(--rule);font-size:11px}
+.est__dots li.is-now{color:var(--gold)}
+.est__dots li.is-now span{border-color:var(--gold);background:var(--gold);color:var(--navy);font-weight:700}
+.est__dots li.is-done{color:var(--on-navy-mute)}
+.est__dots li.is-done span{border-color:var(--on-navy-mute)}
+.est__bar{height:5px;border-radius:3px;background:#ffffff1f;overflow:hidden}
+.est__bar span{display:block;height:100%;width:25%;background:var(--gold);border-radius:3px;
+  transition:width .3s ease}
+
+.est__head h1{font-family:var(--display);font-size:clamp(34px,5vw,56px);line-height:.95;
+  text-transform:uppercase;letter-spacing:1px;margin-top:6px}
+.est__lead{font-size:16.5px;line-height:1.6;color:var(--on-navy-mute);margin-top:14px;max-width:56ch}
+
+.est__step{border:0;padding:0;margin:34px 0 0;min-width:0}
+.est__legend{font-family:var(--mono);font-size:11px;letter-spacing:2.4px;text-transform:uppercase;
+  color:var(--gold);padding:0}
+.est__stepnote{font-size:15px;line-height:1.6;color:var(--on-navy-mute);margin-top:10px;max-width:60ch}
+
+.efield{margin-top:28px;min-width:0}
+.efield__h{font-family:var(--heavy);font-size:17px;letter-spacing:.2px;color:var(--cream);margin-bottom:12px}
+.efield__h:focus{outline:3px solid var(--gold);outline-offset:4px}
+.efield__lab{display:block;font-family:var(--mono);font-size:11px;letter-spacing:1.4px;
+  text-transform:uppercase;color:var(--on-navy-mute);margin-bottom:7px}
+.egrid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+
+.einput{width:100%;background:#ffffff0f;border:1px solid var(--rule);border-radius:10px;
+  padding:14px 15px;color:var(--cream);font-family:var(--body);font-size:16px}
+.einput::placeholder{color:var(--on-navy-faint)}
+.einput:focus{outline:3px solid var(--gold);outline-offset:2px;border-color:transparent}
+textarea.einput{resize:vertical;min-height:110px}
+
+/* selectable tiles — the input stays in the layout for screen readers and
+   keyboard focus, it is just visually collapsed */
+.ecards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.ecard,.epill,.echip,.echk,.epkg{cursor:pointer}
+.ecard input,.epill input,.echip input,.epkg input{position:absolute;opacity:0;width:1px;height:1px}
+.ecard{display:flex;align-items:center;justify-content:center;text-align:center;min-height:76px;
+  padding:16px 12px;background:#ffffff0d;border:1.5px solid var(--rule);border-radius:14px;
+  font-family:var(--heavy);font-size:14.5px;letter-spacing:.3px;color:var(--on-navy)}
+.ecard:has(input:checked){border-color:var(--gold);background:#f5b70e14;color:var(--cream)}
+.ecard:has(input:focus-visible){outline:3px solid var(--gold);outline-offset:3px}
+
+.epills,.echips{display:flex;flex-wrap:wrap;gap:10px}
+.epill{display:inline-flex;align-items:center;justify-content:center;min-width:88px;padding:14px 22px;
+  background:#ffffff0d;border:1.5px solid var(--rule);border-radius:10px;
+  font-family:var(--heavy);font-size:15px;color:var(--on-navy)}
+.epill:has(input:checked){background:var(--gold);border-color:var(--gold);color:var(--navy)}
+.epill:has(input:focus-visible),.echip:has(input:focus-visible){outline:3px solid var(--gold);outline-offset:3px}
+.echip{display:inline-flex;align-items:center;padding:13px 20px;border-radius:999px;
+  background:#ffffff0d;border:1.5px solid var(--rule);font-size:14.5px;font-weight:700;color:var(--on-navy)}
+.echip:has(input:checked){border-color:var(--gold);color:var(--gold)}
+
+.echk{display:flex;align-items:center;gap:12px;padding:14px 16px;background:#ffffff0d;
+  border:1.5px solid var(--rule);border-radius:10px;font-size:15px;color:var(--on-navy);min-width:0}
+.echk + .echk{margin-top:10px}
+.echk input{width:20px;height:20px;flex:0 0 auto;accent-color:var(--gold)}
+.echk:has(input:checked){border-color:var(--gold);color:var(--cream)}
+.echk--inline{margin-top:8px;background:none;border:0;padding:12px 0}
+
+/* The stepper is a real control on a phone — both buttons and the field
+   itself need a thumb-sized target, which an unstyled number input is not. */
+.ecount{display:flex;align-items:stretch;background:#ffffff0d;border:1.5px solid var(--rule);
+  border-radius:12px;overflow:hidden;max-width:260px}
+.ecount__btn{flex:0 0 56px;background:#ffffff0d;border:0;color:var(--gold);
+  font-size:24px;line-height:1;cursor:pointer;min-height:56px}
+.ecount__btn:hover{background:#ffffff1a}
+.ecount__btn:focus-visible{outline:3px solid var(--gold);outline-offset:-3px}
+.ecount__n{flex:1 1 auto;min-width:0;background:none;border:0;text-align:center;color:var(--cream);
+  font-family:var(--display);font-size:26px;font-variant-numeric:tabular-nums;
+  -moz-appearance:textfield;appearance:textfield}
+.ecount__n::-webkit-outer-spin-button,.ecount__n::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.ecount__n:focus-visible{outline:3px solid var(--gold);outline-offset:-3px}
+
+.epkgs{display:flex;flex-direction:column;gap:12px}
+.epkg{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center;
+  padding:20px 22px;background:#ffffff0d;border:1.5px solid var(--rule);border-radius:14px;position:relative}
+.epkg:has(input:checked){border-color:var(--gold);background:#f5b70e14}
+.epkg:has(input:focus-visible){outline:3px solid var(--gold);outline-offset:3px}
+.epkg__name{display:block;font-family:var(--heavy);font-size:17px;color:var(--cream)}
+.epkg__desc{display:block;font-size:14px;color:var(--on-navy-mute);margin-top:4px}
+.epkg__price{font-family:var(--display);font-size:24px;color:var(--gold);white-space:nowrap;
+  font-variant-numeric:tabular-nums}
+.epkg__price small{font-family:var(--body);font-size:12px;font-weight:700;color:var(--on-navy-mute)}
+.epkg--popular::before{content:"Most popular";position:absolute;top:-9px;left:20px;
+  background:var(--gold);color:var(--navy);font-family:var(--mono);font-size:9.5px;font-weight:700;
+  letter-spacing:1.4px;text-transform:uppercase;padding:3px 9px;border-radius:4px}
+
+.eaddgs{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:26px}
+.eaddg__h{font-family:var(--mono);font-size:11px;letter-spacing:1.8px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:11px}
+.enote{margin-top:28px;padding:20px 22px;border:1px solid var(--rule);border-left:3px solid var(--gold);
+  border-radius:0 12px 12px 0;background:#ffffff08}
+.enote__h{font-family:var(--heavy);font-size:15px;color:var(--cream);margin-bottom:6px}
+.enote p{font-size:14.5px;line-height:1.6;color:var(--on-navy-mute)}
+
+.ereview{padding:26px;background:#ffffff0d;border:1px solid var(--rule);border-radius:16px;margin-top:26px}
+.ereview__list{margin-top:6px}
+.ereview__list div{display:flex;justify-content:space-between;gap:18px;align-items:baseline;
+  padding:13px 0;border-bottom:1px solid var(--rule)}
+.ereview__list dt{font-size:14.5px;color:var(--on-navy-mute)}
+.ereview__list dd{font-family:var(--heavy);font-size:15px;color:var(--cream);text-align:right;
+  font-variant-numeric:tabular-nums}
+.ereview__total{display:flex;justify-content:space-between;align-items:baseline;gap:18px;margin-top:18px}
+.ereview__total span{font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--on-navy-mute)}
+.ereview__total strong{font-family:var(--display);font-size:38px;color:var(--gold);
+  font-variant-numeric:tabular-nums}
+.ereview__fine{font-size:12.5px;line-height:1.6;font-style:italic;color:var(--on-navy-faint);margin-top:12px}
+
+.est__nav{display:flex;gap:12px;justify-content:space-between;margin-top:32px}
+.est__nav .btn{flex:0 0 auto}
+.btn--ghostnavy{border:2px solid var(--rule);color:var(--on-navy)}
+.est__next{margin-left:auto}
+.est__submit{width:100%;margin-top:26px}
+
+/* ---- the sticky summary ---- */
+.esum{position:sticky;top:86px}
+.esum__inner{background:#ffffff0d;border:1px solid var(--rule);border-radius:18px;padding:26px 24px}
+.esum__top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.esum__top h2{font-family:var(--heavy);font-size:19px;color:var(--cream)}
+.esum__tag{font-family:var(--mono);font-size:9.5px;letter-spacing:1.6px;text-transform:uppercase;
+  color:var(--gold);border:1px solid var(--gold);border-radius:5px;padding:3px 8px}
+.esum__list{margin-top:18px}
+.esum__list div{display:flex;justify-content:space-between;gap:14px;align-items:baseline;padding:10px 0}
+.esum__list dt{font-size:14px;color:var(--on-navy-faint)}
+.esum__list dd{font-family:var(--heavy);font-size:14.5px;color:var(--cream);text-align:right;
+  font-variant-numeric:tabular-nums}
+.esum__total{display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+  padding-top:16px;margin-top:8px;border-top:1px dashed var(--rule)}
+.esum__total span{font-family:var(--heavy);font-size:14px;color:var(--cream)}
+.esum__total strong{font-family:var(--display);font-size:34px;color:var(--gold);
+  font-variant-numeric:tabular-nums;line-height:1}
+.esum__next{margin-top:20px;padding:18px;background:#ffffff08;border-radius:12px}
+.esum__next-h{font-family:var(--mono);font-size:10px;letter-spacing:1.8px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:10px}
+.esum__receive{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
+.esum__receive li{display:flex;flex-direction:column;gap:2px}
+.esum__receive strong{font-size:13.5px;color:var(--cream)}
+.esum__receive span{font-size:12.5px;line-height:1.5;color:var(--on-navy-faint)}
+.esum__fine{font-family:var(--mono);font-size:11px;color:var(--on-navy-faint);margin-top:16px;text-align:center}
+.esum__help{font-size:13px;color:var(--on-navy-mute);margin-top:12px;text-align:center}
+.esum__help a{color:var(--gold)}
+
+/* With no script every step is on the page at once, so give each one a rule
+   to sit behind and hide the wizard chrome that would do nothing. */
+.est__form:not(.is-wizard) .est__progress{display:none}
+.est__form:not(.is-wizard) .est__step + .est__step{border-top:1px solid var(--rule);padding-top:30px}
+
+@media (max-width:1080px){
+  .est__shell{grid-template-columns:1fr;gap:28px}
+  .esum{position:static;order:-1}
+  .esum__next{display:none}
+}
+@media (max-width:700px){
+  .ecards{grid-template-columns:1fr 1fr}
+  .egrid,.eaddgs{grid-template-columns:1fr;gap:22px}
+  .epkg{grid-template-columns:1fr;gap:10px}
+  .epkg__price{font-size:22px}
+  .est__nav .btn{flex:1 1 0}
+  .est__next{margin-left:0}
+}
+
 /* ---------- private events: the narrative sections ---------- */
 .section-cta{text-align:center;margin-top:30px}
 
@@ -827,7 +1002,7 @@ img{max-width:100%;height:auto}
   .menu-switch a{padding:14px 26px}
   /* 11px captions are hard going on a phone */
   .mcard__label,.price__m,.plan__list small,.footer__bar,.legend__item,.menu-item__note,
-  .smenu__when{font-size:12px}
+  .smenu__when,.esum__fine{font-size:12px}
   /* .hero is a flex row; making the stats static turned them into a second
      flex item beside the copy, which pushed them off-screen. Stack instead. */
   .hero{min-height:0;flex-direction:column;align-items:stretch}
