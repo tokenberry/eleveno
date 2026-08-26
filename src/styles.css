@@ -849,7 +849,9 @@ img{max-width:100%;height:auto}
    build maps "@mobile" to a narrower width; this breakpoint must stay in step
    with the imagesizes on the hero preload in build.js. */
 @media (max-width:700px){
-  .hero{background-image:linear-gradient(90deg,rgba(14,35,80,.94) 0%,rgba(14,35,80,.82) 42%,rgba(14,35,80,.28) 100%),url('hero-net.jpg@mobile')}
+  /* Centre crops the players out on a narrow screen; 65% keeps them in frame. */
+  .hero{background-image:linear-gradient(90deg,rgba(14,35,80,.94) 0%,rgba(14,35,80,.82) 42%,rgba(14,35,80,.28) 100%),url('hero-net.jpg@mobile');
+    background-position:65% 30%}
   .community{background-image:linear-gradient(0deg,rgba(10,26,58,.94) 0%,rgba(10,26,58,.35) 45%,rgba(10,26,58,.1) 100%),url('community-champs.jpg@mobile')}
   .space__img--outdoor{background-image:url('community-champs.jpg@mobile')}
   .eat__img{background-image:url('social-beers.jpg@mobile')}
