@@ -1,5 +1,5 @@
 {
-  "_comment": "The find-us section: contact rows, opening hours and the map. Email, phone and address come from site.json so they are defined once. These hours are the single source of truth for opening times — the rest of the site says only \"OPEN 7 DAYS\" rather than restating them. The Beer Garden's food & beverage hours are separate and live in the Our Spaces section. The address panel sits behind the map iframe: a loaded map hides it, a blocked one lets it show through.",
+  "_comment": "The find-us section: contact rows, opening hours and the map. Email, phone and address come from site.json so they are defined once. These hours are the single source of truth for opening times — the rest of the site says only \"OPEN 7 DAYS\" rather than restating them. These are the ONLY opening times stated anywhere on the site; every other section says \"open 7 days\" or \"seasonal\" and defers here, so a change lands in one place. The address panel sits behind the map iframe: a loaded map hides it, a blocked one lets it show through.",
   "eyebrow": "FIND US",
   "heading": "Come play",
   "headingAccent": "with us.",

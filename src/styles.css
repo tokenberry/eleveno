@@ -76,7 +76,7 @@ img{max-width:100%;height:auto}
 
 /* ---------- hero ---------- */
 .hero{position:relative;min-height:660px;display:flex;align-items:center;
-  background-image:linear-gradient(90deg,rgba(14,35,80,.94) 0%,rgba(14,35,80,.82) 42%,rgba(14,35,80,.28) 100%),image-set(url('/.netlify/images?url=/assets/hero-net.jpg&w=1600') 1x, url('/.netlify/images?url=/assets/hero-net.jpg&w=2400') 2x);
+  background-image:linear-gradient(90deg,rgba(14,35,80,.94) 0%,rgba(14,35,80,.82) 42%,rgba(14,35,80,.28) 100%),url('hero-net.jpg');
   background-size:cover;background-position:center 30%;background-color:var(--navy)}
 .hero__inner{padding-top:64px;padding-bottom:120px}
 .hero__copy{max-width:720px;color:var(--cream)}
@@ -177,7 +177,7 @@ img{max-width:100%;height:auto}
 
 /* ---------- eat & drink ---------- */
 .eat{display:grid;grid-template-columns:1fr 1fr;background:var(--navy);color:var(--cream)}
-.eat__img{min-height:520px;background-image:image-set(url('/.netlify/images?url=/assets/social-beers.jpg&w=1200') 1x, url('/.netlify/images?url=/assets/social-beers.jpg&w=2400') 2x);background-size:cover;background-position:center;background-color:var(--navy-deep)}
+.eat__img{min-height:520px;background-image:url('social-beers.jpg');background-size:cover;background-position:center;background-color:var(--navy-deep)}
 .eat__body{padding:72px 56px;display:flex;flex-direction:column;justify-content:center}
 .eat__body h2{font-family:var(--display);font-size:clamp(40px,6vw,62px);line-height:.9;text-transform:uppercase}
 .eat__body h2 span{color:var(--blue-soft)}
@@ -191,8 +191,8 @@ img{max-width:100%;height:auto}
 .spaces__grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
 .space{background:#fff;border:3px solid var(--navy);border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(14,35,80,.12)}
 .space__img{position:relative;height:280px;background-size:cover;background-color:var(--navy-deep)}
-.space__img--indoor{background-image:image-set(url('/.netlify/images?url=/assets/courts-flag.jpg&w=1000') 1x, url('/.netlify/images?url=/assets/courts-flag.jpg&w=2000') 2x);background-position:center}
-.space__img--outdoor{background-image:image-set(url('/.netlify/images?url=/assets/community-champs.jpg&w=1500') 1x, url('/.netlify/images?url=/assets/community-champs.jpg&w=2400') 2x);background-position:center 25%}
+.space__img--indoor{background-image:url('courts-flag.jpg');background-position:center}
+.space__img--outdoor{background-image:url('community-champs.jpg');background-position:center 25%}
 .space__badge{position:absolute;top:16px;left:16px;font-family:var(--display);font-size:14px;letter-spacing:1px;text-transform:uppercase;padding:8px 16px;border-radius:999px;border:2px solid var(--navy);color:var(--navy)}
 .space__badge--gold{background:var(--gold)}
 .space__badge--green{background:var(--green)}
@@ -265,13 +265,13 @@ img{max-width:100%;height:auto}
 @media (min-width:861px){
   .garden__gallery div:not(:first-child){aspect-ratio:auto}
 }
-.garden__gallery div:nth-child(1){background-image:image-set(url('/.netlify/images?url=/assets/garden-party.jpg&w=820') 1x, url('/.netlify/images?url=/assets/garden-party.jpg&w=1640') 2x)}
-.garden__gallery div:nth-child(2){background-image:image-set(url('/.netlify/images?url=/assets/garden-beers.jpg&w=600') 1x, url('/.netlify/images?url=/assets/garden-beers.jpg&w=1200') 2x);background-position:center 30%}
-.garden__gallery div:nth-child(3){background-image:image-set(url('/.netlify/images?url=/assets/garden-crowd.jpg&w=600') 1x, url('/.netlify/images?url=/assets/garden-crowd.jpg&w=1200') 2x)}
+.garden__gallery div:nth-child(1){background-image:url('garden-party.jpg')}
+.garden__gallery div:nth-child(2){background-image:url('garden-beers.jpg');background-position:center 30%}
+.garden__gallery div:nth-child(3){background-image:url('garden-crowd.jpg')}
 
 /* ---------- community ---------- */
 .community{position:relative;min-height:480px;display:flex;align-items:flex-end;
-  background-image:linear-gradient(0deg,rgba(10,26,58,.94) 0%,rgba(10,26,58,.35) 45%,rgba(10,26,58,.1) 100%),image-set(url('/.netlify/images?url=/assets/community-champs.jpg&w=1500') 1x, url('/.netlify/images?url=/assets/community-champs.jpg&w=2400') 2x);
+  background-image:linear-gradient(0deg,rgba(10,26,58,.94) 0%,rgba(10,26,58,.35) 45%,rgba(10,26,58,.1) 100%),url('community-champs.jpg');
   background-size:cover;background-position:center 20%;background-color:var(--navy-deep)}
 .community .shell{padding-top:56px;padding-bottom:56px;color:var(--cream)}
 .community h2{font-family:var(--display);font-size:clamp(34px,5.2vw,56px);line-height:.92;text-transform:uppercase;max-width:760px}
@@ -457,9 +457,9 @@ img{max-width:100%;height:auto}
 .path__h{font-family:var(--heavy);font-size:clamp(28px,3.2vw,40px);letter-spacing:.5px;text-transform:uppercase;margin-top:2px}
 .path__cta{margin-top:26px;background:#fff;color:var(--navy);font-weight:800;font-size:13px;
   letter-spacing:1px;text-transform:uppercase;padding:14px 30px;border-radius:999px}
-.path--beginners{background-image:image-set(url('/.netlify/images?url=/assets/start-beginners.jpg&w=700') 1x, url('/.netlify/images?url=/assets/start-beginners.jpg&w=1400') 2x)}
-.path--social{background-image:image-set(url('/.netlify/images?url=/assets/start-social.jpg&w=700') 1x, url('/.netlify/images?url=/assets/start-social.jpg&w=1400') 2x)}
-.path--competitive{background-image:image-set(url('/.netlify/images?url=/assets/start-competitive.jpg&w=700') 1x, url('/.netlify/images?url=/assets/start-competitive.jpg&w=1400') 2x)}
+.path--beginners{background-image:url('start-beginners.jpg')}
+.path--social{background-image:url('start-social.jpg')}
+.path--competitive{background-image:url('start-competitive.jpg')}
 
 /* ---------- calendar: closing cross-sell ---------- */
 .crosssell{background:var(--navy-deep);color:var(--cream);padding:64px 0}
@@ -636,14 +636,14 @@ img{max-width:100%;height:auto}
 .pkgshots{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}
 .pkgshots div{aspect-ratio:3/2;border-radius:16px;background-color:var(--navy);background-size:cover;
   background-position:center;box-shadow:0 12px 30px rgba(14,35,80,.14)}
-.pkgshots div:nth-child(1){background-image:image-set(url('/.netlify/images?url=/assets/pkg-1.jpg&w=700') 1x, url('/.netlify/images?url=/assets/pkg-1.jpg&w=1400') 2x)}
-.pkgshots div:nth-child(2){background-image:image-set(url('/.netlify/images?url=/assets/pkg-2.jpg&w=700') 1x, url('/.netlify/images?url=/assets/pkg-2.jpg&w=1400') 2x)}
-.pkgshots div:nth-child(3){background-image:image-set(url('/.netlify/images?url=/assets/pkg-3.jpg&w=700') 1x, url('/.netlify/images?url=/assets/pkg-3.jpg&w=1400') 2x)}
+.pkgshots div:nth-child(1){background-image:url('pkg-1.jpg')}
+.pkgshots div:nth-child(2){background-image:url('pkg-2.jpg')}
+.pkgshots div:nth-child(3){background-image:url('pkg-3.jpg')}
 
 /* ---------- private events: venue ---------- */
 .venue{background:#fff;padding:76px 0}
 .venue .shell{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
-.venue__img{border-radius:22px;overflow:hidden;aspect-ratio:4/3;background:var(--navy) image-set(url('/.netlify/images?url=/assets/event-venue.jpg&w=1000') 1x, url('/.netlify/images?url=/assets/event-venue.jpg&w=2000') 2x) center/cover;
+.venue__img{border-radius:22px;overflow:hidden;aspect-ratio:4/3;background:var(--navy) url('event-venue.jpg') center/cover;
   box-shadow:0 20px 44px rgba(14,35,80,.22)}
 .venue h2{font-family:var(--display);font-size:clamp(32px,4.4vw,52px);line-height:1;text-transform:uppercase;
   letter-spacing:1px;color:var(--navy)}
@@ -673,7 +673,7 @@ img{max-width:100%;height:auto}
 .inquiry h2 span{color:var(--gold)}
 .inquiry__lead{font-size:17px;line-height:1.6;font-weight:600;color:var(--ink-soft);margin-top:14px}
 .inquiry__img{margin-top:26px;border-radius:20px;overflow:hidden;aspect-ratio:16/10;
-  background:var(--navy) image-set(url('/.netlify/images?url=/assets/event-inquiry.jpg&w=800') 1x, url('/.netlify/images?url=/assets/event-inquiry.jpg&w=1600') 2x) center/cover}
+  background:var(--navy) url('event-inquiry.jpg') center/cover}
 .form{background:#fff;border:3px solid var(--navy);border-radius:22px;padding:32px 30px;
   box-shadow:0 18px 44px rgba(14,35,80,.12)}
 .form__grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}

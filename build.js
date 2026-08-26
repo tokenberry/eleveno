@@ -389,6 +389,70 @@ function renderMarquee() {
   return `      <div class="marquee__half">${half}</div>\n      <div class="marquee__half" aria-hidden="true">${half}</div>`;
 }
 
+/* ---------- stylesheet: route background images through Netlify Image CDN ----------
+   Thirteen of the fifteen photographs are CSS backgrounds, so there is no
+   srcset to reach for. Netlify's image endpoint resizes on demand and picks
+   AVIF or WebP from the request's Accept header, which is where most of the
+   saving comes from. Widths below are the measured maximum CSS size each image
+   renders at, plus headroom, capped at the source's own width so we never ask
+   the CDN to upscale.
+
+   The endpoint only exists on Netlify. Opening a built page straight off disk
+   shows no photographs — use the Netlify deploy or the bundled preview. */
+const IMG_WIDTH = {
+  'hero-net.jpg': 1600,
+  'community-champs.jpg': 1500,
+  'social-beers.jpg': 1200,
+  'courts-flag.jpg': 1000,
+  'event-venue.jpg': 1000,
+  'garden-party.jpg': 820,
+  'event-inquiry.jpg': 800,
+  'pkg-1.jpg': 700,
+  'pkg-2.jpg': 700,
+  'pkg-3.jpg': 700,
+  'start-beginners.jpg': 700,
+  'start-social.jpg': 700,
+  'start-competitive.jpg': 700,
+  'garden-beers.jpg': 600,
+  'garden-crowd.jpg': 600,
+};
+
+/* A page names its own LCP background image. It is a CSS background, so the
+   preloader cannot see it until the stylesheet has parsed — on a throttled
+   phone that delayed the request by ~800ms and made it the whole LCP. The
+   densities here must match the image-set the stylesheet emits, or the browser
+   fetches the file twice. */
+function renderPreload(meta) {
+  if (!meta.preloadImage) return '';
+  const file = meta.preloadImage;
+  const w = IMG_WIDTH[file];
+  if (!w) throw new Error(`preloadImage "${file}" has no width in IMG_WIDTH`);
+  return `<link rel="preload" as="image" fetchpriority="high"\n`
+    + `      imagesrcset="${cdnUrl(file, w)} 1x, ${cdnUrl(file, Math.min(w * 2, 2400))} 2x">`;
+}
+
+function cdnUrl(file, w) {
+  return `/.netlify/images?url=/assets/${file}&w=${w}`;
+}
+
+function buildStylesheet() {
+  const src = read(path.join(SRC, 'styles.css'));
+  const seen = new Set();
+  const out = src.replace(/url\('([\w.-]+\.(?:jpg|jpeg|png))'\)/g, (whole, file) => {
+    // PNGs are the logo and the watermark: small, and they need their alpha.
+    if (!/\.jpe?g$/i.test(file)) return whole;
+    const w = IMG_WIDTH[file];
+    if (!w) throw new Error(`no width set for background image "${file}" — add it to IMG_WIDTH in build.js`);
+    seen.add(file);
+    // image-set lets a retina screen ask for the denser file and everyone else skip it
+    return `image-set(url('${cdnUrl(file, w)}') 1x, url('${cdnUrl(file, Math.min(w * 2, 2400))}') 2x)`;
+  });
+  const unused = Object.keys(IMG_WIDTH).filter(f => !seen.has(f));
+  if (unused.length) throw new Error(`IMG_WIDTH lists images the stylesheet never uses: ${unused.join(', ')}`);
+  fs.writeFileSync(path.join(ROOT, 'assets', 'styles.css'), out);
+  return { count: seen.size, bytes: out.length };
+}
+
 const layout = read(path.join(SRC, 'layouts', 'base.html'));
 const pageFiles = fs.readdirSync(path.join(SRC, 'pages')).filter(f => f.endsWith('.html')).sort();
 if (!pageFiles.length) throw new Error('no pages found in src/pages');
@@ -445,6 +509,7 @@ for (const f of pageFiles) {
     // pages that exist only as a destination (form confirmations) stay out of
     // search results but still pass link equity through
     robots: meta.noindex ? 'noindex, follow' : 'index, follow',
+    preload: renderPreload(meta),
     homeHref: meta.slug === 'index' ? '#top' : 'index.html',
     // a page opts into a script by name; every other page ships none
     scriptTag: ['nav'].concat(meta.script ? [meta.script] : [])
@@ -471,6 +536,9 @@ for (const f of pageFiles) {
   fs.writeFileSync(out, html);
   written.push({ file: meta.slug + '.html', bytes: html.length, canonical: vars.canonical, noindex: !!meta.noindex });
 }
+
+const css = buildStylesheet();
+console.log(`assets/styles.css: ${css.count} background image(s) routed through Netlify Image CDN`);
 
 /* robots.txt and sitemap.xml are generated rather than hand-kept so they can
    never fall out of step with the page list. */
