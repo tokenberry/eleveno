@@ -29,5 +29,32 @@
       "totalAmount": 150,
       "subscribeUrl": "https://eleveno.podplay.app/memberships/eleveno-outdoor-membership?confirmation=&chargeType=NON_RECURRING&oneTimeSelectedOptionSlug="
     }
+  },
+  "credits": {
+    "eyebrow": "PREPAY AND SAVE",
+    "heading": "Virtual Credit Bundles",
+    "note": "OPEN PLAY CREDITS • APPLIED AUTOMATICALLY AT BOOKING",
+    "openPlayRate": 15,
+    "_comment": "Rows are named by what you save, since that is the reason to buy one. The build works out both the play count (buy + free) and the saving (was - now), and checks `was` really is plays x openPlayRate — so a typo in any number fails the build instead of advertising a discount that is not there.",
+    "bundles": [
+      {
+        "buy": 6,
+        "free": 2,
+        "was": 120,
+        "now": 90
+      },
+      {
+        "buy": 12,
+        "free": 5,
+        "was": 255,
+        "now": 180
+      },
+      {
+        "buy": 20,
+        "free": 9,
+        "was": 435,
+        "now": 300
+      }
+    ]
   }
 }

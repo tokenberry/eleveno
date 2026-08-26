@@ -400,6 +400,25 @@ function renderEtiquette() {
           </article>`).join('\n');
 }
 
+/* Credit bundles. The row is named by the saving, so that number must be
+   derived rather than typed — and `was` is checked against the open-play rate,
+   which catches a typo in any of the four figures. */
+function renderCredits() {
+  const c = memberships.credits;
+  return c.bundles.map(b => {
+    const plays = b.buy + b.free;
+    const save = b.was - b.now;
+    if (b.was !== plays * c.openPlayRate) {
+      throw new Error(`credit bundle "buy ${b.buy} get ${b.free}": ${plays} plays at $${c.openPlayRate} is $${plays * c.openPlayRate}, not the $${b.was} listed`);
+    }
+    if (save <= 0) throw new Error(`credit bundle "buy ${b.buy} get ${b.free}" saves nothing`);
+    return `            <tr>
+              <th scope="row">Save $${save}<small>${plays} open plays &mdash; buy ${b.buy}, get ${b.free} free</small></th>
+              <td class="was">$${b.was}</td><td class="now">$${b.now}</td>
+            </tr>`;
+  }).join('\n');
+}
+
 /* --- estimator fragments ---
    Every control is rendered up front, all four steps at once. The script hides
    the steps you are not on; with no script the whole form is simply visible and
@@ -644,6 +663,7 @@ for (const f of pageFiles) {
     sampleMenu: renderSampleMenu(),
     spaceItems: renderSpace(),
     swagItems: renderSwag(),
+    creditRows: renderCredits(),
     estimator,
     estStepDots: renderStepDots(),
     estEventTypes: estCards(estimator.eventTypes, 'event-type', 'ecard'),
