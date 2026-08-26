@@ -437,6 +437,9 @@ img{max-width:100%;height:auto}
 .credits .now{color:var(--gold)}
 
 .progb{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+/* One bundle left, so the two-column track would strand it half-width against
+   an empty column. Centre it at a readable measure instead. */
+.progb:has(.prog:only-child){grid-template-columns:minmax(0,560px);justify-content:center}
 .prog{background:var(--navy);color:var(--cream);border-radius:20px;padding:34px 30px}
 .prog__icon{width:46px;height:46px;border-radius:12px;background:var(--gold);color:var(--navy);display:flex;align-items:center;justify-content:center;font-size:22px}
 .prog h3{font-family:var(--display);font-size:26px;text-transform:uppercase;letter-spacing:.5px;margin-top:18px}
@@ -720,17 +723,21 @@ textarea.einput{resize:vertical;min-height:110px}
   max-width:58ch;margin:12px auto 0}
 .band--navy .section-head__lead{color:var(--on-navy)}
 
-/* Programs: numbered because they are three ways in, not a ranking. */
+/* Programs (pickleball + beer garden), scoped to .progs on purpose: the
+   membership bundle cards already own a bare .prog, and because this block
+   comes later in the file an unscoped rule here silently overrode their navy
+   background while leaving the cream text written for it — unreadable.
+   Numbered because they are three ways in, not a ranking. */
 .progs{display:flex;flex-direction:column;gap:16px;max-width:860px;margin:0 auto}
-.prog{background:#fff;border:2px solid var(--navy);border-radius:16px;padding:26px 28px;
+.progs .prog{background:#fff;border:2px solid var(--navy);border-radius:16px;padding:26px 28px;
   display:grid;grid-template-columns:auto minmax(0,1fr);gap:0 22px;scroll-margin-top:90px}
-.prog__n{font-family:var(--display);font-size:34px;line-height:1;color:#0e235026;
+.progs .prog__n{font-family:var(--display);font-size:34px;line-height:1;color:#0e235026;
   font-variant-numeric:tabular-nums}
-.prog__body{min-width:0}
-.prog h3{font-family:var(--display);font-size:28px;letter-spacing:1px;text-transform:uppercase;color:var(--navy)}
-.prog__lead{font-family:var(--heavy);font-size:15px;letter-spacing:.3px;color:var(--blue);margin-top:4px}
-.prog__text{font-size:15.5px;line-height:1.65;color:var(--ink-soft);margin-top:10px;max-width:60ch}
-.prog__cta{display:inline-block;margin-top:14px;font-family:var(--display);font-size:15px;
+.progs .prog__body{min-width:0}
+.progs .prog h3{font-family:var(--display);font-size:28px;letter-spacing:1px;text-transform:uppercase;color:var(--navy)}
+.progs .prog__lead{font-family:var(--heavy);font-size:15px;letter-spacing:.3px;color:var(--blue);margin-top:4px}
+.progs .prog__text{font-size:15.5px;line-height:1.65;color:var(--ink-soft);margin-top:10px;max-width:60ch}
+.progs .prog__cta{display:inline-block;margin-top:14px;font-family:var(--display);font-size:15px;
   letter-spacing:1px;text-transform:uppercase;color:var(--blue)}
 
 .coaches{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
@@ -760,8 +767,8 @@ textarea.einput{resize:vertical;min-height:110px}
 }
 @media (max-width:520px){
   .coaches{grid-template-columns:1fr}
-  .prog{grid-template-columns:1fr;gap:6px;padding:22px 20px}
-  .prog__n{font-size:26px}
+  .progs .prog{grid-template-columns:1fr;gap:6px;padding:22px 20px}
+  .progs .prog__n{font-size:26px}
 }
 
 /* Beer garden page: the home page section reused as a hero, plus a
@@ -998,7 +1005,7 @@ textarea.einput{resize:vertical;min-height:110px}
      padding. The inline links inside legal prose deliberately do not. */
   .legal__contact{line-height:2.4}
   .legal__contact a{display:inline-block;padding:9px 0}
-  .coach__cta,.prog__cta{padding:11px 0}
+  .coach__cta,.progs .prog__cta{padding:11px 0}
   .menu-switch a{padding:14px 26px}
   /* 11px captions are hard going on a phone */
   .mcard__label,.price__m,.plan__list small,.footer__bar,.legend__item,.menu-item__note,
