@@ -144,10 +144,25 @@
 
   /* ---------- guest stepper ---------- */
   var guestInput = form.querySelector('#e-guests');
+  var baseMin = Number(guestInput.min) || 1;
+
+  /* An event type may need fewer people than the site-wide floor — a clinic
+     runs with five where a buyout does not. Switching type moves the floor,
+     and pushes the count up if the new type needs more than you had. */
+  function applyMinimum() {
+    var type = picked('event-type');
+    var min = type && type.dataset.min ? Number(type.dataset.min) : baseMin;
+    guestInput.min = min;
+    if ((parseInt(guestInput.value, 10) || 0) < min) guestInput.value = min;
+  }
+  form.addEventListener('change', function (e) {
+    if (e.target.name === 'event-type') { applyMinimum(); paint(); }
+  });
+
   [].forEach.call(form.querySelectorAll('[data-guest]'), function (btn) {
     btn.addEventListener('click', function () {
       var by = Number(btn.dataset.guest);
-      var min = Number(guestInput.min) || 1, max = Number(guestInput.max) || 999;
+      var min = Number(guestInput.min) || 1, max = Number(guestInput.max) || 999;   // min moves with event type
       var v = (parseInt(guestInput.value, 10) || min) + by * (Number(guestInput.step) || 1);
       guestInput.value = Math.max(min, Math.min(max, v));
       paint();
@@ -162,6 +177,7 @@
   /* Hand over: hide everything but step one, reveal the controls. */
   nav.hidden = false;
   form.classList.add('is-wizard');
+  applyMinimum();
   show(0, false);
   paint();
 })();

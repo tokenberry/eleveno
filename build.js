@@ -426,7 +426,7 @@ function renderCredits() {
    present at build time regardless. */
 function estCards(list, name, cls) {
   return list.map((o, i) => `            <label class="${cls}">
-              <input type="radio" name="${name}" value="${o.value}"${i === 0 ? ' checked' : ''}>
+              <input type="radio" name="${name}" value="${o.value}"${o.minGuests ? ` data-min="${o.minGuests}"` : ''}${i === 0 ? ' checked' : ''}>
               <span>${o.label}</span>
             </label>`).join('\n');
 }
