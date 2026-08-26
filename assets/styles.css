@@ -844,6 +844,17 @@ img{max-width:100%;height:auto}
   .footer__cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 16px}
 }
 
+/* A phone was pulling the desktop-sized file for the three full-bleed
+   backgrounds — the hero alone cost 153 KB on a screen that needs 58. The
+   build maps "@mobile" to a narrower width; this breakpoint must stay in step
+   with the imagesizes on the hero preload in build.js. */
+@media (max-width:700px){
+  .hero{background-image:linear-gradient(90deg,rgba(14,35,80,.94) 0%,rgba(14,35,80,.82) 42%,rgba(14,35,80,.28) 100%),image-set(url('/.netlify/images?url=/assets/hero-net.jpg&w=600') 1x, url('/.netlify/images?url=/assets/hero-net.jpg&w=1200') 2x)}
+  .community{background-image:linear-gradient(0deg,rgba(10,26,58,.94) 0%,rgba(10,26,58,.35) 45%,rgba(10,26,58,.1) 100%),image-set(url('/.netlify/images?url=/assets/community-champs.jpg&w=600') 1x, url('/.netlify/images?url=/assets/community-champs.jpg&w=1200') 2x)}
+  .space__img--outdoor{background-image:image-set(url('/.netlify/images?url=/assets/community-champs.jpg&w=600') 1x, url('/.netlify/images?url=/assets/community-champs.jpg&w=1200') 2x)}
+  .eat__img{background-image:image-set(url('/.netlify/images?url=/assets/social-beers.jpg&w=500') 1x, url('/.netlify/images?url=/assets/social-beers.jpg&w=1000') 2x)}
+}
+
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .marquee__track,.reviews__track{animation:none}

@@ -399,10 +399,15 @@ function renderMarquee() {
 
    The endpoint only exists on Netlify. Opening a built page straight off disk
    shows no photographs — use the Netlify deploy or the bundled preview. */
+/* A number is one width for every screen. An object adds a narrow-viewport
+   width for the three full-bleed images, where a phone was otherwise pulling
+   the desktop-sized file: the hero alone was 153 KB on a 390px screen that
+   needs 58 KB. Reach for the mobile variant from source CSS by writing
+   url('name.jpg@mobile') inside a max-width media query. */
 const IMG_WIDTH = {
-  'hero-net.jpg': 1600,
-  'community-champs.jpg': 1500,
-  'social-beers.jpg': 1200,
+  'hero-net.jpg': { w: 1600, mobile: 600 },
+  'community-champs.jpg': { w: 1500, mobile: 600 },
+  'social-beers.jpg': { w: 1200, mobile: 500 },
   'courts-flag.jpg': 1000,
   'event-venue.jpg': 1000,
   'garden-party.jpg': 820,
@@ -425,27 +430,46 @@ const IMG_WIDTH = {
 function renderPreload(meta) {
   if (!meta.preloadImage) return '';
   const file = meta.preloadImage;
-  const w = IMG_WIDTH[file];
-  if (!w) throw new Error(`preloadImage "${file}" has no width in IMG_WIDTH`);
+  const wide = widthsFor(file, false);
+  const narrow = widthsFor(file, true);
+  /* imagesizes lets the preloader pick the same file the media query will:
+     without it a phone preloads the desktop image and then fetches the mobile
+     one as well. The 700px breakpoint must match the stylesheet's. */
   return `<link rel="preload" as="image" fetchpriority="high"\n`
-    + `      imagesrcset="${cdnUrl(file, w)} 1x, ${cdnUrl(file, Math.min(w * 2, 2400))} 2x">`;
+    + `      imagesizes="(max-width: 700px) ${narrow.one}px, ${wide.one}px"\n`
+    + `      imagesrcset="${cdnUrl(file, narrow.one)} ${narrow.one}w, ${cdnUrl(file, narrow.two)} ${narrow.two}w, `
+    + `${cdnUrl(file, wide.one)} ${wide.one}w, ${cdnUrl(file, wide.two)} ${wide.two}w">`;
 }
 
 function cdnUrl(file, w) {
   return `/.netlify/images?url=/assets/${file}&w=${w}`;
 }
 
+/* Widths for one background reference. Netlify clamps to the source's own
+   width, so the 2x entry can never fetch an upscale — but on mobile a full 2x
+   would land back at the desktop file, so that one steps up by half instead. */
+function widthsFor(file, mobile) {
+  const spec = IMG_WIDTH[file];
+  if (!spec) throw new Error(`no width set for background image "${file}" — add it to IMG_WIDTH in build.js`);
+  if (typeof spec === 'number') return { one: spec, two: Math.min(spec * 2, 2400) };
+  if (!mobile) return { one: spec.w, two: Math.min(spec.w * 2, 2400) };
+  if (!spec.mobile) throw new Error(`"${file}@mobile" used but IMG_WIDTH has no mobile width for it`);
+  /* Exactly double, so the preload's `sizes` can state the real slot width and
+     still resolve to the same candidate the image-set picks. A 1.5x step made
+     a 2x phone preload one file and then paint another. */
+  return { one: spec.mobile, two: spec.mobile * 2 };
+}
+
 function buildStylesheet() {
   const src = read(path.join(SRC, 'styles.css'));
   const seen = new Set();
-  const out = src.replace(/url\('([\w.-]+\.(?:jpg|jpeg|png))'\)/g, (whole, file) => {
+  const out = src.replace(/url\('([\w.-]+\.(?:jpg|jpeg|png))(@mobile)?'\)/g, (whole, file, mobile) => {
     // PNGs are the logo and the watermark: small, and they need their alpha.
     if (!/\.jpe?g$/i.test(file)) return whole;
-    const w = IMG_WIDTH[file];
-    if (!w) throw new Error(`no width set for background image "${file}" — add it to IMG_WIDTH in build.js`);
+    const { one, two } = widthsFor(file, !!mobile);
     seen.add(file);
     // image-set lets a retina screen ask for the denser file and everyone else skip it
-    return `image-set(url('${cdnUrl(file, w)}') 1x, url('${cdnUrl(file, Math.min(w * 2, 2400))}') 2x)`;
+    return `image-set(url('${cdnUrl(file, one)}') 1x, url('${cdnUrl(file, two)}') 2x)`;
   });
   const unused = Object.keys(IMG_WIDTH).filter(f => !seen.has(f));
   if (unused.length) throw new Error(`IMG_WIDTH lists images the stylesheet never uses: ${unused.join(', ')}`);
