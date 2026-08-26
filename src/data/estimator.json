@@ -1,0 +1,82 @@
+{
+  "_comment": "The Plan Your Event estimator. Prices here are the SAME numbers as the packages in private-events.json — that file is the customer-facing menu, this one drives the maths. Keep them in step; the build fails if a package name here has no match there.",
+
+  "intro": {
+    "eyebrow": "PLAN YOUR EVENT",
+    "heading": "Build your estimate",
+    "lead": "Four short steps and you will have a price to work from. Nothing is booked and no card is needed — a real person reviews every estimate before anything is confirmed."
+  },
+
+  "steps": [
+    { "key": "basics",   "label": "Event Basics" },
+    { "key": "packages", "label": "Packages" },
+    { "key": "addons",   "label": "Add-ons" },
+    { "key": "review",   "label": "Review" }
+  ],
+
+  "eventTypes": [
+    { "value": "corporate",    "label": "Corporate" },
+    { "value": "birthday",     "label": "Birthday" },
+    { "value": "social-mixer", "label": "Social Mixer" },
+    { "value": "tournament",   "label": "Tournament" },
+    { "value": "clinics",      "label": "Clinics" },
+    { "value": "other",        "label": "Other" }
+  ],
+
+  "times": [
+    { "value": "morning",   "label": "Morning (8am – 12pm)" },
+    { "value": "afternoon", "label": "Afternoon (12pm – 5pm)" },
+    { "value": "evening",   "label": "Evening (5pm – 10pm)" }
+  ],
+
+  "durations": [
+    { "value": "2", "label": "2h" },
+    { "value": "3", "label": "3h" },
+    { "value": "4", "label": "4h+" }
+  ],
+
+  "experience": [
+    { "value": "beginners",    "label": "Complete Beginners" },
+    { "value": "mixed",        "label": "Mixed Skill Levels" },
+    { "value": "intermediate", "label": "Intermediate/Advanced" },
+    { "value": "pros",         "label": "Pros/League Players" }
+  ],
+
+  "guests": { "min": 10, "max": 300, "step": 5, "default": 20 },
+
+  "food": [
+    { "value": "morning-serve", "label": "Morning Serve", "pp": 25, "desc": "Kickstart your day with a fresh selection." },
+    { "value": "baseline",      "label": "Baseline",      "pp": 30, "desc": "Solid choices for any gathering." },
+    { "value": "mid-court",     "label": "Mid-Court",     "pp": 40, "desc": "Elevate your event with premium options.", "popular": true },
+    { "value": "the-eleveno",   "label": "The ELEVENO",   "pp": 50, "desc": "The ultimate culinary experience." }
+  ],
+
+  "beverage": [
+    { "value": "courtside",     "label": "Courtside",     "pp": 25, "desc": "Refreshing and approachable." },
+    { "value": "match-point",   "label": "Match Point",   "pp": 35, "desc": "The perfect balance for competition. House spirits." },
+    { "value": "championship",  "label": "Championship",  "pp": 45, "desc": "Top-tier selection for winners. Premium spirits." },
+    { "value": "drink-tickets", "label": "Drink Tickets", "pp": null, "desc": "Pay per drink. Priced on inquiry." }
+  ],
+
+  "addonGroups": [
+    { "name": "Food upgrades",       "items": ["Salad Bar", "Charcuterie Boards", "Seafood Tower"] },
+    { "name": "Drink upgrades",      "items": ["Welcome Cocktails", "Mobile Courtside Bar"] },
+    { "name": "Venue enhancements",  "items": ["Half Center Court Bar", "Semi-Private Space", "Full Venue Buyout"] },
+    { "name": "Pickleball extras",   "items": ["Pro Coach / Host", "Tournament Support", "Branded Paddles", "Trophies & Medals"] }
+  ],
+
+  "_pricing_comment": "guests x (food pp + beverage pp), then service on top. Verified against the original: 20 x ($30 + $25) = $1,100, +20% = $1,320. Add-ons carry no price — they are quoted, so the estimate stays honest rather than pretending to be a quote.",
+  "servicePct": 20,
+  "serviceLabel": "Tax &amp; service (20%)",
+
+  "addonsNote": "Add-ons are priced on inquiry and are not included in the figure above.",
+  "customMenuNote": "Our events team can curate dietary-specific or themed catering on request — mention it in the notes.",
+  "estimateDisclaimer": "A preliminary estimate based on your selections. Final pricing depends on your catering choices and the date.",
+
+  "receive": [
+    { "name": "A written summary", "body": "Your selections, the estimate and what is included, sent to the address you give us." },
+    { "name": "A real coordinator", "body": "One of our events team reviews your estimate and comes back to you within one business day." },
+    { "name": "Menu changes welcome", "body": "Want different bites or a different bar? Your coordinator handles the fine-tuning." },
+    { "name": "First refusal on your date", "body": "Sending this puts your preferred date at the front of the queue while we review it." }
+  ]
+}
