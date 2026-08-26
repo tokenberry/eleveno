@@ -7,8 +7,7 @@
     },
     {
       "label": "Pickleball",
-      "page": "index",
-      "hash": "membership"
+      "page": "pickleball"
     },
     {
       "label": "Eat &amp; Drink",
@@ -20,8 +19,7 @@
     },
     {
       "label": "Beer Garden",
-      "page": "index",
-      "hash": "garden"
+      "page": "beer-garden"
     }
   ],
   "cta": {
@@ -38,18 +36,18 @@
         },
         {
           "label": "Leagues",
-          "page": "index",
-          "hash": "play"
+          "page": "pickleball",
+          "hash": "leagues"
         },
         {
           "label": "Open Play",
-          "page": "index",
-          "hash": "play"
+          "page": "pickleball",
+          "hash": "open-play"
         },
         {
           "label": "Lessons",
-          "page": "index",
-          "hash": "play"
+          "page": "pickleball",
+          "hash": "lessons-clinics"
         },
         {
           "label": "Memberships",
@@ -66,8 +64,7 @@
         },
         {
           "label": "Beer Garden",
-          "page": "index",
-          "hash": "garden"
+          "page": "beer-garden"
         },
         {
           "label": "Private Events",

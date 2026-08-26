@@ -1,0 +1,65 @@
+{
+  "_comment": "The Pickleball page. Programs stay high-level on purpose — the booking system is the source of truth for days, times and prices, so nothing here can go stale against it. Coaches and FAQs are the parts that actually churn.",
+
+  "programs": [
+    {
+      "name": "Open Play",
+      "lead": "Drop in, get matched, play.",
+      "body": "Sessions run all week across our 15 courts — nine indoor, six in the beer garden. Turn up on your own or with a partner and we will get you into a game at your level. No membership needed, though members play outdoor open play free.",
+      "ctaLabel": "See open play times"
+    },
+    {
+      "name": "Leagues",
+      "lead": "A season, a team, a standings table.",
+      "body": "Organised play across skill divisions, running in seasons through the year. Sign up as a full team or as an individual and we will place you. Divisions and start dates are listed on the booking system.",
+      "ctaLabel": "See current leagues"
+    },
+    {
+      "name": "Lessons & Clinics",
+      "lead": "One-on-one, small group, or a full clinic.",
+      "body": "We do 1-on-1s, Play With a Pro, group and small-group lessons, and clinics. We can tailor a lesson to suit any level of player with any number of guests.",
+      "ctaLabel": "Book a lesson"
+    }
+  ],
+
+  "coachesHeading": "Meet our coaches",
+  "coachesLead": "Every one of them will happily take a complete beginner. Ask at the front desk and we will match you.",
+  "coaches": [
+    { "name": "Ryan P.", "specialty": "Intermediate to advanced players, singles training." },
+    { "name": "Botum B.", "specialty": "Taking anyone's game to the next level." },
+    { "name": "Joe C.", "specialty": "Beginner and low-intermediate coaching." }
+  ],
+
+  "faqHeading": "Top 3 FAQs",
+  "faqLead": "In case you have any additional questions, call our front desk.",
+  "faqs": [
+    {
+      "q": "I've never played pickleball before — is ELEVENO for me?",
+      "a": "100% yes. We have many options for beginners and those new to the game. Our intro classes cater to any age, and we've seen great players anywhere from 5 to 95. One of the things we love most about ELEVENO — and pickleball in general — is its inclusivity: grandparents playing with grandkids, men playing with women. If you can hold the paddle, we can get you out there."
+    },
+    {
+      "q": "What are the different types of paddles?",
+      "a": "Elongated — longer paddle length, generally geared toward power.\nHybrid — between Standard and Elongated, can be power or control.\nStandard (Widebody) — wider head, generally geared toward control."
+    },
+    {
+      "q": "What sort of lessons do you do here?",
+      "a": "We do 1-on-1s, Play With a Pro, group and small-group lessons, and clinics. We can tailor a lesson to suit any level of player with any number of guests."
+    }
+  ],
+
+  "etiquetteHeading": "Must remember — top 3",
+  "etiquette": [
+    {
+      "name": "Footwear",
+      "body": "On court, we always recommend court shoes. More than a paddle or a fancy new shirt, the correct shoe is the most important. It lessens the chance of injury and allows players to move with more confidence."
+    },
+    {
+      "name": "Only water allowed on court",
+      "body": "Any beverage other than water will stain the courts. If there is a spill, find a towel and clean it up as soon as you can."
+    },
+    {
+      "name": "What to do when a ball enters another court",
+      "body": "Yell \"Ball on court!\" and stop play immediately. Better to stop a good rally than have someone step on a ball and twist an ankle."
+    }
+  ]
+}

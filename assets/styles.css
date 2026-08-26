@@ -471,6 +471,68 @@ img{max-width:100%;height:auto}
 
 /* ---------- menus ---------- */
 .menu-grid{columns:2;column-gap:52px}
+/* ---------- pickleball page ---------- */
+.band--navy{background:var(--navy);color:var(--cream)}
+.band--navy .section-head h2{color:var(--cream)}
+.section-head__lead{font-size:16px;line-height:1.6;font-weight:600;color:var(--ink-soft);
+  max-width:58ch;margin:12px auto 0}
+.band--navy .section-head__lead{color:var(--on-navy)}
+
+/* Programs: numbered because they are three ways in, not a ranking. */
+.progs{display:flex;flex-direction:column;gap:16px;max-width:860px;margin:0 auto}
+.prog{background:#fff;border:2px solid var(--navy);border-radius:16px;padding:26px 28px;
+  display:grid;grid-template-columns:auto minmax(0,1fr);gap:0 22px;scroll-margin-top:90px}
+.prog__n{font-family:var(--display);font-size:34px;line-height:1;color:#0e235026;
+  font-variant-numeric:tabular-nums}
+.prog__body{min-width:0}
+.prog h3{font-family:var(--display);font-size:28px;letter-spacing:1px;text-transform:uppercase;color:var(--navy)}
+.prog__lead{font-family:var(--heavy);font-size:15px;letter-spacing:.3px;color:var(--blue);margin-top:4px}
+.prog__text{font-size:15.5px;line-height:1.65;color:var(--ink-soft);margin-top:10px;max-width:60ch}
+.prog__cta{display:inline-block;margin-top:14px;font-family:var(--display);font-size:15px;
+  letter-spacing:1px;text-transform:uppercase;color:var(--blue)}
+
+.coaches{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.coach{background:var(--cream);border-radius:16px;padding:26px 24px;display:flex;
+  flex-direction:column;gap:8px;border-bottom:4px solid var(--gold)}
+.coach__name{font-family:var(--display);font-size:26px;letter-spacing:1px;text-transform:uppercase;color:var(--navy)}
+.coach__spec{font-size:14.5px;line-height:1.6;color:var(--ink-soft);flex:1 1 auto}
+.coach__spec span{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:1.6px;
+  text-transform:uppercase;color:var(--ink-mute);margin-bottom:3px}
+.coach__cta{font-family:var(--display);font-size:14px;letter-spacing:1px;text-transform:uppercase;color:var(--blue)}
+
+.faqs{display:flex;flex-direction:column;gap:22px;max-width:70ch;margin:0 auto}
+.faq{border-left:3px solid var(--gold);padding-left:20px}
+.faq__q{font-family:var(--heavy);font-size:17px;letter-spacing:.2px;color:var(--navy);margin-bottom:8px}
+.faq p{font-size:15.5px;line-height:1.7;color:var(--ink-soft);max-width:64ch}
+.faq p + p{margin-top:8px}
+
+.etqs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.etq{background:#ffffff0f;border:1px solid var(--rule);border-radius:16px;padding:24px;min-width:0}
+.etq__n{font-family:var(--display);font-size:30px;line-height:1;color:var(--gold)}
+.etq h3{font-family:var(--heavy);font-size:16px;letter-spacing:.2px;margin-top:8px}
+.etq p{font-size:14.5px;line-height:1.65;color:var(--on-navy-mute);margin-top:8px}
+
+@media (max-width:860px){
+  .coaches{grid-template-columns:1fr 1fr}
+  .etqs{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+  .coaches{grid-template-columns:1fr}
+  .prog{grid-template-columns:1fr;gap:6px;padding:22px 20px}
+  .prog__n{font-size:26px}
+}
+
+/* Beer garden page: the home page section reused as a hero, plus a
+   single-column Find Us rather than the two-column map layout. */
+.garden--hero{padding:84px 0 72px}
+.garden--hero h1{font-family:var(--display);font-size:clamp(46px,7vw,74px);line-height:.86;
+  text-transform:uppercase;letter-spacing:1px}
+.garden--hero h1 span{color:var(--gold)}
+.garden--hero .phero__actions{margin-top:26px}
+.visit--slim{padding:72px 0}
+.visit--slim .shell{max-width:640px}
+.visit--slim h2{text-align:left}
+
 /* ---------- legal pages (privacy, terms) ---------- */
 /* Long-form prose, so the measure is tighter than the rest of the site and the
    numbered headings carry the structure rather than any decoration. */
@@ -694,6 +756,7 @@ img{max-width:100%;height:auto}
      padding. The inline links inside legal prose deliberately do not. */
   .legal__contact{line-height:2.4}
   .legal__contact a{display:inline-block;padding:9px 0}
+  .coach__cta,.prog__cta{padding:11px 0}
   .menu-switch a{padding:14px 26px}
   /* 11px captions are hard going on a phone */
   .mcard__label,.price__m,.plan__list small,.footer__bar,.legend__item,.menu-item__note{font-size:12px}

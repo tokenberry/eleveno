@@ -5,10 +5,9 @@
 
 /about              /                       301
 /partners           /                       301
-/pickleball         /#play                  301
 /eat-and-drink      /menu-food.html         301
 /private-events     /private-events.html    301
 
-# /privacy-policy and /terms-and-conditions need no rule. Both pages were
-# ported, and Netlify serves privacy-policy.html for the extensionless path,
-# so the old Webflow URLs keep resolving on their own.
+# /pickleball, /privacy-policy and /terms-and-conditions need no rule: each
+# now has a page of the same name, and Netlify serves pickleball.html for the
+# extensionless path, so those old Webflow URLs keep resolving on their own.

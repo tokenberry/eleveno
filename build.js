@@ -24,6 +24,7 @@ const reviews = JSON.parse(read(path.join(SRC, 'data', 'reviews.json')));
 const visit = JSON.parse(read(path.join(SRC, 'data', 'visit.json')));
 const ask = JSON.parse(read(path.join(SRC, 'data', 'ask.json')));
 const events = JSON.parse(read(path.join(SRC, 'data', 'private-events.json')));
+const pickleball = JSON.parse(read(path.join(SRC, 'data', 'pickleball.json')));
 const menus = {
   food: JSON.parse(read(path.join(SRC, 'data', 'menu-food.json'))),
   drinks: JSON.parse(read(path.join(SRC, 'data', 'menu-drinks.json'))),
@@ -41,6 +42,9 @@ function href(entry, slug) {
   return entry.page + '.html' + hash;
 }
 
+/* Program anchors are derived from the program name so the footer links and
+   the section ids can never drift apart. */
+const slugify = s => String(s).toLowerCase().replace(/&amp;/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 function renderPrimaryNav(slug) {
@@ -149,6 +153,7 @@ Object.assign(calendar, escapeDeep(calendar));
 Object.assign(reviews, escapeDeep(reviews));
 Object.assign(visit, escapeDeep(visit));
 Object.assign(ask, escapeDeep(ask));
+Object.assign(pickleball, escapeDeep(pickleball));
 
 /* The response-time badge is a promise, so it renders only when both halves are
    filled in — an empty value hides it rather than showing a blank pill. */
@@ -307,6 +312,41 @@ function renderLegend(menu) {
   return out.join('');
 }
 
+/* --- pickleball page fragments --- */
+/* Programs deliberately carry no times or prices: the booking system owns
+   those, and a second copy here would drift out of date within a season. */
+function renderPrograms() {
+  return pickleball.programs.map((p, i) => `        <article class="prog" id="${slugify(p.name)}">
+          <p class="prog__n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</p>
+          <div class="prog__body">
+            <h3>${p.name}</h3>
+            <p class="prog__lead">${p.lead}</p>
+            <p class="prog__text">${p.body}</p>
+            <a class="prog__cta" href="${site.bookingUrl}">${p.ctaLabel} &rarr;</a>
+          </div>
+        </article>`).join('\n');
+}
+function renderCoaches() {
+  return pickleball.coaches.map(c => `          <article class="coach">
+            <p class="coach__name">${c.name}</p>
+            <p class="coach__spec"><span>Specializes in</span> ${c.specialty}</p>
+            <a class="coach__cta" href="${site.bookingUrl}">Book a lesson &rarr;</a>
+          </article>`).join('\n');
+}
+function renderFaqs() {
+  return pickleball.faqs.map(f => `          <div class="faq">
+            <h3 class="faq__q">${f.q}</h3>
+            ${paragraphs(f.a).replace(/\n/g, '\n            ')}
+          </div>`).join('\n');
+}
+function renderEtiquette() {
+  return pickleball.etiquette.map((e, i) => `          <article class="etq">
+            <p class="etq__n" aria-hidden="true">${i + 1}</p>
+            <h3>${e.name}</h3>
+            <p>${e.body}</p>
+          </article>`).join('\n');
+}
+
 /* --- private events page fragments --- */
 function renderPackages() {
   return events.packages.map(p => `        <article class="pkgcard">
@@ -370,6 +410,11 @@ for (const f of pageFiles) {
     calendar,
     menus,
     events,
+    pickleball,
+    programs: renderPrograms(),
+    coaches: renderCoaches(),
+    faqs: renderFaqs(),
+    etiquette: renderEtiquette(),
     eventPackages: renderPackages(),
     eventUpgrades: renderUpgrades(),
     venueFeatures: renderVenueFeatures(),
