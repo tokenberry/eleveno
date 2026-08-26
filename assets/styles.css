@@ -471,6 +471,33 @@ img{max-width:100%;height:auto}
 
 /* ---------- menus ---------- */
 .menu-grid{columns:2;column-gap:52px}
+/* ---------- legal pages (privacy, terms) ---------- */
+/* Long-form prose, so the measure is tighter than the rest of the site and the
+   numbered headings carry the structure rather than any decoration. */
+.phero--slim{padding:56px 0 48px}
+.phero--slim h1{font-size:clamp(34px,5.6vw,56px)}
+.legal{max-width:70ch;margin:0 auto;color:var(--ink-soft)}
+.legal__meta{font-family:var(--mono);font-size:12px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--ink-mute);padding-bottom:14px;border-bottom:2px solid #0e235022;margin-bottom:26px}
+.legal__intro{font-size:16.5px;line-height:1.7;font-weight:500}
+.legal__intro + .legal__intro{margin-top:14px}
+.legal h2{font-family:var(--heavy);font-size:20px;letter-spacing:.3px;color:var(--navy);
+  margin-top:38px;margin-bottom:10px}
+.legal h3{font-family:var(--body);font-weight:800;font-size:15.5px;letter-spacing:.2px;
+  text-transform:uppercase;color:var(--blue);margin-top:24px;margin-bottom:8px}
+.legal p{font-size:15.5px;line-height:1.7}
+.legal p + p{margin-top:12px}
+.legal ul{margin:10px 0 0;padding-left:22px}
+.legal li{font-size:15.5px;line-height:1.65;margin-bottom:6px}
+.legal a{color:var(--blue);text-decoration:underline;text-underline-offset:3px}
+.legal__contact{font-style:normal;font-size:15.5px;line-height:1.8;margin-top:14px;
+  padding:18px 20px;background:#fff;border-left:3px solid var(--gold);border-radius:0 8px 8px 0}
+.legal__foot{margin-top:34px;padding-top:20px;border-top:2px solid #0e235022;
+  font-size:14.5px;color:var(--ink-mute)}
+/* Unfilled legal blanks. Loud on purpose — these must not go unnoticed. */
+.legal mark.todo{background:#FFE9A8;color:#7A5200;font-weight:800;padding:1px 6px;
+  border-radius:4px;border:1px dashed #C79A16}
+
 .menu-sec{break-inside:avoid;margin-bottom:38px}
 /* a section is never split across the column break — a reader must not meet
    dishes at the top of a column with no heading above them. The cost is an
@@ -663,6 +690,10 @@ img{max-width:100%;height:auto}
   .footer__bar a{display:inline-block;padding:13px 0}
   .playing__more a,.reviews__more a{display:inline-block;padding:12px 18px}
   .visit__fallback-link{display:inline-block;padding:12px 8px}
+  /* Each sits on its own line in the contact block, so it can take real
+     padding. The inline links inside legal prose deliberately do not. */
+  .legal__contact{line-height:2.4}
+  .legal__contact a{display:inline-block;padding:9px 0}
   .menu-switch a{padding:14px 26px}
   /* 11px captions are hard going on a phone */
   .mcard__label,.price__m,.plan__list small,.footer__bar,.legend__item,.menu-item__note{font-size:12px}

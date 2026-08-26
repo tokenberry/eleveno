@@ -84,5 +84,15 @@
         }
       ]
     }
+  ],
+  "legal": [
+    {
+      "label": "Privacy Policy",
+      "page": "privacy-policy"
+    },
+    {
+      "label": "Terms &amp; Conditions",
+      "page": "terms-and-conditions"
+    }
   ]
 }

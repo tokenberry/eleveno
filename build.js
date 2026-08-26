@@ -71,6 +71,17 @@ function renderFooterNav(slug) {
   }).join('\n');
 }
 
+/* Privacy and terms sit in the footer bar beside the copyright, not in the
+   link columns — they are obligations, not things we are inviting people to do. */
+function renderLegalNav(slug) {
+  return nav.legal
+    .map(e => {
+      const current = e.page === slug ? ' aria-current="page"' : '';
+      return `<a href="${esc(href(e, slug))}"${current}>${e.label}</a>`;
+    })
+    .join(' &bull; ');
+}
+
 /* Expand {{> partial}} first (recursively), then {{vars}}. */
 function expand(tpl, vars, depth = 0) {
   if (depth > 10) throw new Error('partial include depth exceeded — cycle?');
@@ -396,10 +407,21 @@ for (const f of pageFiles) {
     primaryNav: renderPrimaryNav(meta.slug),
     navCta: renderNavCta(meta.slug),
     footerNav: renderFooterNav(meta.slug),
+    legalNav: renderLegalNav(meta.slug),
     content: '',
   };
   vars.content = expand(body, vars);
   const html = expand(layout, vars);
+  /* The ported legal text arrived with blanks the business still has to fill
+     (cancellation window, governing state). Shipping "[Insert State]" on a live
+     terms page is worse than not shipping the page, so fail loudly instead. */
+  const blanks = html.match(/\[(?:Insert [^\]]+|24\/48|Business Address|City, State, ZIP|Email Address|Phone Number)\]/g);
+  if (blanks && !process.env.ALLOW_LEGAL_BLANKS) {
+    throw new Error(
+      `${meta.slug}.html still has unfilled legal blanks: ${[...new Set(blanks)].join(', ')}\n` +
+      `  Fill them in src/pages/${meta.slug}.html, or set ALLOW_LEGAL_BLANKS=1 to build a draft anyway.`);
+  }
+
   const out = path.join(ROOT, meta.slug + '.html');
   fs.writeFileSync(out, html);
   written.push({ file: meta.slug + '.html', bytes: html.length, canonical: vars.canonical, noindex: !!meta.noindex });

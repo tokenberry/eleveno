@@ -9,9 +9,6 @@
 /eat-and-drink      /menu-food.html         301
 /private-events     /private-events.html    301
 
-# /privacy-policy and /terms-and-conditions are deliberately NOT listed yet.
-# Both hold real legal text on the old site (858 and 957 words) and the new
-# site has no equivalent, so there is nowhere honest to send them. Sending a
-# privacy policy to the home page is a soft 404 to Google and a dead end to
-# anyone who went looking for it. Decide before cutover: port both pages, or
-# accept that these two URLs stop working.
+# /privacy-policy and /terms-and-conditions need no rule. Both pages were
+# ported, and Netlify serves privacy-policy.html for the extensionless path,
+# so the old Webflow URLs keep resolving on their own.
