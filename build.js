@@ -375,7 +375,7 @@ function renderPrograms() {
             <h3>${p.name}</h3>
             <p class="prog__lead">${p.lead}</p>
             <p class="prog__text">${p.body}</p>
-            <a class="prog__cta" href="${site.bookingUrl}">${p.ctaLabel} &rarr;</a>
+            <a class="prog__cta" href="${p.ctaUrl}">${p.ctaLabel} &rarr;</a>
           </div>
         </article>`).join('\n');
 }
@@ -383,7 +383,7 @@ function renderCoaches() {
   return pickleball.coaches.map(c => `          <article class="coach">
             <p class="coach__name">${c.name}</p>
             <p class="coach__spec"><span>Specializes in</span> ${c.specialty}</p>
-            <a class="coach__cta" href="${site.bookingUrl}">Book a lesson &rarr;</a>
+            <a class="coach__cta" href="${pickleball.lessonsUrl}">Book a lesson &rarr;</a>
           </article>`).join('\n');
 }
 function renderFaqs() {

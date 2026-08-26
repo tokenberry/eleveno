@@ -1,35 +1,44 @@
 {
-  "_comment": "The Pickleball page. Programs stay high-level on purpose — the booking system is the source of truth for days, times and prices, so nothing here can go stale against it. Coaches and FAQs are the parts that actually churn.",
-
+  "_comment": "The Pickleball page. Programs stay high-level on purpose — the booking system is the source of truth for days, times and prices, so nothing here can go stale against it. Coaches and FAQs are the parts that actually churn. Each program links to its own filtered listing on the booking system; \"Book a Court\" everywhere else goes to /book.",
   "programs": [
     {
       "name": "Open Play",
       "lead": "Drop in, get matched, play.",
       "body": "Sessions run all week across our 15 courts — nine indoor, six in the beer garden. Turn up on your own or with a partner and we will get you into a game at your level. No membership needed, though members play outdoor open play free.",
-      "ctaLabel": "See open play times"
+      "ctaLabel": "See open play times",
+      "ctaUrl": "https://eleveno.podplay.app/community/events?tag=Open+Play"
     },
     {
       "name": "Leagues",
       "lead": "A season, a team, a standings table.",
       "body": "Organised play across skill divisions, running in seasons through the year. Sign up as a full team or as an individual and we will place you. Divisions and start dates are listed on the booking system.",
-      "ctaLabel": "See current leagues"
+      "ctaLabel": "See current leagues",
+      "ctaUrl": "https://eleveno.podplay.app/community/events?tag=Leagues"
     },
     {
       "name": "Lessons & Clinics",
       "lead": "One-on-one, small group, or a full clinic.",
       "body": "We do 1-on-1s, Play With a Pro, group and small-group lessons, and clinics. We can tailor a lesson to suit any level of player with any number of guests.",
-      "ctaLabel": "Book a lesson"
+      "ctaLabel": "Book a lesson",
+      "ctaUrl": "https://eleveno.podplay.app/community/events?tag=Instructional"
     }
   ],
-
   "coachesHeading": "Meet our coaches",
   "coachesLead": "Every one of them will happily take a complete beginner. Ask at the front desk and we will match you.",
   "coaches": [
-    { "name": "Ryan P.", "specialty": "Intermediate to advanced players, singles training." },
-    { "name": "Botum B.", "specialty": "Taking anyone's game to the next level." },
-    { "name": "Joe C.", "specialty": "Beginner and low-intermediate coaching." }
+    {
+      "name": "Ryan P.",
+      "specialty": "Intermediate to advanced players, singles training."
+    },
+    {
+      "name": "Botum B.",
+      "specialty": "Taking anyone's game to the next level."
+    },
+    {
+      "name": "Joe C.",
+      "specialty": "Beginner and low-intermediate coaching."
+    }
   ],
-
   "faqHeading": "Top 3 FAQs",
   "faqLead": "In case you have any additional questions, call our front desk.",
   "faqs": [
@@ -46,7 +55,6 @@
       "a": "We do 1-on-1s, Play With a Pro, group and small-group lessons, and clinics. We can tailor a lesson to suit any level of player with any number of guests."
     }
   ],
-
   "etiquetteHeading": "Must remember — top 3",
   "etiquette": [
     {
@@ -61,5 +69,6 @@
       "name": "What to do when a ball enters another court",
       "body": "Yell \"Ball on court!\" and stop play immediately. Better to stop a good rally than have someone step on a ball and twist an ankle."
     }
-  ]
+  ],
+  "lessonsUrl": "https://eleveno.podplay.app/community/events?tag=Instructional"
 }
