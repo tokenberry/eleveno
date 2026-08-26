@@ -473,6 +473,71 @@ img{max-width:100%;height:auto}
 
 /* ---------- menus ---------- */
 .menu-grid{columns:2;column-gap:52px}
+/* ---------- private events: the narrative sections ---------- */
+.section-cta{text-align:center;margin-top:30px}
+
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.act{background:#fff;border:2px solid var(--navy);border-radius:18px;padding:28px;
+  display:grid;grid-template-columns:auto minmax(0,1fr);gap:0 20px}
+.act__n{font-family:var(--display);font-size:32px;line-height:1;color:#0e235022;font-variant-numeric:tabular-nums}
+.act__label{font-family:var(--mono);font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--blue)}
+.act h3{font-family:var(--display);font-size:27px;letter-spacing:1px;text-transform:uppercase;color:var(--navy);margin-top:4px}
+.act p:last-child{font-size:15px;line-height:1.65;color:var(--ink-soft);margin-top:10px}
+
+/* An ordered list because the run of show genuinely is a sequence. */
+.roslist{list-style:none;margin:0 auto;padding:0;max-width:760px;display:flex;flex-direction:column}
+.ros{display:grid;grid-template-columns:150px minmax(0,1fr);gap:0 24px;
+  padding:20px 0;border-top:1px solid var(--rule)}
+.ros:last-child{border-bottom:1px solid var(--rule)}
+.ros__when{font-family:var(--mono);font-size:12px;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold)}
+.ros h3{font-family:var(--heavy);font-size:17px;letter-spacing:.2px;color:var(--cream)}
+.ros p{font-size:14.5px;line-height:1.6;color:var(--on-navy-mute);margin-top:5px}
+
+.smenus{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+.smenu{background:var(--cream);border-radius:18px;padding:28px 26px;border-top:4px solid var(--gold)}
+.smenu h3{font-family:var(--display);font-size:26px;letter-spacing:1px;text-transform:uppercase;color:var(--navy)}
+.smenu__when{font-family:var(--mono);font-size:11px;letter-spacing:1.6px;text-transform:uppercase;
+  color:var(--ink-mute);margin-top:3px}
+.smenu__group{font-family:var(--heavy);font-size:13px;letter-spacing:.4px;text-transform:uppercase;
+  color:var(--blue);margin-top:20px}
+.smenu__list{list-style:none;margin-top:8px;padding:0}
+.smenu__list li{font-size:15px;line-height:1.5;color:var(--ink-soft);padding:5px 0 5px 16px;position:relative}
+.smenu__list li::before{content:"";position:absolute;left:0;top:13px;width:6px;height:6px;
+  border-radius:50%;background:var(--gold)}
+
+.drinksband{background:var(--blue);color:var(--cream);padding:72px 0;position:relative}
+.drinksband .shell{max-width:760px;text-align:center}
+.drinksband h2{font-family:var(--display);font-size:clamp(38px,5.4vw,62px);line-height:.92;
+  text-transform:uppercase;letter-spacing:1px;margin-top:6px}
+.drinksband h2 span{color:var(--gold)}
+.drinksband__body{font-size:17px;line-height:1.65;font-weight:600;color:var(--on-navy);margin-top:20px}
+.drinksband__note{font-family:var(--mono);font-size:12.5px;line-height:1.7;color:var(--on-navy-mute);margin-top:18px}
+
+.spcs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.spc{background:#fff;border-radius:16px;padding:26px 24px;border-bottom:4px solid var(--blue)}
+.spc h3{font-family:var(--display);font-size:23px;letter-spacing:1px;text-transform:uppercase;color:var(--navy)}
+.spc p{font-size:15px;line-height:1.6;color:var(--ink-soft);margin-top:10px}
+
+.swags{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.swag{background:#fff;border:2px solid var(--navy);border-radius:16px;padding:26px 24px}
+.swag__n{font-family:var(--display);font-size:26px;line-height:1;color:var(--gold);font-variant-numeric:tabular-nums}
+.swag h3{font-family:var(--display);font-size:22px;letter-spacing:1px;text-transform:uppercase;color:var(--navy);margin-top:6px}
+.swag p{font-size:15px;line-height:1.6;color:var(--ink-soft);margin-top:8px}
+
+.prosband{max-width:760px;margin:0 auto;text-align:center}
+.prosband__body{font-size:17px;line-height:1.7;font-weight:600;color:var(--on-navy)}
+.prosband__note{font-family:var(--mono);font-size:12.5px;line-height:1.7;color:var(--on-navy-mute);margin-top:18px}
+
+@media (max-width:860px){
+  .acts{grid-template-columns:1fr}
+  .smenus{grid-template-columns:1fr}
+  .spcs,.swags{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+  .act{grid-template-columns:1fr;gap:6px;padding:22px 20px}
+  .ros{grid-template-columns:1fr;gap:6px}
+}
+
 /* ---------- pickleball page ---------- */
 .band--navy{background:var(--navy);color:var(--cream)}
 .band--navy .section-head h2{color:var(--cream)}
@@ -761,7 +826,8 @@ img{max-width:100%;height:auto}
   .coach__cta,.prog__cta{padding:11px 0}
   .menu-switch a{padding:14px 26px}
   /* 11px captions are hard going on a phone */
-  .mcard__label,.price__m,.plan__list small,.footer__bar,.legend__item,.menu-item__note{font-size:12px}
+  .mcard__label,.price__m,.plan__list small,.footer__bar,.legend__item,.menu-item__note,
+  .smenu__when{font-size:12px}
   /* .hero is a flex row; making the stats static turned them into a second
      flex item beside the copy, which pushed them off-screen. Stack instead. */
   .hero{min-height:0;flex-direction:column;align-items:stretch}

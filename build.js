@@ -348,6 +348,49 @@ function renderEtiquette() {
 }
 
 /* --- private events page fragments --- */
+/* The narrative sections below are generalised from a client proposal: they
+   describe the shape of an evening and carry no prices, so they can never
+   contradict the package list or the estimator. */
+function renderActs() {
+  return events.evening.acts.map((a, i) => `        <article class="act">
+          <p class="act__n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</p>
+          <div>
+            <p class="act__label">${a.label}</p>
+            <h3>${a.name}</h3>
+            <p>${a.body}</p>
+          </div>
+        </article>`).join('\n');
+}
+function renderRunOfShow() {
+  return events.runOfShow.rows.map(r => `          <li class="ros">
+            <p class="ros__when">${r.when}</p>
+            <div><h3>${r.name}</h3><p>${r.body}</p></div>
+          </li>`).join('\n');
+}
+function renderSampleMenu() {
+  return events.sampleMenu.parts.map(part => `        <article class="smenu">
+          <h3>${part.name}</h3>
+          <p class="smenu__when">${part.when}</p>
+${part.groups.map(g => `          <p class="smenu__group">${g.name}</p>
+          <ul class="smenu__list">
+${g.items.map(i => `            <li>${i}</li>`).join('\n')}
+          </ul>`).join('\n')}
+        </article>`).join('\n');
+}
+function renderSpace() {
+  return events.space.items.map(i => `        <article class="spc">
+          <h3>${i.name}</h3>
+          <p>${i.body}</p>
+        </article>`).join('\n');
+}
+function renderSwag() {
+  return events.swag.items.map((i, n) => `        <article class="swag">
+          <p class="swag__n" aria-hidden="true">${String(n + 1).padStart(2, '0')}</p>
+          <h3>${i.name}</h3>
+          <p>${i.body}</p>
+        </article>`).join('\n');
+}
+
 function renderPackages() {
   return events.packages.map(p => `        <article class="pkgcard">
           <h3>${p.name}</h3>
@@ -503,6 +546,11 @@ for (const f of pageFiles) {
     coaches: renderCoaches(),
     faqs: renderFaqs(),
     etiquette: renderEtiquette(),
+    acts: renderActs(),
+    runOfShow: renderRunOfShow(),
+    sampleMenu: renderSampleMenu(),
+    spaceItems: renderSpace(),
+    swagItems: renderSwag(),
     eventPackages: renderPackages(),
     eventUpgrades: renderUpgrades(),
     venueFeatures: renderVenueFeatures(),

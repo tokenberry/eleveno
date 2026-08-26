@@ -1,15 +1,27 @@
 {
-  "_comment": "Private events page: packages, venue facts, enhancements and the inquiry form's dropdown options.",
+  "_comment": "Private events page. The narrative sections (evening, runOfShow, sampleMenu, drinks, space, pros, swag) are generalised from a real client proposal — they describe the shape of an evening, not a fixed offer. Prices live only in `packages`; everything else is quoted, so nothing here can contradict the estimator.",
   "intro": "Corporate outings, birthday blowouts, team building and everything in between — court time, food and drink handled in one place.",
   "packages": [
     {
       "name": "Food Packages",
       "lead": "ELEVENO offers four food packages:",
       "items": [
-        { "name": "Baseline", "price": "$30/pp" },
-        { "name": "Mid-Court", "price": "$40/pp" },
-        { "name": "The ELEVENO", "price": "$50/pp" },
-        { "name": "Morning Serve", "price": "$25/pp" }
+        {
+          "name": "Baseline",
+          "price": "$30/pp"
+        },
+        {
+          "name": "Mid-Court",
+          "price": "$40/pp"
+        },
+        {
+          "name": "The ELEVENO",
+          "price": "$50/pp"
+        },
+        {
+          "name": "Morning Serve",
+          "price": "$25/pp"
+        }
       ],
       "note": "All include Appetizers, Handhelds, Flatbreads and Dips, replenished for two hours."
     },
@@ -17,16 +29,33 @@
       "name": "Beverage Packages",
       "lead": "Three packages are available:",
       "items": [
-        { "name": "The Courtside", "price": "from $25 / 2hrs" },
-        { "name": "The Match Point", "price": "from $35 / 2hrs", "desc": "With House Spirits" },
-        { "name": "The Championship", "price": "from $45 / 2hrs", "desc": "With Premium Spirits" }
+        {
+          "name": "The Courtside",
+          "price": "from $25 / 2hrs"
+        },
+        {
+          "name": "The Match Point",
+          "price": "from $35 / 2hrs",
+          "desc": "With House Spirits"
+        },
+        {
+          "name": "The Championship",
+          "price": "from $45 / 2hrs",
+          "desc": "With Premium Spirits"
+        }
       ],
       "note": "Drink tickets or a consumption bar are also available."
     }
   ],
   "upgrades": [
-    { "name": "Food Add-Ons", "body": "Signature Salad Bar, Charcuterie & Cheese Board, and New England Seafood Tower." },
-    { "name": "Drink Add-Ons", "body": "Custom Welcome Cocktails and Mocktails, and a Mobile Courtside Bar." }
+    {
+      "name": "Food Add-Ons",
+      "body": "Signature Salad Bar, Charcuterie & Cheese Board, and New England Seafood Tower."
+    },
+    {
+      "name": "Drink Add-Ons",
+      "body": "Custom Welcome Cocktails and Mocktails, and a Mobile Courtside Bar."
+    }
   ],
   "venue": {
     "heading": "More than just",
@@ -46,19 +75,207 @@
       {
         "script": "Pickleball",
         "name": "Enhancements",
-        "items": ["Pickleball coach or host", "Tournament support", "Lessons & clinics", "Branded paddles", "Custom trophy", "Custom medals"]
+        "items": [
+          "Pickleball coach or host",
+          "Tournament support",
+          "Lessons & clinics",
+          "Branded paddles",
+          "Custom trophy",
+          "Custom medals"
+        ]
       },
       {
         "script": "Venue",
         "name": "Enhancements",
-        "items": ["Half Center Court Bar rental", "Semi-private venue rental", "Full venue rental"],
+        "items": [
+          "Half Center Court Bar rental",
+          "Semi-private venue rental",
+          "Full venue rental"
+        ],
         "note": "Bar rental options are subject to availability."
       }
     ]
   },
   "form": {
     "_comment": "eventTypes mirror the categories already listed on the home page. referrals are a starting set — confirm before launch.",
-    "eventTypes": ["Corporate event", "Holiday party", "Birthday", "Networking", "Fundraiser", "Employee appreciation", "Sports team or club", "Other"],
-    "referrals": ["Google search", "Instagram", "Facebook", "A friend or colleague", "I've played here before", "Other"]
+    "eventTypes": [
+      "Corporate event",
+      "Holiday party",
+      "Birthday",
+      "Networking",
+      "Fundraiser",
+      "Employee appreciation",
+      "Sports team or club",
+      "Other"
+    ],
+    "referrals": [
+      "Google search",
+      "Instagram",
+      "Facebook",
+      "A friend or colleague",
+      "I've played here before",
+      "Other"
+    ]
+  },
+  "evening": {
+    "eyebrow": "THE EVENING",
+    "heading": "Play first,",
+    "headingAccent": "then feast.",
+    "lead": "Every event we run splits in two. Guests arrive to a bar and a court, and finish around a table. Nobody stands in a corner holding a drink wondering what happens next.",
+    "acts": [
+      {
+        "label": "Act one",
+        "name": "Courts & cocktails",
+        "body": "The bar opens as guests arrive. Pros run games and drills across your courts while anyone taking a break heads for the yard games. Paddles and instruction are included — nobody sits out."
+      },
+      {
+        "label": "Act two",
+        "name": "The private back room",
+        "body": "The group moves through to a reserved room for a full sit-down or buffet service, with its own bartender. Mains, sides, and a dessert station, finished with a toast."
+      }
+    ]
+  },
+  "runOfShow": {
+    "eyebrow": "RUN OF SHOW",
+    "heading": "What an evening looks like",
+    "lead": "A three-hour evening for a corporate group, as an example. Yours gets built around your headcount and your start time.",
+    "rows": [
+      {
+        "when": "First 30 min",
+        "name": "Arrival & welcome",
+        "body": "Bar opens, welcome amenity, guests get their paddles."
+      },
+      {
+        "when": "Hours 1–2",
+        "name": "Pickleball with the pros",
+        "body": "Drills, games and a mini-tournament across your courts. Yard games running alongside."
+      },
+      {
+        "when": "From hour 2",
+        "name": "Dinner service",
+        "body": "Full buffet or plated service in the private room — mains, sides and salads."
+      },
+      {
+        "when": "Last 30 min",
+        "name": "Dessert & toast",
+        "body": "Dessert station, a toast, and awards for whoever won the tournament."
+      }
+    ]
+  },
+  "sampleMenu": {
+    "eyebrow": "A SAMPLE MENU",
+    "heading": "What we put on the table",
+    "lead": "One recent winter evening, to show the range. Every menu is built with you — final selections are due fourteen days before the event.",
+    "parts": [
+      {
+        "name": "The welcome hour",
+        "when": "Stationary + passed",
+        "groups": [
+          {
+            "name": "Welcome displays",
+            "items": [
+              "Artisan cheese & garden board",
+              "Crudité & dips",
+              "Charcuterie display",
+              "Pizza bar"
+            ]
+          },
+          {
+            "name": "Passed bites",
+            "items": [
+              "Hot-honey chicken sliders",
+              "Mini beef cheeseburgers",
+              "Truffle grilled-cheese fingers",
+              "Spanakopita",
+              "Miso black cod bites"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "The buffet",
+        "when": "Served in the private room",
+        "groups": [
+          {
+            "name": "Mains",
+            "items": [
+              "Herb-roasted chicken",
+              "Teriyaki salmon",
+              "Braised short rib",
+              "Wild mushroom risotto",
+              "Cacio e pepe"
+            ]
+          },
+          {
+            "name": "Sides & greens",
+            "items": [
+              "Garden salad",
+              "A seasonal vegetable",
+              "A rice or potato dish"
+            ]
+          },
+          {
+            "name": "Dessert",
+            "items": [
+              "Sundae station",
+              "Cookie & cocoa bar",
+              "Fresh fruit station"
+            ]
+          }
+        ]
+      }
+    ],
+    "note": "Dietary-specific and themed menus are no trouble — tell us what you need and the kitchen will build around it."
+  },
+  "drinks": {
+    "eyebrow": "DRINKS",
+    "heading": "Open bar,",
+    "headingAccent": "all night.",
+    "body": "Imported and domestic beers, sparkling, white and red wine, spirits, mocktails and soft drinks. Bartenders on the floor through the event, plus a private bartender in the back room when you have it.",
+    "note": "Bundled into the per-guest rate rather than billed separately, so the number you agree is the number you pay."
+  },
+  "space": {
+    "eyebrow": "THE SPACE",
+    "heading": "Courts, and a room of your own",
+    "items": [
+      {
+        "name": "Exclusive courts",
+        "body": "Private court time for the length of your event, with pros running games and a mini-tournament if you want one."
+      },
+      {
+        "name": "Yard games",
+        "body": "Cornhole and lawn games for anyone taking a break from the paddle."
+      },
+      {
+        "name": "Private back room",
+        "body": "A reserved room for dinner, with its own bartender and space to decorate however you like."
+      }
+    ]
+  },
+  "pros": {
+    "eyebrow": "ON THE COURTS",
+    "heading": "Put a pro on your court",
+    "body": "Certified pros run drills, games and a mini-tournament across your courts. They keep everyone moving and everyone playing, whatever the mix of experience in the room — most groups have never held a paddle and that is exactly the point.",
+    "note": "Paddle rental included for every guest. Coaching is charged per pro per hour and quoted with your estimate."
+  },
+  "swag": {
+    "eyebrow": "CUSTOM TEAM SWAG",
+    "heading": "Everyone takes the court in style",
+    "lead": "Send your group home with something. We produce it in your branding, not ours.",
+    "items": [
+      {
+        "name": "Branded paddle",
+        "body": "Your mark on the face, in your brand colours."
+      },
+      {
+        "name": "Branded jersey",
+        "body": "Your logo on the front, ELEVENO on the chest, your tagline on the back."
+      },
+      {
+        "name": "The swag bag",
+        "body": "Carries the paddle and the jersey — branded too."
+      }
+    ],
+    "note": "Shirt sizes are collected with the RSVP, and mockups come to you for approval before anything goes to production. Priced on inquiry."
   }
 }

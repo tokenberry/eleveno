@@ -1,7 +1,7 @@
 <!--meta {
   "slug": "private-events",
-  "title": "Private Events — ELEVENO Pickleball",
-  "description": "Corporate outings, birthday parties and team building at ELEVENO in Foxborough, MA. Food and beverage packages, flexible event spaces, and an inquiry form."
+  "title": "Private Events & Corporate Outings in Foxborough, MA | ELEVENO",
+  "description": "Play first, then feast. Private courts, pros on the floor, a room of your own and one all-in rate per guest — corporate outings, birthdays and team building at ELEVENO in Foxborough, MA."
 }
 -->
 <main>
@@ -11,17 +11,90 @@
     <img class="phero__mark" src="assets/mark-v-only.png" alt="" aria-hidden="true" width="700" height="680">
     <div class="shell">
       <p class="eyebrow eyebrow--gold">PRIVATE EVENTS &amp; BUYOUTS</p>
-      <h1>Private <span>Events</span></h1>
+      <h1>Game on. <span>Then feast.</span></h1>
       <p class="phero__lead">{{events.intro}}</p>
+      <div class="phero__actions">
+        <a class="btn btn--gold" href="plan-your-event.html">Build your estimate</a>
+        <a class="btn btn--ghost" href="#inquire">Just ask us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== THE EVENING ===================== -->
+  <section class="band band--cream" aria-labelledby="evening-h">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow">{{events.evening.eyebrow}}</p>
+        <h2 id="evening-h">{{events.evening.heading}} <span>{{events.evening.headingAccent}}</span></h2>
+        <p class="section-head__lead">{{events.evening.lead}}</p>
+      </div>
+      <div class="acts">
+{{acts}}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== RUN OF SHOW ===================== -->
+  <section class="band band--navy" aria-labelledby="ros-h">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow eyebrow--gold">{{events.runOfShow.eyebrow}}</p>
+        <h2 id="ros-h">{{events.runOfShow.heading}}</h2>
+        <p class="section-head__lead">{{events.runOfShow.lead}}</p>
+      </div>
+      <ol class="roslist">
+{{runOfShow}}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===================== SAMPLE MENU ===================== -->
+  <section class="band" aria-labelledby="smenu-h">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow">{{events.sampleMenu.eyebrow}}</p>
+        <h2 id="smenu-h">{{events.sampleMenu.heading}}</h2>
+        <p class="section-head__lead">{{events.sampleMenu.lead}}</p>
+      </div>
+      <div class="smenus">
+{{sampleMenu}}
+      </div>
+      <p class="finecopy">{{events.sampleMenu.note}}</p>
+    </div>
+  </section>
+
+  <!-- ===================== DRINKS ===================== -->
+  <section class="drinksband" aria-labelledby="drinks-h">
+    <div class="shell">
+      <div>
+        <p class="eyebrow eyebrow--gold">{{events.drinks.eyebrow}}</p>
+        <h2 id="drinks-h">{{events.drinks.heading}} <span>{{events.drinks.headingAccent}}</span></h2>
+        <p class="drinksband__body">{{events.drinks.body}}</p>
+        <p class="drinksband__note">{{events.drinks.note}}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== THE SPACE ===================== -->
+  <section class="band band--cream" aria-labelledby="space-h">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow">{{events.space.eyebrow}}</p>
+        <h2 id="space-h">{{events.space.heading}}</h2>
+      </div>
+      <div class="spcs">
+{{spaceItems}}
+      </div>
     </div>
   </section>
 
   <!-- ===================== PACKAGES ===================== -->
-  <section class="band band--cream" aria-labelledby="pkgs-h">
+  <section class="band" id="packages" aria-labelledby="pkgs-h">
     <div class="shell">
       <div class="section-head">
         <p class="eyebrow">PRICED PER PERSON</p>
         <h2 id="pkgs-h">Packages</h2>
+        <p class="section-head__lead">Pick a food package and a bar package. That is the whole price — court time is included, and the estimator will do the arithmetic for you.</p>
       </div>
       <div class="pkgshots" aria-hidden="true">
         <div></div><div></div><div></div>
@@ -33,6 +106,36 @@
 {{eventUpgrades}}
       </div>
       <p class="finecopy">All packages include court time. Prices are per person and exclude state sales tax and service fees.</p>
+      <p class="section-cta"><a class="btn btn--navy" href="plan-your-event.html">Build your estimate &rarr;</a></p>
+    </div>
+  </section>
+
+  <!-- ===================== THE PROS ===================== -->
+  <section class="band band--navy" aria-labelledby="pros-h">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow eyebrow--gold">{{events.pros.eyebrow}}</p>
+        <h2 id="pros-h">{{events.pros.heading}}</h2>
+      </div>
+      <div class="prosband">
+        <p class="prosband__body">{{events.pros.body}}</p>
+        <p class="prosband__note">{{events.pros.note}}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SWAG ===================== -->
+  <section class="band band--cream" aria-labelledby="swag-h">
+    <div class="shell">
+      <div class="section-head">
+        <p class="eyebrow">{{events.swag.eyebrow}}</p>
+        <h2 id="swag-h">{{events.swag.heading}}</h2>
+        <p class="section-head__lead">{{events.swag.lead}}</p>
+      </div>
+      <div class="swags">
+{{swagItems}}
+      </div>
+      <p class="finecopy">{{events.swag.note}}</p>
     </div>
   </section>
 
@@ -56,7 +159,7 @@
     <div class="shell">
       <div>
         <h2 id="inq-h">Submit an <span>inquiry</span></h2>
-        <p class="inquiry__lead">We'd love to help bring your event to life. Fill in the form and our team will be in touch.</p>
+        <p class="inquiry__lead">Know roughly what you want? <a href="plan-your-event.html">Build an estimate</a> instead and we will come back with a price. Otherwise, tell us what you have in mind and we will take it from there.</p>
         <p class="crosssell__contact" style="color:var(--ink-mute)">OR REACH US AT <a href="mailto:{{email}}">{{email}}</a><span class="sep">&nbsp;&bull;&nbsp;</span><a href="tel:{{phoneHref}}">{{phone}}</a></p>
         <div class="inquiry__img" role="img" aria-label="Guests gathered under the ELEVENO sign at a private Champagne Taittinger event"></div>
       </div>
@@ -71,7 +174,7 @@
           </div>
           <div class="field">
             <label for="f-company">Company</label>
-            <input id="f-company" name="company" type="text" autocomplete="organization" placeholder="Company name">
+            <input id="f-company" name="company" type="text" autocomplete="organization" placeholder="Where you work">
           </div>
           <div class="field">
             <label for="f-email">Email <span class="req" aria-hidden="true">*</span></label>
@@ -82,49 +185,33 @@
             <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="(617) 000-0000" required>
           </div>
           <div class="field">
-            <label for="f-type">Event type <span class="req" aria-hidden="true">*</span></label>
-            <select id="f-type" name="event-type" required>
-              <option value="">Select type&hellip;</option>
+            <label for="f-type">Event type</label>
+            <select id="f-type" name="event-type">
 {{eventTypeOptions}}
             </select>
           </div>
           <div class="field">
             <label for="f-size">Group size <span class="req" aria-hidden="true">*</span></label>
-            <input id="f-size" name="group-size" type="number" min="1" step="1" placeholder="10" required>
-          </div>
-          <div class="field">
-            <label for="f-heard">How did you hear about us?</label>
-            <select id="f-heard" name="referral">
-              <option value="">Select&hellip;</option>
-{{referralOptions}}
-            </select>
+            <input id="f-size" name="group-size" type="number" min="1" max="500" placeholder="How many guests?" required>
           </div>
           <div class="field">
             <label for="f-date">Preferred date</label>
             <input id="f-date" name="preferred-date" type="date">
           </div>
+          <div class="field">
+            <label for="f-ref">How did you hear about us?</label>
+            <select id="f-ref" name="referral">
+{{referralOptions}}
+            </select>
+          </div>
           <div class="field field--wide">
-            <label for="f-notes">Anything else we should know?</label>
-            <textarea id="f-notes" name="notes" placeholder="Group size, timings, anything you have in mind&hellip;"></textarea>
+            <label for="f-notes">Anything else?</label>
+            <textarea id="f-notes" name="notes" rows="4" placeholder="Tell us about your event"></textarea>
           </div>
         </div>
-        <p class="form__submit"><button type="submit">Send inquiry</button></p>
-        <p class="form__small">FIELDS MARKED <span style="color:var(--gold)">*</span> ARE REQUIRED</p>
+        <button class="btn btn--gold form__submit" type="submit">Send inquiry &rarr;</button>
+        <p class="form__small">Fields marked <span aria-hidden="true">*</span> are required</p>
       </form>
-    </div>
-  </section>
-
-  <!-- ===================== ENHANCEMENTS ===================== -->
-  <section class="band band--white" aria-labelledby="enh-h">
-    <div class="shell">
-      <div class="section-head">
-        <p class="eyebrow">TAKE IT UP A LEVEL</p>
-        <h2 id="enh-h">Enhancements</h2>
-      </div>
-      <p class="memb__lead">{{events.enhancements.lead}}</p>
-      <div class="enhs">
-{{eventEnhancements}}
-      </div>
     </div>
   </section>
 
