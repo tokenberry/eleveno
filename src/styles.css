@@ -63,7 +63,12 @@ img{max-width:100%;height:auto}
 .pill{display:inline-block;font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.5px;padding:14px 26px;border-radius:999px}
 .pill--gold{background:var(--gold);color:var(--navy)}
 .pill--ghost{border:2px solid var(--cream);color:var(--cream)}
-.tag{border:1.5px solid #ffffff3d;border-radius:999px;padding:9px 18px;font-weight:700;font-size:13px;color:var(--cream)}
+/* Was a row of bordered pills. People kept trying to click them — a pill with
+   a border and title case is a button, whatever the element underneath. These
+   are just things you can add, so they read as a list now. */
+.addons{list-style:none;display:flex;flex-wrap:wrap;margin:0;padding:0;row-gap:2px}
+.addons li{font-size:15.5px;font-weight:600;color:var(--on-navy)}
+.addons li:not(:last-child)::after{content:"\00B7";margin:0 11px;color:var(--on-navy-faint)}
 
 /* ---------- nav ---------- */
 .nav{position:sticky;top:0;z-index:50;background:var(--navy);border-bottom:1px solid var(--rule)}
@@ -247,7 +252,7 @@ img{max-width:100%;height:auto}
 .pkg__dur{font-family:var(--mono);font-size:11px;color:var(--on-navy-mute)}
 .pkg__desc{font-size:14px;line-height:1.6;font-weight:500;color:var(--on-navy)}
 .events__addons{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:34px;padding-top:28px;border-top:1px solid var(--rule)}
-.events__addons-label{font-family:var(--display);font-size:17px;letter-spacing:.5px;text-transform:uppercase;color:var(--gold);margin-right:6px}
+.events__addons-label{font-family:var(--display);font-size:17px;letter-spacing:.5px;text-transform:uppercase;color:var(--gold);margin-right:12px}
 .events__cta{text-align:center;margin-top:36px}
 .events__contact{font-family:var(--mono);font-size:12px;color:var(--on-navy-mute);margin-top:16px}
 
