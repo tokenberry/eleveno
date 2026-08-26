@@ -3,8 +3,7 @@
   "primary": [
     {
       "label": "Calendar",
-      "page": "index",
-      "hash": "play"
+      "page": "calendar"
     },
     {
       "label": "Pickleball",
@@ -13,13 +12,11 @@
     },
     {
       "label": "Eat &amp; Drink",
-      "page": "index",
-      "hash": "eat"
+      "page": "menu-food"
     },
     {
       "label": "Private Events",
-      "page": "index",
-      "hash": "events"
+      "page": "private-events"
     },
     {
       "label": "Beer Garden",
@@ -65,8 +62,7 @@
       "links": [
         {
           "label": "Eat &amp; Drink",
-          "page": "index",
-          "hash": "eat"
+          "page": "menu-food"
         },
         {
           "label": "Beer Garden",
@@ -75,8 +71,7 @@
         },
         {
           "label": "Private Events",
-          "page": "index",
-          "hash": "events"
+          "page": "private-events"
         },
         {
           "label": "Gift Cards",
