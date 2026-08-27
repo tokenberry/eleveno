@@ -4,6 +4,8 @@
   "phone": "774-215-9137",
   "phoneHref": "+17742159137",
   "email": "contact@eleveno.com",
+  "eventsEmail": "events@eleveno.com",
+  "_email_comment": "Two addresses on purpose. eventsEmail is for private-event enquiries — the homepage events block and the private events page. `email` is everything else, including the privacy policy and terms, where the contact address has to stay stable.",
   "addressLine1": "340 Patriot Place",
   "addressLine2": "Foxborough, MA 02035",
   "year": "2026",
