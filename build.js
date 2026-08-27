@@ -198,21 +198,6 @@ Object.assign(partners, escapeDeep(partners));
       if (m) published[i.name.toLowerCase().replace(/^the /, '')] = Number(m[1]);
     }
   }
-  /* Swag is published on the private events page too, so hold the two in step
-     the same way. Names must match exactly; a rename on one side is drift. */
-  const pubSwag = {};
-  for (const i of events.swag.items) {
-    const m = String(i.price || '').match(/\$(\d+)/);
-    if (m) pubSwag[i.name.toLowerCase()] = Number(m[1]);
-  }
-  for (const opt of estimator.swag.items) {
-    const key = opt.label.toLowerCase();
-    if (!(key in pubSwag)) throw new Error(`estimator swag "${opt.label}" has no published price on the private events page`);
-    if (pubSwag[key] !== opt.pp) {
-      throw new Error(`price drift: estimator has ${opt.label} at $${opt.pp}, the private events page says $${pubSwag[key]}`);
-    }
-  }
-
   for (const kind of ['food', 'beverage']) {
     for (const opt of estimator[kind]) {
       if (opt.pp == null) continue;               // quoted on inquiry, nothing to check
@@ -540,16 +525,16 @@ function estChecks(list, name) {
   }).join('\n');
 }
 
-/* The swag panel: the only add-on with prices, so the only one that can be
-   costed. Rendered inline and visible with no JavaScript — the script hides it
-   until the parent box is ticked. Custom Ink pay to be here, so their mark is
-   part of the panel rather than a footnote under it. */
+/* The swag panel captures what goes in the bag, not what it costs — it is
+   quoted like every other add-on and feeds nothing into the total. Rendered
+   inline and visible with no JavaScript; the script hides it until the parent
+   box is ticked. Custom Ink pay to be here, so their mark is part of the panel
+   rather than a footnote under it. */
 function renderSwagPanel() {
   const s = estimator.swag;
   const rows = s.items.map(i => `                <label class="eswag__row">
-                  <input type="checkbox" name="swag" value="${i.value}" data-swagpp="${i.pp}">
+                  <input type="checkbox" name="swag" value="${i.value}">
                   <span class="eswag__name">${i.label}</span>
-                  <span class="eswag__pp">$${i.pp}</span>
                 </label>`).join('\n');
   const by = s.poweredBy;
   return `            <div class="eswag" id="e-swag-panel">
@@ -558,7 +543,6 @@ function renderSwagPanel() {
               <div class="eswag__rows">
 ${rows}
               </div>
-              <p class="eswag__sum"><span>${s.totalLabel}</span> <strong data-sv="swagpp">$0</strong></p>
               <p class="eswag__by">
                 <span>${by.label}</span>
                 <img src="assets/partners/${by.logo}" alt="${by.name}" width="490" height="182" loading="lazy" decoding="async">

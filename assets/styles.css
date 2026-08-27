@@ -642,15 +642,11 @@ textarea.einput{resize:vertical;min-height:110px}
 .eswag__row + .eswag__row{margin-top:8px}
 .eswag__row input{width:20px;height:20px;flex:0 0 auto;accent-color:var(--gold)}
 .eswag__name{flex:1 1 auto;font-size:15.5px;font-weight:600;min-width:0}
-.eswag__pp{flex:0 0 auto;font-family:var(--mono);font-size:14px;color:var(--gold)}
 .eswag__row:has(input:checked){border-color:var(--gold);color:var(--cream)}
-.eswag__sum{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
-  margin-top:14px;padding-top:13px;border-top:1px solid var(--rule);
-  font-family:var(--display);font-size:16px;letter-spacing:1px;text-transform:uppercase;color:var(--cream)}
-.eswag__sum strong{font-size:21px;color:var(--gold)}
 /* Custom Ink pay for this placement, so their mark sits on the white ground it
    was drawn for instead of taking its chances against navy. */
-.eswag__by{display:flex;align-items:center;gap:12px;margin-top:18px;flex-wrap:wrap}
+.eswag__by{display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  margin-top:16px;padding-top:15px;border-top:1px solid var(--rule)}
 .eswag__by span{font-family:var(--mono);font-size:10.5px;letter-spacing:1.6px;
   text-transform:uppercase;color:var(--on-navy-faint)}
 .eswag__by img{width:auto;height:50px;background:#fff;border-radius:9px;padding:9px 14px}

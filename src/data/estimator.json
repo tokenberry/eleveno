@@ -197,7 +197,7 @@
   "_pricing_comment": "guests x (food pp + beverage pp), then service on top. Verified against the original: 20 x ($30 + $25) = $1,100, +20% = $1,320. Add-ons carry no price — they are quoted, so the estimate stays honest rather than pretending to be a quote.",
   "servicePct": 20,
   "serviceLabel": "Tax & service (20%)",
-  "addonsNote": "Swag is priced per guest and counts toward your estimate. Everything else here is quoted separately and is not in the figure above.",
+  "addonsNote": "Add-ons are priced on inquiry and are not included in the figure above.",
   "customMenuNote": "Our events team can curate dietary-specific or themed catering on request — mention it in the notes.",
   "estimateDisclaimer": "A preliminary estimate based on your selections. Final pricing depends on your catering choices and the date.",
   "receive": [
@@ -220,27 +220,23 @@
   ],
   "_receive_comment": "Describe only what happens on its own. The site is static with no backend, so it cannot email anyone a summary — an earlier version promised one and that promise depended entirely on a human remembering.",
   "swag": {
-    "_comment": "Priced per guest and folded into the estimate, unlike the other add-ons — these numbers are known, so quoting them beats \"on inquiry\". They must match the swag prices published on the private events page; the build fails if they drift.",
+    "_comment": "Quoted, like every other add-on — the panel captures what they want in the bag, not what it costs. Nothing here feeds the total.",
     "heading": "What goes in the bag",
-    "note": "Priced per guest. Pick any combination — sizes are collected with the RSVP and mockups come to you before anything is produced.",
+    "note": "Pick any combination. Sizes are collected with the RSVP and mockups come to you before anything is produced — your coordinator prices it with your quote.",
     "items": [
       {
         "value": "paddle",
-        "label": "Branded paddle",
-        "pp": 105
+        "label": "Branded paddle"
       },
       {
         "value": "shirt",
-        "label": "Branded shirt",
-        "pp": 55
+        "label": "Branded shirt"
       },
       {
         "value": "bag",
-        "label": "Branded bag",
-        "pp": 40
+        "label": "Branded bag"
       }
     ],
-    "totalLabel": "Per guest",
     "poweredBy": {
       "label": "Printing powered by",
       "name": "Custom Ink",
