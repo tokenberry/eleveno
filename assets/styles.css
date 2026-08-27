@@ -1489,14 +1489,14 @@ textarea.einput{resize:vertical;min-height:110px}
 /* Two across on a desktop, one on a phone. The photo is square so six drinks
    shot at different crops still line up. */
 .menu-cards{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:22px 30px;margin-top:18px}
-.menu-card{display:grid;grid-template-columns:104px minmax(0,1fr);gap:18px;align-items:start}
-.menu-card__img{width:104px;height:104px;object-fit:cover;border-radius:12px;
+.menu-card{display:grid;grid-template-columns:150px minmax(0,1fr);gap:20px;align-items:start}
+.menu-card__img{width:150px;height:150px;object-fit:cover;border-radius:12px;
   background:var(--navy-deep)}
 .menu-card__name{font-family:var(--heavy);font-size:17px;letter-spacing:.3px;color:var(--navy)}
 .menu-card__desc{font-size:14.5px;line-height:1.55;color:var(--ink-soft);margin-top:6px}
 .menu-card__price{font-family:var(--display);font-size:18px;color:var(--blue);margin-top:8px}
 @media (max-width:700px){
   .menu-cards{grid-template-columns:1fr;gap:18px}
-  .menu-card{grid-template-columns:84px minmax(0,1fr);gap:14px}
-  .menu-card__img{width:84px;height:84px}
+  .menu-card{grid-template-columns:104px minmax(0,1fr);gap:16px}
+  .menu-card__img{width:104px;height:104px}
 }
