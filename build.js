@@ -26,6 +26,7 @@ const ask = JSON.parse(read(path.join(SRC, 'data', 'ask.json')));
 const events = JSON.parse(read(path.join(SRC, 'data', 'private-events.json')));
 const pickleball = JSON.parse(read(path.join(SRC, 'data', 'pickleball.json')));
 const estimator = JSON.parse(read(path.join(SRC, 'data', 'estimator.json')));
+const partners = JSON.parse(read(path.join(SRC, 'data', 'partners.json')));
 const menus = {
   food: JSON.parse(read(path.join(SRC, 'data', 'menu-food.json'))),
   drinks: JSON.parse(read(path.join(SRC, 'data', 'menu-drinks.json'))),
@@ -184,6 +185,8 @@ assertNoEntities('pickleball', pickleball);
 Object.assign(pickleball, escapeDeep(pickleball));
 assertNoEntities('estimator', estimator);
 Object.assign(estimator, escapeDeep(estimator));
+assertNoEntities('partners', partners);
+Object.assign(partners, escapeDeep(partners));
 
 /* The estimator quotes the same numbers the packages page publishes. Catch a
    drift between the two files at build time rather than in front of a customer. */
@@ -267,6 +270,56 @@ function renderReviewTrack() {
   return Array.from({ length: REVIEW_SETS }, (_, i) =>
     `        <ul class="reviews__set"${i ? ' aria-hidden="true"' : ''}>\n${items}\n        </ul>`
   ).join('\n');
+}
+
+/* ---------- partners strip ---------- */
+
+/* Logos are third-party artwork of unknown size, so read the real pixel
+   dimensions off the file and write them onto the <img>. Without width/height
+   the strip reflows as each logo decodes — nine of them, right above the fold
+   of the community band. PNG and SVG cover everything we have; anything else
+   ships without the attributes rather than guessing wrong. */
+function logoSize(file) {
+  const abs = path.join(ROOT, 'assets', 'partners', file);
+  if (!fs.existsSync(abs)) throw new Error(
+    `partners.json points at assets/partners/${file}, which does not exist`);
+  const buf = fs.readFileSync(abs);
+  if (buf.slice(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]))) {
+    return { w: buf.readUInt32BE(16), h: buf.readUInt32BE(20) };
+  }
+  if (/\.svg$/i.test(file)) {
+    const head = buf.toString('utf8', 0, 2000);
+    const box = head.match(/viewBox\s*=\s*["']\s*[-\d.]+\s+[-\d.]+\s+([\d.]+)\s+([\d.]+)/i);
+    if (box) return { w: Math.round(+box[1]), h: Math.round(+box[2]) };
+  }
+  return null;
+}
+
+/* A partner with no artwork yet renders as a wordmark rather than a gap, so
+   the strip is never waiting on a file to look finished. */
+function renderPartners() {
+  const list = Array.isArray(partners.items) ? partners.items : [];
+  return list.map(p => {
+    const inner = p.logo
+      ? (function () {
+          const size = logoSize(p.logo);
+          const dims = size ? ` width="${size.w}" height="${size.h}"` : '';
+          return `<img src="assets/partners/${p.logo}" alt="${p.name}" loading="lazy" decoding="async"${dims}>`;
+        }())
+      : `<span class="plogo__word">${p.name}</span>`;
+    const body = p.url
+      ? `<a class="plogo__link" href="${p.url}" rel="noopener noreferrer">${inner}</a>`
+      : inner;
+    const kind = p.logo ? '' : ' plogo--word';
+    return `        <li class="plogo${kind}">${body}</li>`;
+  }).join('\n');
+}
+
+/* Two partners in a strip sized for nine reads like something failed to load.
+   Fewer logos get a bigger box so the row still carries the width. */
+function partnersMod() {
+  const n = (partners.items || []).length;
+  return n && n <= 4 ? ' plogos--few' : '';
 }
 
 /* The "Now Playing" rows. Authored in src/data/events.json so events can be
@@ -687,6 +740,9 @@ for (const f of pageFiles) {
     drinksNotes: menus.drinks.notes.map(n => `        <p>${n}</p>`).join('\n'),
     eventRows: renderEvents(),
     marqueeTrack: renderMarquee(),
+    partners,
+    partnerLogos: renderPartners(),
+    partnersMod: partnersMod(),
     reviews,
     reviewTrack: renderReviewTrack(),
     visit,

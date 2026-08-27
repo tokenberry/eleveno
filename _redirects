@@ -4,7 +4,7 @@
 # Netlify matches these top-down, so order matters.
 
 /about              /                       301
-/partners           /                       301
+/partners           /#partners              301
 /eat-and-drink      /menu-food.html         301
 /private-events     /private-events.html    301
 
