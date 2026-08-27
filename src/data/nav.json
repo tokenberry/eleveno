@@ -16,10 +16,6 @@
     {
       "label": "Private Events",
       "page": "private-events"
-    },
-    {
-      "label": "Beer Garden",
-      "page": "beer-garden"
     }
   ],
   "cta": {
@@ -61,10 +57,6 @@
         {
           "label": "Eat &amp; Drink",
           "page": "menu-food"
-        },
-        {
-          "label": "Beer Garden",
-          "page": "beer-garden"
         },
         {
           "label": "Private Events",

@@ -11,3 +11,8 @@
 # /pickleball, /privacy-policy and /terms-and-conditions need no rule: each
 # now has a page of the same name, and Netlify serves pickleball.html for the
 # extensionless path, so those old Webflow URLs keep resolving on their own.
+
+# The beer garden is closed for the season, not gone. 302 (temporary) on
+# purpose: a 301 would tell Google to drop the URL, and the page comes back
+# in spring — restore the whole thing with `git revert` of the removal commit.
+/beer-garden        /                       302

@@ -198,6 +198,9 @@ img{max-width:100%;height:auto}
 .spaces .section-head{margin-bottom:38px}
 .spaces .section-head h2{font-size:clamp(38px,5.6vw,60px)}
 .spaces__grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+/* Out of season there is one space, not two. Without this the lone card sits
+   half-width against the left edge of a two-column track. */
+.spaces__grid:has(.space:only-child){grid-template-columns:minmax(0,620px);justify-content:center}
 .space{background:#fff;border:3px solid var(--navy);border-radius:20px;overflow:hidden;box-shadow:0 16px 40px rgba(14,35,80,.12)}
 .space__img{position:relative;height:280px;background-size:cover;background-color:var(--navy-deep)}
 .space__img--indoor{background-image:image-set(url('/.netlify/images?url=/assets/courts-flag.jpg&w=1000') 1x, url('/.netlify/images?url=/assets/courts-flag.jpg&w=2000') 2x);background-position:center}
@@ -256,30 +259,6 @@ img{max-width:100%;height:auto}
 .events__cta{text-align:center;margin-top:36px}
 .events__contact{font-family:var(--mono);font-size:12px;color:var(--on-navy-mute);margin-top:16px}
 
-/* ---------- beer garden ---------- */
-.garden{background:var(--blue);color:var(--cream);padding:72px 0;position:relative;overflow:hidden}
-.garden__grid-bg{position:absolute;inset:0;background-image:linear-gradient(#ffffff10 1px,transparent 1px),linear-gradient(90deg,#ffffff10 1px,transparent 1px);background-size:56px 56px}
-.garden .shell{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
-.garden h2{font-family:var(--display);font-size:clamp(46px,7vw,74px);line-height:.86;text-transform:uppercase}
-.garden h2 span{color:var(--gold)}
-.garden__lead{font-size:17px;line-height:1.6;font-weight:600;color:var(--on-navy);margin:22px 0 26px;max-width:440px}
-.garden__cta{display:inline-block;background:var(--gold);color:var(--navy);font-family:var(--display);font-size:17px;letter-spacing:1px;text-transform:uppercase;padding:15px 30px;border-radius:8px}
-.garden__tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.garden__tile{background:var(--navy);border-radius:12px;padding:18px;font-family:var(--display);font-size:19px;text-transform:uppercase}
-.garden__tile--wide{background:var(--gold);color:var(--navy);grid-column:1 / -1}
-.garden__gallery{grid-column:1 / -1;display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:14px;margin-top:6px}
-.garden__gallery div{min-width:0;aspect-ratio:16/10;border-radius:16px;background-color:var(--navy-deep);
-  background-size:cover;background-position:center;box-shadow:0 14px 34px rgba(10,26,58,.4)}
-/* Where all three share a row, the lead sets the height and the siblings drop
-   their aspect so they stretch to match it. On narrower screens they wrap onto
-   their own rows and keep the aspect, which is what stops them collapsing. */
-@media (min-width:861px){
-  .garden__gallery div:not(:first-child){aspect-ratio:auto}
-}
-.garden__gallery div:nth-child(1){background-image:image-set(url('/.netlify/images?url=/assets/garden-party.jpg&w=820') 1x, url('/.netlify/images?url=/assets/garden-party.jpg&w=1640') 2x)}
-.garden__gallery div:nth-child(2){background-image:image-set(url('/.netlify/images?url=/assets/garden-beers.jpg&w=600') 1x, url('/.netlify/images?url=/assets/garden-beers.jpg&w=1200') 2x);background-position:center 30%}
-.garden__gallery div:nth-child(3){background-image:image-set(url('/.netlify/images?url=/assets/garden-crowd.jpg&w=600') 1x, url('/.netlify/images?url=/assets/garden-crowd.jpg&w=1200') 2x)}
-
 /* ---------- community ---------- */
 /* ---------- partners strip ---------- */
 
@@ -313,7 +292,11 @@ img{max-width:100%;height:auto}
   line-height:1.1;text-transform:uppercase;text-align:center;color:var(--navy);opacity:.5}
 
 .community{position:relative;min-height:480px;display:flex;align-items:flex-end;
-  background-image:linear-gradient(0deg,rgba(10,26,58,.94) 0%,rgba(10,26,58,.35) 45%,rgba(10,26,58,.1) 100%),image-set(url('/.netlify/images?url=/assets/community-champs.jpg&w=1500') 1x, url('/.netlify/images?url=/assets/community-champs.jpg&w=2400') 2x);
+  /* The first layer fades the photo out of the white partners band above it.
+     Without it the two meet on a hard horizontal line that reads as a mistake
+     rather than a section break. Layer order matters: first is topmost. */
+  background-image:linear-gradient(180deg,#fff 0%,rgba(255,255,255,.70) 5%,rgba(255,255,255,0) 20%),
+    linear-gradient(0deg,rgba(10,26,58,.94) 0%,rgba(10,26,58,.35) 45%,rgba(10,26,58,.1) 100%),image-set(url('/.netlify/images?url=/assets/community-champs.jpg&w=1500') 1x, url('/.netlify/images?url=/assets/community-champs.jpg&w=2400') 2x);
   background-size:cover;background-position:center 20%;background-color:var(--navy-deep)}
 .community .shell{padding-top:56px;padding-bottom:56px;color:var(--cream)}
 .community h2{font-family:var(--display);font-size:clamp(34px,5.2vw,56px);line-height:.92;text-transform:uppercase;max-width:760px}
@@ -759,7 +742,7 @@ textarea.einput{resize:vertical;min-height:110px}
   max-width:58ch;margin:12px auto 0}
 .band--navy .section-head__lead{color:var(--on-navy)}
 
-/* Programs (pickleball + beer garden), scoped to .progs on purpose: the
+/* Programs, scoped to .progs on purpose: the
    membership bundle cards already own a bare .prog, and because this block
    comes later in the file an unscoped rule here silently overrode their navy
    background while leaving the cream text written for it — unreadable.
@@ -807,13 +790,7 @@ textarea.einput{resize:vertical;min-height:110px}
   .progs .prog__n{font-size:26px}
 }
 
-/* Beer garden page: the home page section reused as a hero, plus a
-   single-column Find Us rather than the two-column map layout. */
-.garden--hero{padding:84px 0 72px}
-.garden--hero h1{font-family:var(--display);font-size:clamp(46px,7vw,74px);line-height:.86;
-  text-transform:uppercase;letter-spacing:1px}
-.garden--hero h1 span{color:var(--gold)}
-.garden--hero .phero__actions{margin-top:26px}
+/* A slimmer Find Us: one column rather than the two-column map layout. */
 .visit--slim{padding:72px 0}
 .visit--slim .shell{max-width:640px}
 .visit--slim h2{text-align:left}
@@ -1064,9 +1041,6 @@ textarea.einput{resize:vertical;min-height:110px}
   .eat__body{padding:48px 22px}
   .spaces__grid{grid-template-columns:1fr}
   .pricing__grid{grid-template-columns:1fr 1fr}
-  .garden .shell{grid-template-columns:1fr}
-  .garden__gallery{grid-template-columns:1fr 1fr}
-  .garden__gallery div:nth-child(1){grid-column:1 / -1}
   .visit{padding:56px 0}
   .visit__grid{grid-template-columns:1fr;gap:32px}
   .ask{padding:56px 0}
@@ -1121,10 +1095,6 @@ textarea.einput{resize:vertical;min-height:110px}
   .pricing__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
   .price{padding:18px 16px}
   .price__n{font-size:28px}
-  .garden__tiles{grid-template-columns:1fr}
-  .garden__gallery{grid-template-columns:1fr}
-  .garden__gallery div:nth-child(1){grid-column:auto}
-  .garden__tile--wide{grid-column:auto}
   .phero__actions{flex-direction:column;align-items:stretch}
   .phero__actions .btn{text-align:center}
   .footer__cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 16px}
@@ -1138,7 +1108,7 @@ textarea.einput{resize:vertical;min-height:110px}
   /* Centre crops the players out on a narrow screen; 65% keeps them in frame. */
   .hero{background-image:linear-gradient(90deg,rgba(14,35,80,.94) 0%,rgba(14,35,80,.82) 42%,rgba(14,35,80,.28) 100%),image-set(url('/.netlify/images?url=/assets/hero-net.jpg&w=600') 1x, url('/.netlify/images?url=/assets/hero-net.jpg&w=1200') 2x);
     background-position:65% 30%}
-  .community{background-image:linear-gradient(0deg,rgba(10,26,58,.94) 0%,rgba(10,26,58,.35) 45%,rgba(10,26,58,.1) 100%),image-set(url('/.netlify/images?url=/assets/community-champs.jpg&w=600') 1x, url('/.netlify/images?url=/assets/community-champs.jpg&w=1200') 2x)}
+  .community{background-image:linear-gradient(180deg,#fff 0%,rgba(255,255,255,.70) 5%,rgba(255,255,255,0) 20%),linear-gradient(0deg,rgba(10,26,58,.94) 0%,rgba(10,26,58,.35) 45%,rgba(10,26,58,.1) 100%),image-set(url('/.netlify/images?url=/assets/community-champs.jpg&w=600') 1x, url('/.netlify/images?url=/assets/community-champs.jpg&w=1200') 2x)}
   .space__img--outdoor{background-image:image-set(url('/.netlify/images?url=/assets/community-champs.jpg&w=600') 1x, url('/.netlify/images?url=/assets/community-champs.jpg&w=1200') 2x)}
   .eat__img{background-image:image-set(url('/.netlify/images?url=/assets/social-beers.jpg&w=500') 1x, url('/.netlify/images?url=/assets/social-beers.jpg&w=1000') 2x)}
   .partners{padding:56px 0}

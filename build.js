@@ -618,7 +618,6 @@ const IMG_WIDTH = {
   'social-beers.jpg': { w: 1200, mobile: 500 },
   'courts-flag.jpg': 1000,
   'event-venue.jpg': 1000,
-  'garden-party.jpg': 820,
   'event-inquiry.jpg': 800,
   'pkg-1.jpg': 700,
   'pkg-2.jpg': 700,
@@ -626,8 +625,6 @@ const IMG_WIDTH = {
   'start-beginners.jpg': 700,
   'start-social.jpg': 700,
   'start-competitive.jpg': 700,
-  'garden-beers.jpg': 600,
-  'garden-crowd.jpg': 600,
 };
 
 /* A page names its own LCP background image. It is a CSS background, so the
