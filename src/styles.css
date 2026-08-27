@@ -217,8 +217,12 @@ button,input,select,textarea{font-family:inherit}
 .playing .section-head{margin-bottom:36px}
 .playing .section-head h2{font-size:clamp(38px,6vw,64px)}
 .playing__head{text-align:center;margin-bottom:34px}
-.playing__h{font-family:var(--mono);font-size:13px;font-weight:400;letter-spacing:4px;
-  text-transform:uppercase;color:var(--blue)}
+/* Bigger than an eyebrow, because it is not one any more — it is the section's
+   only heading. Bold, and the tracking scales down as the size goes up: 4px of
+   letter-spacing that reads as delicate at 13px reads as stretched at 22px, and
+   would push the line past the gutter on a phone. */
+.playing__h{font-family:var(--mono);font-size:clamp(16px,2.3vw,26px);font-weight:700;
+  letter-spacing:clamp(1.6px,.26vw,3.4px);text-transform:uppercase;color:var(--blue)}
 
 /* The home page's strip sits on navy so it reads as its own band between two
    light sections. The calendar page keeps the light treatment: its filter chips
