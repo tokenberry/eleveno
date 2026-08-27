@@ -104,8 +104,8 @@
               <span>Tournament</span>
             </label>
             <label class="ecard">
-              <input type="radio" name="event-type" value="clinics" data-min="5">
-              <span>Clinics</span>
+              <input type="radio" name="event-type" value="fundraiser">
+              <span>Fundraiser</span>
             </label>
             <label class="ecard">
               <input type="radio" name="event-type" value="other">
@@ -159,15 +159,15 @@
             <h2 class="efield__h">Duration</h2>
             <div class="epills">
             <label class="epill">
-              <input type="radio" name="duration" value="2" checked>
+              <input type="radio" name="duration" value="2" data-hours="2" checked>
               <span>2h</span>
             </label>
             <label class="epill">
-              <input type="radio" name="duration" value="3">
+              <input type="radio" name="duration" value="3" data-hours="3">
               <span>3h</span>
             </label>
             <label class="epill">
-              <input type="radio" name="duration" value="4">
+              <input type="radio" name="duration" value="4" data-hours="4">
               <span>4h+</span>
             </label>
             </div>
@@ -200,42 +200,34 @@
       <!-- ============ STEP 2 ============ -->
       <fieldset class="est__step" data-step="1">
         <legend class="est__legend">Packages</legend>
-        <p class="est__stepnote">Choose the catering and bar that fit your event. Both are priced per guest.</p>
+        <p class="est__stepnote">Choose the catering and bar that fit your event. Food is per guest for your booking; the bar is per guest, per hour.</p>
 
         <div class="efield">
           <h2 class="efield__h">Food packages</h2>
           <div class="epkgs">
             <label class="epkg">
-              <input type="radio" name="food" value="morning-serve" data-pp="25" checked>
+              <input type="radio" name="food" value="classic-social" data-pp2="45" data-pp3="65" checked>
               <span class="epkg__body">
-                <span class="epkg__name">Morning Serve</span>
-                <span class="epkg__desc">Kickstart your day with a fresh selection.</span>
+                <span class="epkg__name">Classic Social</span>
+                <span class="epkg__desc">Welcome bites, a display station, a featured station and a sweet finish.</span>
               </span>
-              <span class="epkg__price">$25<small>/pp</small></span>
-            </label>
-            <label class="epkg">
-              <input type="radio" name="food" value="baseline" data-pp="30">
-              <span class="epkg__body">
-                <span class="epkg__name">Baseline</span>
-                <span class="epkg__desc">Solid choices for any gathering.</span>
-              </span>
-              <span class="epkg__price">$30<small>/pp</small></span>
+              <span class="epkg__price">from $45<small>/pp</small></span>
             </label>
             <label class="epkg epkg--popular">
-              <input type="radio" name="food" value="mid-court" data-pp="40">
+              <input type="radio" name="food" value="signature-smash" data-pp2="55" data-pp3="75">
               <span class="epkg__body">
-                <span class="epkg__name">Mid-Court</span>
-                <span class="epkg__desc">Elevate your event with premium options.</span>
+                <span class="epkg__name">Signature Smash</span>
+                <span class="epkg__desc">Passed amuse, a reception display, an interactive station and dessert.</span>
               </span>
-              <span class="epkg__price">$40<small>/pp</small></span>
+              <span class="epkg__price">from $55<small>/pp</small></span>
             </label>
             <label class="epkg">
-              <input type="radio" name="food" value="the-eleveno" data-pp="50">
+              <input type="radio" name="food" value="luxe-celebration" data-pp2="65" data-pp3="85">
               <span class="epkg__body">
-                <span class="epkg__name">The ELEVENO</span>
-                <span class="epkg__desc">The ultimate culinary experience.</span>
+                <span class="epkg__name">Luxe Celebration</span>
+                <span class="epkg__desc">An elevated cocktail hour, two feature stations and a dessert finale.</span>
               </span>
-              <span class="epkg__price">$50<small>/pp</small></span>
+              <span class="epkg__price">from $65<small>/pp</small></span>
             </label>
           </div>
         </div>
@@ -244,34 +236,34 @@
           <h2 class="efield__h">Bar packages</h2>
           <div class="epkgs">
             <label class="epkg">
-              <input type="radio" name="beverage" value="courtside" data-pp="25" checked>
+              <input type="radio" name="beverage" value="courtside" data-pph="8" checked>
               <span class="epkg__body">
                 <span class="epkg__name">Courtside</span>
-                <span class="epkg__desc">Refreshing and approachable.</span>
+                <span class="epkg__desc">Beer, wine and soft drinks.</span>
               </span>
-              <span class="epkg__price">$25<small>/pp</small></span>
+              <span class="epkg__price">$8<small>/pp/hr</small></span>
             </label>
-            <label class="epkg">
-              <input type="radio" name="beverage" value="match-point" data-pp="35">
+            <label class="epkg epkg--popular">
+              <input type="radio" name="beverage" value="match-point" data-pph="11">
               <span class="epkg__body">
                 <span class="epkg__name">Match Point</span>
-                <span class="epkg__desc">The perfect balance for competition. House spirits.</span>
+                <span class="epkg__desc">Adds house spirits and cocktails.</span>
               </span>
-              <span class="epkg__price">$35<small>/pp</small></span>
+              <span class="epkg__price">$11<small>/pp/hr</small></span>
             </label>
             <label class="epkg">
-              <input type="radio" name="beverage" value="championship" data-pp="45">
+              <input type="radio" name="beverage" value="championship" data-pph="14">
               <span class="epkg__body">
                 <span class="epkg__name">Championship</span>
-                <span class="epkg__desc">Top-tier selection for winners. Premium spirits.</span>
+                <span class="epkg__desc">Premium spirits, top-shelf pours.</span>
               </span>
-              <span class="epkg__price">$45<small>/pp</small></span>
+              <span class="epkg__price">$14<small>/pp/hr</small></span>
             </label>
             <label class="epkg">
-              <input type="radio" name="beverage" value="drink-tickets" data-pp="">
+              <input type="radio" name="beverage" value="drink-tickets">
               <span class="epkg__body">
                 <span class="epkg__name">Drink Tickets</span>
-                <span class="epkg__desc">Pay per drink. Priced on inquiry.</span>
+                <span class="epkg__desc">Drink tickets or a consumption bar. Priced on inquiry.</span>
               </span>
               <span class="epkg__price">On inquiry</span>
             </label>
@@ -324,6 +316,21 @@
             <label class="echk">
               <input type="checkbox" name="addons" value="Full Venue Buyout">
               <span>Full Venue Buyout</span>
+            </label>
+          </div>
+          <div class="eaddg">
+            <p class="eaddg__h">Entertainment</p>
+            <label class="echk">
+              <input type="checkbox" name="addons" value="DJ &amp; Live Music">
+              <span>DJ &amp; Live Music</span>
+            </label>
+            <label class="echk">
+              <input type="checkbox" name="addons" value="Photos &amp; Video">
+              <span>Photos &amp; Video</span>
+            </label>
+            <label class="echk">
+              <input type="checkbox" name="addons" value="Glow Social Nights">
+              <span>Glow Social Nights</span>
             </label>
           </div>
           <div class="eaddg">

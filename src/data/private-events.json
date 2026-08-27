@@ -4,47 +4,47 @@
   "packages": [
     {
       "name": "Food Packages",
-      "lead": "ELEVENO offers four food packages:",
+      "lead": "Three tiers, priced per person by how long you have the room:",
       "items": [
         {
-          "name": "Baseline",
-          "price": "$30/pp"
+          "name": "Classic Social",
+          "desc": "Welcome bites, display station, featured station, sweet finish",
+          "price": "$45 / 2hr · $65 / 3hr"
         },
         {
-          "name": "Mid-Court",
-          "price": "$40/pp"
+          "name": "Signature Smash",
+          "desc": "Passed amuse, reception display, interactive station, dessert",
+          "price": "$55 / 2hr · $75 / 3hr"
         },
         {
-          "name": "The ELEVENO",
-          "price": "$50/pp"
-        },
-        {
-          "name": "Morning Serve",
-          "price": "$25/pp"
+          "name": "Luxe Celebration",
+          "desc": "Elevated cocktail hour, two feature stations, dessert finale",
+          "price": "$65 / 2hr · $85 / 3hr"
         }
       ],
-      "note": "All include Appetizers, Handhelds, Flatbreads and Dips, replenished for two hours."
+      "note": "All menus include court time, unlimited fountain sodas, coffee, tea and water. Per person, plus tax and service."
     },
     {
       "name": "Beverage Packages",
-      "lead": "Three packages are available:",
+      "lead": "Priced per person, per hour:",
       "items": [
         {
-          "name": "The Courtside",
-          "price": "from $25/pp · 2hrs"
+          "name": "Courtside",
+          "desc": "Beer, wine and soft drinks",
+          "price": "$8/pp per hour"
         },
         {
-          "name": "The Match Point",
-          "price": "from $35/pp · 2hrs",
-          "desc": "With House Spirits"
+          "name": "Match Point",
+          "desc": "With house spirits",
+          "price": "$11/pp per hour"
         },
         {
-          "name": "The Championship",
-          "price": "from $45/pp · 2hrs",
-          "desc": "With Premium Spirits"
+          "name": "Championship",
+          "desc": "With premium spirits",
+          "price": "$14/pp per hour"
         }
       ],
-      "note": "Drink tickets or a consumption bar are also available."
+      "note": "Drink tickets or a consumption bar are also available. Packages vary by event."
     }
   ],
   "upgrades": [

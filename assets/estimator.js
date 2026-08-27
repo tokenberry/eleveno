@@ -48,14 +48,27 @@
     return [].slice.call(form.querySelectorAll('input[name="swag"]:checked'));
   }
 
+  /* Duration is not decoration any more: it picks the food rate and multiplies
+     the bar. Falls back to 2 hours so a total is never computed against nothing. */
+  function hours() {
+    var d = picked('duration');
+    return d && d.dataset.hours ? Number(d.dataset.hours) : 2;
+  }
+
   function compute() {
     var guests = parseInt(form.querySelector('#e-guests').value, 10);
     if (!isFinite(guests) || guests < 1) guests = 0;
 
+    var hrs  = hours();
     var food = picked('food');
     var bev  = picked('beverage');
-    var foodPP = food && food.dataset.pp !== '' ? Number(food.dataset.pp) : null;
-    var bevPP  = bev  && bev.dataset.pp  !== '' ? Number(bev.dataset.pp)  : null;
+
+    /* No rate published for this duration — 4h+ has none — so there is nothing
+       honest to compute. Say "on inquiry" rather than inventing a number. */
+    var foodRate = food ? food.dataset['pp' + hrs] : undefined;
+    var foodPP = (foodRate === undefined || foodRate === '') ? null : Number(foodRate);
+    var bevPP  = (bev && bev.dataset.pph !== undefined && bev.dataset.pph !== '')
+      ? Number(bev.dataset.pph) * hrs : null;
     /* A package priced on inquiry has no number, so there is no honest total to
        show. Say so rather than quietly pricing it at zero. */
     var quoted = (food && foodPP === null) || (bev && bevPP === null);
@@ -65,6 +78,7 @@
 
     return {
       guests: guests,
+      hours: hrs,
       quoted: quoted,
       food: labelOf(food),
       beverage: labelOf(bev),
@@ -85,8 +99,23 @@
     });
   }
 
+  /* A food card's headline rate depends on the duration, so it cannot be static.
+     Without JavaScript it reads "from $45/pp"; with it, it says what this
+     booking actually costs. */
+  function paintFoodCards(hrs) {
+    [].forEach.call(form.querySelectorAll('input[name="food"]'), function (el) {
+      var cell = el.parentElement.querySelector('.epkg__price');
+      if (!cell) return;
+      var rate = el.dataset['pp' + hrs];
+      cell.innerHTML = (rate === undefined || rate === '')
+        ? 'On inquiry'
+        : '$' + rate + '<small>/pp</small>';
+    });
+  }
+
   function paint() {
     var c = compute();
+    paintFoodCards(c.hours);
     var type = picked('event-type');
     var dur  = picked('duration');
     var date = form.querySelector('#e-date').value;

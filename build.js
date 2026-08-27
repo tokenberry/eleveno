@@ -191,21 +191,40 @@ Object.assign(partners, escapeDeep(partners));
 /* The estimator quotes the same numbers the packages page publishes. Catch a
    drift between the two files at build time rather than in front of a customer. */
 (function checkEstimatorPrices() {
-  const published = {};
+  /* The estimator and the private events page publish the same numbers from the
+     2026 sales kit. Parse the published strings and hold the two in step, so a
+     price can never be changed in one place only. */
+  const pub = {};
   for (const grp of events.packages) {
-    for (const i of grp.items) {
-      const m = String(i.price).match(/\$(\d+)/);
-      if (m) published[i.name.toLowerCase().replace(/^the /, '')] = Number(m[1]);
+    for (const it of grp.items) {
+      const p = String(it.price);
+      const perHour = p.match(/\$(\d+)\/pp per hour/);
+      if (perHour) { pub[it.name.toLowerCase()] = { pph: Number(perHour[1]) }; continue; }
+      const byDur = [...p.matchAll(/\$(\d+)\s*\/\s*(\d)hr/g)];
+      if (byDur.length) {
+        const rates = {};
+        for (const m of byDur) rates[m[2]] = Number(m[1]);
+        pub[it.name.toLowerCase()] = { rates };
+      }
     }
   }
-  for (const kind of ['food', 'beverage']) {
-    for (const opt of estimator[kind]) {
-      if (opt.pp == null) continue;               // quoted on inquiry, nothing to check
-      const key = opt.label.toLowerCase().replace(/^the /, '');
-      if (!(key in published)) throw new Error(`estimator ${kind} "${opt.label}" is not in the published package list`);
-      if (published[key] !== opt.pp) {
-        throw new Error(`price drift: estimator has ${opt.label} at $${opt.pp}, the packages page says $${published[key]}`);
+
+  for (const opt of estimator.food) {
+    const key = opt.label.toLowerCase();
+    if (!pub[key] || !pub[key].rates) throw new Error(`estimator food "${opt.label}" has no published per-duration price on the private events page`);
+    for (const [hours, rate] of Object.entries(opt.rates)) {
+      if (pub[key].rates[hours] !== rate) {
+        throw new Error(`price drift: estimator has ${opt.label} at $${rate} for ${hours}hr, the private events page says $${pub[key].rates[hours]}`);
       }
+    }
+  }
+
+  for (const opt of estimator.beverage) {
+    if (opt.pph == null) continue;                 // quoted, nothing to check
+    const key = opt.label.toLowerCase();
+    if (!pub[key] || pub[key].pph == null) throw new Error(`estimator bar "${opt.label}" has no published hourly price on the private events page`);
+    if (pub[key].pph !== opt.pph) {
+      throw new Error(`price drift: estimator has ${opt.label} at $${opt.pph}/hr, the private events page says $${pub[key].pph}/hr`);
     }
   }
 })();
@@ -508,7 +527,7 @@ function renderCredits() {
    present at build time regardless. */
 function estCards(list, name, cls) {
   return list.map((o, i) => `            <label class="${cls}">
-              <input type="radio" name="${name}" value="${o.value}"${o.minGuests ? ` data-min="${o.minGuests}"` : ''}${i === 0 ? ' checked' : ''}>
+              <input type="radio" name="${name}" value="${o.value}"${o.minGuests ? ` data-min="${o.minGuests}"` : ''}${o.hours ? ` data-hours="${o.hours}"` : ''}${i === 0 ? ' checked' : ''}>
               <span>${o.label}</span>
             </label>`).join('\n');
 }
@@ -549,15 +568,36 @@ ${rows}
               </p>
             </div>`;
 }
+/* Food is priced per person by duration, the bar per person per hour, so the
+   card carries a rate per duration (data-pp2, data-pp3 …) or one hourly rate.
+   A duration the kit does not publish simply has no attribute, and the script
+   quotes rather than inventing a number. The visible price shows the shortest
+   booking so the card has something concrete on it; the live figure in the
+   sidebar is what actually reflects their choices. */
 function estPkgCards(list, name) {
-  return list.map((o, i) => `            <label class="epkg${o.popular ? ' epkg--popular' : ''}">
-              <input type="radio" name="${name}" value="${o.value}" data-pp="${o.pp == null ? '' : o.pp}"${i === 0 ? ' checked' : ''}>
+  return list.map((o, i) => {
+    let attrs = '', price;
+    if (o.rates) {
+      attrs = Object.entries(o.rates).map(([h, v]) => ` data-pp${h}="${v}"`).join('');
+      /* "from" because this is the shortest booking's rate — with JavaScript on,
+         the script rewrites it to the rate for the duration they actually chose. */
+      const low = Math.min(...Object.values(o.rates));
+      price = `from $${low}<small>/pp</small>`;
+    } else if (o.pph != null) {
+      attrs = ` data-pph="${o.pph}"`;
+      price = `$${o.pph}<small>/pp/hr</small>`;
+    } else {
+      price = 'On inquiry';
+    }
+    return `            <label class="epkg${o.popular ? ' epkg--popular' : ''}">
+              <input type="radio" name="${name}" value="${o.value}"${attrs}${i === 0 ? ' checked' : ''}>
               <span class="epkg__body">
                 <span class="epkg__name">${o.label}</span>
                 <span class="epkg__desc">${o.desc}</span>
               </span>
-              <span class="epkg__price">${o.pp == null ? 'On inquiry' : '$' + o.pp + '<small>/pp</small>'}</span>
-            </label>`).join('\n');
+              <span class="epkg__price">${price}</span>
+            </label>`;
+  }).join('\n');
 }
 function renderAddonGroups() {
   return estimator.addonGroups.map(g => `          <div class="eaddg">

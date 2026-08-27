@@ -1,5 +1,5 @@
 {
-  "_comment": "The Plan Your Event estimator. Prices here are the SAME numbers as the packages in private-events.json — that file is the customer-facing menu, this one drives the maths. Keep them in step; the build fails if a package name here has no match there.",
+  "_comment": "The Plan Your Event estimator. Numbers come from the 2026 Event Sales Kit and are the SAME ones published on the private events page — that file is the customer-facing menu, this one drives the maths. The build fails if they drift. Food is priced per person by DURATION; the bar is priced per person PER HOUR, so duration multiplies it. The kit publishes no 4h+ food rate, so that duration quotes rather than inventing one.",
   "intro": {
     "eyebrow": "PLAN YOUR EVENT",
     "heading": "Build your estimate",
@@ -41,9 +41,8 @@
       "label": "Tournament"
     },
     {
-      "value": "clinics",
-      "label": "Clinics",
-      "minGuests": 5
+      "value": "fundraiser",
+      "label": "Fundraiser"
     },
     {
       "value": "other",
@@ -67,15 +66,18 @@
   "durations": [
     {
       "value": "2",
-      "label": "2h"
+      "label": "2h",
+      "hours": 2
     },
     {
       "value": "3",
-      "label": "3h"
+      "label": "3h",
+      "hours": 3
     },
     {
       "value": "4",
-      "label": "4h+"
+      "label": "4h+",
+      "hours": 4
     }
   ],
   "experience": [
@@ -101,59 +103,63 @@
     "max": 300,
     "step": 1,
     "default": 20,
-    "_comment": "Floor for most events. An event type may set its own minGuests — a clinic runs with far fewer people than a buyout — and the estimator raises the count if you switch to a type that needs more."
+    "_comment": "Floor for every event type. An event type may still set its own minGuests."
   },
   "food": [
     {
-      "value": "morning-serve",
-      "label": "Morning Serve",
-      "pp": 25,
-      "desc": "Kickstart your day with a fresh selection."
+      "value": "classic-social",
+      "label": "Classic Social",
+      "rates": {
+        "2": 45,
+        "3": 65
+      },
+      "desc": "Welcome bites, a display station, a featured station and a sweet finish."
     },
     {
-      "value": "baseline",
-      "label": "Baseline",
-      "pp": 30,
-      "desc": "Solid choices for any gathering."
-    },
-    {
-      "value": "mid-court",
-      "label": "Mid-Court",
-      "pp": 40,
-      "desc": "Elevate your event with premium options.",
+      "value": "signature-smash",
+      "label": "Signature Smash",
+      "rates": {
+        "2": 55,
+        "3": 75
+      },
+      "desc": "Passed amuse, a reception display, an interactive station and dessert.",
       "popular": true
     },
     {
-      "value": "the-eleveno",
-      "label": "The ELEVENO",
-      "pp": 50,
-      "desc": "The ultimate culinary experience."
+      "value": "luxe-celebration",
+      "label": "Luxe Celebration",
+      "rates": {
+        "2": 65,
+        "3": 85
+      },
+      "desc": "An elevated cocktail hour, two feature stations and a dessert finale."
     }
   ],
   "beverage": [
     {
       "value": "courtside",
       "label": "Courtside",
-      "pp": 25,
-      "desc": "Refreshing and approachable."
+      "pph": 8,
+      "desc": "Beer, wine and soft drinks."
     },
     {
       "value": "match-point",
       "label": "Match Point",
-      "pp": 35,
-      "desc": "The perfect balance for competition. House spirits."
+      "pph": 11,
+      "desc": "Adds house spirits and cocktails.",
+      "popular": true
     },
     {
       "value": "championship",
       "label": "Championship",
-      "pp": 45,
-      "desc": "Top-tier selection for winners. Premium spirits."
+      "pph": 14,
+      "desc": "Premium spirits, top-shelf pours."
     },
     {
       "value": "drink-tickets",
       "label": "Drink Tickets",
-      "pp": null,
-      "desc": "Pay per drink. Priced on inquiry."
+      "pph": null,
+      "desc": "Drink tickets or a consumption bar. Priced on inquiry."
     }
   ],
   "addonGroups": [
@@ -181,6 +187,14 @@
       ]
     },
     {
+      "name": "Entertainment",
+      "items": [
+        "DJ & Live Music",
+        "Photos & Video",
+        "Glow Social Nights"
+      ]
+    },
+    {
       "name": "Pickleball extras",
       "items": [
         "Pro Coach / Host",
@@ -194,7 +208,7 @@
       ]
     }
   ],
-  "_pricing_comment": "guests x (food pp + beverage pp), then service on top. Verified against the original: 20 x ($30 + $25) = $1,100, +20% = $1,320. Add-ons carry no price — they are quoted, so the estimate stays honest rather than pretending to be a quote.",
+  "_pricing_comment": "guests x (food rate for the chosen duration + bar rate per hour x hours), then service on top. Checked against the kit's own worked example: 12 guests, 2 hours, Signature Smash and Courtside = 12 x ($55 + $16) = $852, +20% = $1,022, and the kit prints \"from ~$1,000\".",
   "servicePct": 20,
   "serviceLabel": "Tax & service (20%)",
   "addonsNote": "Add-ons are priced on inquiry and are not included in the figure above.",
