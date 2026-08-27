@@ -819,8 +819,16 @@ textarea.einput{resize:vertical;min-height:110px}
   letter-spacing:1px;text-transform:uppercase;color:var(--blue)}
 
 .coaches{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.coach{background:var(--cream);border-radius:16px;padding:26px 24px;display:flex;
-  flex-direction:column;gap:8px;border-bottom:4px solid var(--gold)}
+/* The padding moved to .coach__body so the headshot can run edge to edge;
+   overflow:hidden is what keeps it inside the rounded corner. */
+.coach{background:var(--cream);border-radius:16px;overflow:hidden;display:flex;
+  flex-direction:column;border-bottom:4px solid var(--gold)}
+/* One aspect for three photos shot at 0.67, 0.67 and 0.87 — cover crops each to
+   match. All three are centred headshots, so the faces survive a centre crop;
+   a coach whose does not can carry a `focus` in pickleball.json. */
+.coach__photo{background:var(--navy-deep)}
+.coach__photo img{display:block;width:100%;height:100%;object-fit:cover;aspect-ratio:4/5}
+.coach__body{padding:22px 24px 26px;display:flex;flex-direction:column;gap:8px;flex:1 1 auto}
 .coach__name{font-family:var(--display);font-size:26px;letter-spacing:1px;text-transform:uppercase;color:var(--navy)}
 .coach__spec{font-size:14.5px;line-height:1.6;color:var(--ink-soft);flex:1 1 auto}
 .coach__spec span{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:1.6px;

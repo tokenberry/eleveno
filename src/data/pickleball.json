@@ -28,15 +28,18 @@
   "coaches": [
     {
       "name": "Ryan P.",
-      "specialty": "Intermediate to advanced players, singles training."
+      "specialty": "Intermediate to advanced players, singles training.",
+      "photo": "ryan.jpg"
     },
     {
       "name": "Botum B.",
-      "specialty": "Taking anyone's game to the next level."
+      "specialty": "Taking anyone's game to the next level.",
+      "photo": "botum.jpg"
     },
     {
       "name": "Joe C.",
-      "specialty": "Beginner and low-intermediate coaching."
+      "specialty": "Beginner and low-intermediate coaching.",
+      "photo": "joe.jpg"
     }
   ],
   "faqHeading": "Top 3 FAQs",
@@ -70,5 +73,6 @@
       "body": "Yell \"Ball on court!\" and stop play immediately. Better to stop a good rally than have someone step on a ball and twist an ankle."
     }
   ],
-  "lessonsUrl": "https://eleveno.podplay.app/community/events?tag=Instructional"
+  "lessonsUrl": "https://eleveno.podplay.app/community/events?tag=Instructional",
+  "_coaches_comment": "photo is a filename in assets/coaches/. Optional — a coach with none renders without one rather than leaving a hole, so someone can go up before their headshot is taken."
 }

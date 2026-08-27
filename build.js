@@ -460,12 +460,28 @@ function renderPrograms() {
           </div>
         </article>`).join('\n');
 }
+/* A coach with no headshot yet renders without one rather than leaving a hole,
+   so someone can go up before their photo is taken. Dimensions come off the
+   file; the three we have are 0.67 and 0.87, and a hardcoded pair would be
+   wrong for at least one of them. */
 function renderCoaches() {
-  return pickleball.coaches.map(c => `          <article class="coach">
-            <p class="coach__name">${c.name}</p>
-            <p class="coach__spec"><span>Specializes in</span> ${c.specialty}</p>
-            <a class="coach__cta" href="${pickleball.lessonsUrl}">Book a lesson &rarr;</a>
-          </article>`).join('\n');
+  return pickleball.coaches.map(c => {
+    let photo = '';
+    if (c.photo) {
+      const s = imageSize(path.join('coaches', c.photo));
+      const focus = c.focus ? ` style="object-position:${c.focus}"` : '';
+      photo = `            <div class="coach__photo">\n`
+        + `              <img src="assets/coaches/${c.photo}" alt="${c.name}"`
+        + ` width="${s.w}" height="${s.h}"${focus} loading="lazy" decoding="async">\n`
+        + `            </div>\n`;
+    }
+    return `          <article class="coach">\n${photo}`
+      + `            <div class="coach__body">\n`
+      + `              <p class="coach__name">${c.name}</p>\n`
+      + `              <p class="coach__spec"><span>Specializes in</span> ${c.specialty}</p>\n`
+      + `              <a class="coach__cta" href="${pickleball.lessonsUrl}">Book a lesson &rarr;</a>\n`
+      + `            </div>\n          </article>`;
+  }).join('\n');
 }
 function renderFaqs() {
   return pickleball.faqs.map(f => `          <div class="faq">
