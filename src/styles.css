@@ -628,6 +628,14 @@ textarea.einput{resize:vertical;min-height:110px}
   letter-spacing:1.4px;text-transform:uppercase;padding:3px 9px;border-radius:4px}
 
 .eaddgs{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:26px}
+/* Spacing owned by the container, not by sibling adjacency. `.echk + .echk`
+   left a 0px gap wherever anything that is not a .echk sat between two
+   checkboxes, and the swag panel does exactly that — both when it is open and
+   when it is hidden, since the element is still in the sibling order. */
+.eaddg{display:flex;flex-direction:column;gap:10px}
+.eaddg .eaddg__h{margin-bottom:0}
+.eaddg .echk + .echk,
+.eaddg .eswag{margin-top:0}
 
 /* ---------- swag panel (the one priced add-on) ---------- */
 /* Ships visible and collapses under the script, like the wizard itself: with
