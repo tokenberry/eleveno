@@ -1,0 +1,11 @@
+{
+  "_comment": "The homepage partners strip. Each item needs a `name` — it is the image's alt text, and it renders as a wordmark when there is no logo file, so a partner can go up before their artwork arrives and nothing ever ships as a broken image. `logo` is a filename inside assets/partners/ (SVG or PNG). `url` is optional; with one the logo becomes a link.",
+  "eyebrow": "IN GOOD COMPANY",
+  "heading": "Our",
+  "headingAccent": "partners",
+  "lead": "Brands we are proud to work alongside.",
+  "items": [
+    { "name": "Custom Ink", "logo": "custom-ink.svg" },
+    { "name": "Intrasystems", "logo": "intrasystems.svg" }
+  ]
+}

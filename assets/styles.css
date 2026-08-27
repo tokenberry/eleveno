@@ -281,6 +281,37 @@ img{max-width:100%;height:auto}
 .garden__gallery div:nth-child(3){background-image:image-set(url('/.netlify/images?url=/assets/garden-crowd.jpg&w=600') 1x, url('/.netlify/images?url=/assets/garden-crowd.jpg&w=1200') 2x)}
 
 /* ---------- community ---------- */
+/* ---------- partners strip ---------- */
+
+/* White, not cream. Partner artwork is drawn for a white ground, and this sits
+   between the cream reviews band and the dark community photo, so the surface
+   change also does the work of separating the two. The navy top rule is the
+   same motif the memberships band uses. */
+.partners{background:#fff;padding:58px 0;border-top:3px solid var(--navy)}
+.partners .section-head{margin-bottom:30px}
+.partners .section-head h2{font-size:clamp(32px,4.4vw,50px)}
+/* gold on white is about 1.9:1 — the blue accent carries the same job legibly */
+.partners h2 span{color:var(--blue)}
+
+/* Wrapping and centred rather than a fixed grid, so nine logos and six logos
+   both land balanced and adding a partner never leaves a stranded row. */
+.plogos{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;
+  align-items:center;gap:20px 40px;max-width:1000px;margin:0 auto}
+/* A fixed box with contain is what keeps a tall square mark and a long
+   wordmark reading at the same weight. */
+.plogo{flex:0 0 auto;display:flex;align-items:center;justify-content:center;
+  width:170px;height:78px;padding:8px}
+.plogo img{max-height:100%;max-width:100%;width:auto}
+/* Capped narrow so a short list reads as a deliberate pair rather than two
+   marks stranded at opposite ends of a 1000px row. */
+.plogos--few{gap:24px 56px;max-width:660px}
+.plogos--few .plogo{width:260px;height:104px}
+.plogo__link{display:flex;align-items:center;justify-content:center;
+  width:100%;height:100%;transition:transform .18s ease}
+.plogo__link:hover{transform:translateY(-2px)}
+.plogo--word .plogo__word{font-family:var(--display);font-size:21px;letter-spacing:1px;
+  line-height:1.1;text-transform:uppercase;text-align:center;color:var(--navy);opacity:.5}
+
 .community{position:relative;min-height:480px;display:flex;align-items:flex-end;
   background-image:linear-gradient(0deg,rgba(10,26,58,.94) 0%,rgba(10,26,58,.35) 45%,rgba(10,26,58,.1) 100%),image-set(url('/.netlify/images?url=/assets/community-champs.jpg&w=1500') 1x, url('/.netlify/images?url=/assets/community-champs.jpg&w=2400') 2x);
   background-size:cover;background-position:center 20%;background-color:var(--navy-deep)}
@@ -1110,6 +1141,14 @@ textarea.einput{resize:vertical;min-height:110px}
   .community{background-image:linear-gradient(0deg,rgba(10,26,58,.94) 0%,rgba(10,26,58,.35) 45%,rgba(10,26,58,.1) 100%),image-set(url('/.netlify/images?url=/assets/community-champs.jpg&w=600') 1x, url('/.netlify/images?url=/assets/community-champs.jpg&w=1200') 2x)}
   .space__img--outdoor{background-image:image-set(url('/.netlify/images?url=/assets/community-champs.jpg&w=600') 1x, url('/.netlify/images?url=/assets/community-champs.jpg&w=1200') 2x)}
   .eat__img{background-image:image-set(url('/.netlify/images?url=/assets/social-beers.jpg&w=500') 1x, url('/.netlify/images?url=/assets/social-beers.jpg&w=1000') 2x)}
+  .partners{padding:56px 0}
+  .plogos{gap:14px 26px}
+  .plogo{width:130px;height:62px}
+  /* One per row on a phone. Side by side these fell to ~134px wide, which
+     turned the Intrasystems tagline into a grey smear. */
+  .plogos--few{gap:18px 34px}
+  .plogos--few .plogo{width:min(250px,74vw);height:92px}
+  .plogo--word .plogo__word{font-size:17px}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -1121,4 +1160,5 @@ textarea.einput{resize:vertical;min-height:110px}
   .reviews__set:not(:first-child){display:none}
   .reviews__set{padding-left:var(--pad)}
   .reviews__hint{display:none}
+  .plogo__link{transition:none}
 }
