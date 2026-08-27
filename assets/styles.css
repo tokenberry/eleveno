@@ -210,8 +210,33 @@ button,input,select,textarea{font-family:inherit}
 .playing{background:var(--surface);padding:80px 0;position:relative;overflow:hidden}
 .playing .shell{position:relative}
 .playing__mark{position:absolute;top:18px;right:-34px;width:190px;opacity:.16;transform:rotate(8deg);pointer-events:none}
+/* The eyebrow IS the heading now — there is no display-type title above the
+   rows any more, so it carries the section's name for the outline as well as
+   its look. Styled here rather than reusing .section-head, which would set it
+   in Anton at 64px and take a specificity fight to undo. */
 .playing .section-head{margin-bottom:36px}
 .playing .section-head h2{font-size:clamp(38px,6vw,64px)}
+.playing__head{text-align:center;margin-bottom:34px}
+.playing__h{font-family:var(--mono);font-size:13px;font-weight:400;letter-spacing:4px;
+  text-transform:uppercase;color:var(--blue)}
+
+/* The home page's strip sits on navy so it reads as its own band between two
+   light sections. The calendar page keeps the light treatment: its filter chips
+   and 26 rows are all drawn for a pale ground. */
+.playing--navy{background:var(--navy)}
+.playing--navy .playing__h{color:var(--gold)}
+.playing--navy .playing__mark{opacity:.09}
+.playing--navy .sched{border-top-color:#ffffff4d}
+.playing--navy .sched__row{border-bottom-color:#ffffff2e}
+.playing--navy .sched__row:last-child{border-bottom-color:#ffffff4d}
+.playing--navy .sched__what{color:var(--cream)}
+/* 150px wrapped the compound schedules onto two lines, same as the calendar */
+.playing--navy .sched__when{color:var(--blue-soft);width:186px;flex:0 0 186px}
+/* the blue button disappears against navy; gold is the site's call-to-action
+   on dark anyway */
+.playing--navy .sched__cta{background:var(--gold);color:var(--navy)}
+.playing--navy .playing__more a{color:var(--gold)}
+.playing--navy .sched__row--empty .sched__what{color:var(--on-navy-mute)}
 /* ---------- calendar: filter chips + grouped programme ---------- */
 /* Ships hidden and is revealed by the script, so with no JavaScript every
    panel is simply visible rather than a dead row of buttons. */
