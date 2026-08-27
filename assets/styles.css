@@ -58,7 +58,11 @@ img{max-width:100%;height:auto}
 /* ---------- buttons ---------- */
 .btn{display:inline-block;font-family:var(--display);letter-spacing:1px;text-transform:uppercase;font-size:18px;padding:16px 32px;border-radius:8px}
 .btn--gold{background:var(--gold);color:var(--navy)}
-.btn--ghost{border:2px solid var(--cream);color:var(--cream)}
+/* background:transparent is not redundant. These two set only a border and a
+   colour, which is fine on an <a> — but on a <button> the UA paints its own
+   buttonface grey underneath, and the Back button was pale blue on #efefef at
+   1.12:1. A "ghost" button has to say it is transparent. */
+.btn--ghost{background:transparent;border:2px solid var(--cream);color:var(--cream)}
 .btn--navy{background:var(--navy);color:var(--cream);font-size:16px;padding:14px 30px}
 .pill{display:inline-block;font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.5px;padding:14px 26px;border-radius:999px}
 .pill--gold{background:var(--gold);color:var(--navy)}
@@ -686,7 +690,7 @@ textarea.einput{resize:vertical;min-height:110px}
 
 .est__nav{display:flex;gap:12px;justify-content:space-between;margin-top:32px}
 .est__nav .btn{flex:0 0 auto}
-.btn--ghostnavy{border:2px solid var(--rule);color:var(--on-navy)}
+.btn--ghostnavy{background:transparent;border:2px solid var(--rule);color:var(--on-navy)}
 .est__next{margin-left:auto}
 .est__submit{width:100%;margin-top:26px}
 
