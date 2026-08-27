@@ -312,10 +312,17 @@ function imageSize(rel) {
     while (i < buf.length - 9) {
       if (buf[i] !== 0xFF) { i++; continue; }
       const m = buf[i + 1];
+      /* Standalone markers carry no length field. Treating them as if they did
+         reads two bytes of unrelated data as a segment length and walks the
+         pointer into the middle of the file — which is how a 2048px photo
+         reported itself as 25111x46430. */
+      if (m === 0xFF || m === 0x01 || (m >= 0xD0 && m <= 0xD9)) { i += 2; continue; }
       if (m >= 0xC0 && m <= 0xCF && m !== 0xC4 && m !== 0xC8 && m !== 0xCC) {
         return { h: buf.readUInt16BE(i + 5), w: buf.readUInt16BE(i + 7) };
       }
-      i += 2 + buf.readUInt16BE(i + 2);
+      const len = buf.readUInt16BE(i + 2);
+      if (len < 2) break;                       // malformed; stop rather than loop
+      i += 2 + len;
     }
   }
   /* WebP: a RIFF container whose dimensions live in the VP8 chunk, and the three
@@ -658,6 +665,69 @@ function renderStepDots() {
 }
 
 /* --- private events page fragments --- */
+
+/* The page rebuilt from the 2026 sales kit mockups. Every list below is data,
+   so copy and photos change in private-events.json rather than in markup. */
+function peNav(active) {
+  return events.nav.map(n => {
+    const on = n.hash === active ? ' pestep--on' : '';
+    return `        <a class="pestep${on}" href="#${n.hash}"><b>${n.n}</b> ${n.label}</a>`;
+  }).join('\n');
+}
+function pePillars() {
+  return events.hero.pillars.map(x => `          <article class="pepillar pepillar--${x.tone}">
+            <h3>${x.name}</h3>
+            <p>${x.body}</p>
+          </article>`).join('\n');
+}
+function peStats() {
+  return events.hero.stats.map(x => `          <p class="pestat"><span class="pestat__n pestat__n--${x.tone}">${x.n}</span><span class="pestat__l">${x.l}</span></p>`).join('\n');
+}
+function peSteps() {
+  return events.steps.items.map((x, i) => `          <article class="pecard${i === 0 ? ' pecard--on' : ''}">
+            <span class="pecard__n" aria-hidden="true">${i + 1}</span>
+            <p class="pecard__label">${x.label}</p>
+            <h3>${x.name}</h3>
+          </article>`).join('\n');
+}
+function pePerfectFor() {
+  return events.steps.perfectFor.map(x => `          <li>${x}</li>`).join('\n');
+}
+function peTiers() {
+  return events.foodSection.tiers.map(t => {
+    const size = imageSize(t.photo);
+    return `        <article class="petier${t.popular ? ' petier--popular' : ''}">
+          ${t.popular ? '<span class="petier__flag">Most Popular</span>\n          ' : ''}<img class="petier__img" src="assets/${t.photo}" alt="" width="${size.w}" height="${size.h}" loading="lazy" decoding="async">
+          <div class="petier__body">
+            <h3>${t.name}</h3>
+            <p class="petier__desc">${t.body}</p>
+            <p class="petier__price"><span class="petier__n petier__n--${t.tone}">${t.two}</span></p>
+            <p class="petier__dur">2HR &middot; <b>${t.three}</b> / 3HR</p>
+          </div>
+        </article>`;
+  }).join('\n');
+}
+function peGallery() {
+  const g = events.gallery;
+  const f = imageSize(g.feature.photo);
+  const feature = `        <figure class="peshot peshot--feature">
+          <img src="assets/${g.feature.photo}" alt="${g.feature.alt}" width="${f.w}" height="${f.h}" loading="lazy" decoding="async">
+          <figcaption>
+            <h3>${g.feature.tag}</h3>
+            <p>${g.feature.body}</p>
+          </figcaption>
+        </figure>`;
+  const tiles = g.tiles.map(t => {
+    const s = imageSize(t.photo);
+    return `        <figure class="peshot">
+          <img src="assets/${t.photo}" alt="${t.alt}" width="${s.w}" height="${s.h}" loading="lazy" decoding="async">
+          <figcaption class="peshot__tag peshot__tag--${t.tone}">${t.tag}</figcaption>
+        </figure>`;
+  }).join('\n');
+  return feature + '\n' + tiles;
+}
+
+
 /* The narrative sections below are generalised from a client proposal: they
    describe the shape of an evening and carry no prices, so they can never
    contradict the package list or the estimator. */
@@ -761,6 +831,8 @@ function renderMarquee() {
 const IMG_WIDTH = {
   /* the photo is 1280px wide, so 2x of a 640px slot is exactly the source */
   'hero-team.jpg': { w: 640, mobile: 430 },
+  /* the source is only 820px wide, so asking for more just gets 820 back */
+  'block-party.jpg': { w: 820, mobile: 430 },
   'community-champs.jpg': { w: 1500, mobile: 600 },
   'social-beers.jpg': { w: 1200, mobile: 500 },
   'courts-flag.jpg': 1000,
@@ -871,6 +943,16 @@ for (const f of pageFiles) {
     estBeverage: estPkgCards(estimator.beverage, 'beverage'),
     estAddons: renderAddonGroups(),
     estReceive: renderReceive(),
+    peNavSpace: peNav("space"),
+    peNavFood: peNav("food"),
+    peNavDrinks: peNav("drinks"),
+    peNavExtras: peNav("extras"),
+    pePillars: pePillars(),
+    peStats: peStats(),
+    peSteps: peSteps(),
+    pePerfectFor: pePerfectFor(),
+    peTiers: peTiers(),
+    peGallery: peGallery(),
     eventPackages: renderPackages(),
     eventUpgrades: renderUpgrades(),
     venueFeatures: renderVenueFeatures(),

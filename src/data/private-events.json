@@ -279,5 +279,182 @@
       }
     ],
     "note": "Priced per guest. Shirt sizes are collected with the RSVP, and mockups come to you for approval before anything goes to production."
+  },
+  "hero": {
+    "eyebrow": "PRIVATE EVENTS & BUYOUTS",
+    "heading": "Throw the party",
+    "headingAccent": "they'll talk about",
+    "lead": "Groups of 8 to full buyouts of 200+. Courts, kitchen, four bars and a beer garden — one venue, one contact, zero stress. Parking's on us.",
+    "pillars": [
+      {
+        "name": "World-Class Pickleball",
+        "body": "Fifteen championship courts, indoor and outdoor.",
+        "tone": "gold"
+      },
+      {
+        "name": "Exceptional Food & Drinks",
+        "body": "A full kitchen and four full-service bars.",
+        "tone": "blue"
+      },
+      {
+        "name": "Vibrant Social Scene",
+        "body": "Where competition sparks connection.",
+        "tone": "green"
+      }
+    ],
+    "stats": [
+      {
+        "n": "15",
+        "l": "COURTS",
+        "tone": "gold"
+      },
+      {
+        "n": "4",
+        "l": "FULL BARS",
+        "tone": "blue"
+      },
+      {
+        "n": "200+",
+        "l": "GUESTS",
+        "tone": "green"
+      },
+      {
+        "n": "1",
+        "l": "MIN TO GILLETTE",
+        "tone": "gold"
+      }
+    ]
+  },
+  "steps": {
+    "eyebrow": "CHOOSE YOUR SPACE",
+    "flag": "STEP ONE",
+    "heading": "Plan it in",
+    "headingAccent": "4 steps.",
+    "lead": "Corporate event, birthday blowout or private party — we handle every detail so you can focus on your guests. And on winning, obviously.",
+    "items": [
+      {
+        "label": "STEP ONE",
+        "name": "Choose your space"
+      },
+      {
+        "label": "STEP TWO",
+        "name": "Food & court time"
+      },
+      {
+        "label": "STEP THREE",
+        "name": "Beverage package"
+      },
+      {
+        "label": "STEP FOUR",
+        "name": "Add enhancements"
+      }
+    ],
+    "perfectForLabel": "PERFECT FOR",
+    "perfectFor": [
+      "Corporate Events",
+      "Holiday Parties",
+      "Birthdays",
+      "Networking",
+      "Fundraisers",
+      "Employee Appreciation",
+      "Sports Teams & Clubs"
+    ],
+    "ctaHeading": "Groups of 8 to 200+ — let's build yours.",
+    "ctaNote": "1 MIN TO GILLETTE · FREE PARKING"
+  },
+  "nav": [
+    {
+      "n": "1",
+      "label": "SPACE",
+      "hash": "space"
+    },
+    {
+      "n": "2",
+      "label": "FOOD",
+      "hash": "food"
+    },
+    {
+      "n": "3",
+      "label": "DRINKS",
+      "hash": "drinks"
+    },
+    {
+      "n": "4",
+      "label": "EXTRAS",
+      "hash": "extras"
+    }
+  ],
+  "foodSection": {
+    "eyebrow": "FOOD PACKAGES",
+    "heading": "Nobody plays",
+    "headingAccent": "hungry",
+    "badge": "New Lower 2026 Rates",
+    "lead": "All menus include court time and unlimited fountain sodas, coffee, tea & water stations. Per person, 2- or 3-hour options.",
+    "note": "PER PERSON · PLUS TAX & SERVICE",
+    "tiers": [
+      {
+        "name": "Classic Social",
+        "body": "Loaded baskets, flatbreads, wings & shareable favorites for every guest.",
+        "photo": "menu-tier1.jpg",
+        "two": "$45",
+        "three": "$65",
+        "tone": "gold"
+      },
+      {
+        "name": "Signature Smash",
+        "body": "Chef-crafted stations, charcuterie boards & elevated hot plates.",
+        "photo": "menu-tier2.jpg",
+        "two": "$55",
+        "three": "$75",
+        "tone": "gold",
+        "popular": true
+      },
+      {
+        "name": "Luxe Celebration",
+        "body": "Premium chef stations, carving & dessert for an unforgettable night.",
+        "photo": "menu-tier3.jpg",
+        "two": "$65",
+        "three": "$85",
+        "tone": "blue"
+      }
+    ]
+  },
+  "gallery": {
+    "eyebrow": "SOME OF OUR FAVORITE EVENTS",
+    "heading": "Join the",
+    "headingAccent": "party",
+    "note": "FROM 20-PERSON CELEBRATIONS TO 200-GUEST BUYOUTS · ASK US FOR REFERENCES FROM GROUPS LIKE YOURS",
+    "feature": {
+      "tag": "Book Launch & Toast",
+      "photo": "proof-toast.jpg",
+      "body": "A packed house raising a glass on center court.",
+      "alt": "Guests holding books at a launch party on the ELEVENO courts"
+    },
+    "tiles": [
+      {
+        "tag": "Champagne Night",
+        "photo": "proof-taittinger.jpg",
+        "tone": "gold",
+        "alt": "A large group gathered under the ELEVENO sign at a Champagne Taittinger evening"
+      },
+      {
+        "tag": "Corporate Offsite",
+        "photo": "proof-corporate.jpg",
+        "tone": "blue",
+        "alt": "Banquet tables laid out across a court for a corporate offsite"
+      },
+      {
+        "tag": "Networking Night",
+        "photo": "proof-bar.jpg",
+        "tone": "gold",
+        "alt": "Guests talking around the bar at a networking evening"
+      },
+      {
+        "tag": "School & Youth",
+        "photo": "proof-school.jpg",
+        "tone": "blue",
+        "alt": "A school team lined up on court in matching kit"
+      }
+    ]
   }
 }

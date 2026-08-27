@@ -4,153 +4,131 @@
   "description": "Play first, then feast. Private courts, pros on the floor, a room of your own and one all-in rate per guest — corporate outings, birthdays and team building at ELEVENO in Foxborough, MA."
 }
 -->
-<main>
+<main class="pe">
 
-  <!-- ===================== PAGE HEADER ===================== -->
-  <section class="phero">
-    <img class="phero__mark" src="assets/mark-v-only.png" alt="" aria-hidden="true" width="700" height="680">
-    <div class="shell">
-      <p class="eyebrow eyebrow--gold">PRIVATE EVENTS &amp; BUYOUTS</p>
-      <h1>Game on. <span>Then feast.</span></h1>
-      <p class="phero__lead">{{events.intro}}</p>
-      <div class="phero__actions">
-        <a class="btn btn--gold" href="plan-your-event.html">Build your estimate</a>
-        <a class="btn btn--ghost" href="#inquire">Just ask us</a>
+  <!-- ===================== HERO ===================== -->
+  <section class="pehero" id="space">
+    <div class="pehero__nav" aria-label="How planning works">
+{{peNavSpace}}
+    </div>
+    <div class="shell pehero__grid">
+      <div class="pehero__copy">
+        <p class="eyebrow eyebrow--gold">{{events.hero.eyebrow}}</p>
+        <h1>{{events.hero.heading}} <span>{{events.hero.headingAccent}}</span></h1>
+      </div>
+      <div class="pepillars">
+{{pePillars}}
+      </div>
+    </div>
+    <div class="shell pehero__foot">
+      <p class="pehero__lead">{{events.hero.lead}}</p>
+      <div class="pestats">
+{{peStats}}
       </div>
     </div>
   </section>
 
-  <!-- ===================== THE EVENING ===================== -->
-  <section class="band band--soft" aria-labelledby="evening-h">
+  <!-- ===================== FOUR STEPS ===================== -->
+  <section class="peplan" aria-labelledby="plan-h">
     <div class="shell">
-      <div class="section-head">
-        <p class="eyebrow">{{events.evening.eyebrow}}</p>
-        <h2 id="evening-h">{{events.evening.heading}} <span>{{events.evening.headingAccent}}</span></h2>
-        <p class="section-head__lead">{{events.evening.lead}}</p>
+      <div class="peplan__head">
+        <p class="peplan__kicker"><span class="peflag">{{events.steps.flag}}</span> {{events.steps.eyebrow}}</p>
+        <h2 id="plan-h">{{events.steps.heading}} <span>{{events.steps.headingAccent}}</span></h2>
+        <p class="peplan__lead">{{events.steps.lead}}</p>
       </div>
-      <div class="acts">
-{{acts}}
+      <div class="pecards">
+{{peSteps}}
+      </div>
+      <div class="peperfect">
+        <p class="peperfect__label">{{events.steps.perfectForLabel}} &rarr;</p>
+        <ul class="peperfect__list">
+{{pePerfectFor}}
+        </ul>
+      </div>
+    </div>
+    <div class="shell">
+      <div class="peband">
+        <h2 class="peband__h">{{events.steps.ctaHeading}}</h2>
+        <p class="peband__note">{{events.steps.ctaNote}}</p>
+        <div class="peband__actions">
+          <a class="btn btn--navy" href="plan-your-event.html">Build your estimate &rarr;</a>
+          <a class="peband__alt" href="#inquire">Book a call</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== RUN OF SHOW ===================== -->
-  <section class="band band--navy" aria-labelledby="ros-h">
-    <div class="shell">
-      <div class="section-head">
-        <p class="eyebrow eyebrow--gold">{{events.runOfShow.eyebrow}}</p>
-        <h2 id="ros-h">{{events.runOfShow.heading}}</h2>
-        <p class="section-head__lead">{{events.runOfShow.lead}}</p>
-      </div>
-      <ol class="roslist">
-{{runOfShow}}
-      </ol>
+  <!-- ===================== FOOD ===================== -->
+  <section class="pefood" id="food" aria-labelledby="food-h">
+    <div class="pehero__nav pehero__nav--inline" aria-hidden="true">
+{{peNavFood}}
     </div>
-  </section>
-
-  <!-- ===================== SAMPLE MENU ===================== -->
-  <section class="band" aria-labelledby="smenu-h">
     <div class="shell">
-      <div class="section-head">
-        <p class="eyebrow">{{events.sampleMenu.eyebrow}}</p>
-        <h2 id="smenu-h">{{events.sampleMenu.heading}}</h2>
-        <p class="section-head__lead">{{events.sampleMenu.lead}}</p>
+      <div class="pefood__head">
+        <div>
+          <p class="eyebrow">{{events.foodSection.eyebrow}}</p>
+          <h2 id="food-h">{{events.foodSection.heading}} <span>{{events.foodSection.headingAccent}}</span></h2>
+          <p class="pefood__lead">{{events.foodSection.lead}}</p>
+        </div>
+        <p class="pebadge">&#9733; {{events.foodSection.badge}}</p>
       </div>
-      <div class="smenus">
-{{sampleMenu}}
+      <div class="petiers">
+{{peTiers}}
       </div>
-      <p class="finecopy">{{events.sampleMenu.note}}</p>
+      <p class="pefood__note"><span>{{events.foodSection.note}}</span><span><a href="mailto:{{eventsEmail}}">{{eventsEmail}}</a> &middot; <a href="tel:{{phoneHref}}">{{phone}}</a></span></p>
     </div>
   </section>
 
   <!-- ===================== DRINKS ===================== -->
-  <section class="drinksband" aria-labelledby="drinks-h">
-    <div class="shell">
-      <div>
-        <p class="eyebrow eyebrow--gold">{{events.drinks.eyebrow}}</p>
-        <h2 id="drinks-h">{{events.drinks.heading}} <span>{{events.drinks.headingAccent}}</span></h2>
-        <p class="drinksband__body">{{events.drinks.body}}</p>
-        <p class="drinksband__note">{{events.drinks.note}}</p>
-      </div>
+  <section class="pedrinks" id="drinks" aria-labelledby="drinks-h">
+    <div class="pehero__nav pehero__nav--inline" aria-hidden="true">
+{{peNavDrinks}}
     </div>
-  </section>
-
-  <!-- ===================== THE SPACE ===================== -->
-  <section class="band band--soft" aria-labelledby="space-h">
     <div class="shell">
-      <div class="section-head">
-        <p class="eyebrow">{{events.space.eyebrow}}</p>
-        <h2 id="space-h">{{events.space.heading}}</h2>
-      </div>
-      <div class="spcs">
-{{spaceItems}}
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== PACKAGES ===================== -->
-  <section class="band" id="packages" aria-labelledby="pkgs-h">
-    <div class="shell">
-      <div class="section-head">
-        <p class="eyebrow">PRICED PER PERSON</p>
-        <h2 id="pkgs-h">Packages</h2>
-        <p class="section-head__lead">Pick a food package and a bar package. That is the whole price — court time is included, and the estimator will do the arithmetic for you.</p>
-      </div>
-      <div class="pkgshots" aria-hidden="true">
-        <div></div><div></div><div></div>
+      <div class="pefood__head">
+        <div>
+          <p class="eyebrow eyebrow--gold">{{events.drinks.eyebrow}}</p>
+          <h2 id="drinks-h">{{events.drinks.heading}} <span>{{events.drinks.headingAccent}}</span></h2>
+          <p class="pedrinks__lead">{{events.drinks.body}}</p>
+        </div>
       </div>
       <div class="pkgs">
 {{eventPackages}}
       </div>
+      <p class="pefood__note"><span>{{events.drinks.note}}</span></p>
+    </div>
+  </section>
+
+  <!-- ===================== ENHANCEMENTS ===================== -->
+  <section class="peextras" id="extras" aria-labelledby="extras-h">
+    <div class="pehero__nav pehero__nav--inline" aria-hidden="true">
+{{peNavExtras}}
+    </div>
+    <div class="shell">
+      <div class="pefood__head">
+        <div>
+          <p class="eyebrow eyebrow--gold">MAKE IT UNFORGETTABLE</p>
+          <h2 id="extras-h">Add <span>enhancements</span></h2>
+        </div>
+      </div>
       <div class="upgrades">
 {{eventUpgrades}}
       </div>
-      <p class="finecopy">All packages include court time. Prices are per person and exclude state sales tax and service fees.</p>
-      <p class="section-cta"><a class="btn btn--navy" href="plan-your-event.html">Build your estimate &rarr;</a></p>
+      <p class="section-cta"><a class="btn btn--gold" href="plan-your-event.html">Build your estimate &rarr;</a></p>
     </div>
   </section>
 
-  <!-- ===================== THE PROS ===================== -->
-  <section class="band band--navy" aria-labelledby="pros-h">
+  <!-- ===================== GALLERY ===================== -->
+  <section class="pegal" aria-labelledby="gal-h">
     <div class="shell">
-      <div class="section-head">
-        <p class="eyebrow eyebrow--gold">{{events.pros.eyebrow}}</p>
-        <h2 id="pros-h">{{events.pros.heading}}</h2>
+      <div class="pegal__head">
+        <p class="eyebrow eyebrow--gold">{{events.gallery.eyebrow}}</p>
+        <h2 id="gal-h">{{events.gallery.heading}} <span>{{events.gallery.headingAccent}}</span></h2>
       </div>
-      <div class="prosband">
-        <p class="prosband__body">{{events.pros.body}}</p>
-        <p class="prosband__note">{{events.pros.note}}</p>
+      <div class="peshots">
+{{peGallery}}
       </div>
-    </div>
-  </section>
-
-  <!-- ===================== SWAG ===================== -->
-  <section class="band band--soft" aria-labelledby="swag-h">
-    <div class="shell">
-      <div class="section-head">
-        <p class="eyebrow">{{events.swag.eyebrow}}</p>
-        <h2 id="swag-h">{{events.swag.heading}}</h2>
-        <p class="section-head__lead">{{events.swag.lead}}</p>
-      </div>
-      <div class="swags">
-{{swagItems}}
-      </div>
-      <p class="finecopy">{{events.swag.note}}</p>
-    </div>
-  </section>
-
-  <!-- ===================== VENUE ===================== -->
-  <section class="venue" id="venue" aria-labelledby="venue-h">
-    <div class="shell">
-      <div class="venue__img" role="img" aria-label="A court at ELEVENO set with round banquet tables for a private event"></div>
-      <div>
-        <h2 id="venue-h">{{events.venue.heading}} <span>{{events.venue.headingAccent}}</span></h2>
-        <p class="venue__body">{{events.venue.body}}</p>
-        <ul class="venue__features">
-{{venueFeatures}}
-        </ul>
-        <p class="venue__cta"><a class="btn btn--navy" href="#inquire">Inquire today</a></p>
-      </div>
+      <p class="pegal__note">{{events.gallery.note}}</p>
     </div>
   </section>
 
