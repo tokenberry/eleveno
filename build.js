@@ -465,10 +465,34 @@ function renderMenu(menu) {
           </li>`;
   };
 
+  /* A drink with a photo gets a card; the text list is unchanged for everything
+     else. Switching on the data rather than a flag means the cocktails page
+     turns into a picture menu the moment the photos land, and the food menu —
+     which has none — never changes shape. */
+  const card = i => {
+    /* A section only needs one photo to become a picture menu, so a card may
+       well arrive without one. Dropping the <img> keeps that item in the grid
+       instead of asking imageSize for the dimensions of undefined. */
+    const size = i.photo ? imageSize(i.photo) : null;
+    const img = size
+      ? `<img class="menu-card__img" src="assets/${i.photo}" alt="" width="${size.w}" height="${size.h}" loading="lazy" decoding="async">`
+      : '';
+    return `          <li class="menu-card">
+            ${img}
+            <div class="menu-card__body">
+              <p class="menu-card__name">${i.name}${badges(i.diet)}</p>
+              ${i.desc ? `<p class="menu-card__desc">${i.desc}</p>` : ''}
+              ${i.price ? `<p class="menu-card__price">${i.price}</p>` : ''}
+            </div>
+          </li>`;
+  };
+
   const body = sec => {
     const out = [];
     if (sec.lead) out.push(`        <p class="menu-sec__lead">${sec.lead}</p>`);
-    if (sec.items) out.push(`        <ul class="menu-list">\n${sec.items.map(item).join('\n')}\n        </ul>`);
+    if (sec.items && sec.items.some(i => i.photo)) {
+      out.push(`        <ul class="menu-cards">\n${sec.items.map(card).join('\n')}\n        </ul>`);
+    } else if (sec.items) out.push(`        <ul class="menu-list">\n${sec.items.map(item).join('\n')}\n        </ul>`);
     for (const g of sec.groups || []) {
       out.push(`        <p class="menu-group">${g.name}</p>`);
       out.push(`        <ul class="menu-list">\n${g.items.map(item).join('\n')}\n        </ul>`);
