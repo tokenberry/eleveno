@@ -198,12 +198,12 @@
   "estimateDisclaimer": "A preliminary estimate based on your selections. Final pricing depends on your catering choices and the date.",
   "receive": [
     {
-      "name": "A written summary",
-      "body": "Your selections, the estimate and what is included, sent to the address you give us."
+      "name": "A real person picks it up",
+      "body": "One of our events team reviews your estimate and comes back to you within one business day."
     },
     {
-      "name": "A real coordinator",
-      "body": "One of our events team reviews your estimate and comes back to you within one business day."
+      "name": "Your numbers come with it",
+      "body": "Everything you picked and the figure you saw arrive alongside your enquiry, so nobody asks you to repeat yourself."
     },
     {
       "name": "Menu changes welcome",
@@ -213,5 +213,6 @@
       "name": "First refusal on your date",
       "body": "Sending this puts your preferred date at the front of the queue while we review it."
     }
-  ]
+  ],
+  "_receive_comment": "Describe only what happens on its own. The site is static with no backend, so it cannot email anyone a summary — an earlier version promised one and that promise depended entirely on a human remembering."
 }
