@@ -7,6 +7,8 @@
   "badgeValue": "24h",
   "badgeLabel": "Response time",
   "submitLabel": "Send message",
-  "photo": "community-champs.jpg",
-  "photoAlt": "Players celebrating together at ELEVENO"
+  "photo": "ask-courtside.jpg",
+  "photoAlt": "An ELEVENO member with her paddle beside the indoor courts, the bar behind her",
+  "photoFocus": "40% 50%",
+  "_photoFocus_comment": "Where to centre the 4:5 crop. The frame is landscape and the slot is portrait, so about half the width is discarded; she stands at ~45% of the source, and a plain centre crop left her off to one side. Belongs with the photo — change one, re-check the other."
 }

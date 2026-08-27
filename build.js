@@ -294,21 +294,34 @@ function renderReviewTrack() {
    the strip reflows as each logo decodes — nine of them, right above the fold
    of the community band. PNG and SVG cover everything we have; anything else
    ships without the attributes rather than guessing wrong. */
-function logoSize(file) {
-  const abs = path.join(ROOT, 'assets', 'partners', file);
-  if (!fs.existsSync(abs)) throw new Error(
-    `partners.json points at assets/partners/${file}, which does not exist`);
+function imageSize(rel) {
+  const abs = path.join(ROOT, 'assets', rel);
+  if (!fs.existsSync(abs)) throw new Error(`assets/${rel} does not exist`);
   const buf = fs.readFileSync(abs);
   if (buf.slice(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]))) {
     return { w: buf.readUInt32BE(16), h: buf.readUInt32BE(20) };
   }
-  if (/\.svg$/i.test(file)) {
+  /* JPEG: walk the segment chain to the start-of-frame, which is the only
+     place the real pixel dimensions live. */
+  if (buf[0] === 0xFF && buf[1] === 0xD8) {
+    let i = 2;
+    while (i < buf.length - 9) {
+      if (buf[i] !== 0xFF) { i++; continue; }
+      const m = buf[i + 1];
+      if (m >= 0xC0 && m <= 0xCF && m !== 0xC4 && m !== 0xC8 && m !== 0xCC) {
+        return { h: buf.readUInt16BE(i + 5), w: buf.readUInt16BE(i + 7) };
+      }
+      i += 2 + buf.readUInt16BE(i + 2);
+    }
+  }
+  if (/\.svg$/i.test(rel)) {
     const head = buf.toString('utf8', 0, 2000);
     const box = head.match(/viewBox\s*=\s*["']\s*[-\d.]+\s+[-\d.]+\s+([\d.]+)\s+([\d.]+)/i);
     if (box) return { w: Math.round(+box[1]), h: Math.round(+box[2]) };
   }
   return null;
 }
+function logoSize(file) { return imageSize(path.join('partners', file)); }
 
 /* A partner with no artwork yet renders as a wordmark rather than a gap, so
    the strip is never waiting on a file to look finished. */
@@ -795,6 +808,10 @@ for (const f of pageFiles) {
     hoursRows: renderHours(),
     ask,
     askBadge: renderAskBadge(),
+    /* read off the file: the markup used to hardcode 1200x1400, which was wrong
+       for the photo that was there and wrong again for the one that replaced it */
+    askPhotoW: imageSize(ask.photo).w,
+    askPhotoH: imageSize(ask.photo).h,
     viewAllUrl: calendar.viewAllUrl || site.bookingUrl,
     ...meta,
     // sensible derivations so each page's meta block stays to the essentials
