@@ -92,12 +92,18 @@ img{max-width:100%;height:auto}
    section. */
 .hero{position:relative;min-height:660px;display:flex;align-items:center;
   overflow:hidden;background:var(--navy)}
+/* Mirrored on request, so the taller of the two lands on the right. Done with
+   a transform rather than a flipped file: no re-encode, and og:image still
+   points at the unmirrored original, so the share card keeps ELEVENO readable. */
 .hero__photo{position:absolute;top:0;right:0;bottom:0;width:44%;
-  background-image:image-set(url('/.netlify/images?url=/assets/hero-team.jpg&w=640') 1x, url('/.netlify/images?url=/assets/hero-team.jpg&w=1280') 2x);background-size:cover;background-position:center 22%}
+  background-image:image-set(url('/.netlify/images?url=/assets/hero-team.jpg&w=640') 1x, url('/.netlify/images?url=/assets/hero-team.jpg&w=1280') 2x);background-size:cover;background-position:center 22%;
+  transform:scaleX(-1)}
 /* feathers the photo into the navy so the two do not meet on a hard vertical
    seam down the middle of the page */
-.hero__photo::after{content:'';position:absolute;inset:0;
-  background:linear-gradient(90deg,var(--navy) 0%,rgba(14,35,80,.55) 16%,rgba(14,35,80,.06) 48%,rgba(14,35,80,0) 100%)}
+/* 270deg, not 90: the parent is mirrored, so a gradient authored dark-on-the-
+   right is what actually paints dark on the left, against the copy. */
+.hero__photo::after{content:'';position:absolute;inset:-1px;
+  background:linear-gradient(270deg,var(--navy) 0%,rgba(14,35,80,.55) 16%,rgba(14,35,80,.06) 48%,rgba(14,35,80,0) 100%)}
 .hero__inner{position:relative;z-index:1;padding-top:64px;padding-bottom:120px}
 @media (max-width:860px){
   /* Photo above the copy rather than beside it. Positioned high in the frame
