@@ -661,7 +661,8 @@ function renderMarquee() {
    needs 58 KB. Reach for the mobile variant from source CSS by writing
    url('name.jpg@mobile') inside a max-width media query. */
 const IMG_WIDTH = {
-  'hero-net.jpg': { w: 1600, mobile: 600 },
+  /* the photo is 1280px wide, so 2x of a 640px slot is exactly the source */
+  'hero-team.jpg': { w: 640, mobile: 430 },
   'community-champs.jpg': { w: 1500, mobile: 600 },
   'social-beers.jpg': { w: 1200, mobile: 500 },
   'courts-flag.jpg': 1000,
@@ -801,7 +802,7 @@ for (const f of pageFiles) {
     ogTitle: meta.ogTitle || meta.title,
     ogDescription: meta.ogDescription || meta.description,
     // Open Graph needs an absolute URL — a relative one yields no preview image
-    ogImage: meta.ogImage || site.baseUrl + 'assets/hero-net.jpg',
+    ogImage: meta.ogImage || site.baseUrl + 'assets/hero-team.jpg',
     // pages that exist only as a destination (form confirmations) stay out of
     // search results but still pass link equity through
     robots: meta.noindex ? 'noindex, follow' : 'index, follow',
