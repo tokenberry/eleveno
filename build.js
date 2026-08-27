@@ -188,6 +188,23 @@ Object.assign(estimator, escapeDeep(estimator));
 assertNoEntities('partners', partners);
 Object.assign(partners, escapeDeep(partners));
 
+/* The schedule's time column is a fixed width, so a long "when" wraps onto a
+   second line and breaks the alignment down the whole list. Space Mono is
+   monospaced, so the character count predicts the width exactly: at 15px each
+   glyph advances 9.18px, and the 292px column holds 31 before it spills.
+   Failing the build is better than shipping a ragged column nobody notices. */
+(function checkScheduleWhen() {
+  const CHARS = 31;
+  const over = (calendar.events || [])
+    .filter(e => [...(e.when || '')].length > CHARS)
+    .map(e => `  "${e.when}" is ${[...e.when].length} characters (${e.title})`);
+  if (over.length) {
+    throw new Error(`schedule "when" too long for the ${CHARS}-character time column:\n`
+      + over.join('\n')
+      + `\nShorten it, or widen .sched__when in src/styles.css and raise CHARS to match.`);
+  }
+})();
+
 /* The estimator quotes the same numbers the packages page publishes. Catch a
    drift between the two files at build time rather than in front of a customer. */
 (function checkEstimatorPrices() {
