@@ -520,6 +520,17 @@ function renderPrograms() {
    so someone can go up before their photo is taken. Dimensions come off the
    file; the three we have are 0.67 and 0.87, and a hardcoded pair would be
    wrong for at least one of them. */
+/* A full-bleed pair between two content sections — a breath, not a gallery, so
+   it carries no captions. The photos are described rather than hidden: they
+   show the courts and the gear, which is worth having if you cannot see them. */
+function renderStrip() {
+  return (pickleball.strip || []).map(x => {
+    const size = imageSize(x.photo);
+    return `      <img class="pstrip__img" src="assets/${x.photo}" alt="${x.alt}"`
+      + ` width="${size.w}" height="${size.h}" loading="lazy" decoding="async">`;
+  }).join('\n');
+}
+
 function renderCoaches() {
   return pickleball.coaches.map(c => {
     let photo = '';
@@ -924,6 +935,7 @@ for (const f of pageFiles) {
     events,
     pickleball,
     programs: renderPrograms(),
+    pickleballStrip: renderStrip(),
     coaches: renderCoaches(),
     faqs: renderFaqs(),
     etiquette: renderEtiquette(),

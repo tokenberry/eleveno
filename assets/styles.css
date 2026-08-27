@@ -1460,3 +1460,13 @@ textarea.einput{resize:vertical;min-height:110px}
   .peband{padding:22px 20px}
   .pehero__lead{font-size:15.5px}
 }
+
+/* --- pickleball image strip --- */
+/* Full bleed and flush: the two photos meet in the middle and run to both
+   edges, so the band reads as one image rather than two cards. */
+.pstrip{display:grid;grid-template-columns:1fr 1fr;background:var(--navy-deep)}
+.pstrip__img{display:block;width:100%;height:100%;object-fit:cover;aspect-ratio:16/9}
+@media (max-width:700px){
+  .pstrip{grid-template-columns:1fr}
+  .pstrip__img{aspect-ratio:16/10}
+}

@@ -23,6 +23,16 @@
       "ctaUrl": "https://eleveno.podplay.app/community/events?tag=Instructional"
     }
   ],
+  "strip": [
+    {
+      "photo": "strip-paddles.jpg",
+      "alt": "A Patriots-branded paddle resting in a basket of balls courtside"
+    },
+    {
+      "photo": "strip-net.jpg",
+      "alt": "Four players meeting at the net on an outdoor court"
+    }
+  ],
   "coachesHeading": "Meet our coaches",
   "coachesLead": "Every one of them will happily take a complete beginner. Ask at the front desk and we will match you.",
   "coaches": [
