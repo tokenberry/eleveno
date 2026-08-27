@@ -5,7 +5,30 @@
   "headingAccent": "partners",
   "lead": "Brands we are proud to work alongside.",
   "items": [
-    { "name": "Custom Ink", "logo": "custom-ink.svg" },
-    { "name": "Intrasystems", "logo": "intrasystems.svg" }
-  ]
+    {
+      "name": "Franklin",
+      "logo": "franklin.webp"
+    },
+    {
+      "name": "Patriot Place",
+      "logo": "patriot-place.webp"
+    },
+    {
+      "name": "Pepsi",
+      "logo": "pepsi.jpg"
+    },
+    {
+      "name": "University Orthopedics",
+      "logo": "university-orthopedics.png"
+    },
+    {
+      "name": "Custom Ink",
+      "logo": "custom-ink.svg"
+    },
+    {
+      "name": "Intrasystems",
+      "logo": "intrasystems.svg"
+    }
+  ],
+  "_order_comment": "Rendered in the order listed — reorder here to change what leads the strip."
 }

@@ -318,6 +318,18 @@ function imageSize(rel) {
       i += 2 + buf.readUInt16BE(i + 2);
     }
   }
+  /* WebP: a RIFF container whose dimensions live in the VP8 chunk, and the three
+     variants store them three different ways. Without this a .webp logo renders
+     with no width/height and shifts the row as it decodes. */
+  if (buf.toString('ascii', 0, 4) === 'RIFF' && buf.toString('ascii', 8, 12) === 'WEBP') {
+    const chunk = buf.toString('ascii', 12, 16);
+    if (chunk === 'VP8 ') return { w: buf.readUInt16LE(26) & 0x3fff, h: buf.readUInt16LE(28) & 0x3fff };
+    if (chunk === 'VP8L') {
+      const bits = buf.readUInt32LE(21);
+      return { w: (bits & 0x3fff) + 1, h: ((bits >> 14) & 0x3fff) + 1 };
+    }
+    if (chunk === 'VP8X') return { w: buf.readUIntLE(24, 3) + 1, h: buf.readUIntLE(27, 3) + 1 };
+  }
   if (/\.svg$/i.test(rel)) {
     const head = buf.toString('utf8', 0, 2000);
     const box = head.match(/viewBox\s*=\s*["']\s*[-\d.]+\s+[-\d.]+\s+([\d.]+)\s+([\d.]+)/i);

@@ -379,12 +379,15 @@ button,input,select,textarea{font-family:inherit}
 
 /* Wrapping and centred rather than a fixed grid, so nine logos and six logos
    both land balanced and adding a partner never leaves a stranded row. */
+/* Sized so six sit on one line inside the 1176px shell — 6x158 + 5x30 = 1098.
+   At 1000px and a 40px gap they broke 4 + 2, which leaves a widow row. Narrower
+   screens still wrap on their own. */
 .plogos{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;
-  align-items:center;gap:20px 40px;max-width:1000px;margin:0 auto}
+  align-items:center;gap:22px 30px;max-width:1120px;margin:0 auto}
 /* A fixed box with contain is what keeps a tall square mark and a long
    wordmark reading at the same weight. */
 .plogo{flex:0 0 auto;display:flex;align-items:center;justify-content:center;
-  width:170px;height:78px;padding:8px}
+  width:158px;height:78px;padding:8px}
 .plogo img{max-height:100%;max-width:100%;width:auto}
 /* Capped narrow so a short list reads as a deliberate pair rather than two
    marks stranded at opposite ends of a 1000px row. */
