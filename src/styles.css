@@ -39,6 +39,11 @@ a:hover{opacity:.85}
    stability, and without this the attribute height wins over the CSS width and
    the image is squashed. */
 img{max-width:100%;height:auto}
+/* Form controls do not inherit typography: a <button>, <input>, <select> or
+   <textarea> falls back to the browser's own UI font unless told otherwise.
+   That is why the guest stepper's + and - were setting in Arial. Family only —
+   inheriting size too would resize every control that relies on the UA default. */
+button,input,select,textarea{font-family:inherit}
 /* The UA rule for [hidden] is display:none at author-origin-beating-strength
    ONLY until an author sets display. .est__nav{display:flex} silently unhid
    itself that way — the wizard's buttons showed up with JavaScript off. */
