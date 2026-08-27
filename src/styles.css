@@ -1215,10 +1215,25 @@ textarea.einput{resize:vertical;min-height:110px}
   .hero__stats .shell{display:grid;grid-template-columns:1fr 1fr;gap:16px 20px}
   /* 4px tracking pushed "OPEN 7 DAYS" onto a second line for one orphaned word */
   .hero__eyebrow{font-size:12px;letter-spacing:2px;margin-bottom:14px}
+  /* Stacked, the row reads time, then title with the button beside it. The
+     old order put the button next to the time, which only works while the time
+     is short: a long one filled the line and pushed the button onto its own,
+     where space-between left-aligned it. Half the buttons sat right and half
+     sat left. Giving the time the whole line makes every button land the
+     same way. */
   .sched__row{flex-wrap:wrap;gap:12px}
-  .sched__when{width:auto;flex:0 0 auto}
+  .sched__when{width:auto;flex:1 1 100%;order:1}
   .calchip{font-size:13px;padding:8px 13px}
-  .sched__what{flex:1 1 100%;order:3}
+  /* basis 0, not auto: flex breaks lines on the hypothetical size, so a title
+     wider than the space left beside the button displaced the button onto its
+     own line instead of wrapping. Starting from zero keeps the two on one line
+     and lets the title wrap inside its own column. */
+  .sched__what{flex:1 1 0;min-width:0;order:2}
+  /* margin-left:auto, not space-between, because the button has to land on the
+     same edge whether it fits beside the title or gets pushed onto its own
+     line. space-between only right-aligns it in the first case: alone on a
+     line it is the sole item, so it falls back to the start edge. */
+  .sched__cta{order:3;margin-left:auto}
   .eat{grid-template-columns:1fr}
   .eat__img{min-height:300px}
   .eat__body{padding:48px 22px}
