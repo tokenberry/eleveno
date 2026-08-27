@@ -607,6 +607,10 @@ button,input,select,textarea{font-family:inherit}
 
 /* ---------- menus ---------- */
 .menu-grid{columns:2;column-gap:52px}
+/* Two columns suit the food list. The drinks list is one short section now, and
+   in a two-column flow it stacked in the left half with the right half empty —
+   so a lone section drops to one column and centres on its own measure. */
+.menu-grid:has(.menu-sec:only-child){columns:1;max-width:620px;margin:0 auto}
 /* ---------- the event estimator ---------- */
 .est{background:var(--navy-deep);color:var(--cream);padding:40px 0 80px;min-height:70vh}
 .est__shell{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:40px;align-items:start}
