@@ -200,6 +200,27 @@ img{max-width:100%;height:auto}
 .playing__mark{position:absolute;top:18px;right:-34px;width:190px;opacity:.16;transform:rotate(8deg);pointer-events:none}
 .playing .section-head{margin-bottom:36px}
 .playing .section-head h2{font-size:clamp(38px,6vw,64px)}
+/* ---------- calendar: filter chips + grouped programme ---------- */
+/* Ships hidden and is revealed by the script, so with no JavaScript every
+   panel is simply visible rather than a dead row of buttons. */
+.calfilter{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:30px}
+.calchip{font-family:var(--display);font-size:14px;letter-spacing:1px;text-transform:uppercase;
+  background:transparent;color:var(--navy);border:2px solid #0e235033;border-radius:999px;
+  padding:9px 17px;cursor:pointer}
+.calchip span{font-family:var(--mono);font-size:11px;color:var(--ink-mute);margin-left:5px}
+.calchip:hover{border-color:var(--navy)}
+.calchip.is-on{background:var(--navy);color:var(--cream);border-color:var(--navy)}
+.calchip.is-on span{color:var(--gold)}
+.calgroup + .calgroup{margin-top:38px}
+.calgroup__h{font-family:var(--display);font-size:22px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--blue);margin-bottom:10px}
+/* 26 rows at the home page's display size is a wall of type; the calendar's own
+   rows step down so a whole category fits on a screen. */
+.calgroup .sched__what{font-size:clamp(19px,2.2vw,25px)}
+.calgroup .sched__row{padding:15px 4px}
+/* 150px wrapped "MON · 8:00–10:00 AM" onto two lines */
+.calgroup .sched__when{width:186px;flex:0 0 186px}
+
 .sched{border-top:3px solid var(--navy)}
 .sched__row{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px 4px;border-bottom:2px dashed #0e235055}
 .sched__row:last-child{border-bottom:3px solid var(--navy)}
@@ -1116,6 +1137,7 @@ textarea.einput{resize:vertical;min-height:110px}
   .hero__eyebrow{font-size:12px;letter-spacing:2px;margin-bottom:14px}
   .sched__row{flex-wrap:wrap;gap:12px}
   .sched__when{width:auto;flex:0 0 auto}
+  .calchip{font-size:13px;padding:8px 13px}
   .sched__what{flex:1 1 100%;order:3}
   .eat{grid-template-columns:1fr}
   .eat__img{min-height:300px}

@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Calendar — ELEVENO Pickleball</title>
-<meta name="description" content="What's on at ELEVENO in Foxborough, MA. This week's events, plus where to start whether you have never picked up a paddle or you play tournaments.">
+<meta name="description" content="What's on at ELEVENO in Foxborough, MA. Open play, leagues, lessons and socials seven days a week, plus where to start whether you have never picked up a paddle or you play tournaments.">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#0E2350">
 
@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="ELEVENO">
 <meta property="og:url" content="https://www.eleveno.com/calendar.html">
 <meta property="og:title" content="Calendar — ELEVENO Pickleball">
-<meta property="og:description" content="What's on at ELEVENO in Foxborough, MA. This week's events, plus where to start whether you have never picked up a paddle or you play tournaments.">
+<meta property="og:description" content="What's on at ELEVENO in Foxborough, MA. Open play, leagues, lessons and socials seven days a week, plus where to start whether you have never picked up a paddle or you play tournaments.">
 <meta property="og:image" content="https://www.eleveno.com/assets/hero-team.jpg">
 <meta property="og:image:alt" content="Calendar — ELEVENO Pickleball">
 <meta name="twitter:image" content="https://www.eleveno.com/assets/hero-team.jpg">
@@ -71,13 +71,171 @@
         <p class="eyebrow">&#9733; THIS WEEK AT ELEVENO &#9733;</p>
         <h2 id="week-h">Now Playing</h2>
       </div>
-      <div class="sched">
+        <div class="calfilter" id="calfilter" hidden>
+          <button class="calchip is-on" type="button" data-cat="all">All <span>26</span></button>
+          <button class="calchip" type="button" data-cat="open-play">Open Play <span>3</span></button>
+          <button class="calchip" type="button" data-cat="leagues">Leagues <span>8</span></button>
+          <button class="calchip" type="button" data-cat="instructional">Instructional <span>5</span></button>
+          <button class="calchip" type="button" data-cat="social">Social <span>5</span></button>
+          <button class="calchip" type="button" data-cat="competitive">Competitive <span>5</span></button>
+        </div>
+        <div class="calgroups" id="calgroups">
+        <section class="calgroup" data-cat="open-play" aria-labelledby="cal-open-play">
+          <h3 class="calgroup__h" id="cal-open-play">Open Play</h3>
+          <div class="sched">
+        <div class="sched__row">
+          <span class="sched__when">MON–FRI · 7–9:30 AM, 8–10 PM</span>
+          <span class="sched__what">Tiered Open Play</span>
+          <a class="sched__cta" href="https://eleveno.podplay.app/community/events?tag=Open+Play">SIGN UP</a>
+        </div>
+        <div class="sched__row">
+          <span class="sched__when">SUN–FRI · 9:30–12 PM</span>
+          <span class="sched__what">Open Play All Levels w/ Challenge Court</span>
+          <a class="sched__cta" href="https://eleveno.podplay.app/community/events?tag=Open+Play">SIGN UP</a>
+        </div>
+        <div class="sched__row">
+          <span class="sched__when">WED &amp; FRI · 12–2:30 PM</span>
+          <span class="sched__what">Dink N Dine Open Play</span>
+          <a class="sched__cta" href="https://eleveno.podplay.app/community/events?tag=Open+Play">SIGN UP</a>
+        </div>
+          </div>
+        </section>
+        <section class="calgroup" data-cat="leagues" aria-labelledby="cal-leagues">
+          <h3 class="calgroup__h" id="cal-leagues">Leagues</h3>
+          <div class="sched">
+        <div class="sched__row">
+          <span class="sched__when">TUE · 6–8:30 PM</span>
+          <span class="sched__what">Coed DUPR League (2.0 - 2.75)</span>
+          <a class="sched__cta" href="https://eleveno.podplay.app/community/events/01a04413-bf0c-744b-a361-04bdcd3f39ea">SIGN UP</a>
+        </div>
+        <div class="sched__row">
+          <span class="sched__when">TUE · 6–8:30 PM</span>
+          <span class="sched__what">Coed DUPR League (2.75 - 3.5)</span>
+          <a class="sched__cta" href="https://eleveno.podplay.app/community/events/01a04417-b0f1-744b-a367-7bdef803de95">SIGN UP</a>
+        </div>
+        <div class="sched__row">
+          <span class="sched__when">THU · 6–8:30 PM</span>
+          <span class="sched__what">Coed DUPR League (3.5 +)</span>
+          <a class="sched__cta" href="https://eleveno.podplay.app/community/events/01a0441a-5cb6-744b-a36f-3c575f5f9c0a">SIGN UP</a>
+        </div>
+        <div class="sched__row">
+          <span class="sched__when">MON · 6–8 PM</span>
+          <span class="sched__what">Women's Evening League (Intermediate)</span>
+          <a class="sched__cta" href="https://eleveno.podplay.app/community/events/01a04427-a339-744b-a37d-bc67e440bee3">SIGN UP</a>
+        </div>
+        <div class="sched__row">
+          <span class="sched__when">MON · 8:00–10:00 AM</span>
+          <span class="sched__what">Women's Morning League (Beginner)</span>
+          <a class="sched__cta" href="https://eleveno.podplay.app/community/events/01a0442a-3fc5-744b-a385-7bf5cdddf875">SIGN UP</a>
+        </div>
+        <div class="sched__row">
+          <span class="sched__when">THU · 8:00–10:00 AM</span>
+          <span class="sched__what">Women's Morning League (Intermediate)</span>
+          <a class="sched__cta" href="https://eleveno.podplay.app/community/events/01a0442c-2ffe-744b-a38a-e4f2dfb641b6">SIGN UP</a>
+        </div>
+        <div class="sched__row">
+          <span class="sched__when">FRI · 11–1 PM</span>
+          <span class="sched__what">Coed Masters League (55+) - Intermediate</span>
+          <a class="sched__cta" href="https://eleveno.podplay.app/community/events/01a0442f-3f8f-744b-a392-1844afaecf0a">SIGN UP</a>
+        </div>
+        <div class="sched__row">
+          <span class="sched__when">TUE · 11–1 PM</span>
+          <span class="sched__what">Coed Masters League (55+) - Beginner</span>
+          <a class="sched__cta" href="https://eleveno.podplay.app/community/events/01a04433-4421-744b-a39e-aa3101140b28">SIGN UP</a>
+        </div>
+          </div>
+        </section>
+        <section class="calgroup" data-cat="instructional" aria-labelledby="cal-instructional">
+          <h3 class="calgroup__h" id="cal-instructional">Instructional</h3>
+          <div class="sched">
+        <div class="sched__row">
+          <span class="sched__when">MON–TH · 6–7 PM</span>
+          <span class="sched__what">Pickleball 101-104</span>
+          <a class="sched__cta" href="https://eleveno.podplay.app/community/events?tag=Instructional">SIGN UP</a>
+        </div>
+        <div class="sched__row">
+          <span class="sched__when">FRI, SUN · 8–9 AM</span>
+          <span class="sched__what">Cardio Pickleball</span>
+          <a class="sched__cta" href="https://eleveno.podplay.app/community/events?tag=Instructional">SIGN UP</a>
+        </div>
+        <div class="sched__row">
+          <span class="sched__when">WED, FRI · 9:30–11 AM</span>
+          <span class="sched__what">Play with a Pro Open Play</span>
+          <a class="sched__cta" href="https://eleveno.podplay.app/community/events?tag=Instructional">SIGN UP</a>
+        </div>
+        <div class="sched__row">
+          <span class="sched__when">TUE · 6–8 PM</span>
+          <span class="sched__what">Play with a Coach Open Play</span>
+          <a class="sched__cta" href="https://eleveno.podplay.app/community/events?tag=Instructional">SIGN UP</a>
+        </div>
+        <div class="sched__row">
+          <span class="sched__when">TUE, FRI, SAT · 6–7 PM, 12–1 PM</span>
+          <span class="sched__what">Intro To Pickleball</span>
+          <a class="sched__cta" href="https://eleveno.podplay.app/community/events?tag=Instructional">SIGN UP</a>
+        </div>
+          </div>
+        </section>
+        <section class="calgroup" data-cat="social" aria-labelledby="cal-social">
+          <h3 class="calgroup__h" id="cal-social">Social</h3>
+          <div class="sched">
         <div class="sched__row">
           <span class="sched__when">TUE · 7:00 PM</span>
           <span class="sched__what">Tuesday Night Pints</span>
           <a class="sched__cta" href="https://eleveno.podplay.app/community/series/019ed720-d03d-7666-9363-cecf52bd2be5">SIGN UP</a>
         </div>
-      </div>
+        <div class="sched__row">
+          <span class="sched__when">WED · 6–8 PM</span>
+          <span class="sched__what">Women's Wine Wednesday</span>
+          <a class="sched__cta" href="https://eleveno.podplay.app/community/events?tag=Social">SIGN UP</a>
+        </div>
+        <div class="sched__row">
+          <span class="sched__when">FRI · 6–10 PM</span>
+          <span class="sched__what">Dinks N Drinks</span>
+          <a class="sched__cta" href="https://eleveno.podplay.app/community/events?tag=Social">SIGN UP</a>
+        </div>
+        <div class="sched__row">
+          <span class="sched__when">FRI · 7–10 PM</span>
+          <span class="sched__what">Friday Night Lights</span>
+          <a class="sched__cta" href="https://eleveno.podplay.app/community/events?tag=Social">SIGN UP</a>
+        </div>
+        <div class="sched__row">
+          <span class="sched__when">SUN · 10–12:30 PM</span>
+          <span class="sched__what">New Player Sunday Social</span>
+          <a class="sched__cta" href="https://eleveno.podplay.app/community/events?tag=Social">SIGN UP</a>
+        </div>
+          </div>
+        </section>
+        <section class="calgroup" data-cat="competitive" aria-labelledby="cal-competitive">
+          <h3 class="calgroup__h" id="cal-competitive">Competitive</h3>
+          <div class="sched">
+        <div class="sched__row">
+          <span class="sched__when">MON · 6–8 PM</span>
+          <span class="sched__what">Medieval Mondays</span>
+          <a class="sched__cta" href="https://eleveno.podplay.app/community/events?tag=Competitive">SIGN UP</a>
+        </div>
+        <div class="sched__row">
+          <span class="sched__when">WED, SAT · 11–1 PM</span>
+          <span class="sched__what">Beg/Low Int Round Robin</span>
+          <a class="sched__cta" href="https://eleveno.podplay.app/community/events?tag=Competitive">SIGN UP</a>
+        </div>
+        <div class="sched__row">
+          <span class="sched__when">WED, SAT · 6–8 PM, 9–11 AM</span>
+          <span class="sched__what">DUPR Drop Ins 2.5 - 3.0</span>
+          <a class="sched__cta" href="https://eleveno.podplay.app/community/events?tag=Competitive">SIGN UP</a>
+        </div>
+        <div class="sched__row">
+          <span class="sched__when">WED, SAT · 6–8 PM, 9–11 AM</span>
+          <span class="sched__what">DUPR Drop Ins 3.0 - 3.5</span>
+          <a class="sched__cta" href="https://eleveno.podplay.app/community/events?tag=Competitive">SIGN UP</a>
+        </div>
+        <div class="sched__row">
+          <span class="sched__when">WED, SAT · 6–8 PM, 9–11 AM</span>
+          <span class="sched__what">DUPR Drop Ins 3.5 - 4.0</span>
+          <a class="sched__cta" href="https://eleveno.podplay.app/community/events?tag=Competitive">SIGN UP</a>
+        </div>
+          </div>
+        </section>
+        </div>
     </div>
   </section>
 
@@ -152,5 +310,6 @@
 
 </div>
 <script src="assets/nav.js" defer></script>
+<script src="assets/calendar.js" defer></script>
 </body>
 </html>

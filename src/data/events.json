@@ -1,13 +1,247 @@
 {
-  "_comment": "The 'Now Playing' calendar on the home page. Add, remove and reorder events here; they render in the order listed. Mark one as featured to highlight it.",
+  "_comment": "The programme calendar, transcribed from the ELEVENO PB Programs Calendar. `category` groups the calendar page and drives its filter chips. `home` picks the short list on the home page — flip it to change what is highlighted there; the calendar page always shows everything. Prices are deliberately absent: the booking system quotes them at the point of sale, so they cannot go stale here.",
   "viewAllUrl": "calendar.html",
+  "categoryOrder": [
+    "Open Play",
+    "Leagues",
+    "Instructional",
+    "Social",
+    "Competitive"
+  ],
   "events": [
     {
       "when": "TUE · 7:00 PM",
       "title": "Tuesday Night Pints",
+      "category": "Social",
       "url": "https://eleveno.podplay.app/community/series/019ed720-d03d-7666-9363-cecf52bd2be5",
       "ctaLabel": "Sign Up",
-      "featured": false
+      "featured": false,
+      "home": true
+    },
+    {
+      "when": "MON–FRI · 7–9:30 AM, 8–10 PM",
+      "title": "Tiered Open Play",
+      "category": "Open Play",
+      "url": "https://eleveno.podplay.app/community/events?tag=Open+Play",
+      "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": true
+    },
+    {
+      "when": "SUN–FRI · 9:30–12 PM",
+      "title": "Open Play All Levels w/ Challenge Court",
+      "category": "Open Play",
+      "url": "https://eleveno.podplay.app/community/events?tag=Open+Play",
+      "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": false
+    },
+    {
+      "when": "WED & FRI · 12–2:30 PM",
+      "title": "Dink N Dine Open Play",
+      "category": "Open Play",
+      "url": "https://eleveno.podplay.app/community/events?tag=Open+Play",
+      "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": false
+    },
+    {
+      "when": "MON–TH · 6–7 PM",
+      "title": "Pickleball 101-104",
+      "category": "Instructional",
+      "url": "https://eleveno.podplay.app/community/events?tag=Instructional",
+      "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": false
+    },
+    {
+      "when": "FRI, SUN · 8–9 AM",
+      "title": "Cardio Pickleball",
+      "category": "Instructional",
+      "url": "https://eleveno.podplay.app/community/events?tag=Instructional",
+      "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": false
+    },
+    {
+      "when": "WED · 6–8 PM",
+      "title": "Women's Wine Wednesday",
+      "category": "Social",
+      "url": "https://eleveno.podplay.app/community/events?tag=Social",
+      "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": true
+    },
+    {
+      "when": "WED, FRI · 9:30–11 AM",
+      "title": "Play with a Pro Open Play",
+      "category": "Instructional",
+      "url": "https://eleveno.podplay.app/community/events?tag=Instructional",
+      "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": false
+    },
+    {
+      "when": "TUE · 6–8 PM",
+      "title": "Play with a Coach Open Play",
+      "category": "Instructional",
+      "url": "https://eleveno.podplay.app/community/events?tag=Instructional",
+      "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": false
+    },
+    {
+      "when": "TUE · 6–8:30 PM",
+      "title": "Coed DUPR League (2.0 - 2.75)",
+      "category": "Leagues",
+      "url": "https://eleveno.podplay.app/community/events/01a04413-bf0c-744b-a361-04bdcd3f39ea",
+      "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": false
+    },
+    {
+      "when": "TUE · 6–8:30 PM",
+      "title": "Coed DUPR League (2.75 - 3.5)",
+      "category": "Leagues",
+      "url": "https://eleveno.podplay.app/community/events/01a04417-b0f1-744b-a367-7bdef803de95",
+      "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": true
+    },
+    {
+      "when": "THU · 6–8:30 PM",
+      "title": "Coed DUPR League (3.5 +)",
+      "category": "Leagues",
+      "url": "https://eleveno.podplay.app/community/events/01a0441a-5cb6-744b-a36f-3c575f5f9c0a",
+      "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": false
+    },
+    {
+      "when": "MON · 6–8 PM",
+      "title": "Medieval Mondays",
+      "category": "Competitive",
+      "url": "https://eleveno.podplay.app/community/events?tag=Competitive",
+      "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": false
+    },
+    {
+      "when": "MON · 6–8 PM",
+      "title": "Women's Evening League (Intermediate)",
+      "category": "Leagues",
+      "url": "https://eleveno.podplay.app/community/events/01a04427-a339-744b-a37d-bc67e440bee3",
+      "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": false
+    },
+    {
+      "when": "MON · 8:00–10:00 AM",
+      "title": "Women's Morning League (Beginner)",
+      "category": "Leagues",
+      "url": "https://eleveno.podplay.app/community/events/01a0442a-3fc5-744b-a385-7bf5cdddf875",
+      "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": false
+    },
+    {
+      "when": "THU · 8:00–10:00 AM",
+      "title": "Women's Morning League (Intermediate)",
+      "category": "Leagues",
+      "url": "https://eleveno.podplay.app/community/events/01a0442c-2ffe-744b-a38a-e4f2dfb641b6",
+      "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": false
+    },
+    {
+      "when": "FRI · 11–1 PM",
+      "title": "Coed Masters League (55+) - Intermediate",
+      "category": "Leagues",
+      "url": "https://eleveno.podplay.app/community/events/01a0442f-3f8f-744b-a392-1844afaecf0a",
+      "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": false
+    },
+    {
+      "when": "TUE · 11–1 PM",
+      "title": "Coed Masters League (55+) - Beginner",
+      "category": "Leagues",
+      "url": "https://eleveno.podplay.app/community/events/01a04433-4421-744b-a39e-aa3101140b28",
+      "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": false
+    },
+    {
+      "when": "WED, SAT · 11–1 PM",
+      "title": "Beg/Low Int Round Robin",
+      "category": "Competitive",
+      "url": "https://eleveno.podplay.app/community/events?tag=Competitive",
+      "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": false
+    },
+    {
+      "when": "TUE, FRI, SAT · 6–7 PM, 12–1 PM",
+      "title": "Intro To Pickleball",
+      "category": "Instructional",
+      "url": "https://eleveno.podplay.app/community/events?tag=Instructional",
+      "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": true
+    },
+    {
+      "when": "FRI · 6–10 PM",
+      "title": "Dinks N Drinks",
+      "category": "Social",
+      "url": "https://eleveno.podplay.app/community/events?tag=Social",
+      "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": false
+    },
+    {
+      "when": "FRI · 7–10 PM",
+      "title": "Friday Night Lights",
+      "category": "Social",
+      "url": "https://eleveno.podplay.app/community/events?tag=Social",
+      "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": true
+    },
+    {
+      "when": "SUN · 10–12:30 PM",
+      "title": "New Player Sunday Social",
+      "category": "Social",
+      "url": "https://eleveno.podplay.app/community/events?tag=Social",
+      "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": false
+    },
+    {
+      "when": "WED, SAT · 6–8 PM, 9–11 AM",
+      "title": "DUPR Drop Ins 2.5 - 3.0",
+      "category": "Competitive",
+      "url": "https://eleveno.podplay.app/community/events?tag=Competitive",
+      "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": false
+    },
+    {
+      "when": "WED, SAT · 6–8 PM, 9–11 AM",
+      "title": "DUPR Drop Ins 3.0 - 3.5",
+      "category": "Competitive",
+      "url": "https://eleveno.podplay.app/community/events?tag=Competitive",
+      "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": false
+    },
+    {
+      "when": "WED, SAT · 6–8 PM, 9–11 AM",
+      "title": "DUPR Drop Ins 3.5 - 4.0",
+      "category": "Competitive",
+      "url": "https://eleveno.podplay.app/community/events?tag=Competitive",
+      "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": false
     }
   ]
 }

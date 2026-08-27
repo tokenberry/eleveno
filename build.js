@@ -356,28 +356,61 @@ function partnersMod() {
 
 /* The "Now Playing" rows. Authored in src/data/events.json so events can be
    added and removed without touching markup. */
-function renderEvents() {
-  const list = Array.isArray(calendar.events) ? calendar.events : [];
-  if (!list.length) {
-    return '        <div class="sched__row sched__row--empty">\n' +
-           '          <span class="sched__what">Nothing on the calendar right now — check back soon.</span>\n' +
-           '        </div>';
-  }
-  return list.map(e => {
-    const feature = e.featured ? ' sched__row--feature' : '';
-    const ctaClass = e.featured ? 'sched__cta sched__cta--gold' : 'sched__cta';
-    const star = e.featured ? ' <span>&#9733;</span>' : '';
-    const label = (e.ctaLabel || 'Sign Up').toUpperCase();
-    // an event with no link yet still renders, just without a button
-    const cta = e.url
-      ? `\n          <a class="${ctaClass}" href="${e.url}">${label}</a>`
-      : '';
-    return `        <div class="sched__row${feature}">\n` +
-           `          <span class="sched__when">${e.when}</span>\n` +
-           `          <span class="sched__what">${e.title}${star}</span>` +
-           `${cta}\n        </div>`;
-  }).join('\n');
+function schedRow(e) {
+  const feature = e.featured ? ' sched__row--feature' : '';
+  const ctaClass = e.featured ? 'sched__cta sched__cta--gold' : 'sched__cta';
+  const star = e.featured ? ' <span>&#9733;</span>' : '';
+  const label = (e.ctaLabel || 'Sign Up').toUpperCase();
+  // an event with no link yet still renders, just without a button
+  const cta = e.url ? `\n          <a class="${ctaClass}" href="${e.url}">${label}</a>` : '';
+  return `        <div class="sched__row${feature}">\n` +
+         `          <span class="sched__when">${e.when}</span>\n` +
+         `          <span class="sched__what">${e.title}</span>` +
+         `${cta}\n        </div>`;
 }
+
+function emptyRow() {
+  return '        <div class="sched__row sched__row--empty">\n' +
+         '          <span class="sched__what">Nothing on the calendar right now — check back soon.</span>\n' +
+         '        </div>';
+}
+
+/* The home page carries a short spread, not the whole programme — the section
+   says "this week" and links to the calendar for the rest. */
+function renderEvents() {
+  const list = (calendar.events || []).filter(e => e.home);
+  return list.length ? list.map(schedRow).join('\n') : emptyRow();
+}
+
+/* The calendar page shows everything, grouped. Twenty-six rows in one list is a
+   wall, so each category is its own panel and the chips above show one at a
+   time. Every row stays in the markup either way: the filtering is a class on
+   the wrapper, so with no JavaScript all six panels are simply visible. */
+function renderCalendar() {
+  const list = calendar.events || [];
+  if (!list.length) return emptyRow();
+  const order = calendar.categoryOrder || [];
+  const cats = order.filter(c => list.some(e => e.category === c))
+    .concat([...new Set(list.map(e => e.category))].filter(c => !order.includes(c)));
+
+  const chips = ['        <div class="calfilter" id="calfilter" hidden>',
+    `          <button class="calchip is-on" type="button" data-cat="all">All <span>${list.length}</span></button>`]
+    .concat(cats.map(c => {
+      const n = list.filter(e => e.category === c).length;
+      return `          <button class="calchip" type="button" data-cat="${slugify(c)}">${c} <span>${n}</span></button>`;
+    }))
+    .concat('        </div>').join('\n');
+
+  const groups = cats.map(c => {
+    const rows = list.filter(e => e.category === c).map(schedRow).join('\n');
+    return `        <section class="calgroup" data-cat="${slugify(c)}" aria-labelledby="cal-${slugify(c)}">\n` +
+           `          <h3 class="calgroup__h" id="cal-${slugify(c)}">${c}</h3>\n` +
+           `          <div class="sched">\n${rows}\n          </div>\n        </section>`;
+  }).join('\n');
+
+  return chips + '\n' + `        <div class="calgroups" id="calgroups">\n${groups}\n        </div>`;
+}
+
 
 for (const k of Object.keys(menus)) { assertNoEntities(`menu-${k}`, menus[k]); menus[k] = escapeDeep(menus[k]); }
 assertNoEntities('private-events', events);
@@ -838,6 +871,7 @@ for (const f of pageFiles) {
     foodNotes: menus.food.notes.map(n => `        <p>${n}</p>`).join('\n'),
     drinksNotes: menus.drinks.notes.map(n => `        <p>${n}</p>`).join('\n'),
     eventRows: renderEvents(),
+    calendarRows: renderCalendar(),
     marqueeTrack: renderMarquee(),
     partners,
     partnerLogos: renderPartners(),
