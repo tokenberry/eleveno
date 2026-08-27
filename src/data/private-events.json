@@ -31,16 +31,16 @@
       "items": [
         {
           "name": "The Courtside",
-          "price": "from $25 / 2hrs"
+          "price": "from $25/pp · 2hrs"
         },
         {
           "name": "The Match Point",
-          "price": "from $35 / 2hrs",
+          "price": "from $35/pp · 2hrs",
           "desc": "With House Spirits"
         },
         {
           "name": "The Championship",
-          "price": "from $45 / 2hrs",
+          "price": "from $45/pp · 2hrs",
           "desc": "With Premium Spirits"
         }
       ],

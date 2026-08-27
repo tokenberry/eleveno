@@ -275,7 +275,13 @@ img{max-width:100%;height:auto}
 .pkg__flag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--navy);font-family:var(--display);font-size:12px;letter-spacing:1px;text-transform:uppercase;padding:6px 16px;border-radius:999px;white-space:nowrap}
 .pkg h3{font-family:var(--display);font-size:28px;text-transform:uppercase;color:var(--cream)}
 .pkg--feature h3{color:#fff}
-.pkg__rates{display:flex;gap:22px;margin:18px 0}
+/* margin-bottom drops to 0 — .pkg__pp now carries the gap to the description */
+.pkg__rates{display:flex;gap:22px;margin:18px 0 0}
+/* The prices are the loudest thing on the card, and "$50 / 2 HOURS" reads as a
+   flat rate for the group unless something says otherwise. */
+.pkg__pp{font-family:var(--mono);font-size:10.5px;letter-spacing:1.8px;text-transform:uppercase;
+  color:var(--gold);margin:11px 0 16px}
+.pkg--feature .pkg__pp{color:var(--gold)}
 .pkg__rate{font-family:var(--display);font-size:34px;color:var(--gold)}
 .pkg__rate--blue{color:var(--blue-soft)}
 .pkg__dur{font-family:var(--mono);font-size:11px;color:var(--on-navy-mute)}
