@@ -1,5 +1,5 @@
 {
-  "_comment": "The drinks list, from the Featured Cocktails card. Six built-to-order cocktails; wine and draft are handled at the bar rather than listed, so this file never goes stale against a rotating tap. No prices on the card we were given — the renderer omits the dotted leader when an item has none, so adding them later is one field per drink.",
+  "_comment": "The drinks list, from the Featured Cocktails card. Six built-to-order cocktails; wine and draft are handled at the bar rather than listed, so this file never goes stale against a rotating tap. Each drink carries an illustrated tile rather than a photograph — the real drinks were never shot, and drawn glassware is honest about that where a stock photo of somebody else's cocktail would not be. Swapping in real photography is one field per drink. No prices on the card we were given — the renderer omits the dotted leader when an item has none, so adding them later is one field per drink.",
   "title": "Featured Cocktails",
   "intro": "Shaken courtside, served all day. Six built to order with fresh juice — and any of them can be poured zero-proof.",
   "sections": [
@@ -8,27 +8,33 @@
       "items": [
         {
           "name": "Blue Crush",
-          "desc": "Reyka Vodka, Blue Curaçao, citrus, soda water"
+          "desc": "Reyka Vodka, Blue Curaçao, citrus, soda water",
+          "photo": "cocktails/blue-crush.svg"
         },
         {
           "name": "Cucumber Fizz",
-          "desc": "Hendrick's Gin, cucumber, lime, soda water"
+          "desc": "Hendrick's Gin, cucumber, lime, soda water",
+          "photo": "cocktails/cucumber-fizz.svg"
         },
         {
           "name": "Milagroso Margarita",
-          "desc": "Milagro Silver Tequila, passion fruit, lime, agave"
+          "desc": "Milagro Silver Tequila, passion fruit, lime, agave",
+          "photo": "cocktails/milagroso-margarita.svg"
         },
         {
           "name": "Agave Limonada",
-          "desc": "Milagro Reposado Tequila, fresh agave lemonade"
+          "desc": "Milagro Reposado Tequila, fresh agave lemonade",
+          "photo": "cocktails/agave-limonada.svg"
         },
         {
           "name": "Spiced 'n' Stormy",
-          "desc": "Sailor Jerry Spiced Rum, lime, ginger beer"
+          "desc": "Sailor Jerry Spiced Rum, lime, ginger beer",
+          "photo": "cocktails/spiced-n-stormy.svg"
         },
         {
           "name": "Whisky Beach",
-          "desc": "Monkey Shoulder Whisky, pineapple, lemon, soda"
+          "desc": "Monkey Shoulder Whisky, pineapple, lemon, soda",
+          "photo": "cocktails/whisky-beach.svg"
         }
       ]
     }

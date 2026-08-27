@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" role="img" aria-label="Cucumber Fizz, a tall pale green cocktail with a cucumber ribbon">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="38%" r="72%">
+      <stop offset="0" stop-color="#16305F"/><stop offset="1" stop-color="#0A1A3A"/>
+    </radialGradient>
+    <linearGradient id="gcf" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#DCEE9E"/><stop offset="1" stop-color="#8CBB43"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bg)"/>
+  <circle cx="200" cy="196" r="150" fill="#ffffff" opacity=".045"/>
+  <g transform="translate(200,216) scale(1.2) translate(-200,-216)">
+  <clipPath id="ccf"><path d="M154,88 L162,324 A16,16 0 0 0 178,340 L222,340 A16,16 0 0 0 238,324 L246,88 Z"/></clipPath>
+  <g clip-path="url(#ccf)">
+    <rect x="100" y="129" width="200" height="213" fill="url(#gcf)"/>
+    <rect x="100" y="129" width="200" height="7" fill="#ffffff" opacity=".30"/>
+  </g>
+  <g clip-path="url(#ccf)">
+    <circle cx="182" cy="175" r="4.5" fill="#F5F0E4" opacity=".55"/>
+    <circle cx="212" cy="217" r="4" fill="#F5F0E4" opacity=".45"/>
+    <circle cx="192" cy="261" r="3.5" fill="#F5F0E4" opacity=".55"/>
+    <circle cx="176" cy="297" r="4" fill="#F5F0E4" opacity=".4"/>
+    <circle cx="214" cy="319" r="3" fill="#F5F0E4" opacity=".5"/>
+  </g>
+  <g clip-path="url(#ccf)">
+    <path d="M172,124 q26,26 -2,54 q-28,28 0,56 q26,26 2,52" fill="none" stroke="#3F7A22" stroke-width="13" stroke-linecap="round" opacity=".8"/>
+    <path d="M172,124 q26,26 -2,54 q-28,28 0,56 q26,26 2,52" fill="none" stroke="#9FCB56" stroke-width="6" stroke-linecap="round" opacity=".9"/>
+  </g>
+  <path d="M154,88 L162,324 A16,16 0 0 0 178,340 L222,340 A16,16 0 0 0 238,324 L246,88 Z" fill="none" stroke="#F5F0E4" stroke-width="5" stroke-linejoin="round" opacity=".92"/>
+  <line x1="154" y1="88" x2="246" y2="88" stroke="#F5F0E4" stroke-width="5" stroke-linecap="round" opacity=".92"/>
+    <g>
+      <circle cx="244" cy="106" r="28" fill="#CFE68C" stroke="#3F7A22" stroke-width="4"/>
+      <line x1="244.0" y1="106.0" x2="264.2" y2="106.0" stroke="#3F7A22" stroke-width="2.4" stroke-linecap="round" opacity=".75"/>
+      <line x1="244.0" y1="106.0" x2="258.3" y2="120.3" stroke="#3F7A22" stroke-width="2.4" stroke-linecap="round" opacity=".75"/>
+      <line x1="244.0" y1="106.0" x2="244.0" y2="126.2" stroke="#3F7A22" stroke-width="2.4" stroke-linecap="round" opacity=".75"/>
+      <line x1="244.0" y1="106.0" x2="229.7" y2="120.3" stroke="#3F7A22" stroke-width="2.4" stroke-linecap="round" opacity=".75"/>
+      <line x1="244.0" y1="106.0" x2="223.8" y2="106.0" stroke="#3F7A22" stroke-width="2.4" stroke-linecap="round" opacity=".75"/>
+      <line x1="244.0" y1="106.0" x2="229.7" y2="91.7" stroke="#3F7A22" stroke-width="2.4" stroke-linecap="round" opacity=".75"/>
+      <line x1="244.0" y1="106.0" x2="244.0" y2="85.8" stroke="#3F7A22" stroke-width="2.4" stroke-linecap="round" opacity=".75"/>
+      <line x1="244.0" y1="106.0" x2="258.3" y2="91.7" stroke="#3F7A22" stroke-width="2.4" stroke-linecap="round" opacity=".75"/>
+      <circle cx="244" cy="106" r="5.6" fill="#3F7A22" opacity=".55"/>
+    </g>
+  </g>
+</svg>

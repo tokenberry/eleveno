@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" role="img" aria-label="Agave Limonada, a tall lemonade with a lemon wheel and a straw">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="38%" r="72%">
+      <stop offset="0" stop-color="#16305F"/><stop offset="1" stop-color="#0A1A3A"/>
+    </radialGradient>
+    <linearGradient id="gal" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FDEBA4"/><stop offset="1" stop-color="#EFB42E"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bg)"/>
+  <circle cx="200" cy="196" r="150" fill="#ffffff" opacity=".045"/>
+  <g transform="translate(200,216) scale(1.2) translate(-200,-216)">
+  <clipPath id="cal"><path d="M154,88 L162,324 A16,16 0 0 0 178,340 L222,340 A16,16 0 0 0 238,324 L246,88 Z"/></clipPath>
+  <g clip-path="url(#cal)">
+    <rect x="100" y="127" width="200" height="215" fill="url(#gal)"/>
+    <rect x="100" y="127" width="200" height="7" fill="#ffffff" opacity=".30"/>
+  </g>
+  <g clip-path="url(#cal)">
+    <rect x="166" y="132" width="42" height="42" rx="4" transform="rotate(14 187 153)" fill="#ffffff" opacity=".26" stroke="#ffffff" stroke-opacity=".38" stroke-width="2"/>
+    <rect x="198" y="182" width="38" height="38" rx="4" transform="rotate(-8 217 201)" fill="#ffffff" opacity=".26" stroke="#ffffff" stroke-opacity=".38" stroke-width="2"/>
+  </g>
+  <path d="M154,88 L162,324 A16,16 0 0 0 178,340 L222,340 A16,16 0 0 0 238,324 L246,88 Z" fill="none" stroke="#F5F0E4" stroke-width="5" stroke-linejoin="round" opacity=".92"/>
+  <line x1="154" y1="88" x2="246" y2="88" stroke="#F5F0E4" stroke-width="5" stroke-linecap="round" opacity=".92"/>
+  <path d="M206,300 L250,44" stroke="#F5B70E" stroke-width="12" stroke-linecap="round" opacity=".95"/>
+    <g>
+      <circle cx="248" cy="112" r="30" fill="#FBE58A" stroke="#C9971A" stroke-width="4"/>
+      <line x1="248.0" y1="112.0" x2="269.6" y2="112.0" stroke="#C9971A" stroke-width="2.4" stroke-linecap="round" opacity=".75"/>
+      <line x1="248.0" y1="112.0" x2="263.3" y2="127.3" stroke="#C9971A" stroke-width="2.4" stroke-linecap="round" opacity=".75"/>
+      <line x1="248.0" y1="112.0" x2="248.0" y2="133.6" stroke="#C9971A" stroke-width="2.4" stroke-linecap="round" opacity=".75"/>
+      <line x1="248.0" y1="112.0" x2="232.7" y2="127.3" stroke="#C9971A" stroke-width="2.4" stroke-linecap="round" opacity=".75"/>
+      <line x1="248.0" y1="112.0" x2="226.4" y2="112.0" stroke="#C9971A" stroke-width="2.4" stroke-linecap="round" opacity=".75"/>
+      <line x1="248.0" y1="112.0" x2="232.7" y2="96.7" stroke="#C9971A" stroke-width="2.4" stroke-linecap="round" opacity=".75"/>
+      <line x1="248.0" y1="112.0" x2="248.0" y2="90.4" stroke="#C9971A" stroke-width="2.4" stroke-linecap="round" opacity=".75"/>
+      <line x1="248.0" y1="112.0" x2="263.3" y2="96.7" stroke="#C9971A" stroke-width="2.4" stroke-linecap="round" opacity=".75"/>
+      <circle cx="248" cy="112" r="6.0" fill="#C9971A" opacity=".55"/>
+    </g>
+  </g>
+</svg>

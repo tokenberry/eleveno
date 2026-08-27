@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" role="img" aria-label="Spiced 'n' Stormy, a mug of ginger beer and dark rum with a lime wedge">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="38%" r="72%">
+      <stop offset="0" stop-color="#16305F"/><stop offset="1" stop-color="#0A1A3A"/>
+    </radialGradient>
+    <linearGradient id="gss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#D98B45"/><stop offset="1" stop-color="#7A3D12"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bg)"/>
+  <circle cx="200" cy="196" r="150" fill="#ffffff" opacity=".045"/>
+  <g transform="translate(200,216) scale(1.2) translate(-200,-216)">
+  <path d="M248,186 q58,0 58,52 q0,52 -58,52" fill="none" stroke="#F5F0E4" stroke-width="5" stroke-linecap="round" opacity=".92"/>
+  <clipPath id="css"><path d="M152,142 L152,322 A18,18 0 0 0 170,340 L230,340 A18,18 0 0 0 248,322 L248,142 Z"/></clipPath>
+  <g clip-path="url(#css)">
+    <rect x="100" y="183" width="200" height="159" fill="url(#gss)"/>
+    <rect x="100" y="183" width="200" height="7" fill="#ffffff" opacity=".30"/>
+  </g>
+  <g clip-path="url(#css)">
+    <rect x="172" y="188" width="40" height="40" rx="4" transform="rotate(-10 192 208)" fill="#ffffff" opacity=".26" stroke="#ffffff" stroke-opacity=".38" stroke-width="2"/>
+  </g>
+  <g clip-path="url(#css)">
+    <circle cx="184" cy="235" r="4" fill="#F5F0E4" opacity=".4"/>
+    <circle cx="214" cy="279" r="4.5" fill="#F5F0E4" opacity=".34"/>
+    <circle cx="192" cy="323" r="3.5" fill="#F5F0E4" opacity=".4"/>
+    <circle cx="222" cy="361" r="3" fill="#F5F0E4" opacity=".34"/>
+  </g>
+  <path d="M152,142 L152,322 A18,18 0 0 0 170,340 L230,340 A18,18 0 0 0 248,322 L248,142 Z" fill="none" stroke="#F5F0E4" stroke-width="5" stroke-linejoin="round" opacity=".92"/>
+  <line x1="152" y1="142" x2="248" y2="142" stroke="#F5F0E4" stroke-width="5" stroke-linecap="round" opacity=".92"/>
+    <g transform="rotate(205 238 148)">
+      <path d="M238,148 m-28,0 a28,28 0 0 1 56,0 Z" fill="#C7E06B" stroke="#5C8A1B" stroke-width="4" stroke-linejoin="round"/>
+      <line x1="238" y1="148" x2="238" y2="126.16" stroke="#5C8A1B" stroke-width="2.4" opacity=".7"/>
+    </g>
+  </g>
+</svg>
