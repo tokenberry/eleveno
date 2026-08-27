@@ -1035,8 +1035,6 @@ textarea.einput{resize:vertical;min-height:110px}
 .menu-notes{max-width:760px;margin:22px auto 0;text-align:center}
 .menu-notes p{font-size:13px;line-height:1.7;color:var(--ink-mute)}
 .menu-notes p + p{margin-top:8px}
-.menu-sponsor{font-family:var(--display);font-size:16px;letter-spacing:1px;text-transform:uppercase;
-  color:var(--blue);text-align:center;margin-top:26px}
 .menu-switch{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
 .menu-switch a{font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.5px;padding:12px 24px;
   border-radius:999px;border:2px solid #ffffff5c;color:var(--cream)}
