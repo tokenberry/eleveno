@@ -21,6 +21,44 @@
       "body": "We do 1-on-1s, Play With a Pro, group and small-group lessons, and clinics. We can tailor a lesson to suit any level of player with any number of guests.",
       "ctaLabel": "Book a lesson",
       "ctaUrl": "https://eleveno.podplay.app/community/events?tag=Instructional"
+    },
+    {
+      "name": "Tournaments",
+      "lead": "Play the bracket.",
+      "body": "Sanctioned and in-house events through the year. Some run on our own booking system and some on PickleballTournaments.com — each link below goes straight to that event.",
+      "links": [
+        {
+          "label": "First Responders Rally",
+          "url": "https://eleveno.podplay.app/community/events?tag=Tournaments"
+        },
+        {
+          "label": "Cobwebb Classic",
+          "url": "https://pickleballtournaments.com/tournaments/8e537e94-0b55-42a9-ab80-706321570eda"
+        },
+        {
+          "label": "Winter Classic",
+          "url": "https://pickleballtournaments.com/tournaments/e4aef443-1c6b-4561-b8c3-6b8ddd9b229e"
+        }
+      ]
+    },
+    {
+      "name": "Family Programming",
+      "lead": "Bring everyone.",
+      "body": "Nights and weekends built for families — glow-in-the-dark socials, free court time for kids, and more on the way.",
+      "links": [
+        {
+          "label": "Glow Night",
+          "url": "https://eleveno.podplay.app/community/events/019eefa4-4dd5-7666-9731-6baac68af05f"
+        },
+        {
+          "label": "Kids Play Free",
+          "note": "Saturdays 1–3 PM, all September"
+        },
+        {
+          "label": "Kids Camp",
+          "note": "Coming soon"
+        }
+      ]
     }
   ],
   "strip": [
@@ -84,5 +122,6 @@
     }
   ],
   "lessonsUrl": "https://eleveno.podplay.app/community/events?tag=Instructional",
-  "_coaches_comment": "photo is a filename in assets/coaches/. Optional — a coach with none renders without one rather than leaving a hole, so someone can go up before their headshot is taken."
+  "_coaches_comment": "photo is a filename in assets/coaches/. Optional — a coach with none renders without one rather than leaving a hole, so someone can go up before their headshot is taken.",
+  "_links_comment": "A program carries either one ctaLabel/ctaUrl or a `links` list. A link with a `note` and no `url` renders as a plain label — Kids Camp has no page to send anyone to yet, and a button that goes nowhere is worse than a line of text."
 }

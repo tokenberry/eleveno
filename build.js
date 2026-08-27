@@ -505,16 +505,34 @@ function renderLegend(menu) {
 /* --- pickleball page fragments --- */
 /* Programs deliberately carry no times or prices: the booking system owns
    those, and a second copy here would drift out of date within a season. */
+/* Anything leaving eleveno.com gets rel="noopener noreferrer": the tournament
+   entries live on pickleballtournaments.com. */
+function progLink(l) {
+  if (!l.url) {
+    return `              <span class="prog__info"><b>${l.label}</b> ${l.note}</span>`;
+  }
+  const offsite = !/^https?:\/\/(eleveno\.com|[\w.-]*\.?eleveno\.podplay\.app)/.test(l.url);
+  const rel = offsite ? ' rel="noopener noreferrer"' : '';
+  return `              <a class="prog__btn" href="${l.url}"${rel}>${l.label} &rarr;</a>`;
+}
+
 function renderPrograms() {
-  return pickleball.programs.map((p, i) => `        <article class="prog" id="${slugify(p.name)}">
+  return pickleball.programs.map((p, i) => {
+    /* One call to action, or a row of them. A program with several events has
+       nothing sensible to put in a single button. */
+    const actions = p.links
+      ? `            <div class="prog__btns">\n${p.links.map(progLink).join('\n')}\n            </div>`
+      : `            <a class="prog__cta" href="${p.ctaUrl}">${p.ctaLabel} &rarr;</a>`;
+    return `        <article class="prog" id="${slugify(p.name)}">
           <p class="prog__n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</p>
           <div class="prog__body">
             <h3>${p.name}</h3>
             <p class="prog__lead">${p.lead}</p>
             <p class="prog__text">${p.body}</p>
-            <a class="prog__cta" href="${p.ctaUrl}">${p.ctaLabel} &rarr;</a>
+${actions}
           </div>
-        </article>`).join('\n');
+        </article>`;
+  }).join('\n');
 }
 /* A coach with no headshot yet renders without one rather than leaving a hole,
    so someone can go up before their photo is taken. Dimensions come off the
