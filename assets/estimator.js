@@ -39,7 +39,13 @@
     if (!el) return null;
     var p = el.parentElement;
     var span = p.querySelector('.epkg__name') || p.querySelector('span');
-    return span ? span.textContent.trim() : el.value;
+    if (!span) return el.value;
+    /* A venue card nests its description in a <small> inside the same span, and
+       textContent would drag the whole sentence into the summary. */
+    var small = span.querySelector('small');
+    if (!small) return span.textContent.trim();
+    return [].filter.call(span.childNodes, function (n) { return n.nodeType === 3; })
+      .map(function (n) { return n.textContent; }).join('').trim();
   }
 
   /* Swag is quoted, not costed — these selections travel with the enquiry but
@@ -117,10 +123,13 @@
     var c = compute();
     paintFoodCards(c.hours);
     var type = picked('event-type');
+    var env  = picked('venue-environment');
+    var spc  = picked('venue-space');
     var dur  = picked('duration');
     var date = form.querySelector('#e-date').value;
     var flexible = form.querySelector('input[name="date-flexible"]').checked;
 
+    setAll('data-sv', 'venue', [env, spc].filter(Boolean).map(labelOf).join(' · ') || '—');
     setAll('data-sv', 'type', type ? labelOf(type) : '—');
     setAll('data-sv', 'guests', c.guests ? c.guests + (c.guests === 1 ? ' person' : ' people') : '—');
     setAll('data-sv', 'duration', dur ? labelOf(dur) : '—');
@@ -141,10 +150,12 @@
     document.getElementById('est-total-field').value = totalText;
     /* Named, not priced: the coordinator quotes it, but they should not have to
        ask what the customer ticked. */
+    var venueNote = [env, spc].filter(Boolean).map(labelOf).join(' · ');
+    venueNote = venueNote ? 'venue: ' + venueNote + ' | ' : '';
     var swagNote = c.swag.length ? ' | swag requested: ' + c.swag.join(', ') : '';
     document.getElementById('est-breakdown-field').value = c.quoted
-      ? 'Quoted package selected — no automatic total' + swagNote
-      : c.guests + ' guests x ' + money(c.subtotal / (c.guests || 1)) +
+      ? venueNote + 'Quoted package selected — no automatic total' + swagNote
+      : venueNote + c.guests + ' guests x ' + money(c.subtotal / (c.guests || 1)) +
         ' = ' + money(c.subtotal) + ' + service ' + money(c.service) + ' = ' + money(c.total) + swagNote;
   }
 

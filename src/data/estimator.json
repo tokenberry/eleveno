@@ -23,6 +23,41 @@
       "label": "Review"
     }
   ],
+  "venue": {
+    "_comment": "Captured, not costed. The sales kit prices buyouts and room rentals with a food-and-beverage minimum that interacts with the packages, and prints \"prices may vary\" beside them — so the coordinator quotes the space and the estimator stays honest about what it can compute.",
+    "heading": "Choose your venue",
+    "environments": [
+      {
+        "value": "indoor",
+        "label": "Indoor",
+        "desc": "Nine courts under one roof, open year round."
+      },
+      {
+        "value": "outdoor",
+        "label": "Outdoor",
+        "desc": "Six courts and the garden. Seasonal."
+      }
+    ],
+    "spacesHeading": "What are you taking?",
+    "spaces": [
+      {
+        "value": "courts",
+        "label": "Courts",
+        "desc": "Play space for your group."
+      },
+      {
+        "value": "private-room",
+        "label": "Private room",
+        "desc": "The back event space, yours for the booking."
+      },
+      {
+        "value": "bar",
+        "label": "Bar rental",
+        "desc": "A quarter, a half, or the whole bar."
+      }
+    ],
+    "note": "Court time is included in every food package. Buyouts and room rentals are quoted alongside your estimate."
+  },
   "eventTypes": [
     {
       "value": "corporate",

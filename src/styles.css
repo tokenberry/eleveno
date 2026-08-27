@@ -703,6 +703,20 @@ textarea.einput{resize:vertical;min-height:110px}
   background:var(--gold);color:var(--navy);font-family:var(--mono);font-size:9.5px;font-weight:700;
   letter-spacing:1.4px;text-transform:uppercase;padding:3px 9px;border-radius:4px}
 
+/* venue picker: cards carry a line of description, so they need more room than
+   the bare event-type cards and their own column counts */
+.ecards--two{grid-template-columns:1fr 1fr}
+.ecards--three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.ecards--two .ecard,.ecards--three .ecard{flex-direction:column;align-items:flex-start;
+  text-align:left;padding:16px 18px;min-height:0}
+.ecard small{display:block;font-family:var(--body);font-size:13px;font-weight:500;
+  line-height:1.45;letter-spacing:0;text-transform:none;color:var(--on-navy-mute);margin-top:5px}
+.ecard:has(input:checked) small{color:var(--on-navy)}
+.efield__note{font-size:13px;line-height:1.55;color:var(--on-navy-faint);margin-top:11px}
+@media (max-width:700px){
+  .ecards--two,.ecards--three{grid-template-columns:1fr}
+}
+
 .eaddgs{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:26px}
 /* Spacing owned by the container, not by sibling adjacency. `.echk + .echk`
    left a 0px gap wherever anything that is not a .echk sat between two

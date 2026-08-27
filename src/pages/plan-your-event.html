@@ -36,6 +36,21 @@
         <legend class="est__legend">Event basics</legend>
 
         <div class="efield">
+          <h2 class="efield__h">{{estimator.venue.heading}}</h2>
+          <div class="ecards ecards--two">
+{{estVenueEnv}}
+          </div>
+        </div>
+
+        <div class="efield">
+          <h2 class="efield__h">{{estimator.venue.spacesHeading}}</h2>
+          <div class="ecards ecards--three">
+{{estVenueSpace}}
+          </div>
+          <p class="efield__note">{{estimator.venue.note}}</p>
+        </div>
+
+        <div class="efield">
           <h2 class="efield__h">What kind of event are you hosting?</h2>
           <div class="ecards">
 {{estEventTypes}}
@@ -187,6 +202,7 @@
           <span class="esum__tag">Draft</span>
         </div>
         <dl class="esum__list">
+          <div><dt>Venue</dt><dd data-sv="venue">&mdash;</dd></div>
           <div><dt>Event type</dt><dd data-sv="type">&mdash;</dd></div>
           <div><dt>Guests</dt><dd data-sv="guests">&mdash;</dd></div>
           <div><dt>Duration</dt><dd data-sv="duration">&mdash;</dd></div>

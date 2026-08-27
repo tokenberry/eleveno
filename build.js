@@ -580,7 +580,7 @@ function renderCredits() {
 function estCards(list, name, cls) {
   return list.map((o, i) => `            <label class="${cls}">
               <input type="radio" name="${name}" value="${o.value}"${o.minGuests ? ` data-min="${o.minGuests}"` : ''}${o.hours ? ` data-hours="${o.hours}"` : ''}${i === 0 ? ' checked' : ''}>
-              <span>${o.label}</span>
+              <span>${o.label}${o.desc ? `<small>${o.desc}</small>` : ''}</span>
             </label>`).join('\n');
 }
 function estChecks(list, name) {
@@ -935,6 +935,8 @@ for (const f of pageFiles) {
     creditRows: renderCredits(),
     estimator,
     estStepDots: renderStepDots(),
+    estVenueEnv: estCards(estimator.venue.environments, 'venue-environment', 'ecard'),
+    estVenueSpace: estCards(estimator.venue.spaces, 'venue-space', 'ecard'),
     estEventTypes: estCards(estimator.eventTypes, 'event-type', 'ecard'),
     estTimes: estChecks(estimator.times, 'preferred-time'),
     estDurations: estCards(estimator.durations, 'duration', 'epill'),

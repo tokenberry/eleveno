@@ -85,6 +85,39 @@
         <legend class="est__legend">Event basics</legend>
 
         <div class="efield">
+          <h2 class="efield__h">Choose your venue</h2>
+          <div class="ecards ecards--two">
+            <label class="ecard">
+              <input type="radio" name="venue-environment" value="indoor" checked>
+              <span>Indoor<small>Nine courts under one roof, open year round.</small></span>
+            </label>
+            <label class="ecard">
+              <input type="radio" name="venue-environment" value="outdoor">
+              <span>Outdoor<small>Six courts and the garden. Seasonal.</small></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="efield">
+          <h2 class="efield__h">What are you taking?</h2>
+          <div class="ecards ecards--three">
+            <label class="ecard">
+              <input type="radio" name="venue-space" value="courts" checked>
+              <span>Courts<small>Play space for your group.</small></span>
+            </label>
+            <label class="ecard">
+              <input type="radio" name="venue-space" value="private-room">
+              <span>Private room<small>The back event space, yours for the booking.</small></span>
+            </label>
+            <label class="ecard">
+              <input type="radio" name="venue-space" value="bar">
+              <span>Bar rental<small>A quarter, a half, or the whole bar.</small></span>
+            </label>
+          </div>
+          <p class="efield__note">Court time is included in every food package. Buyouts and room rentals are quoted alongside your estimate.</p>
+        </div>
+
+        <div class="efield">
           <h2 class="efield__h">What kind of event are you hosting?</h2>
           <div class="ecards">
             <label class="ecard">
@@ -446,6 +479,7 @@
           <span class="esum__tag">Draft</span>
         </div>
         <dl class="esum__list">
+          <div><dt>Venue</dt><dd data-sv="venue">&mdash;</dd></div>
           <div><dt>Event type</dt><dd data-sv="type">&mdash;</dd></div>
           <div><dt>Guests</dt><dd data-sv="guests">&mdash;</dd></div>
           <div><dt>Duration</dt><dd data-sv="duration">&mdash;</dd></div>
