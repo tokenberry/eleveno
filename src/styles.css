@@ -227,7 +227,14 @@ button,input,select,textarea{font-family:inherit}
 /* The home page's strip sits on navy so it reads as its own band between two
    light sections. The calendar page keeps the light treatment: its filter chips
    and 26 rows are all drawn for a pale ground. */
-.playing--navy{background:var(--navy)}
+/* A colour change already separates two sections, so both paying full padding
+   just doubles the gap: 80px of pale under the venue card plus 80px of navy
+   above this heading put 160px of nothing between them, and the same again
+   below. The band keeps enough to breathe; its neighbours pull in where they
+   meet it. */
+.playing--navy{background:var(--navy);padding:46px 0 50px}
+.spaces:has(+ .playing--navy){padding-bottom:52px}
+.playing--navy + .memb{padding-top:52px}
 .playing--navy .playing__h{color:var(--gold)}
 .playing--navy .playing__mark{opacity:.09}
 .playing--navy .sched{border-top-color:#ffffff4d}
