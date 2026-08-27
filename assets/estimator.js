@@ -42,6 +42,17 @@
     return span ? span.textContent.trim() : el.value;
   }
 
+  /* Swag is the one add-on with published prices, so it is the one add-on that
+     can be costed. Everything checked here is per guest, same as food and bar. */
+  function swagChecked() {
+    return [].slice.call(form.querySelectorAll('input[name="swag"]:checked'));
+  }
+  function swagPerGuest() {
+    return swagChecked().reduce(function (t, el) {
+      return t + (Number(el.dataset.swagpp) || 0);
+    }, 0);
+  }
+
   function compute() {
     var guests = parseInt(form.querySelector('#e-guests').value, 10);
     if (!isFinite(guests) || guests < 1) guests = 0;
@@ -50,11 +61,12 @@
     var bev  = picked('beverage');
     var foodPP = food && food.dataset.pp !== '' ? Number(food.dataset.pp) : null;
     var bevPP  = bev  && bev.dataset.pp  !== '' ? Number(bev.dataset.pp)  : null;
+    var swagPP = swagPerGuest();
 
     /* A package priced on inquiry has no number, so there is no honest total to
        show. Say so rather than quietly pricing it at zero. */
     var quoted = (food && foodPP === null) || (bev && bevPP === null);
-    var perGuest = (foodPP || 0) + (bevPP || 0);
+    var perGuest = (foodPP || 0) + (bevPP || 0) + swagPP;
     var subtotal = guests * perGuest;
     var service  = subtotal * SERVICE;
 
@@ -63,6 +75,11 @@
       quoted: quoted,
       food: labelOf(food),
       beverage: labelOf(bev),
+      swagPP: swagPP,
+      swag: swagChecked().map(function (el) {
+        var n = el.parentElement.querySelector('.eswag__name');
+        return n ? n.textContent.trim() : el.value;
+      }),
       subtotal: subtotal,
       service: service,
       total: subtotal + service
@@ -94,6 +111,9 @@
     setAll('data-rv', 'guests', c.guests ? String(c.guests) : '—');
     setAll('data-rv', 'duration', dur ? labelOf(dur) : '—');
     setAll('data-rv', 'packages', [c.food, c.beverage].filter(Boolean).join(' + ') || '—');
+    setAll('data-rv', 'swag', c.swag.length
+      ? c.swag.join(' + ') + ' (' + money(c.swagPP) + ' per guest)' : '—');
+    setAll('data-sv', 'swagpp', money(c.swagPP));
     setAll('data-rv', 'subtotal', c.quoted ? 'On inquiry' : money(c.subtotal));
     setAll('data-rv', 'service', c.quoted ? '—' : money(c.service));
     setAll('data-rv', 'total', totalText);
@@ -101,10 +121,12 @@
     /* carry the numbers into the submission, so the inbox shows what the
        customer saw rather than just their raw selections */
     document.getElementById('est-total-field').value = totalText;
+    var swagNote = c.swag.length
+      ? ' (includes swag ' + money(c.swagPP) + '/guest: ' + c.swag.join(', ') + ')' : '';
     document.getElementById('est-breakdown-field').value = c.quoted
-      ? 'Quoted package selected — no automatic total'
+      ? 'Quoted package selected — no automatic total' + swagNote
       : c.guests + ' guests x ' + money(c.subtotal / (c.guests || 1)) +
-        ' = ' + money(c.subtotal) + ' + service ' + money(c.service) + ' = ' + money(c.total);
+        ' = ' + money(c.subtotal) + ' + service ' + money(c.service) + ' = ' + money(c.total) + swagNote;
   }
 
   /* ---------- steps ---------- */
@@ -174,10 +196,27 @@
   form.addEventListener('change', paint);
   form.addEventListener('input', paint);
 
+  /* The swag panel belongs to its checkbox. Unticking clears the picks rather
+     than hiding them still checked — a hidden tick would submit swag the
+     customer can no longer see, and would keep pricing it. */
+  var swagBox   = form.querySelector('input[data-expands="swag"]');
+  var swagPanel = document.getElementById('e-swag-panel');
+  function syncSwag(clear) {
+    if (!swagBox || !swagPanel) return;
+    swagPanel.hidden = !swagBox.checked;
+    if (clear && !swagBox.checked) {
+      swagChecked().forEach(function (el) { el.checked = false; });
+    }
+  }
+  if (swagBox) {
+    swagBox.addEventListener('change', function () { syncSwag(true); paint(); });
+  }
+
   /* Hand over: hide everything but step one, reveal the controls. */
   nav.hidden = false;
   form.classList.add('is-wizard');
   applyMinimum();
+  syncSwag(false);
   show(0, false);
   paint();
 })();

@@ -264,17 +264,20 @@
     "items": [
       {
         "name": "Branded paddle",
-        "body": "Your mark on the face, in your brand colours."
+        "body": "Your mark on the face, in your brand colours.",
+        "price": "$105"
       },
       {
-        "name": "Branded jersey",
-        "body": "Your logo on the front, ELEVENO on the chest, your tagline on the back."
+        "name": "Branded shirt",
+        "body": "Your logo on the front, ELEVENO on the chest, your tagline on the back.",
+        "price": "$55"
       },
       {
-        "name": "The swag bag",
-        "body": "Carries the paddle and the jersey — branded too."
+        "name": "Branded bag",
+        "body": "Carries the paddle and the shirt — branded too.",
+        "price": "$40"
       }
     ],
-    "note": "Shirt sizes are collected with the RSVP, and mockups come to you for approval before anything goes to production. Priced on inquiry."
+    "note": "Priced per guest. Shirt sizes are collected with the RSVP, and mockups come to you for approval before anything goes to production."
   }
 }

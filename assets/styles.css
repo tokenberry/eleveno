@@ -596,6 +596,37 @@ textarea.einput{resize:vertical;min-height:110px}
   letter-spacing:1.4px;text-transform:uppercase;padding:3px 9px;border-radius:4px}
 
 .eaddgs{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:26px}
+
+/* ---------- swag panel (the one priced add-on) ---------- */
+/* Ships visible and collapses under the script, like the wizard itself: with
+   JavaScript off every option is still reachable and still submits. */
+.eswag{margin:10px 0 0;padding:20px 18px;border-radius:12px;
+  background:#ffffff0a;border:1px solid var(--rule)}
+.eswag__h{font-family:var(--display);font-size:18px;letter-spacing:1px;text-transform:uppercase;color:var(--cream)}
+.eswag__note{font-size:13.5px;line-height:1.55;color:var(--on-navy-mute);margin-top:6px}
+.eswag__rows{margin-top:14px}
+.eswag__row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;
+  background:#ffffff0d;border:1px solid var(--rule);cursor:pointer;color:var(--on-navy)}
+.eswag__row + .eswag__row{margin-top:8px}
+.eswag__row input{width:20px;height:20px;flex:0 0 auto;accent-color:var(--gold)}
+.eswag__name{flex:1 1 auto;font-size:15.5px;font-weight:600;min-width:0}
+.eswag__pp{flex:0 0 auto;font-family:var(--mono);font-size:14px;color:var(--gold)}
+.eswag__row:has(input:checked){border-color:var(--gold);color:var(--cream)}
+.eswag__sum{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  margin-top:14px;padding-top:13px;border-top:1px solid var(--rule);
+  font-family:var(--display);font-size:16px;letter-spacing:1px;text-transform:uppercase;color:var(--cream)}
+.eswag__sum strong{font-size:21px;color:var(--gold)}
+/* Custom Ink pay for this placement, so their mark sits on the white ground it
+   was drawn for instead of taking its chances against navy. */
+.eswag__by{display:flex;align-items:center;gap:12px;margin-top:18px;flex-wrap:wrap}
+.eswag__by span{font-family:var(--mono);font-size:10.5px;letter-spacing:1.6px;
+  text-transform:uppercase;color:var(--on-navy-faint)}
+.eswag__by img{width:auto;height:50px;background:#fff;border-radius:9px;padding:9px 14px}
+
+/* published swag prices on the private events page */
+.swag__price{font-family:var(--display);font-size:22px;letter-spacing:1px;color:var(--navy);margin-top:12px}
+.swag__price span{font-family:var(--body);font-size:12px;font-weight:700;letter-spacing:.5px;
+  text-transform:uppercase;color:var(--ink-mute)}
 .eaddg__h{font-family:var(--mono);font-size:11px;letter-spacing:1.8px;text-transform:uppercase;
   color:var(--gold);margin-bottom:11px}
 .enote{margin-top:28px;padding:20px 22px;border:1px solid var(--rule);border-left:3px solid var(--gold);
@@ -664,6 +695,8 @@ textarea.einput{resize:vertical;min-height:110px}
 @media (max-width:700px){
   .ecards{grid-template-columns:1fr 1fr}
   .egrid,.eaddgs{grid-template-columns:1fr;gap:22px}
+  .eswag{padding:16px 14px}
+  .eswag__by img{height:44px}
   .epkg{grid-template-columns:1fr;gap:10px}
   .epkg__price{font-size:22px}
   .est__nav .btn{flex:1 1 0}

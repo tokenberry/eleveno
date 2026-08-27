@@ -185,7 +185,11 @@
       "items": [
         "Pro Coach / Host",
         "Tournament Support",
-        "Branded Paddles",
+        {
+          "value": "Branded Swag",
+          "label": "Branded Swag",
+          "expands": "swag"
+        },
         "Trophies & Medals"
       ]
     }
@@ -193,7 +197,7 @@
   "_pricing_comment": "guests x (food pp + beverage pp), then service on top. Verified against the original: 20 x ($30 + $25) = $1,100, +20% = $1,320. Add-ons carry no price — they are quoted, so the estimate stays honest rather than pretending to be a quote.",
   "servicePct": 20,
   "serviceLabel": "Tax & service (20%)",
-  "addonsNote": "Add-ons are priced on inquiry and are not included in the figure above.",
+  "addonsNote": "Swag is priced per guest and counts toward your estimate. Everything else here is quoted separately and is not in the figure above.",
   "customMenuNote": "Our events team can curate dietary-specific or themed catering on request — mention it in the notes.",
   "estimateDisclaimer": "A preliminary estimate based on your selections. Final pricing depends on your catering choices and the date.",
   "receive": [
@@ -214,5 +218,33 @@
       "body": "Sending this puts your preferred date at the front of the queue while we review it."
     }
   ],
-  "_receive_comment": "Describe only what happens on its own. The site is static with no backend, so it cannot email anyone a summary — an earlier version promised one and that promise depended entirely on a human remembering."
+  "_receive_comment": "Describe only what happens on its own. The site is static with no backend, so it cannot email anyone a summary — an earlier version promised one and that promise depended entirely on a human remembering.",
+  "swag": {
+    "_comment": "Priced per guest and folded into the estimate, unlike the other add-ons — these numbers are known, so quoting them beats \"on inquiry\". They must match the swag prices published on the private events page; the build fails if they drift.",
+    "heading": "What goes in the bag",
+    "note": "Priced per guest. Pick any combination — sizes are collected with the RSVP and mockups come to you before anything is produced.",
+    "items": [
+      {
+        "value": "paddle",
+        "label": "Branded paddle",
+        "pp": 105
+      },
+      {
+        "value": "shirt",
+        "label": "Branded shirt",
+        "pp": 55
+      },
+      {
+        "value": "bag",
+        "label": "Branded bag",
+        "pp": 40
+      }
+    ],
+    "totalLabel": "Per guest",
+    "poweredBy": {
+      "label": "Printing powered by",
+      "name": "Custom Ink",
+      "logo": "custom-ink.svg"
+    }
+  }
 }
