@@ -121,6 +121,41 @@ button,input,select,textarea{font-family:inherit}
 .hero__photo::after{content:'';position:absolute;inset:-1px;
   background:linear-gradient(270deg,var(--navy) 0%,rgba(14,35,80,.55) 16%,rgba(14,35,80,.06) 48%,rgba(14,35,80,0) 100%)}
 .hero__inner{position:relative;z-index:1;padding-top:64px;padding-bottom:120px}
+@media (max-width:960px){
+  /* Five links plus a CTA cannot fit one narrow row. A scroller hid the last
+     ones behind an invisible edge, so they collapse behind a menu button
+     instead and the sticky bar stays one row tall.
+
+     960px, not the 860px the rest of the mobile layout uses: the links start
+     wrapping to a second row at 935px, and a two-row sticky header is the
+     thing this block exists to prevent. The nav therefore gets its own
+     breakpoint rather than sharing the general one. */
+  .nav__inner{flex-wrap:wrap;justify-content:space-between;gap:0;
+    padding-top:10px;padding-bottom:10px}
+  .nav__end{order:2;gap:6px}
+  .nav__cta{padding:13px 16px;font-size:12px}
+  .nav__burger{display:flex;order:2;align-items:center;justify-content:center;
+    width:44px;height:44px;margin-right:-10px;cursor:pointer}
+  .nav__burger span,.nav__burger span::before,.nav__burger span::after{
+    display:block;width:22px;height:2px;background:var(--on-navy);border-radius:2px;
+    transition:transform .2s ease,opacity .2s ease,top .2s ease}
+  .nav__burger span{position:relative}
+  .nav__burger span::before,.nav__burger span::after{content:'';position:absolute;left:0}
+  .nav__burger span::before{top:-7px}
+  .nav__burger span::after{top:7px}
+  .nav__toggle:checked ~ .nav__end .nav__burger span{background:transparent}
+  .nav__toggle:checked ~ .nav__end .nav__burger span::before{top:0;transform:rotate(45deg)}
+  .nav__toggle:checked ~ .nav__end .nav__burger span::after{top:0;transform:rotate(-45deg)}
+  .nav__toggle:focus-visible ~ .nav__end .nav__burger{outline:2px solid var(--gold);outline-offset:-4px;border-radius:8px}
+  /* Collapsed state uses max-height rather than display:none so opening animates
+     and the links stay in the accessibility tree order. */
+  .nav__links{order:3;width:100%;margin-left:0;display:block;
+    max-height:0;overflow:hidden;visibility:hidden;transition:max-height .25s ease}
+  .nav__toggle:checked ~ .nav__links{max-height:70vh;overflow-y:auto;visibility:visible}
+  .nav__links a{display:block;padding:15px 0;border-top:1px solid var(--rule);line-height:1.2}
+  .nav__links a[aria-current="page"]{color:var(--gold)}
+}
+
 @media (max-width:860px){
   /* Photo above the copy rather than beside it. Positioned high in the frame
      because the faces sit in the top 10-45% of a 4:5 portrait. */
@@ -1163,33 +1198,6 @@ textarea.einput{resize:vertical;min-height:110px}
   .paths{grid-template-columns:1fr}
   .path{min-height:320px}
   .phero__mark{width:150px;top:-14px;right:-36px;opacity:.20}
-  /* Five links plus a CTA cannot fit one phone-width row. A scroller hid the
-     last two behind an invisible edge, so they collapse behind a menu button
-     instead and the sticky bar stays one row tall. */
-  .nav__inner{flex-wrap:wrap;justify-content:space-between;gap:0;
-    padding-top:10px;padding-bottom:10px}
-  .nav__end{order:2;gap:6px}
-  .nav__cta{padding:13px 16px;font-size:12px}
-  .nav__burger{display:flex;order:2;align-items:center;justify-content:center;
-    width:44px;height:44px;margin-right:-10px;cursor:pointer}
-  .nav__burger span,.nav__burger span::before,.nav__burger span::after{
-    display:block;width:22px;height:2px;background:var(--on-navy);border-radius:2px;
-    transition:transform .2s ease,opacity .2s ease,top .2s ease}
-  .nav__burger span{position:relative}
-  .nav__burger span::before,.nav__burger span::after{content:'';position:absolute;left:0}
-  .nav__burger span::before{top:-7px}
-  .nav__burger span::after{top:7px}
-  .nav__toggle:checked ~ .nav__end .nav__burger span{background:transparent}
-  .nav__toggle:checked ~ .nav__end .nav__burger span::before{top:0;transform:rotate(45deg)}
-  .nav__toggle:checked ~ .nav__end .nav__burger span::after{top:0;transform:rotate(-45deg)}
-  .nav__toggle:focus-visible ~ .nav__end .nav__burger{outline:2px solid var(--gold);outline-offset:-4px;border-radius:8px}
-  /* Collapsed state uses max-height rather than display:none so opening animates
-     and the links stay in the accessibility tree order. */
-  .nav__links{order:3;width:100%;margin-left:0;display:block;
-    max-height:0;overflow:hidden;visibility:hidden;transition:max-height .25s ease}
-  .nav__toggle:checked ~ .nav__links{max-height:70vh;overflow-y:auto;visibility:visible}
-  .nav__links a{display:block;padding:15px 0;border-top:1px solid var(--rule);line-height:1.2}
-  .nav__links a[aria-current="page"]{color:var(--gold)}
   .sched__cta{padding:14px 20px}
   .footer__col a{padding:13px 0}
   .crosssell__contact a,.events__contact a,.footer__addr a{display:inline-block;padding:13px 0}

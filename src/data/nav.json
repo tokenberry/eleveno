@@ -16,6 +16,10 @@
     {
       "label": "Private Events",
       "page": "private-events"
+    },
+    {
+      "label": "Shop",
+      "href": "https://eleveno.checkoutstores.com/"
     }
   ],
   "cta": {
