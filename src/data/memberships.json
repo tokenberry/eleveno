@@ -1,14 +1,14 @@
 {
   "_comment": "Everything about the membership section that changes between seasons. This is the file the admin UI writes to.",
   "season": {
-    "start": "2026-06-01",
-    "end": "2026-08-31",
-    "label": "June – August"
+    "start": "2026-09-01",
+    "end": "2026-11-30",
+    "label": "September – November"
   },
   "nextSeason": {
     "_comment": "Shown once the current season closes. Leave label empty to fall back to a plain 'season closed' message.",
-    "label": "September – November",
-    "opensOn": "2026-09-01"
+    "label": "",
+    "opensOn": ""
   },
   "pricing": {
     "_comment": "prorate: joining mid-season costs only the days that remain, rounded to whole currency units. minDays: below this many days left, the season closes rather than selling a stub membership.",
@@ -17,17 +17,11 @@
     "minDays": 30
   },
   "plans": {
-    "indoorOutdoor": {
-      "name": "Indoor & Outdoor Membership",
-      "monthlyAmount": 98.33,
-      "totalAmount": 295,
-      "subscribeUrl": "https://eleveno.podplay.app/memberships/eleveno-summer-membership?confirmation=&chargeType=NON_RECURRING&oneTimeSelectedOptionSlug="
-    },
-    "outdoor": {
-      "name": "Outdoor Membership",
-      "monthlyAmount": 50,
-      "totalAmount": 150,
-      "subscribeUrl": "https://eleveno.podplay.app/memberships/eleveno-outdoor-membership?confirmation=&chargeType=NON_RECURRING&oneTimeSelectedOptionSlug="
+    "fall": {
+      "name": "Fall Membership",
+      "monthlyAmount": 100,
+      "totalAmount": 300,
+      "subscribeUrl": "https://eleveno.podplay.app/memberships/eleveno-fall-membership?confirmation=&chargeType=NON_RECURRING&oneTimeSelectedOptionSlug="
     }
   },
   "credits": {

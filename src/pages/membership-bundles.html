@@ -2,9 +2,9 @@
   "slug": "membership-bundles",
   "script": "season",
   "title": "Memberships &amp; Bundles — ELEVENO Pickleball",
-  "description": "ELEVENO Summer 2026 memberships, virtual credit bundles and program bundles. Outdoor from $50/month, prepaid open play from $90, and the beginner program bundle.",
-  "ogTitle": "ELEVENO Memberships &amp; Bundles — Summer 2026",
-  "ogDescription": "Memberships from $50/month, open-play credits up to buy 20 get 9 free, and the beginner program bundle."
+  "description": "ELEVENO Fall 2026 membership, virtual credit bundles and program bundles. $300 for September to November, prepaid open play from $90, and the beginner program bundle.",
+  "ogTitle": "ELEVENO Memberships &amp; Bundles — Fall 2026",
+  "ogDescription": "Fall membership $300 for three months, open-play credits up to buy 20 get 9 free, and the beginner program bundle."
 }
 -->
 <main>
@@ -13,9 +13,9 @@
   <section class="phero">
     <img class="phero__mark" src="assets/mark-v-only.png" alt="" aria-hidden="true" width="700" height="680">
     <div class="shell">
-      <p class="eyebrow eyebrow--gold">ELEVENO SUMMER 2026</p>
+      <p class="eyebrow eyebrow--gold">ELEVENO FALL 2026</p>
       <h1>Memberships &amp; <br><span>Bundles</span></h1>
-      <p class="phero__lead">Three ways to bring your cost per visit down — a summer membership, prepaid open-play credits, or a program bundle that puts you on court with a coach.</p>
+      <p class="phero__lead">Three ways to bring your cost per visit down — the fall membership, prepaid open-play credits, or a program bundle that puts you on court with a coach.</p>
     </div>
   </section>
 
@@ -24,58 +24,30 @@
     <div class="shell">
       <div class="section-head">
         <p class="eyebrow">{{memberships.season.label}} &bull; 3 MONTH COMMITMENT</p>
-        <h2 id="plans-h">Summer Memberships</h2>
+        <h2 id="plans-h">Fall Membership</h2>
       </div>
 
       <div class="plans">
         <article class="plan plan--feature">
           <p class="plan__season">{{memberships.season.label}}</p>
-          <h3>Indoor &amp; Outdoor Membership</h3>
-          <p class="plan__price">{{memberships.plans.indoorOutdoor.monthly}}<span style="font-size:22px">/month</span></p>
-          <p class="plan__total">Total &mdash; {{memberships.plans.indoorOutdoor.total}} (one-time)</p>
+          <h3>{{memberships.plans.fall.name}}</h3>
+          <p class="plan__price">{{memberships.plans.fall.monthly}}<span style="font-size:22px">/month</span></p>
+          <p class="plan__total">Total &mdash; {{memberships.plans.fall.total}} (one-time)</p>
           <ul class="plan__list">
-            <li>Free Outdoor Open Play*</li>
-            <li>$5 All Day Indoor Open Play*</li>
-            <li>$110 in Virtual Credits Added with Purchase</li>
-            <li>$10 Off Indoor and Outdoor Court Rentals</li>
-            <li>15% Off Food &amp; Beverage (non-alcoholic)</li>
-            <li>Discount on ELEVENO Programs, Leagues and Rallie Ball Machine</li>
-            <li>Monthly Member Raffle</li>
-            <li>7 Day Advanced Booking <small>*No back-to-back sessions</small></li>
-            <li>3 Month Commitment ({{memberships.season.label}})</li>
+            <li>$110 in Virtual Credits <small>Use on anything from open play and Dinks N Drinks to leagues and DUPR drop-ins</small></li>
+            <li>$10 Open Play</li>
+            <li>Free Rallie Ball Machine Rentals</li>
+            <li>Advanced Court Reservation Booking <small>7 days vs 5 days</small></li>
+            <li>Invitation to Monthly Member Social</li>
+            <li>$5 Off Court Rentals</li>
           </ul>
-          <p class="plan__swag">ELEVENO swag</p>
           <div class="plan__box" data-season-start="{{memberships.season.start}}" data-season-end="{{memberships.season.end}}"
-               data-total="{{memberships.plans.indoorOutdoor.totalAmount}}" data-currency="{{memberships.pricing.currency}}" data-prorate="{{memberships.pricing.prorateAttr}}"
+               data-total="{{memberships.plans.fall.totalAmount}}" data-currency="{{memberships.pricing.currency}}" data-prorate="{{memberships.pricing.prorateAttr}}"
                data-min-days="{{memberships.pricing.minDays}}" data-next-label="{{memberships.nextSeason.label}}" data-next-opens="{{memberships.nextSeason.opensOn}}">
-            <strong>Indoor &amp; Outdoor Membership</strong>
-            <span data-season-line>{{memberships.plans.indoorOutdoor.total}} &middot; {{memberships.season.label}}</span>
+            <strong>{{memberships.plans.fall.name}}</strong>
+            <span data-season-line>{{memberships.plans.fall.total}} &middot; {{memberships.season.label}}</span>
           </div>
-          <a class="plan__cta" href="{{memberships.plans.indoorOutdoor.subscribeUrl}}">Get Membership</a>
-        </article>
-
-        <article class="plan">
-          <p class="plan__season">{{memberships.season.label}}</p>
-          <h3>Outdoor Membership</h3>
-          <p class="plan__price">{{memberships.plans.outdoor.monthly}}<span style="font-size:22px">/month</span></p>
-          <p class="plan__total">Total &mdash; {{memberships.plans.outdoor.total}} (one-time)</p>
-          <ul class="plan__list">
-            <li>Free Outdoor Open Play*</li>
-            <li>$5 Morning Indoor Open Play*</li>
-            <li>$40 in Virtual Credits Added with Purchase</li>
-            <li>$5 Off Outdoor Court Rentals</li>
-            <li>15% Off Food &amp; Beverage (non-alcoholic)</li>
-            <li>7 Day Advanced Booking <small>*No back-to-back sessions</small></li>
-            <li>3 Month Commitment ({{memberships.season.label}})</li>
-          </ul>
-          <p class="plan__swag">ELEVENO swag</p>
-          <div class="plan__box" data-season-start="{{memberships.season.start}}" data-season-end="{{memberships.season.end}}"
-               data-total="{{memberships.plans.outdoor.totalAmount}}" data-currency="{{memberships.pricing.currency}}" data-prorate="{{memberships.pricing.prorateAttr}}"
-               data-min-days="{{memberships.pricing.minDays}}" data-next-label="{{memberships.nextSeason.label}}" data-next-opens="{{memberships.nextSeason.opensOn}}">
-            <strong>Outdoor Membership</strong>
-            <span data-season-line>{{memberships.plans.outdoor.total}} &middot; {{memberships.season.label}}</span>
-          </div>
-          <a class="plan__cta" href="{{memberships.plans.outdoor.subscribeUrl}}">Get Membership</a>
+          <a class="plan__cta" href="{{memberships.plans.fall.subscribeUrl}}">Get Membership</a>
         </article>
       </div>
     </div>
