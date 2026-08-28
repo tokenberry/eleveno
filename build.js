@@ -1037,6 +1037,10 @@ for (const f of pageFiles) {
     eventEnhancements: renderEnhancements(),
     eventTypeOptions: renderOptions(events.form.eventTypes),
     referralOptions: renderOptions(events.form.referrals),
+    /* An empty string when the menu has no notice, so the banner is present
+       or absent with the data rather than needing the markup edited too. */
+    foodNotice: menus.food.notice
+      ? `      <p class="phero__notice">${menus.food.notice}</p>` : '',
     foodMenu: renderMenu(menus.food),
     drinksMenu: renderMenu(menus.drinks),
     foodLegend: renderLegend(menus.food),

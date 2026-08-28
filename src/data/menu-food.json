@@ -1,7 +1,8 @@
 {
-  "_comment": "The Paddle Down food menu, transcribed from the Paddle Down Menu PDF. Prices are plain numbers on the printed menu (no $), kept that way here so the page matches it. `featured` marks the signature platter. Diet codes: veg = V, gf = GF, gfa = GFA (gluten-free available).",
+  "_comment": "The Paddle Down food menu, transcribed from the Paddle Down Menu PDF. Prices are plain numbers on the printed menu (no $), kept that way here so the page matches it. `featured` marks the signature platter. Optional `notice` renders a banner in the hero — delete the field once the kitchen is open and the banner disappears. Diet codes: veg = V, gf = GF, gfa = GFA (gluten-free available).",
   "title": "Paddle Down",
   "intro": "Chef-driven plates, loaded baskets and everything in between — served courtside or at the bar.",
+  "notice": "Coming September 12th!",
   "sections": [
     {
       "name": "Snacks",

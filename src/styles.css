@@ -555,6 +555,17 @@ button,input,select,textarea{font-family:inherit}
    flush against the first once they wrap; a flex row gaps both ways. */
 .phero__actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:28px}
 .phero__lead{max-width:640px;margin:20px auto 0;font-size:18px;line-height:1.6;font-weight:600;color:var(--on-navy)}
+/* The date is the message, so it gets the gold and sits between the lead and
+   the menu switch — above the prices rather than buried under them. Gold on
+   navy measures 8.48:1.
+   Square corners, not a pill: it sits directly above the Food/Drinks pills and
+   a third rounded gold shape in that stack read as a button. It carries no
+   link, so it must not look like one. The tinted fill and the wider gap below
+   separate the announcement from the controls. */
+.phero__notice{display:inline-block;margin:20px auto 4px;padding:10px 22px;border-radius:8px;
+  border:2px solid var(--gold);background:rgba(245,183,14,.10);color:var(--gold);
+  font-family:var(--heavy);font-size:15px;letter-spacing:.4px}
+.phero__notice + .menu-switch{margin-top:26px}
 
 .band{padding:76px 0}
 .band--soft{background:var(--surface)}
