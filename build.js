@@ -167,7 +167,12 @@ Object.assign(memberships, escapeDeep(memberships));
 (function decorate() {
   const cur = memberships.pricing.currency;
   for (const plan of Object.values(memberships.plans)) {
-    plan.monthly = money(plan.monthlyAmount, cur);
+    /* A season plan can be sold as one price with no monthly equivalent.
+       Deriving a per-month figure anyway put a "/month" on a card that has no
+       monthly option, which reads as a subscription. Absent here means absent
+       in the template too: a page still asking for {{...monthly}} fails the
+       build rather than printing a price nobody can actually pay. */
+    if (plan.monthlyAmount != null) plan.monthly = money(plan.monthlyAmount, cur);
     plan.total = money(plan.totalAmount, cur);
   }
   memberships.pricing.prorateAttr = memberships.pricing.prorate ? 'true' : 'false';

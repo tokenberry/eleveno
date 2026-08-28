@@ -19,7 +19,6 @@
   "plans": {
     "fall": {
       "name": "Fall Membership",
-      "monthlyAmount": 100,
       "totalAmount": 300,
       "subscribeUrl": "https://eleveno.podplay.app/memberships/eleveno-fall-membership?confirmation=&chargeType=NON_RECURRING&oneTimeSelectedOptionSlug="
     }
