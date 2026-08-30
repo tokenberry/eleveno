@@ -111,14 +111,23 @@ button,input,select,textarea{font-family:inherit}
 /* No mirror on this photo. The previous hero was flipped so the taller of the
    two landed on the right; flipping this one would reverse the ELEVENO
    wordmark on the server's shirt, which is the point of the shot. */
-.hero__photo{position:absolute;top:0;right:0;bottom:0;width:44%;
-  background-image:image-set(url('/.netlify/images?url=/assets/hero-bar.jpg&w=640') 1x, url('/.netlify/images?url=/assets/hero-bar.jpg&w=1280') 2x);background-size:cover;background-position:center 30%}
-/* feathers the photo into the navy so the two do not meet on a hard vertical
-   seam down the middle of the page */
-/* 90deg now the parent is no longer mirrored: dark end on the left, against
-   the copy. It was authored at 270 to survive the flip. */
+.hero__photo{position:absolute;inset:0;width:100%;
+  background-image:image-set(url('/.netlify/images?url=/assets/hero-bar.jpg&w=1440') 1x, url('/.netlify/images?url=/assets/hero-bar.jpg&w=2400') 2x);background-size:cover;background-position:center 40%}
+/* The photo now runs the full width, so the copy sits on top of it rather than
+   beside it. A scrim over the whole frame keeps everyone visible — the point of
+   going full width was the third person on the left — while carrying the text.
+   Weighted to the left where the type is, but never fully opaque anywhere, so
+   no part of the photo is blacked out. Measured against the painted pixels
+   rather than the token: the worst spot under the headline is in the comment
+   on .hero__copy. */
 .hero__photo::after{content:'';position:absolute;inset:-1px;
-  background:linear-gradient(90deg,var(--navy) 0%,rgba(14,35,80,.55) 16%,rgba(14,35,80,.06) 48%,rgba(14,35,80,0) 100%)}
+  /* Two layers. The horizontal one carries the body copy. The vertical one
+     exists for the gold eyebrow alone: it sits across the ceiling lights, the
+     brightest part of the frame, and gold on that measured 3.84:1. Darkening
+     only the top strip fixes it without touching the band where the people
+     are — a stronger flat scrim would have dimmed everyone to rescue one line. */
+  background:linear-gradient(180deg,rgba(14,35,80,.50) 0%,rgba(14,35,80,.30) 22%,rgba(14,35,80,0) 46%),
+             linear-gradient(90deg,rgba(14,35,80,.92) 0%,rgba(14,35,80,.86) 26%,rgba(14,35,80,.70) 52%,rgba(14,35,80,.58) 78%,rgba(14,35,80,.54) 100%)}
 .hero__inner{position:relative;z-index:1;padding-top:64px;padding-bottom:120px}
 @media (max-width:960px){
   /* Five links plus a CTA cannot fit one narrow row. A scroller hid the last
@@ -156,11 +165,16 @@ button,input,select,textarea{font-family:inherit}
 }
 
 @media (max-width:860px){
-  /* Photo above the copy rather than beside it. Positioned high in the frame
-     because the faces sit in the top 10-45% of a 4:5 portrait. */
+  /* Photo above the copy rather than behind it — a scrim heavy enough to carry
+     the headline at this width would bury the photo.
+     aspect-ratio, not a fixed height: a 390px-wide box 400px tall would crop a
+     1.52 landscape frame to its middle third and lose the person on the left,
+     which is the whole reason this hero runs full width. Sized by the source's
+     own ratio, the entire frame survives on a phone too. */
   .hero{display:block;min-height:0}
-  .hero__photo{position:relative;width:100%;height:min(54vh,400px);background-position:center 16%}
-  .hero__photo::after{background:linear-gradient(180deg,rgba(14,35,80,0) 44%,rgba(14,35,80,.92) 100%)}
+  .hero__photo{position:relative;width:100%;height:auto;aspect-ratio:1890/1244;
+    background-position:center center}
+  .hero__photo::after{background:linear-gradient(180deg,rgba(14,35,80,0) 62%,rgba(14,35,80,.55) 84%,rgba(14,35,80,.92) 100%)}
   .hero__inner{padding-top:28px;padding-bottom:116px}
   .hero__copy{max-width:none}
 }
@@ -1329,7 +1343,7 @@ textarea.einput{resize:vertical;min-height:110px}
    build maps "@mobile" to a narrower width; this breakpoint must stay in step
    with the imagesizes on the hero preload in build.js. */
 @media (max-width:700px){
-  .hero__photo{background-image:image-set(url('/.netlify/images?url=/assets/hero-bar.jpg&w=430') 1x, url('/.netlify/images?url=/assets/hero-bar.jpg&w=860') 2x)}
+  .hero__photo{background-image:image-set(url('/.netlify/images?url=/assets/hero-bar.jpg&w=700') 1x, url('/.netlify/images?url=/assets/hero-bar.jpg&w=1400') 2x)}
   .community{background-image:linear-gradient(180deg,#fff 0%,rgba(255,255,255,.70) 5%,rgba(255,255,255,0) 20%),linear-gradient(0deg,rgba(10,26,58,.94) 0%,rgba(10,26,58,.35) 45%,rgba(10,26,58,.1) 100%),image-set(url('/.netlify/images?url=/assets/community-champs.jpg&w=600') 1x, url('/.netlify/images?url=/assets/community-champs.jpg&w=1200') 2x)}
   .space__img--outdoor{background-image:image-set(url('/.netlify/images?url=/assets/community-champs.jpg&w=600') 1x, url('/.netlify/images?url=/assets/community-champs.jpg&w=1200') 2x)}
   .eat__img{background-image:image-set(url('/.netlify/images?url=/assets/social-beers.jpg&w=500') 1x, url('/.netlify/images?url=/assets/social-beers.jpg&w=1000') 2x)}

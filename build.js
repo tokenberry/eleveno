@@ -905,7 +905,7 @@ function renderMarquee() {
    url('name.jpg@mobile') inside a max-width media query. */
 const IMG_WIDTH = {
   /* the photo is 1280px wide, so 2x of a 640px slot is exactly the source */
-  'hero-bar.jpg': { w: 640, mobile: 430 },
+  'hero-bar.jpg': { w: 1440, mobile: 700 },
   /* the source is only 820px wide, so asking for more just gets 820 back */
   'block-party.jpg': { w: 820, mobile: 430 },
   'community-champs.jpg': { w: 1500, mobile: 600 },
