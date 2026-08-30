@@ -111,8 +111,15 @@ button,input,select,textarea{font-family:inherit}
 /* No mirror on this photo. The previous hero was flipped so the taller of the
    two landed on the right; flipping this one would reverse the ELEVENO
    wordmark on the server's shirt, which is the point of the shot. */
+/* 120%, not cover: cover fits the frame to the hero and leaves the subjects
+   small in a wide band. The zoom is bounded by the person on the left, who
+   starts 12.7% in — past about 130% the crop reaches her. 120% shows 8.3% to
+   91.7%, so she stays whole with room to spare.
+   Below ~1003px wide, cover was already scaling to height and cropping the
+   sides anyway, so an explicit size is the more predictable of the two. */
 .hero__photo{position:absolute;inset:0;width:100%;
-  background-image:url('hero-bar.jpg');background-size:cover;background-position:center 40%}
+  background-image:url('hero-bar.jpg');background-size:120% auto;
+  background-position:center 42%;background-repeat:no-repeat}
 /* The photo now runs the full width, so the copy sits on top of it rather than
    beside it. A scrim over the whole frame keeps everyone visible — the point of
    going full width was the third person on the left — while carrying the text.
@@ -126,7 +133,7 @@ button,input,select,textarea{font-family:inherit}
      brightest part of the frame, and gold on that measured 3.84:1. Darkening
      only the top strip fixes it without touching the band where the people
      are — a stronger flat scrim would have dimmed everyone to rescue one line. */
-  background:linear-gradient(180deg,rgba(14,35,80,.50) 0%,rgba(14,35,80,.30) 22%,rgba(14,35,80,0) 46%),
+  background:linear-gradient(180deg,rgba(14,35,80,.62) 0%,rgba(14,35,80,.40) 22%,rgba(14,35,80,0) 48%),
              linear-gradient(90deg,rgba(14,35,80,.92) 0%,rgba(14,35,80,.86) 26%,rgba(14,35,80,.70) 52%,rgba(14,35,80,.58) 78%,rgba(14,35,80,.54) 100%)}
 .hero__inner{position:relative;z-index:1;padding-top:64px;padding-bottom:120px}
 @media (max-width:960px){
