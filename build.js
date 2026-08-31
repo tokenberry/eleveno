@@ -847,15 +847,39 @@ function renderSwag() {
         </article>`).join('\n');
 }
 
+/* A group can sit in the data without appearing here. The food prices are still
+   the estimator's reference — the build cross-checks the two — so they stay in
+   packages[] even though this section no longer shows them.
+   showPrices:false drops the price column and the dotted leader with it; a
+   leader running to nothing reads as a missing value rather than a deliberate
+   omission. */
 function renderPackages() {
-  return events.packages.map(p => `        <article class="pkgcard">
+  return events.packages.filter(p => p.publish !== false).map(p => {
+    const row = i => {
+      const name = `<span class="pkgcard__name">${i.name}${i.desc ? ` <small>${i.desc}</small>` : ''}</span>`;
+      if (p.showPrices === false) return `            <li class="pkgcard__row--bare">${name}</li>`;
+      return `            <li>${name}<span class="pkgcard__dots" aria-hidden="true"></span>`
+        + `<span class="pkgcard__price">${i.price}</span></li>`;
+    };
+    return `        <article class="pkgcard">
           <h3>${p.name}</h3>
           <p class="pkgcard__lead">${p.lead}</p>
           <ul class="pkgcard__list">
-${p.items.map(i => `            <li><span class="pkgcard__name">${i.name}${i.desc ? ` <small>${i.desc}</small>` : ''}</span><span class="pkgcard__dots" aria-hidden="true"></span><span class="pkgcard__price">${i.price}</span></li>`).join('\n')}
+${p.items.map(row).join('\n')}
           </ul>
           <p class="pkgcard__note">${p.note}</p>
-        </article>`).join('\n');
+        </article>`;
+  }).join('\n');
+}
+
+/* Dormant until the photo lands: an empty string keeps the card centred on its
+   own rather than sitting in half of a two-column grid. */
+function renderDrinkShot() {
+  const d = events.drinks;
+  if (!d.photo) return '';
+  const s = imageSize(d.photo);
+  return `        <img class="pkgshot" src="assets/${d.photo}" alt="${d.photoAlt}"`
+    + ` width="${s.w}" height="${s.h}" loading="lazy" decoding="async">`;
 }
 /* One line of copy and two photographs, rather than the two text panels this
    section used to carry: the enhancements are things you look at, and a list
@@ -1042,6 +1066,7 @@ for (const f of pageFiles) {
     peTiers: peTiers(),
     peGallery: peGallery(),
     eventPackages: renderPackages(),
+    eventDrinkShot: renderDrinkShot(),
     eventUpgrades: renderUpgrades(),
     venueFeatures: renderVenueFeatures(),
     eventEnhancements: renderEnhancements(),

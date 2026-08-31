@@ -1132,7 +1132,22 @@ textarea.einput{resize:vertical;min-height:110px}
 .menu-switch a[aria-current]{background:var(--gold);border-color:var(--gold);color:var(--navy)}
 
 /* ---------- private events: packages ---------- */
-.pkgs{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.pkgs{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+/* Only one card is published here now. Alone in a two-column grid it sat in the
+   left half with dead space beside it, so a lone child centres on its own
+   measure; the photo, when there is one, restores the two-up. Guarded by
+   min-width because at 860px and below .pkgs is already a single column and a bare
+   :has() rule would outrank that — :has() carries its argument's specificity. */
+@media (min-width:861px){
+  .pkgs:has(.pkgcard:only-child){grid-template-columns:minmax(0,640px);justify-content:center}
+}
+/* Matches the card's corner and border so the pair reads as one row. The ratio
+   holds the column steady before the file decodes. */
+.pkgshot{width:100%;height:100%;min-height:100%;object-fit:cover;border-radius:20px;
+  border:3px solid var(--navy);background:var(--navy-deep);display:block}
+/* No price column, so the row is just the name; the dotted leader is gone and
+   the flex row would otherwise still reserve its gap. */
+.pkgcard__row--bare{display:block}
 .pkgcard{min-width:0;background:#fff;border:3px solid var(--navy);border-radius:20px;padding:32px 30px;
   box-shadow:0 16px 40px rgba(14,35,80,.10)}
 .pkgcard h3{font-family:var(--display);font-size:30px;letter-spacing:1px;text-transform:uppercase;color:var(--navy)}

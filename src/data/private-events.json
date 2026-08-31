@@ -1,5 +1,5 @@
 {
-  "_comment": "Private events page. The narrative sections (evening, runOfShow, sampleMenu, drinks, space, pros, swag) are generalised from a real client proposal — they describe the shape of an evening, not a fixed offer. Prices live only in `packages`; everything else is quoted, so nothing here can contradict the estimator.",
+  "_comment": "Private events page. The narrative sections (evening, runOfShow, sampleMenu, drinks, space, pros, swag) are generalised from a real client proposal — they describe the shape of an evening, not a fixed offer. Prices live only in `packages`; everything else is quoted, so nothing here can contradict the estimator. packages[] stays the full price list even where a group is not published on this page: the build's estimator cross-check reads it, so deleting the food prices here would quietly retire that guard rather than change a layout.",
   "intro": "Corporate outings, birthday blowouts, team building and everything in between — court time, food and drink handled in one place.",
   "packages": [
     {
@@ -22,11 +22,12 @@
           "price": "$65 / 2hr · $85 / 3hr"
         }
       ],
-      "note": "All menus include court time, unlimited fountain sodas, coffee, tea and water. Per person, plus tax and service."
+      "note": "All menus include court time, unlimited fountain sodas, coffee, tea and water. Per person, plus tax and service.",
+      "publish": false
     },
     {
       "name": "Beverage Packages",
-      "lead": "Priced per person, per hour:",
+      "lead": "Three tiers, from beer and wine through to premium spirits:",
       "items": [
         {
           "name": "Courtside",
@@ -44,7 +45,8 @@
           "price": "$14/pp per hour"
         }
       ],
-      "note": "Drink tickets or a consumption bar are also available. Packages vary by event."
+      "note": "Drink tickets or a consumption bar are also available. Packages vary by event — pricing comes with your estimate.",
+      "showPrices": false
     }
   ],
   "upgrades": {
@@ -234,7 +236,9 @@
     "heading": "Open bar,",
     "headingAccent": "all night.",
     "body": "Imported and domestic beers, sparkling, white and red wine, spirits, mocktails and soft drinks. Bartenders on the floor through the event, plus a private bartender in the back room when you have it.",
-    "note": "Bundled into the per-guest rate rather than billed separately, so the number you agree is the number you pay."
+    "note": "Bundled into the per-guest rate rather than billed separately, so the number you agree is the number you pay.",
+    "photo": "",
+    "photoAlt": "An ELEVENO-branded ice luge on the bar, set up for service"
   },
   "space": {
     "eyebrow": "THE SPACE",
