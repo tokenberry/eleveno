@@ -47,16 +47,19 @@
       "note": "Drink tickets or a consumption bar are also available. Packages vary by event."
     }
   ],
-  "upgrades": [
-    {
-      "name": "Food Add-Ons",
-      "body": "Signature Salad Bar, Charcuterie & Cheese Board, and New England Seafood Tower."
-    },
-    {
-      "name": "Drink Add-Ons",
-      "body": "Custom Welcome Cocktails and Mocktails, and a Mobile Courtside Bar."
-    }
-  ],
+  "upgrades": {
+    "lead": "Add a pickleball pro, swag, a champagne toast, a photo booth and more.",
+    "photos": [
+      {
+        "file": "pe-pro.jpg",
+        "alt": "A certified ELEVENO pro on court with a paddle, ready to run a drill"
+      },
+      {
+        "file": "pe-toast.jpg",
+        "alt": "A room of guests raising a toast in front of the ELEVENO wall"
+      }
+    ]
+  },
   "venue": {
     "heading": "More than just",
     "headingAccent": "pickleball",

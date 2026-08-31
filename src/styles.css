@@ -1146,10 +1146,16 @@ textarea.einput{resize:vertical;min-height:110px}
 .pkgcard__price{font-family:var(--display);font-size:19px;color:var(--blue);white-space:nowrap;flex:0 0 auto}
 .pkgcard__note{font-size:13.5px;line-height:1.6;font-weight:500;color:var(--ink-mute);margin-top:18px}
 
-.upgrades{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:28px}
-.upgrade{background:var(--navy);color:var(--cream);border-radius:18px;padding:26px 28px}
-.upgrade h3{font-family:var(--display);font-size:20px;letter-spacing:1px;text-transform:uppercase;color:var(--gold)}
-.upgrade p{font-size:14.5px;line-height:1.6;font-weight:500;color:var(--on-navy);margin-top:10px}
+/* The enhancements are a single line of copy over two photographs. The list
+   is short enough to read in one breath, and the pictures do the selling that
+   two panels of body text were not doing. */
+.upgrades{margin-top:26px}
+.upgrade__lead{max-width:44ch;font-size:20px;line-height:1.5;font-weight:600;color:var(--cream)}
+.upgrade__shots{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:26px}
+/* Both files are cut to 3:2, so the pair lines up without object-fit having to
+   rescue a mismatch. aspect-ratio holds the row steady before they decode. */
+.upshot{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:16px;display:block;
+  background:var(--navy-deep)}
 
 .pkgshots{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}
 .pkgshots div{aspect-ratio:3/2;border-radius:16px;background-color:var(--navy);background-size:cover;
@@ -1229,7 +1235,8 @@ textarea.einput{resize:vertical;min-height:110px}
   .menu-grid{columns:1}
   .pkgs{grid-template-columns:1fr}
   .pkgshots{grid-template-columns:1fr 1fr}
-  .upgrades{grid-template-columns:1fr}
+  .upgrade__shots{grid-template-columns:1fr}
+  .upgrade__lead{font-size:18px}
   .enhs{grid-template-columns:1fr}
   .plans{grid-template-columns:1fr}
   .progb{grid-template-columns:1fr}

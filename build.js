@@ -857,8 +857,18 @@ ${p.items.map(i => `            <li><span class="pkgcard__name">${i.name}${i.des
           <p class="pkgcard__note">${p.note}</p>
         </article>`).join('\n');
 }
+/* One line of copy and two photographs, rather than the two text panels this
+   section used to carry: the enhancements are things you look at, and a list
+   of them reads shorter than it sounds. */
 function renderUpgrades() {
-  return events.upgrades.map(u => `        <div class="upgrade"><h3>${u.name}</h3><p>${u.body}</p></div>`).join('\n');
+  const u = events.upgrades;
+  const shots = u.photos.map(p => {
+    const s = imageSize(p.file);
+    return `          <img class="upshot" src="assets/${p.file}" alt="${p.alt}"`
+      + ` width="${s.w}" height="${s.h}" loading="lazy" decoding="async">`;
+  }).join('\n');
+  return `        <p class="upgrade__lead">${u.lead}</p>\n`
+    + `        <div class="upgrade__shots">\n${shots}\n        </div>`;
 }
 function renderVenueFeatures() {
   return events.venue.features.map(f => `          <li>${f}</li>`).join('\n');
