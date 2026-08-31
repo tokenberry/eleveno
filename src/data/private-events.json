@@ -291,7 +291,7 @@
     "eyebrow": "PRIVATE EVENTS & BUYOUTS",
     "heading": "Throw the party",
     "headingAccent": "they'll talk about",
-    "lead": "Groups of 8 to full buyouts of 200+. Courts, kitchen, four bars and a beer garden — one venue, one contact, zero stress. Parking's on us.",
+    "lead": "Groups of 8 to full buyouts of 200+. Courts, kitchen, two bars — one venue, one contact, zero stress. Parking's on us.",
     "pillars": [
       {
         "name": "World-Class Pickleball",
@@ -300,7 +300,7 @@
       },
       {
         "name": "Exceptional Food & Drinks",
-        "body": "A full kitchen and four full-service bars.",
+        "body": "A full kitchen and two full-service bars.",
         "tone": "blue"
       },
       {
@@ -316,7 +316,7 @@
         "tone": "gold"
       },
       {
-        "n": "4",
+        "n": "2",
         "l": "FULL BARS",
         "tone": "blue"
       },

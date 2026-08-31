@@ -187,7 +187,11 @@ button,input,select,textarea{font-family:inherit}
 }
 .hero__copy{max-width:560px;color:var(--cream)}
 .hero__eyebrow{font-family:var(--mono);font-size:14px;letter-spacing:4px;color:var(--gold);margin-bottom:18px}
-.hero h1{font-family:var(--display);font-size:clamp(52px,9vw,104px);line-height:.86;letter-spacing:.5px;text-transform:uppercase}
+/* 1.04, not .86. Anton's caps are tall enough that at .86 the three lines
+   touched — measured on painted pixels, the headline resolved as one ink band
+   rather than three. .92 separates them by a single pixel, which is not
+   separation; 1.04 leaves 14px at desktop and 7px on a phone. */
+.hero h1{font-family:var(--display);font-size:clamp(52px,9vw,104px);line-height:1.04;letter-spacing:.5px;text-transform:uppercase}
 .hero h1 span{color:var(--gold)}
 .hero__lead{font-size:20px;line-height:1.5;font-weight:600;margin:26px 0 32px;max-width:520px;color:var(--on-navy)}
 .hero__actions{display:flex;gap:14px;flex-wrap:wrap}
