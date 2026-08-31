@@ -1140,6 +1140,18 @@ textarea.einput{resize:vertical;min-height:110px}
    :has() rule would outrank that — :has() carries its argument's specificity. */
 @media (min-width:861px){
   .pkgs:has(.pkgcard:only-child){grid-template-columns:minmax(0,640px);justify-content:center}
+  /* The luge is a tall object in a 0.80 portrait. An even split gave the photo
+     a column wider than it is tall, and cover then trimmed the top and bottom —
+     the ELEVENO sign off one end and the Ketel One block off the other. A
+     narrower column lands close to the file's own ratio, so the crop comes off
+     the sides, where there is only bar to lose.
+     Scoped here, not written bare, because :has() takes its argument's
+     specificity and would otherwise outrank the single-column mobile rule. */
+  /* stretch, overriding the grid's align-items:start, so the photo ends level
+     with the card instead of hanging below it. At this column width the slot
+     lands within a percent of the file's own ratio, so squaring them off costs
+     almost no crop. */
+  .pkgs:has(.pkgshot){grid-template-columns:minmax(0,1.2fr) minmax(0,0.8fr);align-items:stretch}
 }
 /* Matches the card's corner and border so the pair reads as one row. The ratio
    holds the column steady before the file decodes. */
@@ -1148,8 +1160,12 @@ textarea.einput{resize:vertical;min-height:110px}
 /* No price column, so the row is just the name; the dotted leader is gone and
    the flex row would otherwise still reserve its gap. */
 .pkgcard__row--bare{display:block}
+/* A column, so when the row is taller than the card's content — the photo beside
+   it sets the height — the closing note drops to the bottom instead of leaving
+   a block of empty white under it. The spare height then reads as spacing
+   rather than as a card that failed to fill. */
 .pkgcard{min-width:0;background:#fff;border:3px solid var(--navy);border-radius:20px;padding:32px 30px;
-  box-shadow:0 16px 40px rgba(14,35,80,.10)}
+  box-shadow:0 16px 40px rgba(14,35,80,.10);display:flex;flex-direction:column}
 .pkgcard h3{font-family:var(--display);font-size:30px;letter-spacing:1px;text-transform:uppercase;color:var(--navy)}
 .pkgcard__lead{font-size:15px;font-weight:600;color:var(--ink-soft);margin-top:8px}
 .pkgcard__list{list-style:none;margin-top:20px}
@@ -1159,7 +1175,7 @@ textarea.einput{resize:vertical;min-height:110px}
 .pkgcard__name small{display:block;font-weight:600;font-size:12.5px;text-transform:none;letter-spacing:0;color:var(--ink-mute);margin-top:2px}
 .pkgcard__dots{flex:1 1 auto;min-width:14px;border-bottom:2px dotted #0e235055;transform:translateY(-4px)}
 .pkgcard__price{font-family:var(--display);font-size:19px;color:var(--blue);white-space:nowrap;flex:0 0 auto}
-.pkgcard__note{font-size:13.5px;line-height:1.6;font-weight:500;color:var(--ink-mute);margin-top:18px}
+.pkgcard__note{font-size:13.5px;line-height:1.6;font-weight:500;color:var(--ink-mute);margin-top:auto;padding-top:18px}
 
 /* The enhancements are a single line of copy over two photographs. The list
    is short enough to read in one breath, and the pictures do the selling that
