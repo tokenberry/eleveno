@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Stops iOS Mail shrinking the 600px table to fit and rewriting our type sizes. -->
+<meta name="x-apple-disable-message-reformatting" />
+<!-- The palette is fixed navy-on-cream; opting out of dark mode stops Gmail and
+     Outlook.com inverting the navy bands into an unreadable grey. -->
+<meta name="color-scheme" content="light only" />
+<meta name="supported-color-schemes" content="light only" />
+<title>{{subject}}</title>
+<!--[if mso]>
+<xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml>
+<style type="text/css">
+  /* Outlook ignores webfonts and falls back to Times unless told otherwise. */
+  body,table,td,a,p,h1,h2,h3{font-family:Arial,Helvetica,sans-serif !important}
+</style>
+<![endif]-->
+<!-- Apple Mail and iOS honour this; Gmail and Outlook fall back to the stack. -->
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Archivo:wght@400;500;600;700&amp;family=Space+Mono:wght@700&amp;display=swap" rel="stylesheet" type="text/css" />
+<style type="text/css">
+  /* Client resets. Every rule below is defensive — the layout itself is
+     inline-styled, because Gmail strips this block on forwarded mail. */
+  body{margin:0 !important;padding:0 !important;width:100% !important;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}
+  table{border-collapse:collapse !important;mso-table-lspace:0pt;mso-table-rspace:0pt}
+  img{border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;display:block}
+  a{text-decoration:none}
+  /* Apple and Outlook.com auto-link addresses and phone numbers in their own
+     blue. Ours are already links; this stops the client re-styling them. */
+  a[x-apple-data-detectors],.unstyle-auto-detected-links a,.aBn{color:inherit !important;text-decoration:none !important;font-size:inherit !important;font-family:inherit !important;font-weight:inherit !important;line-height:inherit !important}
+  .im{color:inherit !important}
+
+  @media only screen and (max-width:620px){
+    .shell{width:100% !important}
+    .pad{padding-left:22px !important;padding-right:22px !important}
+    /* The two-column rows (event + button, bundle + price) go single column:
+       600px of table becomes one stacked block per cell. */
+    .stack{display:block !important;width:100% !important}
+    .stack-right{display:block !important;width:100% !important;text-align:left !important;padding-top:12px !important}
+    .h1{font-size:34px !important;line-height:38px !important}
+    .h2{font-size:26px !important;line-height:30px !important}
+    .price{font-size:44px !important;line-height:46px !important}
+    .hide-sm{display:none !important}
+  }
+</style>
+</head>
+<body style="margin:0;padding:0;background-color:#DCEAF6;">
+
+<!-- Preheader: the grey line beside the subject in the inbox. The nbsp run
+     stops clients pulling the first body sentence in after it. -->
+<div style="display:none;font-size:1px;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden;mso-hide:all;color:#DCEAF6;">{{preheader}}
+&#847;&nbsp;&#847;&nbsp;&#847;&nbsp;&#847;&nbsp;&#847;&nbsp;&#847;&nbsp;&#847;&nbsp;&#847;&nbsp;&#847;&nbsp;&#847;&nbsp;&#847;&nbsp;&#847;&nbsp;&#847;&nbsp;&#847;&nbsp;&#847;&nbsp;&#847;&nbsp;&#847;&nbsp;&#847;&nbsp;&#847;&nbsp;&#847;&nbsp;&#847;&nbsp;&#847;&nbsp;&#847;&nbsp;&#847;&nbsp;
+</div>
+
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#DCEAF6;">
+<tr>
+<td align="center" style="padding:0;">
+
+<!--[if mso]><table role="presentation" align="center" cellpadding="0" cellspacing="0" border="0" width="600"><tr><td><![endif]-->
+<table role="presentation" class="shell" cellpadding="0" cellspacing="0" border="0" width="600" style="width:600px;max-width:600px;background-color:#F5F0E4;">
+
+  <!-- ===== masthead ===== -->
+  <tr>
+    <td align="center" class="pad" style="background-color:#0E2350;padding:26px 32px 22px 32px;">
+      <a href="{{baseUrl}}" style="text-decoration:none;">
+        <img src="{{logoUrl}}" width="150" height="{{logoHeight}}" alt="{{brand}}" style="display:block;width:150px;height:auto;margin:0 auto;" />
+      </a>
+      <p style="margin:14px 0 0 0;font-family:'Space Mono',Consolas,monospace;font-size:11px;line-height:16px;letter-spacing:3px;color:#F5B70E;">{{tagline}}</p>
+    </td>
+  </tr>
+
+{{content}}
+
+  <!-- ===== visit ===== -->
+  <tr>
+    <td class="pad" style="background-color:#0A1A3A;padding:34px 32px 30px 32px;">
+      <p style="margin:0 0 4px 0;font-family:'Space Mono',Consolas,monospace;font-size:11px;line-height:16px;letter-spacing:3px;color:#F5B70E;">FIND US</p>
+      <p style="margin:0 0 16px 0;font-family:'Anton',Impact,'Arial Narrow',Arial,sans-serif;font-size:26px;line-height:30px;letter-spacing:1px;text-transform:uppercase;color:#F5F0E4;">Come play with us.</p>
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+          <td class="stack" width="52%" valign="top" style="font-family:Archivo,Arial,Helvetica,sans-serif;font-size:15px;line-height:24px;color:#DCE3F0;">
+            <a href="{{mapLinkUrl}}" style="color:#DCE3F0;text-decoration:none;">{{addressLine1}}<br />{{addressLine2}}</a><br />
+            <a href="tel:{{phoneHref}}" style="color:#DCE3F0;text-decoration:none;">{{phone}}</a><br />
+            <a href="mailto:{{email}}" style="color:#DCE3F0;text-decoration:none;">{{email}}</a>
+          </td>
+          <td class="stack" width="48%" valign="top" style="font-family:Archivo,Arial,Helvetica,sans-serif;font-size:15px;line-height:24px;color:#DCE3F0;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+{{emailHours}}
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- ===== footer ===== -->
+  <tr>
+    <td class="pad" align="center" style="background-color:#0E2350;padding:26px 32px 30px 32px;border-top:1px solid #ffffff1a;">
+      <p style="margin:0 0 14px 0;font-family:Archivo,Arial,Helvetica,sans-serif;font-size:13px;line-height:20px;color:#9FB0CE;">
+        <a href="{{instagramUrl}}" style="color:#F5B70E;text-decoration:none;font-weight:600;">Instagram</a>
+        <span style="color:#7688A6;">&nbsp;&bull;&nbsp;</span>
+        <a href="{{bookingUrl}}" style="color:#F5B70E;text-decoration:none;font-weight:600;">Book a court</a>
+        <span style="color:#7688A6;">&nbsp;&bull;&nbsp;</span>
+        <a href="{{baseUrl}}calendar.html" style="color:#F5B70E;text-decoration:none;font-weight:600;">Calendar</a>
+      </p>
+      <p style="margin:0 0 12px 0;font-family:Archivo,Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#9FB0CE;">
+        {{brand}} &middot; {{addressLine1}}, {{addressLine2}}
+      </p>
+      <p style="margin:0 0 12px 0;font-family:Archivo,Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#7688A6;">
+        You are receiving this because you signed up at {{brand}} in Foxborough.
+      </p>
+      <!-- Mailchimp merge tags. They stay literal in this file and resolve when
+           the campaign sends; *|UNSUB|* is what satisfies Mailchimp's compliance
+           check, so do not replace it with a plain link. -->
+      <p style="margin:0;font-family:Archivo,Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#7688A6;">
+        <a href="*|UPDATE_PROFILE|*" style="color:#9FB0CE;text-decoration:underline;">Update your preferences</a>
+        <span>&nbsp;&bull;&nbsp;</span>
+        <a href="*|UNSUB|*" style="color:#9FB0CE;text-decoration:underline;">Unsubscribe</a>
+        <span>&nbsp;&bull;&nbsp;</span>
+        <a href="*|ARCHIVE|*" style="color:#9FB0CE;text-decoration:underline;">View in browser</a>
+      </p>
+    </td>
+  </tr>
+
+</table>
+<!--[if mso]></td></tr></table><![endif]-->
+
+</td>
+</tr>
+</table>
+</body>
+</html>
