@@ -1346,6 +1346,13 @@ if (emailFiles.length) {
       seasonLabel: memberships.season.label,
       creditsEyebrow: memberships.credits.eyebrow,
       creditsHeading: memberships.credits.heading,
+      /* The bundles are a price table: the site publishes what they cost, and
+         nothing anywhere sells them. A "Buy credits" button landing on that
+         page promises a checkout that is not there, so the label follows the
+         data — add a `buyUrl` to credits in memberships.json and the button
+         becomes the real thing, otherwise it sends people to the prices. */
+      creditsCtaUrl: memberships.credits.buyUrl || abs('membership-bundles.html'),
+      creditsCtaLabel: memberships.credits.buyUrl ? 'Buy credits' : 'See the bundles',
       emailEvents: renderEmailEvents(),
       emailCredits: renderEmailCredits(),
       emailHours: renderEmailHours(),
