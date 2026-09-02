@@ -66,9 +66,9 @@ Three claims go stale on a known date:
   kitchen is open. It matches the `notice` field in `menu-food.json`.
 - "SATURDAYS 1–3 PM, ALL SEPTEMBER" on the Kids Play Free board, from the
   Kids Play Free note in `pickleball.json`.
-- "You only pay for the days that are left" on the Fall Membership board stops
-  being true about 30 days before the season ends, because `pricing.minDays`
-  in `memberships.json` closes the season below 30 days remaining.
+- The Fall Membership board stops being sellable about 30 days before the
+  season ends, because `pricing.minDays` in `memberships.json` closes the
+  season below 30 days remaining.
 
 And one production note: PNG/PDF export cannot embed Google Fonts, so exports
 fall back to Impact for the Anton headlines. Headlines are sized with slack for
