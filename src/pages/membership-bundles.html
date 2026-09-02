@@ -2,9 +2,9 @@
   "slug": "membership-bundles",
   "script": "season",
   "title": "Memberships &amp; Bundles — ELEVENO Pickleball",
-  "description": "ELEVENO Fall 2026 membership, virtual credit bundles and program bundles. $300 for September to November, prepaid open play from $90, and the beginner program bundle.",
+  "description": "ELEVENO Fall 2026 membership \u2014 $300 for September to November, or $100 a month. Twelve pickleball and food perks, virtual credit bundles and the beginner program bundle.",
   "ogTitle": "ELEVENO Memberships &amp; Bundles — Fall 2026",
-  "ogDescription": "Fall membership $300 for three months, open-play credits up to buy 20 get 9 free, and the beginner program bundle."
+  "ogDescription": "Fall membership $300 for three months or $100 a month, open-play credits up to buy 20 get 9 free, and the beginner program bundle."
 }
 -->
 <main>
@@ -31,16 +31,12 @@
         <article class="plan plan--feature">
           <p class="plan__season">{{memberships.season.label}}</p>
           <h3>{{memberships.plans.fall.name}}</h3>
-          <p class="plan__price">{{memberships.plans.fall.total}}</p>
-          <p class="plan__total">One-time &mdash; covers all three months</p>
-          <ul class="plan__list">
-            <li>$110 in Virtual Credits <small>Use on anything from open play and Dinks N Drinks to leagues and DUPR drop-ins</small></li>
-            <li>$10 Open Play</li>
-            <li>Free Rallie Ball Machine Rentals</li>
-            <li>Advanced Court Reservation Booking <small>7 days vs 5 days</small></li>
-            <li>Invitation to Monthly Member Social</li>
-            <li>$5 Off Court Rentals</li>
-          </ul>
+          <p class="plan__tagline">{{memberships.plans.fall.tagline}}</p>
+          <p class="plan__price">{{memberships.plans.fall.total}}<span class="plan__unit">total</span></p>
+          <p class="plan__total">or {{memberships.plans.fall.monthly}} per month &mdash; three months, {{memberships.season.label}}</p>
+          <div class="plan__perks">
+{{fallPerks}}
+          </div>
           <div class="plan__box" data-season-start="{{memberships.season.start}}" data-season-end="{{memberships.season.end}}"
                data-total="{{memberships.plans.fall.totalAmount}}" data-currency="{{memberships.pricing.currency}}" data-prorate="{{memberships.pricing.prorateAttr}}"
                data-min-days="{{memberships.pricing.minDays}}" data-next-label="{{memberships.nextSeason.label}}" data-next-opens="{{memberships.nextSeason.opensOn}}">
@@ -59,6 +55,7 @@
       <div class="section-head">
         <p class="eyebrow">{{memberships.credits.eyebrow}}</p>
         <h2 id="credits-h">{{memberships.credits.heading}}</h2>
+        <p class="section-head__lead">{{memberships.credits.lead}}</p>
       </div>
       <p class="credits__note">{{memberships.credits.note}}</p>
       <div class="credits">
@@ -71,6 +68,7 @@
           </tbody>
         </table>
       </div>
+      <p class="finecopy">{{memberships.credits.exclusions}}</p>
     </div>
   </section>
 
@@ -90,11 +88,10 @@
             <li>Receive All Pickleball <strong>101, 102, 103 &amp; 104</strong> Classes.</li>
             <li><strong>$25 Food &amp; Beverage Gift Card.</strong></li>
           </ul>
-          <a class="prog__cta" href="{{orderingUrl}}">See more</a>
         </article>
       </div>
 
-      <p class="finecopy">Memberships run June through August and require a 3 month commitment. Open play marked * is subject to court availability; advance booking does not permit back-to-back sessions. Prices exclude state sales tax and service fees.</p>
+      <p class="finecopy">Memberships run September through November and require a 3 month commitment. Open play marked * is subject to court availability; advance booking does not permit back-to-back sessions. Prices exclude state sales tax and service fees.</p>
     </div>
   </section>
 

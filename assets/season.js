@@ -76,11 +76,14 @@
       return;
     }
 
-    var price = total;
-    if (prorate && start) {
-      var span = Math.round((end - start) / DAY) + 1;
-      if (span > 0) price = Math.round(total * remaining / span);
-    }
+    /* A flat-priced season has nothing to recalculate: the markup already says
+       "$300 · September – November", which stays true on any day it is sold.
+       Rewriting it to "$300 for 90 days starting today" would only advertise a
+       shrinking number of days against an unchanged price. */
+    if (!prorate || !start) return;
+
+    var span = Math.round((end - start) / DAY) + 1;
+    var price = span > 0 ? Math.round(total * remaining / span) : total;
 
     line.textContent = money(price, currency) + ' for ' + remaining +
       ' day' + (remaining === 1 ? '' : 's') + ' starting today';

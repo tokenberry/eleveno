@@ -604,7 +604,7 @@ button,input,select,textarea{font-family:inherit}
    rule would outrank that (:has() carries its argument's specificity) and
    undo it. */
 @media (min-width:1081px){
-  .plans:has(.plan:only-child){grid-template-columns:minmax(0,620px);justify-content:center}
+  .plans:has(.plan:only-child){grid-template-columns:minmax(0,900px);justify-content:center}
 }
 .plan{background:var(--navy);color:var(--cream);border-radius:20px;padding:34px 30px;border:2px solid var(--navy)}
 .plan--feature{background:var(--navy-mid);border-color:var(--gold);box-shadow:0 20px 44px rgba(14,35,80,.22)}
@@ -616,6 +616,22 @@ button,input,select,textarea{font-family:inherit}
 .plan__list li{position:relative;padding-left:22px;font-size:14px;line-height:1.5;font-weight:500;color:var(--on-navy)}
 .plan__list li::before{content:"\2713";position:absolute;left:0;top:0;color:var(--gold);font-weight:900}
 .plan__list small{display:block;font-family:var(--mono);font-size:11px;color:var(--on-navy-mute);margin-top:3px}
+/* Two named groups side by side, as the flyer sets them: pickleball on the
+   left, food and drink on the right. One column on a phone — at 12 items the
+   pair would otherwise be two very narrow stacks. */
+.plan__tagline{font-family:var(--script);font-size:26px;line-height:1.1;color:var(--gold);margin-top:6px}
+.plan__unit{font-family:var(--mono);font-size:13px;letter-spacing:1.4px;text-transform:uppercase;
+  color:var(--on-navy-mute);margin-left:10px;vertical-align:middle}
+.plan__perks{display:grid;grid-template-columns:1fr 1fr;gap:28px 34px;margin-top:26px}
+.perkgrp h4{font-family:var(--display);font-size:17px;letter-spacing:1.2px;text-transform:uppercase;
+  color:var(--gold);padding-bottom:9px;border-bottom:2px solid #ffffff26}
+.perkgrp ul{list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:11px}
+/* The tick is a pseudo-element on the row, not a marker on the text, so a
+   wrapped second line aligns to the words rather than under the tick. */
+.perkgrp li{position:relative;padding-left:22px;font-size:14px;line-height:1.45;color:var(--on-navy)}
+.perkgrp li::before{content:"\2713";position:absolute;left:0;top:0;color:var(--gold);font-weight:900}
+.perkgrp li span{font-weight:700;color:var(--cream)}
+.perkgrp li small{display:block;font-size:12.5px;line-height:1.5;color:var(--on-navy-mute);margin-top:2px}
 .plan__swag{display:flex;align-items:center;gap:10px;margin-top:22px;font-weight:800;font-size:15px}
 .plan__swag::before{content:"";width:16px;height:16px;border-radius:50%;border:4px solid var(--gold);flex:0 0 auto}
 .plan__box{margin-top:16px;background:#0000002e;border-radius:12px;padding:16px 18px}
@@ -1276,6 +1292,7 @@ textarea.einput{resize:vertical;min-height:110px}
   .plans{grid-template-columns:1fr}
   .progb{grid-template-columns:1fr}
   .plan__list{grid-template-columns:1fr}
+  .plan__perks{grid-template-columns:1fr;gap:24px}
   .paths{grid-template-columns:1fr}
   .path{min-height:320px}
   .phero__mark{width:150px;top:-14px;right:-36px;opacity:.20}
@@ -1299,9 +1316,11 @@ textarea.einput{resize:vertical;min-height:110px}
   .hero{min-height:0;flex-direction:column;align-items:stretch}
   .hero__inner{padding-top:48px;padding-bottom:48px}
   .hero__stats{position:static;width:100%}
-  /* Four stats across a phone leave one stranded alone on a second row; 2x2
-     fills both rows evenly. */
+  /* Five stats across a phone need three rows, and the odd one out would sit
+     in a half-width cell with nothing beside it. Two columns, with the last
+     spanning both, so the row reads as a row rather than a leftover. */
   .hero__stats .shell{display:grid;grid-template-columns:1fr 1fr;gap:16px 20px}
+  .hero__stats p:last-child{grid-column:1/-1}
   /* 4px tracking pushed "OPEN 7 DAYS" onto a second line for one orphaned word */
   .hero__eyebrow{font-size:12px;letter-spacing:2px;margin-bottom:14px}
   /* Stacked, the row reads time, then title with the button beside it. The

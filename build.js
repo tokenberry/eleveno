@@ -631,6 +631,17 @@ function renderEtiquette() {
 /* Credit bundles. The row is named by the saving, so that number must be
    derived rather than typed — and `was` is checked against the open-play rate,
    which catches a typo in any of the four figures. */
+/* The fall perks arrive as two named groups rather than one list, so the card
+   mirrors the flyer: pickleball on one side, food and drink on the other. */
+function renderPlanPerks(plan) {
+  return plan.perkGroups.map(g => `            <section class="perkgrp">
+              <h4>${g.name}</h4>
+              <ul>
+${g.items.map(i => `                <li><span>${i.t}</span>${i.d ? `<small>${i.d}</small>` : ''}</li>`).join('\n')}
+              </ul>
+            </section>`).join('\n');
+}
+
 /* The play count and the saving, checked. A bundle whose "was" is not the play
    count at the open play rate is a typo advertising a discount that is not
    there, so it fails the build rather than reaching a customer. Shared with the
@@ -1122,6 +1133,7 @@ for (const f of pageFiles) {
     preload: renderPreload(meta),
     homeHref: meta.slug === 'index' ? '#top' : 'index.html',
     // a page opts into a script by name; every other page ships none
+    fallPerks: renderPlanPerks(memberships.plans.fall),
     scriptTag: ['nav'].concat(meta.script ? [meta.script] : [])
       .map(name => `<script src="assets/${name}.js" defer></script>`).join('\n'),
     primaryNav: renderPrimaryNav(meta.slug),
@@ -1340,6 +1352,16 @@ if (emailFiles.length) {
       membershipTotal: memberships.plans.fall.total,
       membershipUrl: memberships.plans.fall.subscribeUrl,
       seasonLabel: memberships.season.label,
+      /* What the membership costs someone joining today is a pricing rule, not
+         a sentence: main switched `prorate` off to sell the season flat, and a
+         campaign still promising "you only pay for the days that are left"
+         would have been advertising a discount the checkout no longer gives.
+         So the claim follows the flag, and flipping it back rewrites the line. */
+      membershipPricingLine: memberships.pricing.prorate
+        ? 'One price for the whole season, and joining late costs less &mdash; the price is prorated to the days that are actually left, so there is no penalty for signing up mid-season.'
+        : 'One price for the whole season, however far into it you join, good right through the end of the season.',
+      creditsLead: memberships.credits.lead,
+      creditsExclusions: memberships.credits.exclusions,
       creditsEyebrow: memberships.credits.eyebrow,
       creditsHeading: memberships.credits.heading,
       /* The bundles are a price table: the site publishes what they cost, and
