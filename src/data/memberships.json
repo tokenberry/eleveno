@@ -11,9 +11,9 @@
     "opensOn": ""
   },
   "pricing": {
-    "_comment": "prorate: joining mid-season costs only the days that remain, rounded to whole currency units. minDays: below this many days left, the season closes rather than selling a stub membership.",
+    "_comment": "prorate: when true, joining mid-season costs only the days that remain, rounded to whole currency units. Off for the fall season — the price is a flat $300 whenever you join, so the card shows the season price rather than a day count. minDays: below this many days left, the season closes rather than selling a stub membership.",
     "currency": "$",
-    "prorate": true,
+    "prorate": false,
     "minDays": 30
   },
   "plans": {
