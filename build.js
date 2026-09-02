@@ -631,15 +631,26 @@ function renderEtiquette() {
 /* Credit bundles. The row is named by the saving, so that number must be
    derived rather than typed — and `was` is checked against the open-play rate,
    which catches a typo in any of the four figures. */
+/* The play count and the saving, checked. A bundle whose "was" is not the play
+   count at the open play rate is a typo advertising a discount that is not
+   there, so it fails the build rather than reaching a customer. Shared with the
+   email build below: the page and the newsletter quote the same numbers, so
+   they had better derive them the same way. */
+function creditBundle(b) {
+  const c = memberships.credits;
+  const plays = b.buy + b.free;
+  const save = b.was - b.now;
+  if (b.was !== plays * c.openPlayRate) {
+    throw new Error(`credit bundle "buy ${b.buy} get ${b.free}": ${plays} plays at $${c.openPlayRate} is $${plays * c.openPlayRate}, not the $${b.was} listed`);
+  }
+  if (save <= 0) throw new Error(`credit bundle "buy ${b.buy} get ${b.free}" saves nothing`);
+  return { plays, save };
+}
+
 function renderCredits() {
   const c = memberships.credits;
   return c.bundles.map(b => {
-    const plays = b.buy + b.free;
-    const save = b.was - b.now;
-    if (b.was !== plays * c.openPlayRate) {
-      throw new Error(`credit bundle "buy ${b.buy} get ${b.free}": ${plays} plays at $${c.openPlayRate} is $${plays * c.openPlayRate}, not the $${b.was} listed`);
-    }
-    if (save <= 0) throw new Error(`credit bundle "buy ${b.buy} get ${b.free}" saves nothing`);
+    const { plays, save } = creditBundle(b);
     return `            <tr>
               <th scope="row">Save $${save}<small>${plays} open plays &mdash; buy ${b.buy}, get ${b.free} free</small></th>
               <td class="was">$${b.was}</td><td class="now">$${b.now}</td>
@@ -1151,11 +1162,14 @@ const sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n' +
   '\n</urlset>\n';
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), sitemap);
 
-// /admin is the CMS, not content; keep it out of the index
+// /admin is the CMS, not content, and /emails/ is campaign source that Netlify
+// happens to publish — a newsletter must not compete with the real pages in
+// search. Keep both out of the index.
 const robotsTxt = [
   'User-agent: *',
   'Allow: /',
   'Disallow: /admin/',
+  'Disallow: /emails/',
   '',
   'Sitemap: ' + site.baseUrl + 'sitemap.xml',
   '',
@@ -1165,3 +1179,207 @@ console.log(`sitemap.xml: ${indexable.length} url(s); ${written.length - indexab
 
 console.log('built ' + written.length + ' page(s):');
 for (const w of written) console.log('  ' + w.file.padEnd(20) + (w.bytes / 1024).toFixed(1) + ' KB');
+
+/* ---------- email campaigns ----------
+   Mailchimp campaigns are built from the same JSON the site is, so a price, a
+   season or a schedule can never say one thing on the page and another in the
+   inbox. Sources live in src/emails/, the shell in src/layouts/email.html, and
+   the rendered file lands in emails/<slug>.html — open it in a browser to
+   proof it, then paste it into Mailchimp's Code view.
+
+   Email is not the web. There is no stylesheet (Gmail strips <style> on a
+   forward), no flexbox, no grid and no JavaScript: layout is nested tables,
+   styling is inline, and every URL has to be absolute because a mail client has
+   no origin to resolve a relative path against. The checks at the bottom of
+   this section enforce the last of those, which is the one that silently ships
+   a dead link. */
+
+const abs = rel => site.baseUrl + String(rel).replace(/^\//, '');
+
+/* Email has no CSS to size or crop an image with — no background-size, no
+   object-fit, and width/height have to be attributes on the tag. So both jobs
+   move server-side, to the same Netlify Image CDN the stylesheet already routes
+   its backgrounds through: it takes a width, an optional height and a fit, and
+   hands back a file already framed and already sized for a 600px column rather
+   than shipping the full 1890px original to every inbox.
+
+   Ask for 2x the display size — retina phones are most of the opens, and
+   Netlify clamps to the source's own width, so this can never upscale.
+
+   Pass `ratio` to crop. hero-bar.jpg is the case that needs it: the site zooms
+   to 120% at center 42% to keep the bar scene and drop the dark run of netting
+   along the bottom, and an email that shows the whole frame gets that band. A
+   cover crop to the wider ratio takes the middle of the photo instead. */
+function emailImage(file, width, ratio) {
+  const size = imageSize(file);
+  if (!size) throw new Error(`could not read the dimensions of assets/${file}`);
+  const h = Math.round(ratio ? width / ratio : width * size.h / size.w);
+  const base = site.baseUrl.replace(/\/$/, '') + `/.netlify/images?url=/assets/${file}&w=${width * 2}`;
+  // esc() for the ampersands: a bare & in an href is invalid HTML, and some
+  // clients rewrite the URL when they normalise it.
+  return { url: esc(ratio ? `${base}&h=${h * 2}&fit=cover&position=center` : base), w: width, h };
+}
+
+/* One programme per row: time and title on the left, Sign Up on the right, on a
+   white card. The 10px spacer row is how tables do a gap — margin between <tr>s
+   does not exist. */
+function emailEventRow(e) {
+  const label = (e.ctaLabel || 'Sign Up').toUpperCase();
+  const cta = e.url
+    ? `<a href="${e.url}" style="display:inline-block;padding:11px 20px;background-color:#F5B70E;border-radius:6px;font-family:'Anton',Impact,'Arial Narrow',Arial,sans-serif;font-size:14px;line-height:16px;letter-spacing:1px;text-transform:uppercase;color:#0E2350;text-decoration:none;">${label}</a>`
+    : `<span style="font-family:Archivo,Arial,Helvetica,sans-serif;font-size:13px;line-height:16px;color:#5a5c66;">Ask at the desk</span>`;
+  return `  <tr>
+    <td class="pad" style="background-color:#DCEAF6;padding:0 32px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#ffffff;border-radius:10px;">
+        <tr>
+          <td class="stack" valign="middle" style="padding:16px 18px;">
+            <p style="margin:0 0 3px 0;font-family:'Space Mono',Consolas,monospace;font-size:11px;line-height:16px;letter-spacing:1px;color:#1D3F94;">${e.when}</p>
+            <p style="margin:0;font-family:Archivo,Arial,Helvetica,sans-serif;font-size:16px;line-height:22px;font-weight:600;color:#14161C;">${e.title}</p>
+          </td>
+          <td class="stack-right" valign="middle" align="right" width="130" style="padding:16px 18px 16px 0;">${cta}</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr><td style="background-color:#DCEAF6;font-size:10px;line-height:10px;height:10px;">&nbsp;</td></tr>`;
+}
+
+function renderEmailEvents() {
+  const list = (calendar.events || []).filter(e => e.home);
+  if (!list.length) {
+    return `  <tr>
+    <td class="pad" style="background-color:#DCEAF6;padding:0 32px 10px 32px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#ffffff;border-radius:10px;">
+        <tr><td style="padding:18px;font-family:Archivo,Arial,Helvetica,sans-serif;font-size:16px;line-height:22px;color:#5a5c66;">Nothing on the calendar right now — check back soon.</td></tr>
+      </table>
+    </td>
+  </tr>`;
+  }
+  return list.map(emailEventRow).join('\n');
+}
+
+function renderEmailCredits() {
+  return memberships.credits.bundles.map(b => {
+    const { plays, save } = creditBundle(b);
+    return `  <tr>
+    <td class="pad" style="background-color:#F5F0E4;padding:10px 32px 0 32px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#ffffff;border-radius:10px;">
+        <tr>
+          <td class="stack" valign="middle" style="padding:16px 18px;">
+            <p style="margin:0 0 3px 0;font-family:'Anton',Impact,'Arial Narrow',Arial,sans-serif;font-size:22px;line-height:24px;letter-spacing:1px;color:#0E2350;">SAVE $${save}</p>
+            <p style="margin:0;font-family:Archivo,Arial,Helvetica,sans-serif;font-size:14px;line-height:20px;color:#5a5c66;">${plays} open plays &mdash; buy ${b.buy}, get ${b.free} free</p>
+          </td>
+          <td class="stack-right" valign="middle" align="right" width="130" style="padding:16px 18px 16px 0;font-family:Archivo,Arial,Helvetica,sans-serif;">
+            <span style="font-size:15px;line-height:22px;color:#5a5c66;text-decoration:line-through;">$${b.was}</span>
+            <span style="font-size:22px;line-height:24px;font-weight:700;color:#0E2350;">&nbsp;$${b.now}</span>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>`;
+  }).join('\n');
+}
+
+function renderEmailHours() {
+  return (visit.hours || []).map(h =>
+    `              <tr>
+                <td style="font-family:Archivo,Arial,Helvetica,sans-serif;font-size:14px;line-height:24px;color:#9FB0CE;">${h.days}</td>
+                <td align="right" style="font-family:Archivo,Arial,Helvetica,sans-serif;font-size:14px;line-height:24px;color:#DCE3F0;">${h.time}</td>
+              </tr>`).join('\n');
+}
+
+/* Same shape as parsePage, different required fields: an email has a subject
+   line and a preheader rather than a title and a meta description. */
+function parseEmail(file) {
+  const raw = read(file);
+  const m = raw.match(/^<!--meta\s*([\s\S]*?)-->\s*/);
+  if (!m) throw new Error(`${path.basename(file)} is missing its <!--meta {...}--> block`);
+  let meta;
+  try { meta = JSON.parse(m[1]); }
+  catch (e) { throw new Error(`${path.basename(file)} has invalid meta JSON: ${e.message}`); }
+  for (const k of ['slug', 'subject', 'preheader']) {
+    if (!meta[k]) throw new Error(`${path.basename(file)} meta is missing "${k}"`);
+  }
+  return { meta, body: raw.slice(m[0].length) };
+}
+
+const emailDir = path.join(SRC, 'emails');
+const emailFiles = fs.existsSync(emailDir)
+  ? fs.readdirSync(emailDir).filter(f => f.endsWith('.html')).sort() : [];
+
+if (emailFiles.length) {
+  const emailLayout = read(path.join(SRC, 'layouts', 'email.html'));
+  const outDir = path.join(ROOT, 'emails');
+  fs.mkdirSync(outDir, { recursive: true });
+
+  /* 600x280 is not an arbitrary shape. Cover-cropping the 1890x1244 original to
+     it keeps the middle 14.6%-85.4% of the frame: above the run of dark mesh
+     that starts at about 87%, below most of the ceiling, and with the three
+     subjects (40-55%) well clear of both edges. A taller hero reaches the mesh
+     and ships a black band across the top of the email. */
+  const hero = emailImage('hero-bar.jpg', 600, 600 / 280);
+  const logo = emailImage('logo-white.png', 150);
+  const sent = [];
+
+  for (const f of emailFiles) {
+    const { meta, body } = parseEmail(path.join(emailDir, f));
+    const vars = {
+      ...site,
+      memberships,
+      calendar,
+      menus,
+      visit,
+      heroUrl: hero.url,
+      heroHeight: hero.h,
+      logoUrl: logo.url,
+      logoHeight: logo.h,
+      mapLinkUrl: visit.mapLinkUrl,
+      calendarUrl: abs(calendar.viewAllUrl || 'calendar.html'),
+      /* The notice is deleted from menu-food.json once the kitchen opens, and
+         the campaign still has to build after that — so it falls back to the
+         line that is true from then on rather than failing on a missing key. */
+      kitchenNotice: menus.food.notice || 'now open',
+      kitchenIntro: menus.food.intro,
+      membershipName: memberships.plans.fall.name,
+      membershipTotal: memberships.plans.fall.total,
+      membershipUrl: memberships.plans.fall.subscribeUrl,
+      seasonLabel: memberships.season.label,
+      creditsEyebrow: memberships.credits.eyebrow,
+      creditsHeading: memberships.credits.heading,
+      emailEvents: renderEmailEvents(),
+      emailCredits: renderEmailCredits(),
+      emailHours: renderEmailHours(),
+      ...meta,
+      content: '',
+    };
+    vars.content = expand(body, vars);
+    const html = expand(emailLayout, vars);
+
+    /* A relative href is fine on the site and dead in an inbox: there is no
+       origin to resolve it against, so the subscriber gets a broken link and we
+       find out from a reply. Absolute, mailto:, tel: and Mailchimp's own merge
+       tags are the only things allowed through. */
+    const bad = [...html.matchAll(/(?:href|src)="([^"]*)"/g)]
+      .map(m => m[1])
+      .filter(u => !/^(https?:\/\/|mailto:|tel:|\*\|)/.test(u));
+    if (bad.length) {
+      throw new Error(`${meta.slug}: ${bad.length} relative link(s) in an email — they resolve to nothing in a mail client:\n`
+        + [...new Set(bad)].map(u => '  ' + u).join('\n'));
+    }
+    /* Mailchimp rejects a campaign with no way out of the list, and it is the
+       law besides. Cheaper to catch here than in the send dialog. */
+    if (!html.includes('*|UNSUB|*')) {
+      throw new Error(`${meta.slug}: no *|UNSUB|* merge tag — Mailchimp will not send a campaign without an unsubscribe link`);
+    }
+
+    const outFile = path.join(outDir, meta.slug + '.html');
+    fs.writeFileSync(outFile, html);
+    sent.push({ file: 'emails/' + meta.slug + '.html', bytes: html.length, subject: meta.subject });
+  }
+
+  console.log(`built ${sent.length} email(s):`);
+  for (const s of sent) {
+    console.log('  ' + s.file.padEnd(38) + (s.bytes / 1024).toFixed(1) + ' KB');
+    console.log('  ' + ' '.repeat(38) + '"' + s.subject + '"');
+  }
+}
