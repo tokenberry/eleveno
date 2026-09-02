@@ -1,0 +1,47 @@
+{
+  "artboards": [
+    { "file": "ArrowCourts.dc.html",    "x": 0,    "y": 0,    "w": 2304, "h": 3456, "title": "Directional — Courts & Check-In", "print": "fixed" },
+    { "file": "ArrowBarGrill.dc.html",  "x": 2564, "y": 0,    "w": 2304, "h": 3456, "title": "Directional — Bar & Grill",       "print": "fixed" },
+    { "file": "ArrowEvents.dc.html",    "x": 5128, "y": 0,    "w": 2304, "h": 3456, "title": "Directional — Private Event Space","print": "fixed" },
+
+    { "file": "FallMembership.dc.html", "x": 0,    "y": 3856, "w": 2304, "h": 3456, "title": "Fall Membership",   "print": "fixed" },
+    { "file": "FreePickleball.dc.html", "x": 2564, "y": 3856, "w": 2304, "h": 3456, "title": "Free Pickleball",   "print": "fixed" },
+    { "file": "OpenPlay.dc.html",       "x": 5128, "y": 3856, "w": 2304, "h": 3456, "title": "Open Play",         "print": "fixed" },
+    { "file": "Lessons.dc.html",        "x": 7692, "y": 3856, "w": 2304, "h": 3456, "title": "Lessons & Clinics", "print": "fixed" },
+
+    { "file": "Main.dc.html",           "x": 0,    "y": 7712, "w": 2304, "h": 3456, "title": "Paddle Down Pub",   "print": "fixed" },
+    { "file": "KidsFree.dc.html",       "x": 2564, "y": 7712, "w": 2304, "h": 3456, "title": "Kids Play Free",    "print": "fixed" },
+    { "file": "Hours.dc.html",          "x": 5128, "y": 7712, "w": 2304, "h": 3456, "title": "Opening Hours",     "print": "fixed" }
+  ],
+  "annotations": [
+    {
+      "id": "lineup",
+      "x": -2000,
+      "y": 0,
+      "w": 1700,
+      "text": "TEN A-FRAMES — the plan\n\nEach board does ONE job and is read in about 3 seconds from 15-20 feet.\n\nWAYFINDING (3)\n1. Courts & Check-In\n2. Bar & Grill\n3. Private Event Space\n\nOFFERS (4)\n4. Fall Membership\n5. Free Pickleball\n6. Open Play\n7. Lessons & Clinics\n\nDESTINATION & INFO (3)\n8. Paddle Down Pub\n9. Kids Play Free\n10. Opening Hours\n\nAll ten: 24in x 36in portrait, drawn at 96 px per inch (2304 x 3456)."
+    },
+    {
+      "id": "row-directional",
+      "x": 0,
+      "y": -560,
+      "w": 1700,
+      "text": "1-3 · DIRECTIONAL — put these furthest from the door, where people are still deciding. Each has a left/right flip in the tweak row above the artboard, so the same board works on either side of a walkway."
+    },
+    {
+      "id": "row-offers",
+      "x": 0,
+      "y": 3296,
+      "w": 1700,
+      "text": "4-7 · OFFERS — the ones that earn money. These rotate: swap them as the season and the promo change. All four carry a live QR straight to the booking page."
+    },
+    {
+      "id": "row-info",
+      "x": 0,
+      "y": 7152,
+      "w": 1700,
+      "text": "8-10 · DESTINATION & INFO — these live at the door and stay put. Hours is the one board that should never move."
+    }
+  ],
+  "launch": { "view": "canvas" }
+}
