@@ -1335,10 +1335,6 @@ if (emailFiles.length) {
       logoHeight: logo.h,
       mapLinkUrl: visit.mapLinkUrl,
       calendarUrl: abs(calendar.viewAllUrl || 'calendar.html'),
-      /* The notice is deleted from menu-food.json once the kitchen opens, and
-         the campaign still has to build after that — so it falls back to the
-         line that is true from then on rather than failing on a missing key. */
-      kitchenNotice: menus.food.notice || 'now open',
       kitchenIntro: menus.food.intro,
       membershipName: memberships.plans.fall.name,
       membershipTotal: memberships.plans.fall.total,
