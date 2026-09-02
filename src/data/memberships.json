@@ -26,6 +26,8 @@
   "credits": {
     "eyebrow": "PREPAY AND SAVE",
     "heading": "Virtual Credit Bundles",
+    "lead": "Virtual credits can be used on all pickleball-related programming.*",
+    "exclusions": "*Excludes private lessons and advanced-level clinics.",
     "note": "OPEN PLAY CREDITS • APPLIED AUTOMATICALLY AT BOOKING",
     "openPlayRate": 15,
     "_comment": "Rows are named by what you save, since that is the reason to buy one. The build works out both the play count (buy + free) and the saving (was - now), and checks `was` really is plays x openPlayRate — so a typo in any number fails the build instead of advertising a discount that is not there.",
