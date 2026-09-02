@@ -631,6 +631,17 @@ function renderEtiquette() {
 /* Credit bundles. The row is named by the saving, so that number must be
    derived rather than typed — and `was` is checked against the open-play rate,
    which catches a typo in any of the four figures. */
+/* The fall perks arrive as two named groups rather than one list, so the card
+   mirrors the flyer: pickleball on one side, food and drink on the other. */
+function renderPlanPerks(plan) {
+  return plan.perkGroups.map(g => `            <section class="perkgrp">
+              <h4>${g.name}</h4>
+              <ul>
+${g.items.map(i => `                <li><span>${i.t}</span>${i.d ? `<small>${i.d}</small>` : ''}</li>`).join('\n')}
+              </ul>
+            </section>`).join('\n');
+}
+
 function renderCredits() {
   const c = memberships.credits;
   return c.bundles.map(b => {
@@ -1111,6 +1122,7 @@ for (const f of pageFiles) {
     preload: renderPreload(meta),
     homeHref: meta.slug === 'index' ? '#top' : 'index.html',
     // a page opts into a script by name; every other page ships none
+    fallPerks: renderPlanPerks(memberships.plans.fall),
     scriptTag: ['nav'].concat(meta.script ? [meta.script] : [])
       .map(name => `<script src="assets/${name}.js" defer></script>`).join('\n'),
     primaryNav: renderPrimaryNav(meta.slug),

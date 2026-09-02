@@ -19,7 +19,64 @@
   "plans": {
     "fall": {
       "name": "Fall Membership",
+      "tagline": "Play more. Eat well. Belong here.",
+      "monthlyAmount": 100,
       "totalAmount": 300,
+      "perkGroups": [
+        {
+          "name": "Pickleball Perks",
+          "items": [
+            {
+              "t": "$110 Virtual Credits",
+              "d": "To use on any pickleball programs."
+            },
+            {
+              "t": "$5 Indoor Open Play"
+            },
+            {
+              "t": "$10 off Hourly Court Rental Pricing"
+            },
+            {
+              "t": "10% Discount on League Fees"
+            },
+            {
+              "t": "$5 off Social Programs, Round Robins, Clinics & Classes"
+            },
+            {
+              "t": "Free Rallie Ball Machine Rentals"
+            },
+            {
+              "t": "7 Day Advanced Booking",
+              "d": "For court rentals."
+            }
+          ]
+        },
+        {
+          "name": "Food & Beverage Perks",
+          "items": [
+            {
+              "t": "Access to the members-only menu",
+              "d": "Monday through Thursday, 12–6pm."
+            },
+            {
+              "t": "Monthly member Brunch",
+              "d": "Last Sunday of the month."
+            },
+            {
+              "t": "Most Frequent Member Giveaway",
+              "d": "Each month the most frequent visitor gets a Holiday Dinner for 6."
+            },
+            {
+              "t": "Members-only free food and beverage activations",
+              "d": "Every Friday."
+            },
+            {
+              "t": "Complimentary Social Saturday Soiree",
+              "d": "Second Saturday of each month, 3–6pm, with a happy hour of lite bites, beer and wine."
+            }
+          ]
+        }
+      ],
       "subscribeUrl": "https://eleveno.podplay.app/account/memberships/eleveno-fall-membership?"
     }
   },
