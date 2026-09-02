@@ -1299,9 +1299,11 @@ textarea.einput{resize:vertical;min-height:110px}
   .hero{min-height:0;flex-direction:column;align-items:stretch}
   .hero__inner{padding-top:48px;padding-bottom:48px}
   .hero__stats{position:static;width:100%}
-  /* Four stats across a phone leave one stranded alone on a second row; 2x2
-     fills both rows evenly. */
+  /* Five stats across a phone need three rows, and the odd one out would sit
+     in a half-width cell with nothing beside it. Two columns, with the last
+     spanning both, so the row reads as a row rather than a leftover. */
   .hero__stats .shell{display:grid;grid-template-columns:1fr 1fr;gap:16px 20px}
+  .hero__stats p:last-child{grid-column:1/-1}
   /* 4px tracking pushed "OPEN 7 DAYS" onto a second line for one orphaned word */
   .hero__eyebrow{font-size:12px;letter-spacing:2px;margin-bottom:14px}
   /* Stacked, the row reads time, then title with the button beside it. The
