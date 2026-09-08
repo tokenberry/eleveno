@@ -1032,9 +1032,25 @@ function buildStylesheet() {
   return { count: seen.size, bytes: out.length };
 }
 
+/* /assets/* is served with a seven-day cache and the filenames never change,
+   so a returning visitor could get last week's stylesheet against today's
+   markup — which is exactly how the membership card rendered unstyled after
+   its rebuild. A content hash in the query string makes a changed file a
+   changed URL, while leaving the long cache in place for files that have not
+   changed. */
+const assetHash = file => require('crypto').createHash('sha1')
+  .update(fs.readFileSync(path.join(ROOT, 'assets', file))).digest('hex').slice(0, 8);
+
 const layout = read(path.join(SRC, 'layouts', 'base.html'));
 const pageFiles = fs.readdirSync(path.join(SRC, 'pages')).filter(f => f.endsWith('.html')).sort();
 if (!pageFiles.length) throw new Error('no pages found in src/pages');
+
+/* Before the pages, not after: the pages carry a content hash of the
+   stylesheet in their link tag, and hashing a file this build has not written
+   yet fingerprints the previous build's CSS — so the one change that needs
+   busting is the one that would not bust. */
+const css = buildStylesheet();
+console.log(`assets/styles.css: ${css.count} background image(s) routed through Netlify Image CDN`);
 
 const written = [];
 for (const f of pageFiles) {
@@ -1135,7 +1151,8 @@ for (const f of pageFiles) {
     // a page opts into a script by name; every other page ships none
     fallPerks: renderPlanPerks(memberships.plans.fall),
     scriptTag: ['nav'].concat(meta.script ? [meta.script] : [])
-      .map(name => `<script src="assets/${name}.js" defer></script>`).join('\n'),
+      .map(name => `<script src="assets/${name}.js?v=${assetHash(name + '.js')}" defer></script>`).join('\n'),
+    stylesheetHref: `assets/styles.css?v=${assetHash('styles.css')}`,
     primaryNav: renderPrimaryNav(meta.slug),
     navCta: renderNavCta(meta.slug),
     footerNav: renderFooterNav(meta.slug),
@@ -1159,8 +1176,6 @@ for (const f of pageFiles) {
   written.push({ file: meta.slug + '.html', bytes: html.length, canonical: vars.canonical, noindex: !!meta.noindex });
 }
 
-const css = buildStylesheet();
-console.log(`assets/styles.css: ${css.count} background image(s) routed through Netlify Image CDN`);
 
 /* robots.txt and sitemap.xml are generated rather than hand-kept so they can
    never fall out of step with the page list. */

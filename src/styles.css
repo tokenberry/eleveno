@@ -621,11 +621,13 @@ button,input,select,textarea{font-family:inherit}
    pair would otherwise be two very narrow stacks. */
 .plan__tagline{font-family:var(--script);font-size:26px;line-height:1.1;color:var(--gold);margin-top:6px}
 .plan__unit{font-family:var(--mono);font-size:13px;letter-spacing:1.4px;text-transform:uppercase;
-  color:var(--on-navy-mute);margin-left:10px;vertical-align:middle}
-.plan__perks{display:grid;grid-template-columns:1fr 1fr;gap:28px 34px;margin-top:26px}
+  color:var(--on-navy-mute);margin-left:14px;vertical-align:middle}
+.plan__perks{display:grid;grid-template-columns:1fr 1fr;gap:34px 40px;margin-top:34px}
+/* Room above the rule as well as below it, so each group heading reads as the
+   start of a block rather than a label stuck to the list under it. */
 .perkgrp h4{font-family:var(--display);font-size:17px;letter-spacing:1.2px;text-transform:uppercase;
-  color:var(--gold);padding-bottom:9px;border-bottom:2px solid #ffffff26}
-.perkgrp ul{list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:11px}
+  color:var(--gold);padding-bottom:12px;border-bottom:2px solid #ffffff26}
+.perkgrp ul{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:14px}
 /* The tick is a pseudo-element on the row, not a marker on the text, so a
    wrapped second line aligns to the words rather than under the tick. */
 .perkgrp li{position:relative;padding-left:22px;font-size:14px;line-height:1.45;color:var(--on-navy)}
@@ -1292,7 +1294,7 @@ textarea.einput{resize:vertical;min-height:110px}
   .plans{grid-template-columns:1fr}
   .progb{grid-template-columns:1fr}
   .plan__list{grid-template-columns:1fr}
-  .plan__perks{grid-template-columns:1fr;gap:24px}
+  .plan__perks{grid-template-columns:1fr;gap:30px}
   .paths{grid-template-columns:1fr}
   .path{min-height:320px}
   .phero__mark{width:150px;top:-14px;right:-36px;opacity:.20}
