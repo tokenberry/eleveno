@@ -15,6 +15,10 @@ assets/styles.css           all styling (extracted from the design's inline styl
 assets/*.jpg, *.png         web-optimized imagery
 design/Eleveno Home.dc.html original design source (canvas format)
 design/support.js           Claude Design canvas runtime, for opening the source
+
+src/emails/*.html           newsletter content — one file per campaign
+src/layouts/email.html      the email shell every campaign is poured into
+emails/*.html               GENERATED — paste into Mailchimp, do not edit by hand
 ```
 
 ## Building
@@ -116,6 +120,54 @@ opens, and after it closes.
 
 Pages opt into a script with `"script": "name"` in their meta block, which
 loads `assets/name.js`. Every other page ships none.
+
+## The newsletter
+
+`src/emails/` holds Mailchimp campaigns, built by the same `node build.js` that
+builds the site and poured into `src/layouts/email.html`. Each one renders to
+`emails/<slug>.html`.
+
+They are built from the same JSON the pages are — `memberships.json` for the
+season and its price, `events.json` for the schedule, `menu-food.json` for the
+kitchen, `visit.json` for the hours — so a campaign cannot quote a price the
+site has stopped charging. Change the data, rebuild, and both follow.
+
+To send one:
+
+1. `npm run build`, then open `emails/<slug>.html` in a browser to proof it.
+2. In Mailchimp, create a campaign and choose **Code your own → Paste in code**.
+3. Paste the whole file, and set the subject line from the `subject` in the
+   file's meta block. `preheader` is the grey line beside it in the inbox;
+   Mailchimp reads it from the markup, so leave its own preview field empty.
+4. Send a test to yourself before scheduling.
+
+Each campaign begins with a `<!--meta {...}-->` block carrying `slug`, `subject`
+and `preheader`, and the build fails on a missing one — same contract as a page.
+
+**Writing one is not writing a page.** There is no stylesheet (Gmail drops
+`<style>` when a subscriber forwards the mail), no flexbox or grid, and no
+JavaScript. Layout is nested tables, every rule is an inline `style`, and
+spacing between rows is a spacer `<tr>` rather than a margin. Two things the
+build checks, because both fail silently in an inbox rather than loudly here:
+
+- **Every URL must be absolute.** A mail client has no origin to resolve
+  `menu-food.html` against, so the subscriber gets a dead link. Write
+  `{{baseUrl}}menu-food.html`; the build rejects anything that is not
+  `https://`, `mailto:`, `tel:` or a Mailchimp merge tag.
+- **`*|UNSUB|*` must survive.** It is in the footer of the shell. Mailchimp
+  will not send a campaign without it, and the law is not optional either.
+
+Images go through the same Netlify Image CDN the stylesheet uses, sized to twice
+the display width for retina and cropped server-side — email has no
+`background-size` or `object-fit`, so `emailImage()` in `build.js` takes a ratio
+and Netlify does the cropping. The hero needs it: `hero-bar.jpg` carries a run of
+dark mesh along the bottom that the site's 120% zoom crops out and a full-frame
+email would show as a black band.
+
+Campaigns are published by Netlify along with everything else, so `robots.txt`
+disallows `/emails/` — a newsletter must not turn up in search competing with
+the real pages. Mailchimp's own `*|ARCHIVE|*` link is the one for subscribers who
+want it in a browser.
 
 ## How this maps to the design
 
