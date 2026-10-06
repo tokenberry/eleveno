@@ -343,7 +343,7 @@ button,input,select,textarea{font-family:inherit}
 
 /* ---------- eat & drink ---------- */
 .eat{display:grid;grid-template-columns:1fr 1fr;background:var(--navy);color:var(--cream)}
-.eat__img{min-height:520px;background-image:url('social-beers.jpg');background-size:cover;background-position:center;background-color:var(--navy-deep)}
+.eat__img{min-height:520px;background-image:url('eat-team.jpg');background-size:cover;background-position:center;background-color:var(--navy-deep)}
 .eat__body{padding:72px 56px;display:flex;flex-direction:column;justify-content:center}
 .eat__body h2{font-family:var(--display);font-size:clamp(40px,6vw,62px);line-height:.9;text-transform:uppercase}
 .eat__body h2 span{color:var(--blue-soft)}
@@ -1416,7 +1416,7 @@ textarea.einput{resize:vertical;min-height:110px}
   .hero__photo{background-image:url('hero-group.jpg@mobile')}
   .community{background-image:linear-gradient(180deg,#fff 0%,rgba(255,255,255,.70) 5%,rgba(255,255,255,0) 20%),linear-gradient(0deg,rgba(10,26,58,.94) 0%,rgba(10,26,58,.35) 45%,rgba(10,26,58,.1) 100%),url('community-champs.jpg@mobile')}
   .space__img--outdoor{background-image:url('community-champs.jpg@mobile')}
-  .eat__img{background-image:url('social-beers.jpg@mobile')}
+  .eat__img{background-image:url('eat-team.jpg@mobile')}
   .partners{padding:56px 0}
   .plogos{gap:14px 26px}
   .plogo{width:130px;height:62px}

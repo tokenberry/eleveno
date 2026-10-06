@@ -954,7 +954,7 @@ const IMG_WIDTH = {
   /* the source is only 820px wide, so asking for more just gets 820 back */
   'block-party.jpg': { w: 820, mobile: 430 },
   'community-champs.jpg': { w: 1500, mobile: 600 },
-  'social-beers.jpg': { w: 1200, mobile: 500 },
+  'eat-team.jpg': { w: 1076, mobile: 500 },
   'courts-flag.jpg': 1000,
   'event-venue.jpg': 1000,
   'event-inquiry.jpg': 800,
