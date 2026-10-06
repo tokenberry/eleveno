@@ -118,7 +118,7 @@ button,input,select,textarea{font-family:inherit}
    Below ~1003px wide, cover was already scaling to height and cropping the
    sides anyway, so an explicit size is the more predictable of the two. */
 .hero__photo{position:absolute;inset:0;width:100%;
-  background-image:url('hero-bar.jpg');background-size:120% auto;
+  background-image:url('hero-group.jpg');background-size:112% auto;
   background-position:center 42%;background-repeat:no-repeat}
 /* The photo now runs the full width, so the copy sits on top of it rather than
    beside it. A scrim over the whole frame keeps everyone visible — the point of
@@ -1413,7 +1413,7 @@ textarea.einput{resize:vertical;min-height:110px}
    build maps "@mobile" to a narrower width; this breakpoint must stay in step
    with the imagesizes on the hero preload in build.js. */
 @media (max-width:700px){
-  .hero__photo{background-image:url('hero-bar.jpg@mobile')}
+  .hero__photo{background-image:url('hero-group.jpg@mobile')}
   .community{background-image:linear-gradient(180deg,#fff 0%,rgba(255,255,255,.70) 5%,rgba(255,255,255,0) 20%),linear-gradient(0deg,rgba(10,26,58,.94) 0%,rgba(10,26,58,.35) 45%,rgba(10,26,58,.1) 100%),url('community-champs.jpg@mobile')}
   .space__img--outdoor{background-image:url('community-champs.jpg@mobile')}
   .eat__img{background-image:url('social-beers.jpg@mobile')}
