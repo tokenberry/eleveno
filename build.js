@@ -633,26 +633,39 @@ function renderEtiquette() {
    which catches a typo in any of the four figures. */
 /* The fall perks arrive as two named groups rather than one list, so the card
    mirrors the flyer: pickleball on one side, food and drink on the other. */
-/* A dated banner, rendered only while site.json carries a promo block. Taking
-   it down is deleting that block: no markup to find, and nothing left behind
-   advertising a weekend that has passed. */
+/* Dated banners, rendered only while site.json carries a promo block. Taking
+   one down is deleting its item; taking the band down is deleting the block.
+   Either way there is no markup to find, and nothing left behind advertising
+   a date that has passed. */
 function renderPromo() {
   const p = site.promo;
-  if (!p) return '';
-  const size = imageSize(p.image);
+  if (!p || !(p.items || []).length) return '';
+  const card = i => {
+    const size = imageSize(i.image);
+    return `        <article class="promo__card">
+          <a class="promo__art" href="${i.ctaUrl}">
+            <img src="assets/${i.image}" alt="${i.imageAlt}" width="${size.w}" height="${size.h}" loading="lazy" decoding="async">
+          </a>
+          <div class="promo__copy">
+            <h3>${i.heading}</h3>
+            <p class="promo__body">${i.body}</p>
+            <a class="btn btn--gold" href="${i.ctaUrl}">${i.ctaLabel} &rarr;</a>
+          </div>
+        </article>`;
+  };
   return `  <section class="promo" aria-labelledby="promo-h">
-    <div class="shell promo__inner">
-      <a class="promo__art" href="${p.ctaUrl}">
-        <img src="assets/${p.image}" alt="${p.imageAlt}" width="${size.w}" height="${size.h}" loading="lazy" decoding="async">
-      </a>
-      <div class="promo__copy">
+    <div class="shell">
+      <div class="section-head">
         <p class="eyebrow eyebrow--gold">${p.eyebrow}</p>
-        <h2 id="promo-h">${p.heading}</h2>
-        <p class="promo__body">${p.body}</p>
-        <a class="btn btn--gold" href="${p.ctaUrl}">${p.ctaLabel} &rarr;</a>
+        <h2 id="promo-h">What&#39;s on</h2>
+      </div>
+      <div class="promo__grid${p.items.length === 1 ? ' promo__grid--one' : ''}">
+${p.items.map(card).join('\n')}
       </div>
     </div>
-  </section>`;
+  </section>
+
+`;
 }
 
 function renderPlanPerks(plan) {

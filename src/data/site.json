@@ -27,13 +27,25 @@
     "Open 7 Days"
   ],
   "promo": {
-    "_comment": "A dated banner on the home page. Delete this whole block the moment it is over and the section disappears — renderPromo returns nothing without it, so nothing in the markup needs touching.",
-    "eyebrow": "THIS WEEKEND AT ELEVENO",
-    "heading": "Cobweb Classic",
-    "body": "Our Halloween tournament runs this weekend. Check that you and your partner are both fully registered — a division needs four fully registered teams to run.",
-    "ctaLabel": "Register your team",
-    "ctaUrl": "https://pickleballtournaments.com/tournaments/eleveno-cobweb-classic",
-    "image": "promo-cobweb.jpg",
-    "imageAlt": "Cobweb Classic registration reminder: divisions that are only half registered, and the October 21 deadline for a division to reach four teams"
+    "_comment": "Dated banners on the home page. Delete an item when it is over, or the whole promo block when none are running — renderPromo emits nothing without it, so no markup has to be touched either way.",
+    "eyebrow": "COMING UP AT ELEVENO",
+    "items": [
+      {
+        "heading": "Cobweb Classic",
+        "body": "Our Halloween tournament. Check that you and your partner are both fully registered — a division needs four fully registered teams to run.",
+        "ctaLabel": "Register your team",
+        "ctaUrl": "https://pickleballtournaments.com/tournaments/eleveno-cobweb-classic",
+        "image": "promo-cobweb.jpg",
+        "imageAlt": "Cobweb Classic registration reminder: divisions that are only half registered, and the October 21 deadline for a division to reach four teams"
+      },
+      {
+        "heading": "Halloween Party",
+        "body": "Friday October 30th, 6–11pm. Costume contest, open play for all, spooky snacks and drinks, games and music. Bring your friends and family.",
+        "ctaLabel": "Sign up on the app",
+        "ctaUrl": "https://eleveno.podplay.app/community/events",
+        "image": "promo-halloween.jpg",
+        "imageAlt": "Halloween Party flyer: Friday October 30th, 6 to 11pm, with a costume contest, open play, snacks and drinks, games and music"
+      }
+    ]
   }
 }
