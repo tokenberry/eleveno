@@ -99,6 +99,12 @@ button,input,select,textarea{font-family:inherit}
 .nav__toggle{position:absolute;width:1px;height:1px;opacity:0;margin:0;pointer-events:none}
 .nav__burger{display:none}
 
+/* Netlify injects a floating badge after </html> — a convenience widget for
+   whoever owns the site, not part of the page. It arrives as fixed-position
+   iframes with these ids, so hiding them is enough; the proper off switch is
+   in the Netlify dashboard, and this keeps it out of sight meanwhile. */
+#nl-badge-frame,#nl-hud-frame{display:none!important}
+
 /* ---------- dated promo banners ---------- */
 /* The artwork is other people's palettes — Halloween purple and orange against
    a navy site — so each poster is framed as a pinned bill rather than bled into
