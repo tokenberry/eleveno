@@ -633,6 +633,28 @@ function renderEtiquette() {
    which catches a typo in any of the four figures. */
 /* The fall perks arrive as two named groups rather than one list, so the card
    mirrors the flyer: pickleball on one side, food and drink on the other. */
+/* A dated banner, rendered only while site.json carries a promo block. Taking
+   it down is deleting that block: no markup to find, and nothing left behind
+   advertising a weekend that has passed. */
+function renderPromo() {
+  const p = site.promo;
+  if (!p) return '';
+  const size = imageSize(p.image);
+  return `  <section class="promo" aria-labelledby="promo-h">
+    <div class="shell promo__inner">
+      <a class="promo__art" href="${p.ctaUrl}">
+        <img src="assets/${p.image}" alt="${p.imageAlt}" width="${size.w}" height="${size.h}" loading="lazy" decoding="async">
+      </a>
+      <div class="promo__copy">
+        <p class="eyebrow eyebrow--gold">${p.eyebrow}</p>
+        <h2 id="promo-h">${p.heading}</h2>
+        <p class="promo__body">${p.body}</p>
+        <a class="btn btn--gold" href="${p.ctaUrl}">${p.ctaLabel} &rarr;</a>
+      </div>
+    </div>
+  </section>`;
+}
+
 function renderPlanPerks(plan) {
   return plan.perkGroups.map(g => `            <section class="perkgrp">
               <h4>${g.name}</h4>
@@ -1138,6 +1160,7 @@ for (const f of pageFiles) {
     preload: renderPreload(meta),
     homeHref: meta.slug === 'index' ? '#top' : 'index.html',
     // a page opts into a script by name; every other page ships none
+    promoSection: renderPromo(),
     fallPerks: renderPlanPerks(memberships.plans.fall),
     scriptTag: ['nav'].concat(meta.script ? [meta.script] : [])
       .map(name => `<script src="assets/${name}.js?v=${assetHash(name + '.js')}" defer></script>`).join('\n'),

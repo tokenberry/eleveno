@@ -99,6 +99,29 @@ button,input,select,textarea{font-family:inherit}
 .nav__toggle{position:absolute;width:1px;height:1px;opacity:0;margin:0;pointer-events:none}
 .nav__burger{display:none}
 
+/* ---------- dated promo banner ---------- */
+/* The artwork is someone else's palette — Halloween purple and orange against
+   a navy site. Framing it as a pinned poster, rather than bleeding it into the
+   band, lets it keep its own look without the page appearing to change brand
+   halfway down. */
+.promo{background:var(--navy-mid);color:var(--cream);padding:56px 0}
+.promo__inner{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);
+  gap:44px;align-items:center}
+.promo__art{display:block;border-radius:16px;overflow:hidden;
+  box-shadow:0 18px 44px rgba(10,26,58,.45);border:3px solid var(--gold)}
+.promo__art img{display:block;width:100%;height:auto}
+.promo__copy h2{font-family:var(--display);font-size:clamp(38px,5vw,62px);line-height:.95;
+  text-transform:uppercase;color:var(--cream);margin-top:6px}
+.promo__body{max-width:52ch;font-size:17px;line-height:1.6;font-weight:600;
+  color:var(--on-navy);margin:16px 0 26px}
+@media (max-width:860px){
+  /* The poster leads on a phone: it carries the divisions and the deadline,
+     which is the detail a half-registered team actually needs. */
+  .promo__inner{grid-template-columns:1fr;gap:28px;justify-items:center;text-align:center}
+  .promo__art{max-width:320px}
+  .promo__body{margin-left:auto;margin-right:auto}
+}
+
 /* ---------- hero ---------- */
 /* Split, not full-bleed. The photo is a 4:5 portrait; stretched across a 2.18:1
    band it survived as a 37% slice of its own height with the jerseys clipped off
