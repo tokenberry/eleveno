@@ -10,15 +10,6 @@
   ],
   "events": [
     {
-      "when": "TUE · 7:00 PM",
-      "title": "Tuesday Night Pints",
-      "category": "Social",
-      "url": "https://eleveno.podplay.app/community/series/019ed720-d03d-7666-9363-cecf52bd2be5",
-      "ctaLabel": "Sign Up",
-      "featured": false,
-      "home": true
-    },
-    {
       "when": "MON–FRI · 7–9:30 AM, 8–10 PM",
       "title": "Tiered Open Play",
       "category": "Open Play",
@@ -197,15 +188,6 @@
       "ctaLabel": "Sign Up",
       "featured": false,
       "home": false
-    },
-    {
-      "when": "FRI · 7–10 PM",
-      "title": "Friday Night Lights",
-      "category": "Social",
-      "url": "https://eleveno.podplay.app/community/events?tag=Social",
-      "ctaLabel": "Sign Up",
-      "featured": false,
-      "home": true
     },
     {
       "when": "SUN · 10–12:30 PM",
