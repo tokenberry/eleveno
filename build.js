@@ -661,7 +661,7 @@ function renderPromo() {
       </div>
       <div class="promo__grid${p.items.length === 1 ? ' promo__grid--one' : ''}">
 ${p.items.map(card).join('\n')}
-      </div>
+      </div>${p.note ? `\n      <p class="promo__note">${p.note}</p>` : ''}
     </div>
   </section>
 

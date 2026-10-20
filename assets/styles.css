@@ -120,6 +120,10 @@ button,input,select,textarea{font-family:inherit}
   text-transform:uppercase;color:var(--cream)}
 .promo__body{font-size:15.5px;line-height:1.6;font-weight:600;color:var(--on-navy);margin:12px 0 20px}
 .promo__copy .btn{font-size:15px;padding:13px 22px}
+/* Sits under the cards as a promise rather than a card of its own: there is
+   nothing to click yet, and an empty card would look like a loading failure. */
+.promo__note{margin-top:34px;text-align:center;font-family:var(--display);
+  font-size:clamp(20px,2.2vw,26px);letter-spacing:.6px;text-transform:uppercase;color:var(--gold)}
 @media (max-width:1080px){
   .promo__grid{grid-template-columns:1fr;gap:30px}
   .promo__card{grid-template-columns:minmax(0,200px) minmax(0,1fr)}
