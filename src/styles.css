@@ -106,38 +106,35 @@ button,input,select,textarea{font-family:inherit}
 #nl-badge-frame,#nl-hud-frame{display:none!important}
 
 /* ---------- dated promo banners ---------- */
-/* The artwork is other people's palettes — Halloween purple and orange against
-   a navy site — so each poster is framed as a pinned bill rather than bled into
+/* The artwork is other people's palettes — Halloween orange, a partner's
+   corporate red — so each one is framed as a pinned bill rather than bled into
    the band, and the page keeps its own identity around them. */
 .promo{background:var(--navy-mid);color:var(--cream);padding:60px 0}
 .promo .section-head h2{font-size:clamp(34px,4.4vw,52px);color:var(--cream)}
-.promo__grid{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:34px}
-.promo__grid--one{grid-template-columns:minmax(0,560px);justify-content:center}
-.promo__card{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr);gap:22px;align-items:center}
-/* contain on a fixed box, not cover: these are posters, and the dates and
-   division lists on them are the point — cropping to fill would cut exactly
-   the part a reader came for. The box keeps two posters of different shapes
-   on a common baseline. */
-.promo__art{display:block;aspect-ratio:3/4;background:var(--navy-deep);
-  border-radius:14px;overflow:hidden;border:3px solid var(--gold);
-  box-shadow:0 16px 38px rgba(10,26,58,.45)}
-.promo__art img{display:block;width:100%;height:100%;object-fit:contain}
+/* A stacked list, not a grid of equal cards. The flyers arrive in whatever
+   shape their designer made them — two tall posters and a 2:1 banner so far —
+   and a fixed box would letterbox one to fit the others. Full-width rows let
+   each keep its own proportions. */
+.promo__grid{display:flex;flex-direction:column;gap:34px;margin-top:34px}
+.promo__card{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);
+  gap:30px;align-items:center}
+.promo__art{display:inline-block;justify-self:center;border-radius:14px;overflow:hidden;
+  border:3px solid var(--gold);background:var(--navy-deep);box-shadow:0 16px 38px rgba(10,26,58,.45)}
+/* Bounded on both axes, so a tall poster and a wide banner each land at a
+   sensible size without either being cropped: these are bills whose dates and
+   details are the point. */
+.promo__art img{display:block;max-height:240px;max-width:100%;width:auto;height:auto}
 .promo__copy h3{font-family:var(--display);font-size:clamp(26px,2.6vw,34px);line-height:1;
   text-transform:uppercase;color:var(--cream)}
-.promo__body{font-size:15.5px;line-height:1.6;font-weight:600;color:var(--on-navy);margin:12px 0 20px}
+.promo__body{max-width:62ch;font-size:15.5px;line-height:1.6;font-weight:600;
+  color:var(--on-navy);margin:12px 0 20px}
 .promo__copy .btn{font-size:15px;padding:13px 22px}
-/* Sits under the cards as a promise rather than a card of its own: there is
-   nothing to click yet, and an empty card would look like a loading failure. */
 .promo__note{margin-top:34px;text-align:center;font-family:var(--display);
   font-size:clamp(20px,2.2vw,26px);letter-spacing:.6px;text-transform:uppercase;color:var(--gold)}
-@media (max-width:1080px){
-  .promo__grid{grid-template-columns:1fr;gap:30px}
-  .promo__card{grid-template-columns:minmax(0,200px) minmax(0,1fr)}
-}
-@media (max-width:620px){
-  /* The poster leads on a narrow screen: it carries the dates and the detail. */
+@media (max-width:760px){
+  /* The bill leads on a narrow screen: it carries the dates and the detail. */
   .promo__card{grid-template-columns:1fr;gap:20px;justify-items:center;text-align:center}
-  .promo__art{max-width:280px}
+  .promo__body{margin-left:auto;margin-right:auto}
 }
 
 /* ---------- hero ---------- */
