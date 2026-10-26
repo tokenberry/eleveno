@@ -697,6 +697,7 @@ function renderPopup(meta) {
       <source srcset="assets/${still}" media="(prefers-reduced-motion: reduce)" type="image/svg+xml">
       <img class="popup__art" src="assets/${p.image}" alt="" width="${size.w}" height="${size.h}">
     </picture>
+    <div class="popup__stripe" aria-hidden="true"></div>
     <div class="popup__body">
       <p class="eyebrow eyebrow--gold">${p.eyebrow}</p>
       <h2 id="popup-h">${p.heading}</h2>

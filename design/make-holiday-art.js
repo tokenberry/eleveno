@@ -5,9 +5,13 @@ const fs = require('fs');
    this carries no words at all. Drawn rather than photographed for the same
    reason the cocktail tiles are: it is the site's own palette, and nobody
    else's stock holiday scene. */
-const NAVY = '#0A1A3A', NAVY_MID = '#17315F', CREAM = '#F5F0E4',
-      GOLD = '#F5B70E', BLUE = '#8CBADF', PINE = '#2E5226', PINE_LIT = '#4E8034',
-      BERRY = '#C8452F';
+/* Red ground rather than the brand navy: the popup it sits in is the one
+   place on the site that is deliberately Christmas rather than ELEVENO, and
+   a navy banner on a white card read as a web page with tinsel on it. The
+   greens are lifted from the navy version's, which went muddy on red. */
+const RED = '#C8233A', RED_DEEP = '#8E1120', CREAM = '#F5F0E4', WHITE = '#FFFFFF',
+      GOLD = '#F5B70E', PINE = '#2F6B2A', PINE_LIT = '#55A03C',
+      BERRY = '#F5F0E4', HOLE = '#7A0E1B';
 const W = 900, H = 360;
 
 /* Deterministic jitter. Needles want to look hand-scattered, but the file is
@@ -61,7 +65,7 @@ function berries(p, ts) {
    pickleball rather than a plain ornament, so they stay even at this size. */
 function ornament(cx, cy, r, fill, topY) {
   const holes = [[-0.42,-0.28],[0.06,-0.46],[0.46,-0.08],[0.2,0.4],[-0.32,0.3],[-0.04,0.04]]
-    .map(([dx, dy]) => `<circle cx="${(cx+dx*r).toFixed(1)}" cy="${(cy+dy*r).toFixed(1)}" r="${(r*0.115).toFixed(1)}" fill="${NAVY}" opacity=".5"/>`)
+    .map(([dx, dy]) => `<circle cx="${(cx+dx*r).toFixed(1)}" cy="${(cy+dy*r).toFixed(1)}" r="${(r*0.115).toFixed(1)}" fill="${HOLE}" opacity=".55"/>`)
     .join('');
   return `  <line x1="${cx}" y1="${topY}" x2="${cx}" y2="${cy-r-7}" stroke="${CREAM}" stroke-width="1.6" opacity=".45"/>
   <rect x="${cx-4.5}" y="${cy-r-9}" width="9" height="9" rx="2.5" fill="${GOLD}"/>
@@ -93,11 +97,11 @@ const out = [];
 out.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="presentation">`);
 out.push(`  <defs>
     <radialGradient id="g" cx="50%" cy="28%" r="82%">
-      <stop offset="0" stop-color="${NAVY_MID}"/><stop offset="1" stop-color="${NAVY}"/>
+      <stop offset="0" stop-color="${RED}"/><stop offset="1" stop-color="${RED_DEEP}"/>
     </radialGradient>
     <radialGradient id="gw-gold"><stop offset="0" stop-color="${GOLD}" stop-opacity=".85"/><stop offset="1" stop-color="${GOLD}" stop-opacity="0"/></radialGradient>
     <radialGradient id="gw-cream"><stop offset="0" stop-color="${CREAM}" stop-opacity=".8"/><stop offset="1" stop-color="${CREAM}" stop-opacity="0"/></radialGradient>
-    <radialGradient id="gw-blue"><stop offset="0" stop-color="${BLUE}" stop-opacity=".8"/><stop offset="1" stop-color="${BLUE}" stop-opacity="0"/></radialGradient>
+    <radialGradient id="gw-white"><stop offset="0" stop-color="${WHITE}" stop-opacity=".9"/><stop offset="1" stop-color="${WHITE}" stop-opacity="0"/></radialGradient>
   </defs>`);
 /* The twinkle lives inside the file: a CSS animation in an SVG still runs when
    the SVG is used as an <img>, where a script would not. A prefers-reduced-motion
@@ -117,6 +121,12 @@ out.push(ANIMATED ? `  <style>
   </style>`);
 out.push(`  <rect width="${W}" height="${H}" fill="url(#g)"/>`);
 
+// snowfall, behind everything else
+for (let i = 0; i < 70; i++) {
+  const x = rnd() * W, y = rnd() * H, r = 1.4 + rnd() * 2.2;
+  out.push(`  <circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(1)}" fill="${WHITE}" opacity="${(0.3 + rnd() * 0.45).toFixed(2)}"/>`);
+}
+
 // the garland: two overlapping swags so it reads as a rope, not a branch
 const SWAG = [[-30, 22], [230, 116], [660, 116], [930, 18]];
 const SWAG2 = [[-30, 34], [240, 128], [650, 128], [930, 30]];
@@ -127,17 +137,17 @@ out.push(berries(SWAG, [0.12, 0.36, 0.62, 0.88]));
 // a string of lights draped below the garland
 const WIRE = [[-20, 56], [220, 196], [670, 196], [920, 50]];
 out.push(`  <path d="${dpath(WIRE)}" fill="none" stroke="${CREAM}" stroke-width="1.6" opacity=".35"/>`);
-const BULBS = [GOLD, CREAM, BLUE];
-const GLOWS = ['gw-gold', 'gw-cream', 'gw-blue'];
+const BULBS = [GOLD, CREAM, WHITE];
+const GLOWS = ['gw-gold', 'gw-cream', 'gw-white'];
 for (let i = 1; i <= 11; i++) {
   const t = i / 12, [x, y] = bez(WIRE, t), k = i % 3;
   out.push(bulb(x, y, BULBS[k], GLOWS[k], (i * 0.27).toFixed(2)));
 }
 
 // ornaments hanging from the garland at three depths
-out.push(ornament(214, 236, 27, GOLD, 92));
-out.push(ornament(452, 288, 34, CREAM, 120));
-out.push(ornament(686, 232, 27, BLUE, 90));
+out.push(ornament(214, 236, 27, CREAM, 92));
+out.push(ornament(452, 288, 34, WHITE, 120));
+out.push(ornament(686, 232, 27, GOLD, 90));
 
 // a sprig in each bottom corner, tapering to a tip
 const SPRIG = [[-24, H + 14], [70, H - 26], [150, H - 34], [214, H - 52]];
@@ -151,8 +161,8 @@ ${berries(SPRIG, [0.55, 0.95])}
 // sparkle
 [[104,268,9,.85,0],[800,262,9,.85,1.1],[286,322,7,.6,2.0],[620,326,7,.6,.6],
  [60,158,6,.5,1.6],[846,150,6,.5,2.6],[352,246,5,.45,.3],[552,238,5,.45,1.9]]
-  .forEach(([x,y,r,o,d]) => out.push(star(x,y,r,GOLD,o,d)));
-[[168,212,6,.5,.9],[742,316,6,.5,2.3]].forEach(([x,y,r,o,d]) => out.push(star(x,y,r,BLUE,o,d)));
+  .forEach(([x,y,r,o,d]) => out.push(star(x,y,r,CREAM,o,d)));
+[[168,212,6,.5,.9],[742,316,6,.5,2.3]].forEach(([x,y,r,o,d]) => out.push(star(x,y,r,GOLD,o,d)));
 out.push(`</svg>`);
 
 return out.join('\n') + '\n';

@@ -1682,16 +1682,18 @@ textarea.einput{resize:vertical;min-height:110px}
    reimplementing. It also means the thing is invisible with JS off, since the
    UA stylesheet hides a dialog carrying no [open] — so nothing here may set a
    display on .popup itself.
-   The body is navy because the artwork is: a cream panel under a navy banner
-   reads as two stacked things, where one navy field reads as one card. */
+   White card, red accents: this is the one component on the site that is
+   deliberately Christmas rather than ELEVENO, so --xmas-red lives on .popup
+   and nowhere else — it is not a brand colour and must not leak into one. */
 .popup{
+  --xmas-red:#BE1E2D;
   width:min(520px,calc(100vw - 28px));max-width:none;
   max-height:calc(100dvh - 28px);
   /* auto, not hidden: it still clips the artwork to the radius, and it saves
      the call to action on a short landscape phone */
   overflow:auto;
   margin:auto;padding:0;border:0;border-radius:18px;
-  background:var(--navy-deep);color:var(--on-navy);
+  background:#ffffff;color:var(--ink);
   box-shadow:0 30px 80px #00000066;
 }
 .popup::backdrop{background:#06102499;backdrop-filter:blur(3px)}
@@ -1702,27 +1704,42 @@ textarea.einput{resize:vertical;min-height:110px}
   position:absolute;top:12px;right:12px;z-index:1;
   width:36px;height:36px;padding:0;border:0;border-radius:50%;
   display:grid;place-items:center;
-  /* its own navy disc rather than a bare glyph: the artwork behind it is dark
-     everywhere today, but the corner it sits in is exactly where a future
-     image is most likely to go pale */
-  background:#0A1A3ACC;color:var(--cream);
+  /* its own disc rather than a bare glyph: the artwork behind it is an even
+     red today, but the corner it sits in is exactly where a future image is
+     most likely to carry detail */
+  background:#ffffffe6;color:var(--xmas-red);
   font-size:24px;line-height:1;cursor:pointer;
 }
-.popup__x:hover{background:var(--gold);color:var(--navy)}
+.popup__x:hover{background:var(--xmas-red);color:#ffffff}
 /* showModal focuses the first control, which is this one, so the popup opens
    with a focus ring on it every time. The global ring sits 3px clear of the
    element and drew a gold halo over the artwork; inset, it reads as a focused
    button instead. Keyboard users still get the indicator. */
 .popup__x:focus-visible{outline-offset:-3px}
+/* The site's gold focus ring is for navy bands. On this card it would sit gold
+   on white at 1.9:1 and gold on the red artwork at 2.5:1, under the 3:1 a
+   focus indicator needs; navy-deep holds 17.7:1 and 3.2:1 on the same two. */
+.popup :focus-visible{outline-color:var(--navy-deep)}
+/* Candy stripe between the picture and the words: it separates the two
+   without a rule, and it is the cheapest festive thing on the page. */
+.popup__stripe{height:10px;
+  background:repeating-linear-gradient(135deg,var(--xmas-red) 0 13px,#ffffff 13px 26px)}
 .popup__body{padding:26px 30px 30px;text-align:center}
+.popup .eyebrow{color:var(--xmas-red);letter-spacing:2.5px;font-weight:700}
+/* --heavy, not --display: Anton is condensed and set in caps, which is the
+   least legible pairing there is at this size. Archivo Black in sentence case
+   is wider, rounder and far easier to read across a dark-on-light card. */
 .popup__body h2{
-  font-family:var(--display);letter-spacing:1px;text-transform:uppercase;
-  color:var(--cream);font-size:32px;line-height:1.08;margin:8px 0 0;
+  font-family:var(--heavy);letter-spacing:-.3px;text-transform:none;
+  color:var(--xmas-red);font-size:30px;line-height:1.14;margin:9px 0 0;
 }
-.popup__lead{margin:12px 0 22px;font-size:16px;line-height:1.55}
-.popup__cta{width:100%}
-.popup__note{margin:16px 0 0;font-size:14px;color:var(--on-navy-mute)}
-.popup__note a{color:var(--gold);font-weight:700}
+.popup__lead{margin:13px 0 22px;font-size:16px;line-height:1.6;color:var(--ink-soft)}
+/* overrides .btn--gold, which is a brand style and wrong in here */
+.popup__cta{width:100%;background:var(--xmas-red);color:#ffffff;
+  font-family:var(--heavy);font-size:16px;letter-spacing:.6px;padding:17px 28px}
+.popup__cta:hover{background:#A3151F;opacity:1}
+.popup__note{margin:16px 0 0;font-size:14px;color:var(--ink-mute)}
+.popup__note a{color:var(--xmas-red);font-weight:700}
 
 /* Chrome and Safari still scroll the page behind an open modal dialog. */
 body:has(.popup[open]){overflow:hidden}
@@ -1735,10 +1752,15 @@ body:has(.popup[open]){overflow:hidden}
   .popup__body{padding:22px 20px 26px}
   .popup__body h2{font-size:26px}
 }
-/* A phone held sideways has room for the offer or for the picture, not both. */
+/* A phone held sideways has room for the offer or for the picture, not both.
+   Trimmed until the whole card fits 420px of height without scrolling: the
+   phone line was landing half off the bottom edge. */
 @media (max-height:520px){
-  .popup__art{max-height:118px;object-fit:cover;object-position:50% 36%}
-  .popup__body{padding:20px 24px 24px}
-  .popup__body h2{font-size:26px}
-  .popup__lead{margin-bottom:16px}
+  .popup__art{max-height:96px;object-fit:cover;object-position:50% 34%}
+  .popup__stripe{height:8px}
+  .popup__body{padding:18px 24px 20px}
+  .popup__body h2{font-size:24px;margin-top:6px}
+  .popup__lead{margin:10px 0 15px;font-size:15px;line-height:1.5}
+  .popup__cta{padding:14px 24px}
+  .popup__note{margin-top:12px;font-size:13px}
 }
