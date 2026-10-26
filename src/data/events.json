@@ -2,6 +2,7 @@
   "_comment": "The programme calendar, transcribed from the ELEVENO PB Programs Calendar. `category` groups the calendar page and drives its filter chips. `home` picks the short list on the home page — flip it to change what is highlighted there; the calendar page always shows everything. Prices are deliberately absent: the booking system quotes them at the point of sale, so they cannot go stale here.",
   "viewAllUrl": "calendar.html",
   "categoryOrder": [
+    "Special Events",
     "Open Play",
     "Leagues",
     "Instructional",
@@ -9,6 +10,57 @@
     "Competitive"
   ],
   "events": [
+    {
+      "when": "MON NOV 2 & 9 · 11 AM–1 PM",
+      "title": "Mahjong Open & Guided Play with Mahj with Sue",
+      "category": "Special Events",
+      "url": "https://mahjwithsue.com",
+      "ctaLabel": "Details",
+      "featured": false,
+      "home": false
+    },
+    {
+      "when": "SAT NOV 7, 14, 21 · 9:15 AM",
+      "title": "Euphoria Workout with Marina — Movement, Power, Energy",
+      "category": "Special Events",
+      "featured": false,
+      "home": false
+    },
+    {
+      "when": "SAT NOV 14 · 9:30 AM",
+      "title": "Patriots in Munich Watch Party & Beer Fest",
+      "category": "Special Events",
+      "featured": true,
+      "home": false
+    },
+    {
+      "when": "SAT NOV 21",
+      "title": "High School Tournament",
+      "category": "Special Events",
+      "featured": false,
+      "home": false
+    },
+    {
+      "when": "WED NOV 25 · DAYTIME",
+      "title": "Thanksgiving Round Robin",
+      "category": "Special Events",
+      "featured": false,
+      "home": false
+    },
+    {
+      "when": "WED NOV 25 · EVENING",
+      "title": "Thanksgiving Eve Party",
+      "category": "Special Events",
+      "featured": true,
+      "home": false
+    },
+    {
+      "when": "SAT NOV 28",
+      "title": "Holiday Market",
+      "category": "Special Events",
+      "featured": false,
+      "home": false
+    },
     {
       "when": "MON–FRI · 7–9:30 AM, 8–10 PM",
       "title": "Tiered Open Play",

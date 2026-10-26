@@ -46,8 +46,7 @@
         "image": "promo-techtuesday.jpg",
         "imageAlt": "Tech Tuesday: Modern Workspaces Simplified, with Intra Systems, IGEL, Omnissa and Nutanix. Tuesday November 17 2026, 1:00 to 3:30pm at ELEVENO, Foxboro"
       }
-    ],
-    "note": "November calendar coming soon!"
+    ]
   },
   "popup": {
     "_comment": "Modal on the pages listed below. Delete the whole popup block when the promotion is over: renderPopup emits nothing without it, and the popup script only ships on pages that get one. Change \"id\" to re-show the popup to people who already dismissed it.",
