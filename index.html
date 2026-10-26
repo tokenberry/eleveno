@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Black&family=Space+Mono:wght@400;700&family=Yellowtail&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=890a6422">
+<link rel="stylesheet" href="assets/styles.css?v=6d768b23">
 </head>
 <body>
 <div class="page">
@@ -850,18 +850,21 @@
     <form method="dialog">
       <button class="popup__x" value="close" aria-label="Close">&times;</button>
     </form>
-    <img class="popup__art" src="assets/holiday-party.svg" alt="" width="900" height="360">
+    <picture class="popup__pic">
+      <source srcset="assets/holiday-party-still.svg" media="(prefers-reduced-motion: reduce)" type="image/svg+xml">
+      <img class="popup__art" src="assets/holiday-party.svg" alt="" width="900" height="360">
+    </picture>
     <div class="popup__body">
       <p class="eyebrow eyebrow--gold">DECEMBER AT ELEVENO</p>
       <h2 id="popup-h">Book your holiday party</h2>
       <p class="popup__lead">Nine indoor courts, two bars and a full kitchen under one roof. December dates go fast, so tell us what you have in mind and we'll build the package around it.</p>
-      <a class="btn btn--gold popup__cta" href="private-events.html">Plan your party &rarr;</a>
+      <a class="btn btn--gold popup__cta" href="private-events.html#inquire">Plan your party &rarr;</a>
       <p class="popup__note">Rather talk it through? Call <a href="tel:+17742159137">774-215-9137</a></p>
     </div>
   </div>
 </dialog>
 
-<script src="assets/nav.js?v=c6b8351c" defer></script>
+<script src="assets/nav.js?v=c7edb616" defer></script>
 <script src="assets/home.js?v=5fedf15d" defer></script>
 <script src="assets/popup.js?v=97f9b123" defer></script>
 </body>

@@ -677,6 +677,14 @@ function renderPopup(meta) {
   const p = site.popup;
   if (!p || !(p.pages || []).includes(meta.slug)) return '';
   const size = imageSize(p.image);
+  /* The artwork twinkles, and a prefers-reduced-motion query inside an SVG is
+     ignored once that SVG is an <img>. The page can evaluate the preference
+     though, so a <picture> hands those visitors a still cut of the same
+     drawing. Named off the image rather than configured: the pair is a
+     property of the file, not a choice site.json should have to make. */
+  const still = p.image.replace(/\.svg$/, '-still.svg');
+  if (!fs.existsSync(path.join(ROOT, 'assets', still)))
+    throw new Error(`popup image "${p.image}" has no still companion at assets/${still}`);
   const note = p.footnoteLead
     ? `\n      <p class="popup__note">${p.footnoteLead} <a href="tel:${site.phoneHref}">${site.phone}</a></p>`
     : '';
@@ -685,7 +693,10 @@ function renderPopup(meta) {
     <form method="dialog">
       <button class="popup__x" value="close" aria-label="Close">&times;</button>
     </form>
-    <img class="popup__art" src="assets/${p.image}" alt="" width="${size.w}" height="${size.h}">
+    <picture class="popup__pic">
+      <source srcset="assets/${still}" media="(prefers-reduced-motion: reduce)" type="image/svg+xml">
+      <img class="popup__art" src="assets/${p.image}" alt="" width="${size.w}" height="${size.h}">
+    </picture>
     <div class="popup__body">
       <p class="eyebrow eyebrow--gold">${p.eyebrow}</p>
       <h2 id="popup-h">${p.heading}</h2>

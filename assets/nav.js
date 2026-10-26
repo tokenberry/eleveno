@@ -22,3 +22,14 @@
     });
   });
 })();
+
+/* Turn smooth scrolling on only once the page has loaded. The stylesheet
+   leaves it off so the browser's initial jump to a #fragment is instant and
+   lands exactly on target; lazy images loading mid-animation used to drag it
+   past. In-page anchor clicks after load still glide. */
+(function () {
+  'use strict';
+  var on = function () { document.documentElement.classList.add('ready'); };
+  if (document.readyState === 'complete') on();
+  else window.addEventListener('load', on);
+})();

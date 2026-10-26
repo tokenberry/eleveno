@@ -6,7 +6,8 @@ const fs = require('fs');
    reason the cocktail tiles are: it is the site's own palette, and nobody
    else's stock holiday scene. */
 const NAVY = '#0A1A3A', NAVY_MID = '#17315F', CREAM = '#F5F0E4',
-      GOLD = '#F5B70E', BLUE = '#8CBADF', PINE = '#2E5226', PINE_LIT = '#4E8034';
+      GOLD = '#F5B70E', BLUE = '#8CBADF', PINE = '#2E5226', PINE_LIT = '#4E8034',
+      BERRY = '#C8452F';
 const W = 900, H = 360;
 
 /* Deterministic jitter. Needles want to look hand-scattered, but the file is
@@ -23,21 +24,18 @@ const tangent = (p, t) => {
   return [a*(p[1][0]-p[0][0])+b*(p[2][0]-p[1][0])+c*(p[3][0]-p[2][0]),
           a*(p[1][1]-p[0][1])+b*(p[2][1]-p[1][1])+c*(p[3][1]-p[2][1])];
 };
+const dpath = p => `M${p[0][0]},${p[0][1]} C${p[1][0]},${p[1][1]} ${p[2][0]},${p[2][1]} ${p[3][0]},${p[3][1]}`;
 
 /* A pine bough: needles sprayed off both sides of a curve and swept back
    toward its start, which is what separates a garland from a fish skeleton. */
 function bough(p, { n = 150, len = 26, sweep = 52, width = 2.4, taper = 0 } = {}) {
-  const out = [`  <path d="M${p[0]} ${p[1]}" fill="none"/>`];
-  const d = `M${p[0][0]},${p[0][1]} C${p[1][0]},${p[1][1]} ${p[2][0]},${p[2][1]} ${p[3][0]},${p[3][1]}`;
-  out.length = 0;
-  out.push(`  <path d="${d}" fill="none" stroke="${PINE}" stroke-width="${width * 1.6}" stroke-linecap="round"/>`);
+  const out = [`  <path d="${dpath(p)}" fill="none" stroke="${PINE}" stroke-width="${width * 1.6}" stroke-linecap="round"/>`];
   for (let i = 0; i < n; i++) {
     const t = i / (n - 1);
     const [x, y] = bez(p, t);
     const [tx, ty] = tangent(p, t);
     const ta = Math.atan2(ty, tx);
-    /* taper shortens the needles toward the tip so a sprig comes to a point */
-    const scale = 1 - taper * t;
+    const scale = 1 - taper * t;   // shortens toward the tip so a sprig points
     for (const side of [1, -1]) {
       const a = ta + side * (sweep * Math.PI / 180) + (rnd() - .5) * .34;
       const L = (len * (0.62 + rnd() * 0.38)) * scale;
@@ -45,6 +43,18 @@ function bough(p, { n = 150, len = 26, sweep = 52, width = 2.4, taper = 0 } = {}
     }
   }
   return out.join('\n');
+}
+
+/* Berry clusters tucked into the greenery. Three to a cluster, which is what
+   makes them read as holly rather than as stray dots. */
+function berries(p, ts) {
+  return ts.map(t => {
+    const [x, y] = bez(p, t);
+    return [[0,0,4.2],[7,4,3.4],[-5,5,3]].map(([dx,dy,r]) =>
+      `  <circle cx="${(x+dx).toFixed(1)}" cy="${(y+dy+4).toFixed(1)}" r="${r}" fill="${BERRY}"/>` +
+      `<circle cx="${(x+dx-r*0.3).toFixed(1)}" cy="${(y+dy+4-r*0.3).toFixed(1)}" r="${(r*0.3).toFixed(1)}" fill="#ffffff" opacity=".35"/>`
+    ).join('\n');
+  }).join('\n');
 }
 
 /* A pickleball hung as a bauble. The holes are what make it read as a
@@ -60,43 +70,98 @@ function ornament(cx, cy, r, fill, topY) {
   ${holes}`;
 }
 
-function star(cx, cy, r, fill, op) {
+/* A bulb on the string: glow, teardrop, cap, highlight. The glow is a separate
+   circle behind it so it can pulse without the bulb itself changing. */
+function bulb(x, y, colour, glowId, delay) {
+  return `  <circle class="glow" cx="${x.toFixed(1)}" cy="${(y+13).toFixed(1)}" r="22" fill="url(#${glowId})" style="animation-delay:${delay}s"/>
+  <rect x="${(x-3.5).toFixed(1)}" y="${(y+1).toFixed(1)}" width="7" height="5" rx="1.5" fill="${GOLD}" opacity=".9"/>
+  <path d="M${(x-6.5).toFixed(1)},${(y+7).toFixed(1)} q6.5,-5 13,0 q1.5,8 -6.5,13 q-8,-5 -6.5,-13 z" fill="${colour}"/>
+  <circle cx="${(x-2).toFixed(1)}" cy="${(y+10).toFixed(1)}" r="2" fill="#ffffff" opacity=".45"/>`;
+}
+
+function star(cx, cy, r, fill, op, delay) {
   const pts = [];
   for (let i = 0; i < 8; i++) {
     const a = (Math.PI / 4) * i, rad = i % 2 ? r * 0.34 : r;
     pts.push(`${(cx + Math.cos(a) * rad).toFixed(1)},${(cy + Math.sin(a) * rad).toFixed(1)}`);
   }
-  return `  <polygon points="${pts.join(' ')}" fill="${fill}" opacity="${op}"/>`;
+  return `  <polygon class="tw" points="${pts.join(' ')}" fill="${fill}" opacity="${op}" style="animation-delay:${delay}s"/>`;
 }
 
+function draw(ANIMATED) {
 const out = [];
 out.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="presentation">`);
-out.push(`  <defs><radialGradient id="g" cx="50%" cy="30%" r="80%">
-    <stop offset="0" stop-color="${NAVY_MID}"/><stop offset="1" stop-color="${NAVY}"/>
-  </radialGradient></defs>`);
+out.push(`  <defs>
+    <radialGradient id="g" cx="50%" cy="28%" r="82%">
+      <stop offset="0" stop-color="${NAVY_MID}"/><stop offset="1" stop-color="${NAVY}"/>
+    </radialGradient>
+    <radialGradient id="gw-gold"><stop offset="0" stop-color="${GOLD}" stop-opacity=".85"/><stop offset="1" stop-color="${GOLD}" stop-opacity="0"/></radialGradient>
+    <radialGradient id="gw-cream"><stop offset="0" stop-color="${CREAM}" stop-opacity=".8"/><stop offset="1" stop-color="${CREAM}" stop-opacity="0"/></radialGradient>
+    <radialGradient id="gw-blue"><stop offset="0" stop-color="${BLUE}" stop-opacity=".8"/><stop offset="1" stop-color="${BLUE}" stop-opacity="0"/></radialGradient>
+  </defs>`);
+/* The twinkle lives inside the file: a CSS animation in an SVG still runs when
+   the SVG is used as an <img>, where a script would not. A prefers-reduced-motion
+   query in here does NOT work, though — Chrome does not pass the preference into
+   an image document, measured at 3591 pixels still changing per frame under
+   reduce. So the motion is a separate file and the popup's <picture> picks
+   between them, which the page itself is able to evaluate. */
+out.push(ANIMATED ? `  <style>
+    .tw{animation:elv-tw 3.4s ease-in-out infinite}
+    @keyframes elv-tw{0%,100%{opacity:.3}50%{opacity:1}}
+    .glow{animation:elv-glow 2.8s ease-in-out infinite}
+    @keyframes elv-glow{0%,100%{opacity:.45}50%{opacity:1}}
+  </style>` : `  <style>
+    /* the sparkles keep the opacity on their own elements; only the bulb glows
+       need a resting value, halfway through what the animation would sweep */
+    .glow{opacity:.75}
+  </style>`);
 out.push(`  <rect width="${W}" height="${H}" fill="url(#g)"/>`);
 
-// the garland: one swag across the top, dipping just past centre
-out.push(bough([[-30, 24], [230, 118], [660, 118], [930, 20]], { n: 190, len: 30, sweep: 58 }));
+// the garland: two overlapping swags so it reads as a rope, not a branch
+const SWAG = [[-30, 22], [230, 116], [660, 116], [930, 18]];
+const SWAG2 = [[-30, 34], [240, 128], [650, 128], [930, 30]];
+out.push(bough(SWAG2, { n: 150, len: 26, sweep: 62 }));
+out.push(bough(SWAG,  { n: 190, len: 30, sweep: 58 }));
+out.push(berries(SWAG, [0.12, 0.36, 0.62, 0.88]));
 
-// ornaments hanging from the swag at three depths
-out.push(ornament(214, 168, 27, GOLD, 86));
-out.push(ornament(452, 232, 36, CREAM, 112));
-out.push(ornament(686, 162, 27, BLUE, 84));
-out.push(ornament(330, 124, 18, BLUE, 98));
-out.push(ornament(574, 120, 18, GOLD, 98));
+// a string of lights draped below the garland
+const WIRE = [[-20, 56], [220, 196], [670, 196], [920, 50]];
+out.push(`  <path d="${dpath(WIRE)}" fill="none" stroke="${CREAM}" stroke-width="1.6" opacity=".35"/>`);
+const BULBS = [GOLD, CREAM, BLUE];
+const GLOWS = ['gw-gold', 'gw-cream', 'gw-blue'];
+for (let i = 1; i <= 11; i++) {
+  const t = i / 12, [x, y] = bez(WIRE, t), k = i % 3;
+  out.push(bulb(x, y, BULBS[k], GLOWS[k], (i * 0.27).toFixed(2)));
+}
+
+// ornaments hanging from the garland at three depths
+out.push(ornament(214, 236, 27, GOLD, 92));
+out.push(ornament(452, 288, 34, CREAM, 120));
+out.push(ornament(686, 232, 27, BLUE, 90));
 
 // a sprig in each bottom corner, tapering to a tip
-out.push(bough([[-24, H + 14], [70, H - 26], [150, H - 34], [214, H - 52]], { n: 56, len: 23, sweep: 56, taper: .45 }));
+const SPRIG = [[-24, H + 14], [70, H - 26], [150, H - 34], [214, H - 52]];
+out.push(bough(SPRIG, { n: 56, len: 23, sweep: 56, taper: .45 }));
+out.push(berries(SPRIG, [0.55, 0.95]));
 out.push(`  <g transform="translate(${W},0) scale(-1,1)">
-${bough([[-24, H + 14], [70, H - 26], [150, H - 34], [214, H - 52]], { n: 56, len: 23, sweep: 56, taper: .45 })}
+${bough(SPRIG, { n: 56, len: 23, sweep: 56, taper: .45 })}
+${berries(SPRIG, [0.55, 0.95])}
   </g>`);
 
 // sparkle
-[[104,252,9,.85],[800,246,9,.85],[282,300,7,.6],[620,306,7,.6],[62,150,6,.5],[846,142,6,.5],
- [368,210,5,.45],[540,196,5,.45]].forEach(([x,y,r,o]) => out.push(star(x,y,r,GOLD,o)));
-[[172,196,6,.5],[742,300,6,.5]].forEach(([x,y,r,o]) => out.push(star(x,y,r,BLUE,o)));
+[[104,268,9,.85,0],[800,262,9,.85,1.1],[286,322,7,.6,2.0],[620,326,7,.6,.6],
+ [60,158,6,.5,1.6],[846,150,6,.5,2.6],[352,246,5,.45,.3],[552,238,5,.45,1.9]]
+  .forEach(([x,y,r,o,d]) => out.push(star(x,y,r,GOLD,o,d)));
+[[168,212,6,.5,.9],[742,316,6,.5,2.3]].forEach(([x,y,r,o,d]) => out.push(star(x,y,r,BLUE,o,d)));
 out.push(`</svg>`);
 
-fs.writeFileSync('/home/user/eleveno/assets/holiday-party.svg', out.join('\n') + '\n');
-console.log('wrote assets/holiday-party.svg');
+return out.join('\n') + '\n';
+}
+
+/* Both files are drawn from one seed, so the needles and sparkles land in the
+   same places and swapping between them is invisible but for the motion. */
+for (const [file, animated] of [['holiday-party.svg', true], ['holiday-party-still.svg', false]]) {
+  seed = 20251225;
+  fs.writeFileSync('/home/user/eleveno/assets/' + file, draw(animated));
+  console.log('wrote assets/' + file);
+}
