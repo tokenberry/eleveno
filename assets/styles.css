@@ -1667,3 +1667,69 @@ textarea.einput{resize:vertical;min-height:110px}
   .menu-card{grid-template-columns:104px minmax(0,1fr);gap:16px}
   .menu-card__img{width:104px;height:104px}
 }
+
+/* ---------- promotional modal ---------- */
+/* A <dialog> rather than a div: the browser supplies the backdrop, the focus
+   trap, Esc to close, and inert content behind it, none of which is worth
+   reimplementing. It also means the thing is invisible with JS off, since the
+   UA stylesheet hides a dialog carrying no [open] — so nothing here may set a
+   display on .popup itself.
+   The body is navy because the artwork is: a cream panel under a navy banner
+   reads as two stacked things, where one navy field reads as one card. */
+.popup{
+  width:min(520px,calc(100vw - 28px));max-width:none;
+  max-height:calc(100dvh - 28px);
+  /* auto, not hidden: it still clips the artwork to the radius, and it saves
+     the call to action on a short landscape phone */
+  overflow:auto;
+  margin:auto;padding:0;border:0;border-radius:18px;
+  background:var(--navy-deep);color:var(--on-navy);
+  box-shadow:0 30px 80px #00000066;
+}
+.popup::backdrop{background:#06102499;backdrop-filter:blur(3px)}
+.popup__inner{position:relative}
+.popup__art{display:block;width:100%;height:auto}
+.popup__x{
+  position:absolute;top:12px;right:12px;z-index:1;
+  width:36px;height:36px;padding:0;border:0;border-radius:50%;
+  display:grid;place-items:center;
+  /* its own navy disc rather than a bare glyph: the artwork behind it is dark
+     everywhere today, but the corner it sits in is exactly where a future
+     image is most likely to go pale */
+  background:#0A1A3ACC;color:var(--cream);
+  font-size:24px;line-height:1;cursor:pointer;
+}
+.popup__x:hover{background:var(--gold);color:var(--navy)}
+/* showModal focuses the first control, which is this one, so the popup opens
+   with a focus ring on it every time. The global ring sits 3px clear of the
+   element and drew a gold halo over the artwork; inset, it reads as a focused
+   button instead. Keyboard users still get the indicator. */
+.popup__x:focus-visible{outline-offset:-3px}
+.popup__body{padding:26px 30px 30px;text-align:center}
+.popup__body h2{
+  font-family:var(--display);letter-spacing:1px;text-transform:uppercase;
+  color:var(--cream);font-size:32px;line-height:1.08;margin:8px 0 0;
+}
+.popup__lead{margin:12px 0 22px;font-size:16px;line-height:1.55}
+.popup__cta{width:100%}
+.popup__note{margin:16px 0 0;font-size:14px;color:var(--on-navy-mute)}
+.popup__note a{color:var(--gold);font-weight:700}
+
+/* Chrome and Safari still scroll the page behind an open modal dialog. */
+body:has(.popup[open]){overflow:hidden}
+
+@keyframes elv-popup{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+.popup[open]{animation:elv-popup .3s cubic-bezier(.2,.8,.3,1) both}
+@media (prefers-reduced-motion:reduce){.popup[open]{animation:none}}
+
+@media (max-width:420px){
+  .popup__body{padding:22px 20px 26px}
+  .popup__body h2{font-size:26px}
+}
+/* A phone held sideways has room for the offer or for the picture, not both. */
+@media (max-height:520px){
+  .popup__art{max-height:118px;object-fit:cover;object-position:50% 36%}
+  .popup__body{padding:20px 24px 24px}
+  .popup__body h2{font-size:26px}
+  .popup__lead{margin-bottom:16px}
+}

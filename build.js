@@ -668,6 +668,35 @@ ${p.items.map(card).join('\n')}
 `;
 }
 
+/* Modal promotion, driven entirely by site.popup. A page gets one only if its
+   slug is listed there, and it ships closed: the UA stylesheet hides a <dialog>
+   that has no [open], so with JS off nothing appears and nothing has to be
+   hidden by hand. The dismissal window and the delay ride on data- attributes
+   so they stay editable in site.json rather than in the script. */
+function renderPopup(meta) {
+  const p = site.popup;
+  if (!p || !(p.pages || []).includes(meta.slug)) return '';
+  const size = imageSize(p.image);
+  const note = p.footnoteLead
+    ? `\n      <p class="popup__note">${p.footnoteLead} <a href="tel:${site.phoneHref}">${site.phone}</a></p>`
+    : '';
+  return `<dialog class="popup" aria-labelledby="popup-h" data-popup-id="${p.id}" data-popup-delay="${p.delayMs}" data-popup-days="${p.dismissDays}">
+  <div class="popup__inner">
+    <form method="dialog">
+      <button class="popup__x" value="close" aria-label="Close">&times;</button>
+    </form>
+    <img class="popup__art" src="assets/${p.image}" alt="" width="${size.w}" height="${size.h}">
+    <div class="popup__body">
+      <p class="eyebrow eyebrow--gold">${p.eyebrow}</p>
+      <h2 id="popup-h">${p.heading}</h2>
+      <p class="popup__lead">${p.body}</p>
+      <a class="btn btn--gold popup__cta" href="${p.ctaUrl}">${p.ctaLabel} &rarr;</a>${note}
+    </div>
+  </div>
+</dialog>
+`;
+}
+
 function renderPlanPerks(plan) {
   return plan.perkGroups.map(g => `            <section class="perkgrp">
               <h4>${g.name}</h4>
@@ -1088,6 +1117,9 @@ for (const f of pageFiles) {
   const metaSources = { ...site, memberships, calendar, menus, events, reviews, visit, ask };
   const meta = Object.fromEntries(Object.entries(rawMeta).map(
     ([k, v]) => [k, typeof v === 'string' ? expand(v, metaSources) : v]));
+  /* Resolved up here because two vars depend on it: the markup itself, and
+     whether this page needs the popup script at all. */
+  const popupHtml = renderPopup(meta);
   const vars = {
     ...site,
     memberships,
@@ -1175,8 +1207,11 @@ for (const f of pageFiles) {
     homeHref: meta.slug === 'index' ? '#top' : 'index.html',
     // a page opts into a script by name; every other page ships none
     promoSection: renderPromo(),
+    popup: popupHtml,
     fallPerks: renderPlanPerks(memberships.plans.fall),
     scriptTag: ['nav'].concat(meta.script ? [meta.script] : [])
+      // the popup's script ships only on the pages that actually get a popup
+      .concat(popupHtml ? ['popup'] : [])
       .map(name => `<script src="assets/${name}.js?v=${assetHash(name + '.js')}" defer></script>`).join('\n'),
     stylesheetHref: `assets/styles.css?v=${assetHash('styles.css')}`,
     primaryNav: renderPrimaryNav(meta.slug),
