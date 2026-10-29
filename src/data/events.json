@@ -11,8 +11,8 @@
   ],
   "events": [
     {
-      "when": "MON NOV 2 & 9 · 11 AM–1 PM",
-      "title": "Mahjong Open & Guided Play with Mahj with Sue",
+      "when": "MON NOV 2 · 11 AM–1 PM",
+      "title": "Mahjong Monday — Open & Guided Play",
       "category": "Special Events",
       "url": "https://mahjwithsue.com",
       "ctaLabel": "Details",
@@ -27,10 +27,37 @@
       "home": false
     },
     {
+      "when": "MON NOV 9 · 11 AM–1 PM",
+      "title": "Mahjong Monday — Guided Play",
+      "category": "Special Events",
+      "url": "https://eleveno.podplay.app/community/events/01a17e5c-d3e6-7aa2-a2cf-549c728245b0?v=c7af124a",
+      "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": false
+    },
+    {
       "when": "SAT NOV 14 · 9:30 AM",
       "title": "Patriots in Munich Watch Party & Beer Fest",
       "category": "Special Events",
       "featured": true,
+      "home": false
+    },
+    {
+      "when": "MON NOV 16 · 11 AM–1 PM",
+      "title": "Mahjong Monday — Guided Play",
+      "category": "Special Events",
+      "url": "https://eleveno.podplay.app/community/events/01a17e5d-019c-7aa2-a2cf-ebad43623740?v=45627cb0",
+      "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": false
+    },
+    {
+      "when": "MON NOV 16 · 11 AM–1 PM",
+      "title": "Mahjong Monday — Open Play",
+      "category": "Special Events",
+      "url": "https://eleveno.podplay.app/community/events/01a1883c-b3fa-7008-b2c7-608466798f74?v=294c1eb9",
+      "ctaLabel": "Sign Up",
+      "featured": false,
       "home": false
     },
     {
