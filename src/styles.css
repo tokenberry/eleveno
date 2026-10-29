@@ -378,6 +378,12 @@ button,input,select,textarea{font-family:inherit}
 .sched__row--empty{justify-content:center;padding:34px 4px}
 .sched__row--empty .sched__what{flex:0 1 auto;text-align:center;font-family:var(--body);font-size:17px;font-weight:600;text-transform:none;color:var(--ink-mute)}
 .sched__row--feature{background:#fff9e8}
+/* That tint is a near-white: right on the light calendar page, wrong inside
+   the navy band, where the row's own text is cream. The first featured event
+   to reach the home page came out cream on cream. Flip the row's ink rather
+   than its tint, so a highlighted row reads as a card lifted out of the navy. */
+.playing--navy .sched__row--feature .sched__what{color:var(--navy)}
+.playing--navy .sched__row--feature .sched__when{color:var(--blue)}
 .sched__when{font-family:var(--mono);font-size:15px;color:var(--blue);width:292px;flex:0 0 292px}
 .sched__what{font-family:var(--display);font-size:clamp(24px,3.2vw,34px);text-transform:uppercase;color:var(--navy);flex:1}
 .sched__what span{color:var(--gold)}

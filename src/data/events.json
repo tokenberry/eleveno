@@ -224,6 +224,15 @@
       "home": false
     },
     {
+      "when": "FRI OCT 30 · 5 PM",
+      "title": "Intro To Pickleball — 5 PM this week, not 6 PM",
+      "category": "Instructional",
+      "url": "https://eleveno.podplay.app/community/events?tag=Instructional",
+      "ctaLabel": "Sign Up",
+      "featured": true,
+      "home": true
+    },
+    {
       "when": "TUE, FRI, SAT · 6–7 PM, 12–1 PM",
       "title": "Intro To Pickleball",
       "category": "Instructional",
