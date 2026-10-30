@@ -36,8 +36,12 @@
     .pad{padding-left:22px !important;padding-right:22px !important}
     /* The two-column rows (event + button, bundle + price) go single column:
        600px of table becomes one stacked block per cell. */
-    .stack{display:block !important;width:100% !important}
-    .stack-right{display:block !important;width:100% !important;text-align:left !important;padding-top:12px !important}
+    /* width:100% is the cell's content box, so a cell with side padding still
+       overflows the 100%-wide table it sits in. border-box folds the padding
+       back in, which is the difference between a clean stack and 14px of
+       horizontal scroll on a phone. */
+    .stack{display:block !important;width:100% !important;box-sizing:border-box !important}
+    .stack-right{display:block !important;width:100% !important;box-sizing:border-box !important;text-align:left !important;padding-top:12px !important}
     .h1{font-size:34px !important;line-height:38px !important}
     .h2{font-size:26px !important;line-height:30px !important}
     .price{font-size:44px !important;line-height:46px !important}

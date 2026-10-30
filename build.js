@@ -1434,6 +1434,21 @@ if (emailFiles.length) {
 
   for (const f of emailFiles) {
     const { meta, body } = parseEmail(path.join(emailDir, f));
+
+    /* Campaign artwork is declared by the campaign, not hardcoded here: every
+       entry in the meta block's `images` is framed and sized by the Image CDN
+       and handed to the template as {{imgNameUrl/Width/Height}}. One month's
+       flyers are not the builder's business, and a slug that is deleted takes
+       its art wiring with it. */
+    const art = {};
+    for (const [name, spec] of Object.entries(meta.images || {})) {
+      const im = emailImage(spec.file, spec.width, spec.ratio);
+      const key = 'img' + name[0].toUpperCase() + name.slice(1);
+      art[key + 'Url'] = im.url;
+      art[key + 'Width'] = im.w;
+      art[key + 'Height'] = im.h;
+    }
+
     const vars = {
       ...site,
       memberships,
@@ -1474,6 +1489,7 @@ if (emailFiles.length) {
       emailCredits: renderEmailCredits(),
       emailHours: renderEmailHours(),
       ...meta,
+      ...art,
       content: '',
     };
     vars.content = expand(body, vars);
