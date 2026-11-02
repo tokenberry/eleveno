@@ -28,8 +28,16 @@
   ],
   "promo": {
     "_comment": "Dated banners on the home page. Delete an item when it is over, or the whole promo block when none are running — renderPromo emits nothing without it, so no markup has to be touched either way.",
-    "eyebrow": "WHAT’S HAPPENING IN NOVEMBER",
+    "eyebrow": "COMING UP AT ELEVENO",
     "items": [
+      {
+        "heading": "Winter Classic Moneyball",
+        "body": "Our biggest tournament of the year — and our First Anniversary Celebration. Friday December 18th through Sunday December 20th, here in Foxborough. Powered by BostonPickle.Life and DUPR.",
+        "ctaLabel": "Register for the tournament",
+        "ctaUrl": "https://pickleballtournaments.com/tournaments/eleveno-1st-anniversary-winter-classic",
+        "image": "promo-winter-classic.jpg",
+        "imageAlt": "ELEVENO Winter Classic Moneyball, First Anniversary Celebration. December 18 to 20, Foxborough, Massachusetts. Powered by BostonPickle.Life, with DUPR"
+      },
       {
         "heading": "Mahjong Monday",
         "body": "Monday November 9th and Monday November 16th, 11am–1pm. Tiles, friends and good times — choose guided play to learn the game, or open play if you already know it.",

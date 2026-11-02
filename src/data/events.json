@@ -118,6 +118,15 @@
       "home": false
     },
     {
+      "when": "FRI–SUN DEC 18–20",
+      "title": "Winter Classic Moneyball — First Anniversary Tournament",
+      "category": "Special Events",
+      "url": "https://pickleballtournaments.com/tournaments/eleveno-1st-anniversary-winter-classic",
+      "ctaLabel": "Register",
+      "featured": true,
+      "home": true
+    },
+    {
       "when": "MON–FRI · 7–9:30 AM, 8–10 PM",
       "title": "Tiered Open Play",
       "category": "Open Play",
