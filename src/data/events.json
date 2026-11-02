@@ -36,11 +36,31 @@
       "home": false
     },
     {
-      "when": "SAT NOV 14 · 9:30 AM",
-      "title": "Patriots in Munich Watch Party & Beer Fest",
+      "when": "MON NOV 9 · 11 AM–1 PM",
+      "title": "Mahjong Monday — Open Play",
       "category": "Special Events",
-      "featured": true,
+      "url": "https://eleveno.podplay.app/community/events/01a1883a-c7cc-7008-b2c3-eb141b3002cf?v=f15fb855",
+      "ctaLabel": "Sign Up",
+      "featured": false,
       "home": false
+    },
+    {
+      "when": "MON NOV 9, 16, 23, 30 · 8–10 PM",
+      "title": "DUPR Rating Sessions",
+      "category": "Special Events",
+      "url": "https://eleveno.podplay.app/community/events",
+      "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": true
+    },
+    {
+      "when": "SUN NOV 15 · 9 AM–1 PM",
+      "title": "Patriots in Munich Watch Party",
+      "category": "Special Events",
+      "url": "https://eleveno.podplay.app/community/events",
+      "ctaLabel": "Sign Up",
+      "featured": true,
+      "home": true
     },
     {
       "when": "MON NOV 16 · 11 AM–1 PM",
@@ -57,6 +77,15 @@
       "category": "Special Events",
       "url": "https://eleveno.podplay.app/community/events/01a1883c-b3fa-7008-b2c7-608466798f74?v=294c1eb9",
       "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": false
+    },
+    {
+      "when": "TUE NOV 17 · 1–3:30 PM",
+      "title": "Tech Tuesday — Presentations, Then Pickleball, Beverages & Appetizers",
+      "category": "Special Events",
+      "url": "https://lp.constantcontactpages.com/ev/reg/d9ce7u6?source_id=06b9a3d6-c262-47cf-b0c0-55830f33ce62&source_type=em&c=huYeatwfrz20FlgOyeWlMQy0DQmoQYDBi7s1DzBDASTlZngox_glFQ==",
+      "ctaLabel": "Save Your Spot",
       "featured": false,
       "home": false
     },
