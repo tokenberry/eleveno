@@ -31,12 +31,36 @@
     "eyebrow": "COMING UP AT ELEVENO",
     "items": [
       {
-        "heading": "Halloween Party",
-        "body": "Friday October 30th, 6–11pm. Costume contest, open play for all, spooky snacks and drinks, games and music. Bring your friends and family.",
+        "heading": "Winter Classic Moneyball",
+        "body": "Our biggest tournament of the year — and our First Anniversary Celebration. Friday December 18th through Sunday December 20th, here in Foxborough. Powered by BostonPickle.Life and DUPR.",
+        "ctaLabel": "Register for the tournament",
+        "ctaUrl": "https://pickleballtournaments.com/tournaments/eleveno-1st-anniversary-winter-classic",
+        "image": "promo-winter-classic.jpg",
+        "imageAlt": "ELEVENO Winter Classic Moneyball, First Anniversary Celebration. December 18 to 20, Foxborough, Massachusetts. Powered by BostonPickle.Life, with DUPR"
+      },
+      {
+        "heading": "Mahjong Monday",
+        "body": "Monday November 9th and Monday November 16th, 11am–1pm. Tiles, friends and good times — choose guided play to learn the game, or open play if you already know it.",
+        "ctaLabel": "Sign up for Nov 9",
+        "ctaUrl": "https://eleveno.podplay.app/community/events/01a17e5c-d3e6-7aa2-a2cf-549c728245b0?v=c7af124a",
+        "image": "promo-mahjong.jpg",
+        "imageAlt": "Mahjong Monday: tiles, friends and good times. November 9 and November 16, 11 AM to 1 PM"
+      },
+      {
+        "heading": "DUPR Rating Sessions",
+        "body": "Mondays November 9th, 16th, 23rd and 30th, 8–10pm. Get rated, track your progress, play your best.",
         "ctaLabel": "Sign up on the app",
         "ctaUrl": "https://eleveno.podplay.app/community/events",
-        "image": "promo-halloween.jpg",
-        "imageAlt": "Halloween Party flyer: Friday October 30th, 6 to 11pm, with a costume contest, open play, snacks and drinks, games and music"
+        "image": "promo-dupr-rating.jpg",
+        "imageAlt": "DUPR Rating Sessions: get rated, track your progress, play your best. November 9, 16, 23 and 30, 8 to 10 PM"
+      },
+      {
+        "heading": "Patriots in Munich Watch Party",
+        "body": "Sunday November 15th, 9am–1pm. Football, friends, good vibes — catch the game on our screens with food and drinks from the bar.",
+        "ctaLabel": "Sign up on the app",
+        "ctaUrl": "https://eleveno.podplay.app/community/events",
+        "image": "promo-patriots-munich.jpg",
+        "imageAlt": "Patriots in Munich Watch Party: football, friends, good vibes. November 15, 9 AM to 1 PM"
       },
       {
         "heading": "Tech Tuesday",
@@ -44,7 +68,7 @@
         "ctaLabel": "Save your spot",
         "ctaUrl": "https://lp.constantcontactpages.com/ev/reg/d9ce7u6?source_id=06b9a3d6-c262-47cf-b0c0-55830f33ce62&source_type=em&c=huYeatwfrz20FlgOyeWlMQy0DQmoQYDBi7s1DzBDASTlZngox_glFQ==",
         "image": "promo-techtuesday.jpg",
-        "imageAlt": "Tech Tuesday: Modern Workspaces Simplified, with Intra Systems, IGEL, Omnissa and Nutanix. Tuesday November 17 2026, 1:00 to 3:30pm at ELEVENO, Foxboro"
+        "imageAlt": "Tech Tuesday: presentations first, then pickleball, beverages and appetizers. November 17, 1 to 3:30 PM"
       }
     ]
   },
