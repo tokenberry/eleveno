@@ -20,18 +20,20 @@
       "home": false
     },
     {
-      "when": "SAT NOV 7 · 9–10 AM",
+      "when": "SAT NOV 14 · 9–10 AM",
       "title": "Euphoria with Marina — 45 Minutes of Boxing, Movement, Power",
       "category": "Special Events",
-      "url": "https://eleveno.podplay.app/community/events/01a17943-c305-766a-8f14-089bb2bca7cf",
+      "url": "https://eleveno.podplay.app/community/events/01a17944-8535-766a-8f14-7caab1795989",
       "ctaLabel": "Sign Up",
       "featured": false,
       "home": true
     },
     {
-      "when": "SAT NOV 14, 21 · 9:15 AM",
+      "when": "SAT NOV 21 · 9–10 AM",
       "title": "Euphoria with Marina — 45 Minutes of Boxing, Movement, Power",
       "category": "Special Events",
+      "url": "https://eleveno.podplay.app/community/events/01a17944-8647-766a-8f14-d1b34c5b7d93",
+      "ctaLabel": "Sign Up",
       "featured": false,
       "home": false
     },
@@ -132,6 +134,15 @@
       "category": "Special Events",
       "featured": false,
       "home": false
+    },
+    {
+      "when": "FRI DEC 4 · 7–10 PM",
+      "title": "1 Year Anniversary Holiday Party",
+      "category": "Special Events",
+      "url": "https://eleveno.podplay.app/community/events/01a1c6c6-0ad2-7aa9-aabf-cac685124aad?v=ab7499af",
+      "ctaLabel": "RSVP",
+      "featured": true,
+      "home": true
     },
     {
       "when": "FRI–SUN DEC 18–20",
