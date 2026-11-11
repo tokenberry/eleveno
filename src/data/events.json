@@ -20,18 +20,29 @@
       "home": false
     },
     {
-      "when": "SAT NOV 7 · 9–10 AM",
+      "when": "SAT NOV 14 · 9–10 AM",
       "title": "Euphoria with Marina — 45 Minutes of Boxing, Movement, Power",
       "category": "Special Events",
-      "url": "https://eleveno.podplay.app/community/events/01a17943-c305-766a-8f14-089bb2bca7cf",
+      "url": "https://eleveno.podplay.app/community/events/01a17944-8535-766a-8f14-7caab1795989",
       "ctaLabel": "Sign Up",
       "featured": false,
       "home": true
     },
     {
-      "when": "SAT NOV 14, 21 · 9:15 AM",
+      "when": "SAT NOV 21 · 9–10 AM",
       "title": "Euphoria with Marina — 45 Minutes of Boxing, Movement, Power",
       "category": "Special Events",
+      "url": "https://eleveno.podplay.app/community/events/01a17944-8647-766a-8f14-d1b34c5b7d93",
+      "ctaLabel": "Sign Up",
+      "featured": false,
+      "home": false
+    },
+    {
+      "when": "THU NOV 26 · 8–9 AM",
+      "title": "Euphoria with Marina — 45 Minutes of Boxing, Movement, Power",
+      "category": "Special Events",
+      "url": "https://eleveno.podplay.app/community/events/01a17944-86cb-766a-8f15-2f955677cf1e",
+      "ctaLabel": "Sign Up",
       "featured": false,
       "home": false
     },
