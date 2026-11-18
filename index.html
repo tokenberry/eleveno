@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Black&family=Space+Mono:wght@400;700&family=Yellowtail&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=d30c9766">
+<link rel="stylesheet" href="assets/styles.css?v=de037029">
 </head>
 <body>
 <div class="page">
@@ -59,6 +59,16 @@
   <!-- ===================== HERO ===================== -->
   <section class="hero" id="top">
     <div class="hero__photo" role="img" aria-label="A large group of ELEVENO players gathered on court under the ELEVENO sign, paddles raised"></div>
+    <!-- Anniversary countdown. assets/home.js fills in the day count from the
+         visitor's own date and removes the card once the party is over; with
+         no script it still shows the date and the sign-up button. -->
+    <aside class="hcount" data-countdown="2026-12-04" aria-labelledby="hcount-h">
+      <p class="hcount__eyebrow" id="hcount-h">1 Year Anniversary Party</p>
+      <p class="hcount__big" data-countdown-big>Dec 4</p>
+      <p class="hcount__unit" data-countdown-unit>Save the date</p>
+      <p class="hcount__when">Fri Dec 4 &nbsp;&bull;&nbsp; 7&ndash;10 PM</p>
+      <a class="btn btn--gold hcount__btn" href="https://eleveno.podplay.app/community/events/01a1c6c6-0ad2-7aa9-aabf-cac685124aad?v=2e8d1a73">Sign Up</a>
+    </aside>
     <div class="shell hero__inner">
       <div class="hero__copy">
         <p class="hero__eyebrow">FOXBOROUGH, MA &nbsp;&bull;&nbsp; OPEN 7 DAYS</p>
@@ -232,7 +242,7 @@
         <div class="sched__row sched__row--feature">
           <span class="sched__when">FRI DEC 4 · 7–10 PM</span>
           <span class="sched__what">1 Year Anniversary Holiday Party</span>
-          <a class="sched__cta sched__cta--gold" href="https://eleveno.podplay.app/community/events/01a1c6c6-0ad2-7aa9-aabf-cac685124aad?v=ab7499af">RSVP</a>
+          <a class="sched__cta sched__cta--gold" href="https://eleveno.podplay.app/community/events/01a1c6c6-0ad2-7aa9-aabf-cac685124aad?v=2e8d1a73">RSVP</a>
         </div>
         <div class="sched__row sched__row--feature">
           <span class="sched__when">FRI–SUN DEC 18–20</span>
@@ -915,7 +925,7 @@
 </dialog>
 
 <script src="assets/nav.js?v=c7edb616" defer></script>
-<script src="assets/home.js?v=5fedf15d" defer></script>
+<script src="assets/home.js?v=18925439" defer></script>
 <script src="assets/popup.js?v=97f9b123" defer></script>
 </body>
 </html>
