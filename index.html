@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Black&family=Space+Mono:wght@400;700&family=Yellowtail&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=d30c9766">
+<link rel="stylesheet" href="assets/styles.css?v=de037029">
 </head>
 <body>
 <div class="page">
@@ -59,6 +59,16 @@
   <!-- ===================== HERO ===================== -->
   <section class="hero" id="top">
     <div class="hero__photo" role="img" aria-label="A large group of ELEVENO players gathered on court under the ELEVENO sign, paddles raised"></div>
+    <!-- Anniversary countdown. assets/home.js fills in the day count from the
+         visitor's own date and removes the card once the party is over; with
+         no script it still shows the date and the sign-up button. -->
+    <aside class="hcount" data-countdown="2026-12-04" aria-labelledby="hcount-h">
+      <p class="hcount__eyebrow" id="hcount-h">1 Year Anniversary Party</p>
+      <p class="hcount__big" data-countdown-big>Dec 4</p>
+      <p class="hcount__unit" data-countdown-unit>Save the date</p>
+      <p class="hcount__when">Fri Dec 4 &nbsp;&bull;&nbsp; 7&ndash;10 PM</p>
+      <a class="btn btn--gold hcount__btn" href="https://eleveno.podplay.app/community/events/01a1c6c6-0ad2-7aa9-aabf-cac685124aad?v=2e8d1a73">Sign Up</a>
+    </aside>
     <div class="shell hero__inner">
       <div class="hero__copy">
         <p class="hero__eyebrow">FOXBOROUGH, MA &nbsp;&bull;&nbsp; OPEN 7 DAYS</p>
@@ -146,26 +156,6 @@
             <a class="btn btn--gold" href="https://eleveno.podplay.app/community/events">Sign up on the app &rarr;</a>
           </div>
         </article>
-        <article class="promo__card">
-          <a class="promo__art" href="https://eleveno.podplay.app/community/events">
-            <img src="assets/promo-patriots-munich.jpg" alt="Patriots in Munich Watch Party: football, friends, good vibes. November 15, 9 AM to 1 PM" width="1080" height="1350" loading="lazy" decoding="async">
-          </a>
-          <div class="promo__copy">
-            <h3>Patriots in Munich Watch Party</h3>
-            <p class="promo__body">Sunday November 15th, 9am–1pm. Football, friends, good vibes — catch the game on our screens with food and drinks from the bar.</p>
-            <a class="btn btn--gold" href="https://eleveno.podplay.app/community/events">Sign up on the app &rarr;</a>
-          </div>
-        </article>
-        <article class="promo__card">
-          <a class="promo__art" href="https://lp.constantcontactpages.com/ev/reg/d9ce7u6?source_id=06b9a3d6-c262-47cf-b0c0-55830f33ce62&source_type=em&c=huYeatwfrz20FlgOyeWlMQy0DQmoQYDBi7s1DzBDASTlZngox_glFQ==">
-            <img src="assets/promo-techtuesday.jpg" alt="Tech Tuesday: presentations first, then pickleball, beverages and appetizers. November 17, 1 to 3:30 PM" width="1080" height="1350" loading="lazy" decoding="async">
-          </a>
-          <div class="promo__copy">
-            <h3>Tech Tuesday</h3>
-            <p class="promo__body">Tuesday November 17th, 1:00–3:30pm, here at ELEVENO. Intra Systems, IGEL, Omnissa and Nutanix on modern workspaces — presentations first, then pickleball, beverages and appetizers.</p>
-            <a class="btn btn--gold" href="https://lp.constantcontactpages.com/ev/reg/d9ce7u6?source_id=06b9a3d6-c262-47cf-b0c0-55830f33ce62&source_type=em&c=huYeatwfrz20FlgOyeWlMQy0DQmoQYDBi7s1DzBDASTlZngox_glFQ==">Save your spot &rarr;</a>
-          </div>
-        </article>
       </div>
     </div>
   </section>
@@ -250,14 +240,9 @@
           <a class="sched__cta" href="https://eleveno.podplay.app/community/events">SIGN UP</a>
         </div>
         <div class="sched__row sched__row--feature">
-          <span class="sched__when">SUN NOV 15 · 9 AM–1 PM</span>
-          <span class="sched__what">Patriots in Munich Watch Party</span>
-          <a class="sched__cta sched__cta--gold" href="https://eleveno.podplay.app/community/events">SIGN UP</a>
-        </div>
-        <div class="sched__row sched__row--feature">
           <span class="sched__when">FRI DEC 4 · 7–10 PM</span>
           <span class="sched__what">1 Year Anniversary Holiday Party</span>
-          <a class="sched__cta sched__cta--gold" href="https://eleveno.podplay.app/community/events/01a1c6c6-0ad2-7aa9-aabf-cac685124aad?v=ab7499af">RSVP</a>
+          <a class="sched__cta sched__cta--gold" href="https://eleveno.podplay.app/community/events/01a1c6c6-0ad2-7aa9-aabf-cac685124aad?v=2e8d1a73">RSVP</a>
         </div>
         <div class="sched__row sched__row--feature">
           <span class="sched__when">FRI–SUN DEC 18–20</span>
@@ -940,7 +925,7 @@
 </dialog>
 
 <script src="assets/nav.js?v=c7edb616" defer></script>
-<script src="assets/home.js?v=5fedf15d" defer></script>
+<script src="assets/home.js?v=18925439" defer></script>
 <script src="assets/popup.js?v=97f9b123" defer></script>
 </body>
 </html>

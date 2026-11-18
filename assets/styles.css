@@ -231,6 +231,43 @@ button,input,select,textarea{font-family:inherit}
   .hero__copy{max-width:none}
 }
 .hero__copy{max-width:560px;color:var(--cream)}
+/* Anniversary countdown, over the right-hand side of the hero photo. The copy
+   owns the left; this sits in the open space beside it. */
+.hcount{position:absolute;z-index:2;top:50%;right:max(var(--pad),calc((100% - var(--shell)) / 2 + var(--pad)));
+  transform:translateY(calc(-50% - 30px));width:290px;padding:26px 26px 28px;text-align:center;
+  background:rgba(10,26,58,.88);border:2px solid var(--gold);border-radius:14px;color:var(--cream);
+  box-shadow:0 18px 40px rgba(0,0,0,.35)}
+.hcount__eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+.hcount__big{font-family:var(--display);font-size:96px;line-height:1;letter-spacing:1px;margin-top:10px;text-transform:uppercase}
+.hcount.is-today .hcount__big{font-size:64px;padding:12px 0 8px}
+.hcount__unit{font-family:var(--display);font-size:22px;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-top:4px}
+.hcount__when{font-size:15px;font-weight:700;color:var(--on-navy);margin-top:12px}
+.hcount__btn{display:block;margin-top:18px;font-size:17px;padding:14px 20px}
+@media (max-width:1080px){
+  .hcount{width:240px;padding:20px 20px 22px}
+  .hcount__eyebrow{font-size:11px;letter-spacing:1px}
+  .hcount__big{font-size:76px}
+}
+/* On a phone the photo sits above the copy, so the card becomes a strip across
+   the bottom edge of the photo (it follows the photo in the markup for this),
+   count on the left, button on the right. */
+@media (max-width:860px){
+  .hcount{top:auto;bottom:auto;right:auto;transform:none;position:relative;width:auto;
+    margin:-46px 16px 0;padding:14px 16px;display:grid;
+    grid-template-columns:auto 1fr auto;grid-template-areas:"big eyebrow btn" "big unit btn" "big when btn";
+    column-gap:14px;align-items:center;text-align:left}
+  .hcount__big{grid-area:big;font-size:58px;margin:0}
+  .hcount.is-today .hcount__big{font-size:40px;padding:0}
+  .hcount__eyebrow{grid-area:eyebrow;font-size:11px;letter-spacing:1px}
+  .hcount__unit{grid-area:unit;font-size:17px;margin:0}
+  .hcount__when{grid-area:when;font-size:13px;margin:2px 0 0}
+  .hcount__btn{grid-area:btn;margin:0;font-size:15px;padding:12px 16px}
+}
+@media (max-width:420px){
+  .hcount{grid-template-columns:auto 1fr;grid-template-areas:"big eyebrow" "big unit" "big when" "btn btn";row-gap:0}
+  .hcount__btn{margin-top:12px;text-align:center}
+}
+
 .hero__eyebrow{font-family:var(--mono);font-size:14px;letter-spacing:4px;color:var(--gold);margin-bottom:18px}
 /* 1.04, not .86. Anton's caps are tall enough that at .86 the three lines
    touched — measured on painted pixels, the headline resolved as one ink band
