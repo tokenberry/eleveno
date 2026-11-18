@@ -71,7 +71,7 @@
       "url": "https://eleveno.podplay.app/community/events",
       "ctaLabel": "Sign Up",
       "featured": true,
-      "home": true
+      "home": false
     },
     {
       "when": "MON NOV 16 · 11 AM–1 PM",
