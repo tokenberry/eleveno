@@ -35,3 +35,37 @@
      metrics, and a quote that fits Arial may not fit Archivo. */
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(markClipped);
 })();
+
+/* Hero countdown. The build writes the numbers as they stood at deploy time;
+   this keeps them true to the second, and once the moment arrives replaces the
+   tiles with the "happening now" line until its last day takes it down. */
+(function () {
+  var boxes = document.querySelectorAll('[data-countdown]');
+  if (!boxes.length) return;
+  var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+  function tick() {
+    var now = Date.now(), live = 0;
+    Array.prototype.forEach.call(boxes, function (box) {
+      if (box.getAttribute('data-done')) return;
+      var left = Math.floor((new Date(box.getAttribute('data-countdown')).getTime() - now) / 1000);
+      if (isNaN(left)) return;
+      if (left <= 0) {
+        box.setAttribute('data-done', '1');
+        var p = document.createElement('p');
+        p.className = 'countdown__now';
+        p.textContent = box.getAttribute('data-live-text') || 'Happening now!';
+        box.replaceWith(p);
+        return;
+      }
+      live++;
+      var v = { d: Math.floor(left / 86400), h: Math.floor(left % 86400 / 3600),
+                m: Math.floor(left % 3600 / 60), s: left % 60 };
+      Object.keys(v).forEach(function (k) {
+        var el = box.querySelector('[data-cd="' + k + '"]');
+        if (el) el.textContent = pad(v[k]);
+      });
+    });
+    if (live) setTimeout(tick, 1000 - (Date.now() % 1000));
+  }
+  tick();
+})();
