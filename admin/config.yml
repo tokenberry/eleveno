@@ -40,6 +40,7 @@ collections:
             summary: "{{fields.when}} — {{fields.title}}"
             fields:
               - { name: when, label: Day and time, widget: string, hint: "Shown on the left, for example: TUE · 7:00 PM" }
+              - { name: ends, label: Last day, widget: datetime, format: YYYY-MM-DD, date_format: YYYY-MM-DD, time_format: false, required: false, hint: "For one-off events: the event disappears from the site the day after. Leave empty for weekly programmes." }
               - { name: title, label: Event name, widget: string }
               - { name: url, label: Sign-up link, widget: string, required: false, hint: "Paste the full link. Leave empty and the event shows with no button." }
               - { name: ctaLabel, label: Button text, widget: string, default: Sign Up, required: false }

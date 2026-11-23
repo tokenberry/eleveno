@@ -178,6 +178,27 @@ Object.assign(memberships, escapeDeep(memberships));
   memberships.pricing.prorateAttr = memberships.pricing.prorate ? 'true' : 'false';
 })();
 
+/* Dated events and promo cards carry `ends`, their last day (YYYY-MM-DD).
+   Anything whose last day is before today, on the club's clock, is left out of
+   the build, so a finished event never ships. Between builds the browser hides
+   the same items from their data-ends attribute (assets/nav.js), so the site
+   stays current even on a day nobody deploys. */
+const TODAY = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York' }).format(new Date());
+function checkEnds(where, items) {
+  for (const i of items || []) {
+    if (i.ends != null && !/^\d{4}-\d{2}-\d{2}$/.test(i.ends))
+      throw new Error(`${where}: "ends" must be YYYY-MM-DD, got "${i.ends}" (${i.title || i.heading})`);
+  }
+}
+const current = i => !i.ends || i.ends >= TODAY;
+const endsAttr = i => i.ends ? ` data-ends="${i.ends}"` : '';
+checkEnds('events.json', calendar.events);
+calendar.events = (calendar.events || []).filter(current);
+if (site.promo) {
+  checkEnds('site.json promo', site.promo.items);
+  site.promo.items = (site.promo.items || []).filter(current);
+}
+
 assertNoEntities('events.json', calendar);
 Object.assign(calendar, escapeDeep(calendar));
 assertNoEntities('reviews', reviews);
@@ -404,7 +425,7 @@ function schedRow(e) {
   const label = (e.ctaLabel || 'Sign Up').toUpperCase();
   // an event with no link yet still renders, just without a button
   const cta = e.url ? `\n          <a class="${ctaClass}" href="${e.url}">${label}</a>` : '';
-  return `        <div class="sched__row${feature}">\n` +
+  return `        <div class="sched__row${feature}"${endsAttr(e)}>\n` +
          `          <span class="sched__when">${e.when}</span>\n` +
          `          <span class="sched__what">${e.title}</span>` +
          `${cta}\n        </div>`;
@@ -642,7 +663,7 @@ function renderPromo() {
   if (!p || !(p.items || []).length) return '';
   const card = i => {
     const size = imageSize(i.image);
-    return `        <article class="promo__card">
+    return `        <article class="promo__card"${endsAttr(i)}>
           <a class="promo__art" href="${i.ctaUrl}">
             <img src="assets/${i.image}" alt="${i.imageAlt}" width="${size.w}" height="${size.h}" loading="lazy" decoding="async">
           </a>
