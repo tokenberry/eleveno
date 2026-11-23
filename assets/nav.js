@@ -39,9 +39,16 @@
    pushed — this keeps it current on the days in between. Each item carries its
    last day as data-ends="YYYY-MM-DD"; a promo band left with no cards goes too. */
 (function () {
-  var d = new Date();
-  var pad = function (n) { return (n < 10 ? '0' : '') + n; };
-  var today = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+  /* The club's calendar day, not the visitor's: an evening event in Foxborough
+     must not vanish at 7pm for someone whose clock has already rolled over. */
+  var d = new Date(), today;
+  try {
+    today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York' }).format(d);
+  } catch (e) { today = ''; }
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(today)) {
+    var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+    today = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+  }
   Array.prototype.forEach.call(document.querySelectorAll('[data-ends]'), function (el) {
     if (el.getAttribute('data-ends') < today) el.hidden = true;
   });

@@ -59,6 +59,16 @@
       }
     ]
   },
+  "heroCountdown": {
+    "_comment": "Live countdown in the top right of the home page hero. `at` is the start, an ISO date-time with its UTC offset; `ends` is the last day it shows (YYYY-MM-DD). Delete the block to take it down.",
+    "eyebrow": "1 Year Anniversary Party",
+    "when": "Fri Dec 4 · 7–10 PM",
+    "at": "2026-12-04T19:00:00-05:00",
+    "ends": "2026-12-04",
+    "ctaLabel": "RSVP",
+    "ctaUrl": "https://eleveno.podplay.app/community/events/01a1c6c6-0ad2-7aa9-aabf-cac685124aad?v=ab7499af",
+    "liveText": "We&#39;re celebrating right now &mdash; come on in!"
+  },
   "popup": {
     "_comment": "Modal on the pages listed below. Delete the whole popup block when the promotion is over: renderPopup emits nothing without it, and the popup script only ships on pages that get one. Change \"id\" to re-show the popup to people who already dismissed it.",
     "id": "holiday-2025",
