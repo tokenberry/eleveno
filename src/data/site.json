@@ -27,11 +27,12 @@
     "Open 7 Days"
   ],
   "promo": {
-    "_comment": "Dated banners on the home page. Delete an item when it is over, or the whole promo block when none are running — renderPromo emits nothing without it, so no markup has to be touched either way.",
+    "_comment": "Dated banners on the home page. Give each item an `ends` date (YYYY-MM-DD, its last day) and it drops off by itself the day after. Delete an item when it is over, or the whole promo block when none are running — renderPromo emits nothing without it, so no markup has to be touched either way.",
     "eyebrow": "COMING UP AT ELEVENO",
     "items": [
       {
         "heading": "1 Year Anniversary Party",
+        "ends": "2026-12-04",
         "body": "Friday December 4th, 7–10pm, on the event court. Our holiday party and a toast to our first year at ELEVENO — come celebrate with us.",
         "ctaLabel": "RSVP on the app",
         "ctaUrl": "https://eleveno.podplay.app/community/events/01a1c6c6-0ad2-7aa9-aabf-cac685124aad?v=ab7499af",
@@ -40,6 +41,7 @@
       },
       {
         "heading": "Winter Classic Moneyball",
+        "ends": "2026-12-20",
         "body": "Our biggest tournament of the year — and our First Anniversary Celebration. Friday December 18th through Sunday December 20th, here in Foxborough. Powered by BostonPickle.Life and DUPR.",
         "ctaLabel": "Register for the tournament",
         "ctaUrl": "https://pickleballtournaments.com/tournaments/eleveno-1st-anniversary-winter-classic",
@@ -47,46 +49,25 @@
         "imageAlt": "ELEVENO Winter Classic Moneyball, First Anniversary Celebration. December 18 to 20, Foxborough, Massachusetts. Powered by BostonPickle.Life, with DUPR"
       },
       {
-        "heading": "Euphoria Health &amp; Fitness",
-        "body": "Saturdays November 14th and 21st, 9–10am. Euphoria with Marina — 45 minutes of boxing, movement and power, here on the event court at ELEVENO.",
-        "ctaLabel": "Sign up for Nov 14",
-        "ctaUrl": "https://eleveno.podplay.app/community/events/01a17944-8535-766a-8f14-7caab1795989",
-        "image": "promo-euphoria.jpg",
-        "imageAlt": "ELEVENO Pickleball and Euphoria Health &amp; Fitness logos over the ELEVENO courts and the Euphoria boxing gym"
-      },
-      {
-        "heading": "Mahjong Monday",
-        "body": "Monday November 9th and Monday November 16th, 11am–1pm. Tiles, friends and good times — choose guided play to learn the game, or open play if you already know it.",
-        "ctaLabel": "Sign up for Nov 9",
-        "ctaUrl": "https://eleveno.podplay.app/community/events/01a17e5c-d3e6-7aa2-a2cf-549c728245b0?v=c7af124a",
-        "image": "promo-mahjong.jpg",
-        "imageAlt": "Mahjong Monday: tiles, friends and good times. November 9 and November 16, 11 AM to 1 PM"
-      },
-      {
         "heading": "DUPR Rating Sessions",
-        "body": "Mondays November 9th, 16th, 23rd and 30th, 8–10pm. Get rated, track your progress, play your best.",
+        "ends": "2026-11-30",
+        "body": "Mondays November 23rd and 30th, 8–10pm. Get rated, track your progress, play your best.",
         "ctaLabel": "Sign up on the app",
         "ctaUrl": "https://eleveno.podplay.app/community/events",
         "image": "promo-dupr-rating.jpg",
         "imageAlt": "DUPR Rating Sessions: get rated, track your progress, play your best. November 9, 16, 23 and 30, 8 to 10 PM"
-      },
-      {
-        "heading": "Patriots in Munich Watch Party",
-        "body": "Sunday November 15th, 9am–1pm. Football, friends, good vibes — catch the game on our screens with food and drinks from the bar.",
-        "ctaLabel": "Sign up on the app",
-        "ctaUrl": "https://eleveno.podplay.app/community/events",
-        "image": "promo-patriots-munich.jpg",
-        "imageAlt": "Patriots in Munich Watch Party: football, friends, good vibes. November 15, 9 AM to 1 PM"
-      },
-      {
-        "heading": "Tech Tuesday",
-        "body": "Tuesday November 17th, 1:00–3:30pm, here at ELEVENO. Intra Systems, IGEL, Omnissa and Nutanix on modern workspaces — presentations first, then pickleball, beverages and appetizers.",
-        "ctaLabel": "Save your spot",
-        "ctaUrl": "https://lp.constantcontactpages.com/ev/reg/d9ce7u6?source_id=06b9a3d6-c262-47cf-b0c0-55830f33ce62&source_type=em&c=huYeatwfrz20FlgOyeWlMQy0DQmoQYDBi7s1DzBDASTlZngox_glFQ==",
-        "image": "promo-techtuesday.jpg",
-        "imageAlt": "Tech Tuesday: presentations first, then pickleball, beverages and appetizers. November 17, 1 to 3:30 PM"
       }
     ]
+  },
+  "heroCountdown": {
+    "_comment": "Live countdown in the top right of the home page hero. `at` is the start, an ISO date-time with its UTC offset; `ends` is the last day it shows (YYYY-MM-DD). Delete the block to take it down.",
+    "eyebrow": "1 Year Anniversary Party",
+    "when": "Fri Dec 4 · 7–10 PM",
+    "at": "2026-12-04T19:00:00-05:00",
+    "ends": "2026-12-04",
+    "ctaLabel": "RSVP",
+    "ctaUrl": "https://eleveno.podplay.app/community/events/01a1c6c6-0ad2-7aa9-aabf-cac685124aad?v=ab7499af",
+    "liveText": "We&#39;re celebrating right now &mdash; come on in!"
   },
   "popup": {
     "_comment": "Modal on the pages listed below. Delete the whole popup block when the promotion is over: renderPopup emits nothing without it, and the popup script only ships on pages that get one. Change \"id\" to re-show the popup to people who already dismissed it.",

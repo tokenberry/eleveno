@@ -178,6 +178,27 @@ Object.assign(memberships, escapeDeep(memberships));
   memberships.pricing.prorateAttr = memberships.pricing.prorate ? 'true' : 'false';
 })();
 
+/* Dated events and promo cards carry `ends`, their last day (YYYY-MM-DD).
+   Anything whose last day is before today, on the club's clock, is left out of
+   the build, so a finished event never ships. Between builds the browser hides
+   the same items from their data-ends attribute (assets/nav.js), so the site
+   stays current even on a day nobody deploys. */
+const TODAY = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York' }).format(new Date());
+function checkEnds(where, items) {
+  for (const i of items || []) {
+    if (i.ends != null && !/^\d{4}-\d{2}-\d{2}$/.test(i.ends))
+      throw new Error(`${where}: "ends" must be YYYY-MM-DD, got "${i.ends}" (${i.title || i.heading})`);
+  }
+}
+const current = i => !i.ends || i.ends >= TODAY;
+const endsAttr = i => i.ends ? ` data-ends="${i.ends}"` : '';
+checkEnds('events.json', calendar.events);
+calendar.events = (calendar.events || []).filter(current);
+if (site.promo) {
+  checkEnds('site.json promo', site.promo.items);
+  site.promo.items = (site.promo.items || []).filter(current);
+}
+
 assertNoEntities('events.json', calendar);
 Object.assign(calendar, escapeDeep(calendar));
 assertNoEntities('reviews', reviews);
@@ -404,7 +425,7 @@ function schedRow(e) {
   const label = (e.ctaLabel || 'Sign Up').toUpperCase();
   // an event with no link yet still renders, just without a button
   const cta = e.url ? `\n          <a class="${ctaClass}" href="${e.url}">${label}</a>` : '';
-  return `        <div class="sched__row${feature}">\n` +
+  return `        <div class="sched__row${feature}"${endsAttr(e)}>\n` +
          `          <span class="sched__when">${e.when}</span>\n` +
          `          <span class="sched__what">${e.title}</span>` +
          `${cta}\n        </div>`;
@@ -637,12 +658,40 @@ function renderEtiquette() {
    one down is deleting its item; taking the band down is deleting the block.
    Either way there is no markup to find, and nothing left behind advertising
    a date that has passed. */
+/* Live countdown in the home page hero, driven by site.heroCountdown. The
+   numbers are filled in at build time so it reads sensibly with JavaScript
+   off; assets/home.js ticks them every second and swaps in liveText once the
+   moment arrives. Past its `ends` day the build leaves it out and nav.js hides
+   it, like any other dated item. */
+function renderHeroCountdown() {
+  const c = site.heroCountdown;
+  if (!c) return '';
+  const at = new Date(c.at);
+  if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2})?([+-]\d{2}:\d{2}|Z)$/.test(c.at || '') || isNaN(at))
+    throw new Error(`site.json heroCountdown: "at" must be an ISO date-time with offset, e.g. 2026-12-04T19:00:00-05:00`);
+  checkEnds('site.json heroCountdown', [c]);
+  if (!current(c)) return '';
+  const left = Math.max(0, Math.floor((at - Date.now()) / 1000));
+  const parts = [['d', 'Days', Math.floor(left / 86400)], ['h', 'Hrs', Math.floor(left % 86400 / 3600)],
+                 ['m', 'Min', Math.floor(left % 3600 / 60)], ['s', 'Sec', left % 60]];
+  const units = parts.map(([k, label, n]) =>
+    `          <span class="countdown__unit"><span class="countdown__n" data-cd="${k}">${String(n).padStart(2, '0')}</span><span class="countdown__l">${label}</span></span>`).join('\n');
+  return `      <aside class="countdown"${endsAttr(c)} aria-labelledby="countdown-h">
+        <p class="countdown__eyebrow" id="countdown-h">${c.eyebrow}</p>
+        <p class="countdown__when">${c.when}</p>
+        <div class="countdown__tiles" data-countdown="${c.at}" data-live-text="${c.liveText || ''}" role="timer" aria-label="Time until the ${c.eyebrow}">
+${units}
+        </div>${c.ctaUrl ? `\n        <a class="countdown__cta" href="${c.ctaUrl}">${c.ctaLabel || 'RSVP'} &rarr;</a>` : ''}
+      </aside>
+`;
+}
+
 function renderPromo() {
   const p = site.promo;
   if (!p || !(p.items || []).length) return '';
   const card = i => {
     const size = imageSize(i.image);
-    return `        <article class="promo__card">
+    return `        <article class="promo__card"${endsAttr(i)}>
           <a class="promo__art" href="${i.ctaUrl}">
             <img src="assets/${i.image}" alt="${i.imageAlt}" width="${size.w}" height="${size.h}" loading="lazy" decoding="async">
           </a>
@@ -1230,6 +1279,7 @@ for (const f of pageFiles) {
     homeHref: meta.slug === 'index' ? '#top' : 'index.html',
     // a page opts into a script by name; every other page ships none
     promoSection: renderPromo(),
+    heroCountdown: renderHeroCountdown(),
     popup: popupHtml,
     fallPerks: renderPlanPerks(memberships.plans.fall),
     scriptTag: ['nav'].concat(meta.script ? [meta.script] : [])

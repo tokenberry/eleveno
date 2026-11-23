@@ -231,6 +231,35 @@ button,input,select,textarea{font-family:inherit}
   .hero__copy{max-width:none}
 }
 .hero__copy{max-width:560px;color:var(--cream)}
+/* Live countdown, top right of the hero (site.heroCountdown, ticked by
+   assets/home.js). Pinned to the shell's right gutter on wide screens; below
+   960px there is no room beside the headline, so it drops into the flow under
+   the buttons instead. */
+.countdown{position:absolute;top:56px;right:var(--pad);z-index:2;width:max-content;
+  padding:18px 20px 16px;border:2px solid var(--gold);border-radius:16px;
+  background:rgba(10,26,58,.86);box-shadow:0 16px 38px rgba(10,26,58,.5);text-align:center;color:var(--cream)}
+.countdown__eyebrow{font-family:var(--display);font-size:24px;line-height:1.05;letter-spacing:.5px;
+  text-transform:uppercase;color:var(--gold)}
+.countdown__when{margin-top:6px;font-family:var(--mono);font-size:12px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--on-navy)}
+.countdown__tiles{display:flex;justify-content:center;gap:8px;margin-top:14px}
+.countdown__unit{display:flex;flex-direction:column;align-items:center;min-width:62px;
+  padding:9px 6px 7px;border-radius:10px;background:var(--navy-mid);border:1px solid #ffffff1f}
+.countdown__n{font-family:var(--display);font-size:34px;line-height:1;color:var(--cream);
+  font-variant-numeric:tabular-nums}
+.countdown__l{margin-top:5px;font-family:var(--mono);font-size:11px;letter-spacing:1px;
+  text-transform:uppercase;color:var(--on-navy-mute)}
+.countdown__now{max-width:280px;font-family:var(--display);font-size:22px;line-height:1.15;
+  text-transform:uppercase;color:var(--cream)}
+.countdown__cta{display:inline-block;margin-top:14px;font-family:var(--mono);font-size:13px;
+  font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);text-decoration:none}
+.countdown__cta:hover,.countdown__cta:focus-visible{text-decoration:underline}
+@media (max-width:960px){
+  .countdown{position:static;margin-top:32px}
+}
+@media (max-width:860px){
+  .countdown{width:auto;max-width:420px;margin-left:auto;margin-right:auto}
+}
 .hero__eyebrow{font-family:var(--mono);font-size:14px;letter-spacing:4px;color:var(--gold);margin-bottom:18px}
 /* 1.04, not .86. Anton's caps are tall enough that at .86 the three lines
    touched — measured on painted pixels, the headline resolved as one ink band
