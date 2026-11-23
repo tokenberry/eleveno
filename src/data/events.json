@@ -26,7 +26,7 @@
       "url": "https://eleveno.podplay.app/community/events/01a17944-8535-766a-8f14-7caab1795989",
       "ctaLabel": "Sign Up",
       "featured": false,
-      "home": true
+      "home": false
     },
     {
       "when": "SAT NOV 21 · 9–10 AM",
@@ -71,7 +71,7 @@
       "url": "https://eleveno.podplay.app/community/events",
       "ctaLabel": "Sign Up",
       "featured": true,
-      "home": true
+      "home": false
     },
     {
       "when": "MON NOV 16 · 11 AM–1 PM",
