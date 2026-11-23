@@ -27,11 +27,12 @@
     "Open 7 Days"
   ],
   "promo": {
-    "_comment": "Dated banners on the home page. Delete an item when it is over, or the whole promo block when none are running — renderPromo emits nothing without it, so no markup has to be touched either way.",
+    "_comment": "Dated banners on the home page. Give each item an `ends` date (YYYY-MM-DD, its last day) and it drops off by itself the day after. Delete an item when it is over, or the whole promo block when none are running — renderPromo emits nothing without it, so no markup has to be touched either way.",
     "eyebrow": "COMING UP AT ELEVENO",
     "items": [
       {
         "heading": "1 Year Anniversary Party",
+        "ends": "2026-12-04",
         "body": "Friday December 4th, 7–10pm, on the event court. Our holiday party and a toast to our first year at ELEVENO — come celebrate with us.",
         "ctaLabel": "RSVP on the app",
         "ctaUrl": "https://eleveno.podplay.app/community/events/01a1c6c6-0ad2-7aa9-aabf-cac685124aad?v=ab7499af",
@@ -40,6 +41,7 @@
       },
       {
         "heading": "Winter Classic Moneyball",
+        "ends": "2026-12-20",
         "body": "Our biggest tournament of the year — and our First Anniversary Celebration. Friday December 18th through Sunday December 20th, here in Foxborough. Powered by BostonPickle.Life and DUPR.",
         "ctaLabel": "Register for the tournament",
         "ctaUrl": "https://pickleballtournaments.com/tournaments/eleveno-1st-anniversary-winter-classic",
@@ -48,7 +50,8 @@
       },
       {
         "heading": "DUPR Rating Sessions",
-        "body": "Mondays November 9th, 16th, 23rd and 30th, 8–10pm. Get rated, track your progress, play your best.",
+        "ends": "2026-11-30",
+        "body": "Mondays November 23rd and 30th, 8–10pm. Get rated, track your progress, play your best.",
         "ctaLabel": "Sign up on the app",
         "ctaUrl": "https://eleveno.podplay.app/community/events",
         "image": "promo-dupr-rating.jpg",

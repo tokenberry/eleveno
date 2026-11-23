@@ -33,3 +33,19 @@
   if (document.readyState === 'complete') on();
   else window.addEventListener('load', on);
 })();
+
+/* Hide dated events once their last day has passed. The build already leaves
+   out anything finished, but the site is only rebuilt when something is
+   pushed — this keeps it current on the days in between. Each item carries its
+   last day as data-ends="YYYY-MM-DD"; a promo band left with no cards goes too. */
+(function () {
+  var d = new Date();
+  var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+  var today = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+  Array.prototype.forEach.call(document.querySelectorAll('[data-ends]'), function (el) {
+    if (el.getAttribute('data-ends') < today) el.hidden = true;
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('.promo'), function (band) {
+    if (band.querySelector('.promo__card') && !band.querySelector('.promo__card:not([hidden])')) band.hidden = true;
+  });
+})();

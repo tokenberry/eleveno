@@ -62,6 +62,11 @@ highlight it; they render in the order listed. An event with no link renders
 without a button, and an empty list renders a "nothing on right now" row rather
 than an empty rule. `/admin` edits this as a drag-to-reorder list.
 
+A one-off event can carry `ends`, its last day as `YYYY-MM-DD` (the home page
+promo cards in `site.json` take it too). From the day after, the build leaves
+it out, and `assets/nav.js` hides it in the browser on days nobody deploys —
+so a finished event never lingers. Weekly programmes leave it off.
+
 The calendar page (`calendar.html`) repeats the same list at the top, then
 offers three "start here" routes into the booking system by player level.
 
